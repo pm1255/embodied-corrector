@@ -12,8 +12,8 @@
   <meta property="og:type" content="website">
   <title>Embodied-Corrector | Recover, Don’t Just Continue</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=research-2">
-  <script src="app.js?v=research-2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=simulations-1-research-2">
+  <script src="app.js?v=simulations-1-research-2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -21,7 +21,7 @@
     <div class="nav-shell">
       <a class="wordmark" href="#top" aria-label="Embodied-Corrector home"><span class="brand-icon" aria-hidden="true">↻</span><span>Embodied<span class="wordmark-light">-Corrector</span></span></a>
       <nav id="main-nav" aria-label="Main navigation">
-        <a href="#video">Video</a><a href="#abstract">Abstract</a><a href="#overview">Motivation</a><a href="#method">Method</a><a href="#results">Experiments</a><a href="#cases">Cases</a><a href="#citation">Citation</a>
+        <a href="#video">Video</a><a href="#abstract">Abstract</a><a href="#overview">Motivation</a><a href="#method">Method</a><a href="#results">Experiments</a><a href="#simulations">Simulations</a><a href="#cases">Cases</a><a href="#citation">Citation</a>
       </nav>
       <div class="nav-actions">
         <button class="theme-toggle icon-button" type="button" aria-label="Switch to dark theme" title="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.1 15.1A8.5 8.5 0 0 1 8.9 3.9a8.5 8.5 0 1 0 11.2 11.2Z"/></svg></button>
@@ -41,7 +41,7 @@
         <p class="backbone-label">Trained from <strong>RynnBrain-8B</strong> · Evaluation-first SFT + NEPO</p>
         <div class="hero-actions">
           <a class="button primary" href="assets/paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Z"/><path d="M14 3v5h5M8 12h8M8 16h6"/></svg>Read the paper <span aria-hidden="true">↗</span></a>
-          <a class="button secondary" href="#video">▶ Watch the introduction</a>
+          <a class="button secondary" href="#video">▶ Watch the introduction</a><a class="button secondary" href="#simulations">Explore 6 continuous rollouts ↗</a>
           <a class="button secondary" href="https://github.com/pm1255/embodied-corrector" target="_blank" rel="noopener">Code on GitHub <span aria-hidden="true">↗</span></a>
         </div>
         <nav class="research-index" aria-label="Research sections">
@@ -132,6 +132,18 @@
       <div id="results-panel" class="results-panel" role="tabpanel" aria-labelledby="tab-diagnosis" tabindex="0"></div>
       <noscript><p>Interactive charts require JavaScript. All reported results are available in <a href="assets/paper.pdf#page=6">Tables 1–3 and Figure 4 of the paper</a>.</p></noscript>
       <div class="dynamics-panel"><div><p class="small-label">POST-TRAINING DYNAMICS</p><h3>Stronger reward.<br> Without entropy collapse.</h3><p>Under matched VQA post-training conditions, NEPO achieves the highest answer-level reward while avoiding the low-entropy regime of vanilla OPD.</p></div><button class="figure-button" data-zoom="assets/figures/dynamics.webp" data-caption="Figure 5 · VQA post-training dynamics. Curves are reproduced directly from the manuscript." type="button" aria-label="Enlarge post-training curves"><img src="assets/figures/dynamics.webp" width="1815" height="582" loading="lazy" alt="Original loss, answer reward, and token entropy curves comparing GRPO, GSPO, OPD, and NEPO."><span class="zoom-hint" aria-hidden="true">↗</span></button></div>
+    </section>
+
+    <section id="simulations" class="section container simulation-section" aria-labelledby="simulations-title" lang="zh-CN">
+      <div class="section-heading"><p class="eyebrow">CONTINUOUS SIMULATION / 新增连续仿真</p><h2 id="simulations-title">看见失败。解释原因。<br><span class="gradient-text">再执行下一步。</span></h2><p>六类困难任务，逐步展示大脑如何连接判断、原因、子任务与细粒度动作。左侧为每次执行前保存的四步输出，右侧为该回合的连续仿真录像。</p></div>
+      <p class="simulation-scope"><strong>GPT 代理演示</strong> · 本组使用 GPT 模拟 RynnBrain 的四字段格式，配合使用仿真状态定位的解析控制器。交互调试也参考了状态诊断；不代表训练后 RynnBrain 或冻结 π₀.₅ 的性能。</p>
+      <div class="simulation-select" role="group" aria-label="选择连续仿真案例"><button type="button" data-simulation="libero-articulation-r1" aria-pressed="true"><span>01 / LIBERO-PRO</span><strong>先打开，再放入</strong><small>官方任务完成</small></button><button type="button" data-simulation="libero-relational-r2" aria-pressed="false"><span>02 / LIBERO-PRO</span><strong>读懂“不在两者之间”</strong><small>官方任务完成</small></button><button type="button" data-simulation="libero-multiobject-r2" aria-pressed="false"><span>03 / LIBERO-PRO</span><strong>两个目标，一个都不能少</strong><small>官方任务完成</small></button><button type="button" data-simulation="robocasa-salsa" aria-pressed="false"><span>04 / RoboCasa365</span><strong>四种食材，逐一完成</strong><small>整体未完成</small></button><button type="button" data-simulation="robocasa-clearing" aria-pressed="false"><span>05 / RoboCasa365</span><strong>先清空，再布置</strong><small>整体未完成</small></button><button type="button" data-simulation="robocasa-sorting-r2" aria-pressed="false"><span>06 / RoboCasa365</span><strong>从大到小，稳定堆叠</strong><small>整体未完成</small></button></div>
+      <div class="simulation-heading"><div><p class="small-label" id="simulation-tag">LIBERO-PRO · 目标替换 · 抽屉净空</p><h3 id="simulation-title">先打开，再放入</h3></div><span id="simulation-outcome" class="simulation-outcome">官方任务完成</span></div>
+      <div class="intro-player"><video id="simulation-player" controls playsinline preload="metadata" poster="assets/simulations/libero-articulation-r1-poster.jpg" aria-label="连续仿真：先打开，再放入"><source src="assets/simulations/libero-articulation-r1.mp4" type="video/mp4"></video></div>
+      <div class="video-toolbar"><button type="button" class="button primary" data-play="simulation-player">▶ 播放完整案例</button><span>中文字幕无底框 · 连续轨迹 · 2× 播放</span><a class="text-link" id="simulation-download" href="assets/simulations/libero-articulation-r1.mp4" download>下载 MP4 ↓</a><a class="text-link" id="simulation-record" href="assets/simulations/libero-articulation-r1.json">四步原始记录 ↗</a></div>
+      <p id="simulation-description" class="simulation-description">抽屉只拉开约 4 cm，放置前提不成立。继续拉开、改变抓取朝向，再把奶油奶酪放入顶层。</p>
+      <details class="simulation-transcript"><summary>展开逐步输出 · 可点击跳转视频</summary><div id="simulation-events" aria-live="polite"></div></details>
+      <div class="simulation-footer"><p>共 9 次独立尝试：LIBERO-PRO 3 / 5 完成，RoboCasa365 0 / 4 完成。包含调试和重试，不构成基准成功率；未完成案例同样保留。</p><div><a class="text-link" href="https://github.com/pm1255/embodied-corrector/blob/main/guides/simulation_report_zh.md">全部尝试与运行说明 ↗</a><a class="text-link" href="assets/simulations/execution-records.zip" download>下载动作与日志 ↓</a><a class="text-link" href="assets/simulations/highlights.mp4">观看六案例选段 ↗</a></div></div>
     </section>
 
     <section id="cases" class="section section-tinted">

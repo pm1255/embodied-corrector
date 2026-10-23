@@ -1,0 +1,59 @@
+[
+  {
+    "id": "libero-relational",
+    "backend": "libero_pro",
+    "source_suite": "libero_spatial",
+    "source_task": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+    "perturbation": "task",
+    "perturbation_seed": 0,
+    "environment_seed": 7,
+    "instruction": "Pick the akita black bowl not between the plate and the ramekin and place it on the plate",
+    "bddl_sha256": "61ff13656df194011d9c5fb3873098fcce18563d380d4437622d8d910a996bdc"
+  },
+  {
+    "id": "libero-multiobject",
+    "backend": "libero_pro",
+    "source_suite": "libero_10",
+    "source_task": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket",
+    "perturbation": "swap",
+    "perturbation_seed": 17,
+    "environment_seed": 7,
+    "instruction": "put both the cream cheese box and the butter in the basket",
+    "bddl_sha256": "a42657e5dcd39decb57192cc6d3f15539d347214542acc9a468cff7122cca728"
+  },
+  {
+    "id": "libero-articulation",
+    "backend": "libero_pro",
+    "source_suite": "libero_goal",
+    "source_task": "open_the_top_drawer_and_put_the_bowl_inside",
+    "perturbation": "task",
+    "perturbation_seed": 1,
+    "environment_seed": 7,
+    "instruction": "Open the top layer of the drawer and put the cream cheese inside",
+    "bddl_sha256": "468fc65a5aa7e63cc829efb9f7970cadbfc39bfe5695930c5e1d252f05ed5078"
+  },
+  {
+    "id": "robocasa-salsa",
+    "backend": "robocasa365",
+    "source_task": "ColorfulSalsa",
+    "environment_seed": 7,
+    "layout": 1,
+    "style": 1
+  },
+  {
+    "id": "robocasa-clearing",
+    "backend": "robocasa365",
+    "source_task": "ClearCuttingBoard",
+    "environment_seed": 7,
+    "layout": 1,
+    "style": 1
+  },
+  {
+    "id": "robocasa-sorting",
+    "backend": "robocasa365",
+    "source_task": "SizeSorting",
+    "environment_seed": 7,
+    "layout": 1,
+    "style": 1
+  }
+]

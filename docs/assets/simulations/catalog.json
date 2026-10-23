@@ -1,0 +1,56 @@
+[
+  {
+    "id": "libero-articulation-r1",
+    "title": "先打开，再放入",
+    "tag": "目标替换 · 抽屉净空",
+    "description": "抽屉只拉开约 4 cm，放置前提不成立。继续拉开、改变抓取朝向，再把奶油奶酪放入顶层。",
+    "suite": "LIBERO-PRO",
+    "success": true,
+    "steps": 1422
+  },
+  {
+    "id": "libero-relational-r2",
+    "title": "读懂“不在两者之间”",
+    "tag": "空间关系取反",
+    "description": "目标关系被取反。纠正碗的选择，调整碗沿抓取位置，并补偿放置中心偏移。",
+    "suite": "LIBERO-PRO",
+    "success": true,
+    "steps": 746
+  },
+  {
+    "id": "libero-multiobject-r2",
+    "title": "两个目标，一个都不能少",
+    "tag": "位置交换 · 双目标入篮",
+    "description": "交换目标与干扰物位置后，空夹爪先尝试放置。分别调整奶油奶酪和黄油的抓取朝向，完成双目标入篮。",
+    "suite": "LIBERO-PRO",
+    "success": true,
+    "steps": 1349
+  },
+  {
+    "id": "robocasa-salsa",
+    "title": "四种食材，逐一完成",
+    "tag": "ColorfulSalsa",
+    "description": "调整抓取朝向后，牛油果到达砧板；番茄运输仍不稳定，四食材组合目标未完成。",
+    "suite": "RoboCasa365",
+    "success": false,
+    "steps": 2528
+  },
+  {
+    "id": "robocasa-clearing",
+    "title": "先清空，再布置",
+    "tag": "ClearCuttingBoard",
+    "description": "尝试倾斜接近和再抓取；肉块在运输中回落到砧板前缘，蔬菜摆放目标未完成。",
+    "suite": "RoboCasa365",
+    "success": false,
+    "steps": 2113
+  },
+  {
+    "id": "robocasa-sorting-r2",
+    "title": "从大到小，稳定堆叠",
+    "tag": "SizeSorting",
+    "description": "抓取受到台沿与可达范围限制。尝试调整基座，但未到达目标位置，杯子堆叠未完成。",
+    "suite": "RoboCasa365",
+    "success": false,
+    "steps": 448
+  }
+]

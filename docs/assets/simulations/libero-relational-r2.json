@@ -1,0 +1,183 @@
+{
+  "case": "libero-relational-r2",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "pick the akita black bowl not between the plate and the ramekin and place it on the plate",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/libero-relational.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "7b8a449197850e6bf84ecb9a1cef2432f4fa7a98169f2fd1f4323309314eac53"
+  },
+  "result": {
+    "success": true,
+    "steps": 746,
+    "commands": 5,
+    "brain_records": 4,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 174,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pick",
+        "object": "akita_black_bowl_1",
+        "offset": [
+          0.03,
+          0,
+          0.015
+        ],
+        "perturbation": "controlled wrong target: bowl between plate and ramekin; independent new episode with slower executor"
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "akita_black_bowl_1",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 174,
+      "step_end": 380,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "刚才抓取的是盘子与小盅之间的碗，且夹爪未带起物体；这不符合“不在两者之间”的指令。",
+        "Sub": "改抓小盅右侧的另一个黑碗。",
+        "Fine": "从一侧碗沿夹住正确目标，抬起后检查是否随夹爪移动。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "刚才抓取的是盘子与小盅之间的碗，且夹爪未带起物体；这不符合“不在两者之间”的指令。",
+          "Sub": "改抓小盅右侧的另一个黑碗。",
+          "Fine": "从一侧碗沿夹住正确目标，抬起后检查是否随夹爪移动。"
+        },
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "offset": [
+          0,
+          0.035,
+          0
+        ],
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "object_lift_m": -0.007631033294130507,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 380,
+      "step_end": 513,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "目标选择正确，但右侧碗仍在桌面，上一抓取未形成稳定夹持。",
+        "Sub": "改为从外侧碗沿进行径向夹持。",
+        "Fine": "对准碗沿外侧，沿碗壁法向夹紧，让一指进入碗内、一指留在外侧，再抬起验证。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "目标选择正确，但右侧碗仍在桌面，上一抓取未形成稳定夹持。",
+          "Sub": "改为从外侧碗沿进行径向夹持。",
+          "Fine": "对准碗沿外侧，沿碗壁法向夹紧，让一指进入碗内、一指留在外侧，再抬起验证。"
+        },
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "offset": [
+          0.045,
+          0,
+          0.025
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "object_lift_m": 0.18479959734501472,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 513,
+      "step_end": 746,
+      "brain": {
+        "Judge": "success",
+        "Cause": "目标碗已从桌面抬起，径向夹持形成了稳定接触。",
+        "Sub": "把正确的碗放到盘心。",
+        "Fine": "补偿夹爪与碗中心的偏移，低位对准盘心松手，再抬离验证碗盘关系。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "目标碗已从桌面抬起，径向夹持形成了稳定接触。",
+          "Sub": "把正确的碗放到盘心。",
+          "Fine": "补偿夹爪与碗中心的偏移，低位对准盘心松手，再抬离验证碗盘关系。"
+        },
+        "action": "place",
+        "object": "akita_black_bowl_2",
+        "target": "plate_1",
+        "offset": [
+          0,
+          0,
+          0.04
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 4,
+      "step_start": 746,
+      "step_end": 746,
+      "brain": {
+        "Judge": "success",
+        "Cause": "正确的目标碗已稳定留在盘内，另一个碗仍在原处；空间关系目标已完成。",
+        "Sub": "结束本轮任务。",
+        "Fine": "记录最终成功状态，保持场景不再改动。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "正确的目标碗已稳定留在盘内，另一个碗仍在原处；空间关系目标已完成。",
+          "Sub": "结束本轮任务。",
+          "Fine": "记录最终成功状态，保持场景不再改动。"
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ]
+}

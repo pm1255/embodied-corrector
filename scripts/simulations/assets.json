@@ -1,0 +1,30 @@
+[
+  {
+    "name": "textures",
+    "dataset": "robocasa/robocasa-assets",
+    "filename": "textures.zip",
+    "sha256": "ba3a4dcef96e199cbd601c7cdb7eb46077fb6672611b7ac74c25a191bf0be392",
+    "relative_directory": "textures"
+  },
+  {
+    "name": "fixtures_lightwheel",
+    "dataset": "IIFAN/robocasa365-lightwheel-fixtures",
+    "filename": "fixtures_lightwheel.zip",
+    "sha256": "62c1c87776edda9b7c42dda7b00781a1e5a7f90acc3e49d06c39c9545cbd6c3e",
+    "relative_directory": "fixtures"
+  },
+  {
+    "name": "objects_lightwheel",
+    "dataset": "IIFAN/robocasa365-lightwheel-objects",
+    "filename": "objects_lightwheel.zip",
+    "sha256": "a1db739b0e80fc4d56d4be27d89dba3aa60000e9648c5607874700e0f14b7955",
+    "relative_directory": "objects/lightwheel"
+  },
+  {
+    "name": "objaverse",
+    "dataset": "robocasa/robocasa-assets",
+    "filename": "objaverse.zip",
+    "sha256": "66a7eebef3bac855301964d35d905fc2cb44d691f007f97af08d96e83db5cc08",
+    "relative_directory": "objects/objaverse"
+  }
+]

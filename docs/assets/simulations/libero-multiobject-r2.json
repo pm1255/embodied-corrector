@@ -1,0 +1,249 @@
+{
+  "case": "libero-multiobject-r2",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put both the cream cheese box and the butter in the basket",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/libero-multiobject.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "9d8e710b95d0e55cf5dd760589939639d4178b86b723afe595a0e53f573cef65"
+  },
+  "result": {
+    "success": true,
+    "steps": 1349,
+    "commands": 7,
+    "brain_records": 6,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 131,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "empty_place",
+        "target": "basket_1",
+        "offset": [
+          0,
+          0,
+          0.15
+        ],
+        "perturbation": "controlled omission of grasp; independent new episode with versioned slower executor"
+      },
+      "feedback": {
+        "action": "empty_place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 131,
+      "step_end": 408,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "篮子仍为空，两个目标都在桌上；空夹爪到达篮子不能代替抓取。",
+        "Sub": "先抓取奶油奶酪盒。",
+        "Fine": "把夹爪转到盒子的窄边方向，低位夹紧并竖直抬升，确认物体随动。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "篮子仍为空，两个目标都在桌上；空夹爪到达篮子不能代替抓取。",
+          "Sub": "先抓取奶油奶酪盒。",
+          "Fine": "把夹爪转到盒子的窄边方向，低位夹紧并竖直抬升，确认物体随动。"
+        },
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.25
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.24445437239543055,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 408,
+      "step_end": 697,
+      "brain": {
+        "Judge": "success",
+        "Cause": "奶油奶酪盒已夹住并抬离桌面，抓取前提已经满足。",
+        "Sub": "把奶油奶酪送入篮子。",
+        "Fine": "保持高位运输，以盒子中心对准篮口内部，下降松手后检查放置结果。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "奶油奶酪盒已夹住并抬离桌面，抓取前提已经满足。",
+          "Sub": "把奶油奶酪送入篮子。",
+          "Fine": "保持高位运输，以盒子中心对准篮口内部，下降松手后检查放置结果。"
+        },
+        "action": "place",
+        "object": "cream_cheese_1",
+        "target": "basket_1",
+        "offset": [
+          0,
+          -0.035,
+          0.12
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 697,
+      "step_end": 942,
+      "brain": {
+        "Judge": "success",
+        "Cause": "奶油奶酪已从桌面移入篮口，夹爪已松开；黄油仍留在前方桌上，任务还未完成。",
+        "Sub": "继续抓取黄油盒。",
+        "Fine": "按黄油盒的窄边方向对准，低位夹紧并抬升，确认随动后再放入篮内。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "奶油奶酪已从桌面移入篮口，夹爪已松开；黄油仍留在前方桌上，任务还未完成。",
+          "Sub": "继续抓取黄油盒。",
+          "Fine": "按黄油盒的窄边方向对准，低位夹紧并抬升，确认随动后再放入篮内。"
+        },
+        "action": "pick",
+        "object": "butter_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.25
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "butter_1",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 942,
+      "step_end": 1107,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "黄油仍留在桌上，抬升后夹爪为空；不能直接沿用奶油奶酪的夹持方向。",
+        "Sub": "调整为另一方向重新抓取黄油。",
+        "Fine": "将手腕转回九十度，沿黄油盒另一对侧面低位夹紧，再抬升检查。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "黄油仍留在桌上，抬升后夹爪为空；不能直接沿用奶油奶酪的夹持方向。",
+          "Sub": "调整为另一方向重新抓取黄油。",
+          "Fine": "将手腕转回九十度，沿黄油盒另一对侧面低位夹紧，再抬升检查。"
+        },
+        "action": "pick",
+        "object": "butter_1",
+        "offset": [
+          0,
+          0,
+          -0.007
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.25
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "butter_1",
+        "object_lift_m": 0.24105729134001813,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 1107,
+      "step_end": 1349,
+      "brain": {
+        "Judge": "success",
+        "Cause": "黄油已夹住并抬离桌面，第二个目标的抓取完成。",
+        "Sub": "将黄油放入篮子剩余空间。",
+        "Fine": "保持高位运输，对齐黄油中心与篮口内部，下降后松手，最后检查两个目标是否都在篮内。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "黄油已夹住并抬离桌面，第二个目标的抓取完成。",
+          "Sub": "将黄油放入篮子剩余空间。",
+          "Fine": "保持高位运输，对齐黄油中心与篮口内部，下降后松手，最后检查两个目标是否都在篮内。"
+        },
+        "action": "place",
+        "object": "butter_1",
+        "target": "basket_1",
+        "offset": [
+          0,
+          0.035,
+          0.12
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 6,
+      "step_start": 1349,
+      "step_end": 1349,
+      "brain": {
+        "Judge": "success",
+        "Cause": "两个目标均已放入篮内，桌面上不再遗留奶油奶酪和黄油，任务完成。",
+        "Sub": "结束双目标放置任务。",
+        "Fine": "记录最终成功判定，保留完整的失败与恢复过程。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "两个目标均已放入篮内，桌面上不再遗留奶油奶酪和黄油，任务完成。",
+          "Sub": "结束双目标放置任务。",
+          "Fine": "记录最终成功判定，保留完整的失败与恢复过程。"
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ]
+}

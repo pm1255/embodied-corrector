@@ -21,6 +21,16 @@ https://github.com/user-attachments/assets/3cf1d45c-68d8-4eb9-8207-ace68186fb2e
 
 视频采用英文配音与无底框中文字幕，介绍研究动机、RynnBrain 训练方法、NEPO 和纠错案例。主页提供 **7 类案例**：4 个论文观察帧案例，以及导航、可达性、容器开合 3 类协议示意。观察帧按顺序展示，不代表原始连续视频。
 
+## 新增连续仿真案例
+
+[![GPT 四步纠错与连续仿真](docs/assets/simulations/libero-articulation-r1-poster.jpg)](https://pm1255.github.io/embodied-corrector/#simulations)
+
+[▶ 观看 6 类完整案例](https://pm1255.github.io/embodied-corrector/#simulations) · [六案例视频选段](https://pm1255.github.io/embodied-corrector/assets/simulations/highlights.mp4) · [全部 9 次尝试与运行说明](guides/simulation_report_zh.md)
+
+新增 RoboCasa365 的四食材摆放、清空砧板、杯子堆叠，以及 LIBERO-PRO 的抽屉净空、空间关系取反、双目标入篮。视频左侧按 **Judge → Cause → Sub → Fine** 展示当时保存的 GPT 输出，右侧为连续仿真；中文字幕无底框。
+
+本组为 **GPT 代理 + 使用仿真状态定位的解析控制器**，交互调试参考了状态诊断。共 9 次独立尝试，LIBERO-PRO 3 / 5 完成、RoboCasa365 0 / 4 完成；成功与未完成案例均保留。它用于演示四步闭环，不代表训练后 RynnBrain、冻结 π₀.₅ 或论文基准成绩。
+
 ## 摘要
 
 可靠的具身执行需要理解物理失败的原因、适应执行器能力，并根据交互反馈修订后续决策。我们提出基于 **RynnBrain-8B** 训练的 **Embodied-Corrector**，通过 **Judge → Cause → Sub → Fine** 将执行观察、失败诊断与可执行恢复联系起来。我们从成功轨迹构建可控的失败—恢复分支，每次只改变一个物理因素；采用**评估优先 SFT**，先学习判断与原因，再学习恢复规划；通过 **NEPO** 将组相对奖励与两种评估上下文之间的 token 级指导结合，并用熵门控抑制不确定的负向信号。部署时，模型只使用公开观察和当前回合历史，不更新参数。论文在失败推理、规划迁移和固定执行后端的恢复任务上进行评估：固定代码后端的宏平均成功率由 **55.0% 提升至 68.9%**，冻结 π₀.₅ 在 RoboCasa365 未见组合任务上的成功率由 **1.2% 提升至 7.3%**。

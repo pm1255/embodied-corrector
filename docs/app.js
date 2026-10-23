@@ -1,5 +1,60 @@
 'use strict';
 
+// Case records are captured before execution. Official outcomes below are final
+// episode outcomes, not advance knowledge available to the corrective brain.
+async function initializeSimulations(){
+  const player=document.getElementById('simulation-player');
+  if(!player)return;
+  const holder=document.getElementById('simulation-events');
+  let request=0;
+  try{
+    const response=await fetch('assets/simulations/catalog.json');
+    if(!response.ok)throw new Error('catalog');
+    const catalog=await response.json();
+    async function selectCase(id,changeVideo=true){
+      const selection=++request, item=catalog.find(c=>c.id===id);
+      if(!item)return;
+      const base='assets/simulations/'+id;
+      if(changeVideo){
+        player.pause();player.src=base+'.mp4';player.poster=base+'-poster.jpg';player.load();
+      }
+      player.setAttribute('aria-label','连续仿真：'+item.title);
+      document.getElementById('simulation-title').textContent=item.title;
+      document.getElementById('simulation-tag').textContent=item.suite+' · '+item.tag;
+      document.getElementById('simulation-description').textContent=item.description;
+      const outcome=document.getElementById('simulation-outcome');
+      outcome.textContent=item.success?'官方任务完成':'官方任务未完成';outcome.classList.toggle('incomplete',!item.success);
+      document.getElementById('simulation-download').href=base+'.mp4';
+      document.getElementById('simulation-record').href=base+'.json';
+      document.querySelectorAll('[data-simulation]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.simulation===id)));
+      holder.textContent='正在加载四步记录…';
+      try{
+        const res=await fetch(base+'.json');if(!res.ok)throw new Error('record');
+        const record=await res.json();if(selection!==request)return;
+        holder.replaceChildren();
+        for(const event of record.events){
+          const article=document.createElement('article');article.className='simulation-record';
+          const button=document.createElement('button');button.type='button';
+          const seek=event.step_start===0?0:2+Math.floor(event.step_start/2)/20;
+          button.textContent=`▶ 第 ${event.index+1} 段 · ${event.step_start}–${event.step_end} 步${event.brain?'':' · 受控扰动，尚未调用纠错大脑'}`;
+          button.addEventListener('click',()=>playVideo(player,seek));article.append(button);
+          if(event.brain){
+            const dl=document.createElement('dl');
+            for(const key of ['Judge','Cause','Sub','Fine']){
+              const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=event.brain[key];dl.append(dt,dd);
+            }
+            article.append(dl);
+          }
+          const after=document.createElement('small');after.textContent='本段执行后的官方判定：'+(event.official_success?'任务完成':'任务尚未完成');article.append(after);holder.append(article);
+        }
+      }catch{if(selection===request)holder.textContent='文字记录暂时无法加载，请使用“四步原始记录”链接查看。';}
+    }
+    document.querySelectorAll('[data-simulation]').forEach(b=>b.addEventListener('click',()=>selectCase(b.dataset.simulation)));
+    await selectCase(catalog[0].id,false);
+  }catch{holder.textContent='案例列表暂时无法加载；仍可播放默认视频并下载原始记录。';}
+}
+document.addEventListener('DOMContentLoaded',initializeSimulations);
+
 // Reported manuscript values. Percentages are success/accuracy scores;
 // differences are absolute percentage points, never relative percentages.
 const diagnosis = [

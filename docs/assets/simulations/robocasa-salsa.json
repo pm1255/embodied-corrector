@@ -1,0 +1,488 @@
+{
+  "case": "robocasa-salsa",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the avocado, onion, tomato, and bell pepper on the cutting board.",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "ColorfulSalsa",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "9de1da086c935d66b67d10db964cd431d43be82ea0a28dea8ff73ed65f77c283"
+  },
+  "result": {
+    "success": false,
+    "steps": 2528,
+    "commands": 13,
+    "brain_records": 12,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 220,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pick",
+        "object": "avocado",
+        "offset": [
+          0,
+          0,
+          0.12
+        ],
+        "perturbation": "controlled grasp-height error: close 12 cm above the avocado"
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "avocado",
+        "object_lift_m": -7.732701960971866e-07,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 220,
+      "step_end": 428,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "夹爪在台面上方过高处闭合，抬起后没有可见的随动食材，牛油果抓取未完成。",
+        "Sub": "降低接触高度，重新抓取牛油果。",
+        "Fine": "从上方重新对准牛油果，在物体侧面高度闭合夹爪，先竖直抬起检查是否夹稳。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "夹爪在台面上方过高处闭合，抬起后没有可见的随动食材，牛油果抓取未完成。",
+          "Sub": "降低接触高度，重新抓取牛油果。",
+          "Fine": "从上方重新对准牛油果，在物体侧面高度闭合夹爪，先竖直抬起检查是否夹稳。"
+        },
+        "action": "pick",
+        "object": "avocado",
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "lift": 0.18
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "avocado",
+        "object_lift_m": 0.0009620246234413043,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 428,
+      "step_end": 582,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "牛油果仍在台面边缘，空夹爪再次抬起；当前夹持方向没有夹稳物体。",
+        "Sub": "调整夹爪方向，重新夹取目标。",
+        "Fine": "在目标上方旋转夹爪九十度，沿另一对侧面下降夹紧，再抬起确认。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "牛油果仍在台面边缘，空夹爪再次抬起；当前夹持方向没有夹稳物体。",
+          "Sub": "调整夹爪方向，重新夹取目标。",
+          "Fine": "在目标上方旋转夹爪九十度，沿另一对侧面下降夹紧，再抬起确认。"
+        },
+        "action": "pick",
+        "object": "avocado",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "avocado",
+        "object_lift_m": 0.1927094462665384,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 582,
+      "step_end": 841,
+      "brain": {
+        "Judge": "success",
+        "Cause": "旋转夹持方向后，牛油果已离开台面并随夹爪抬升。",
+        "Sub": "把牛油果放到砧板的一侧，给其余食材留空间。",
+        "Fine": "保持夹紧移到砧板上方，对齐物体中心后下降松手，并抬离检查落点。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "旋转夹持方向后，牛油果已离开台面并随夹爪抬升。",
+          "Sub": "把牛油果放到砧板的一侧，给其余食材留空间。",
+          "Fine": "保持夹紧移到砧板上方，对齐物体中心后下降松手，并抬离检查落点。"
+        },
+        "action": "place",
+        "object": "avocado",
+        "target": "receptacle",
+        "offset": [
+          -0.05,
+          -0.055,
+          0.05
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 841,
+      "step_end": 1159,
+      "brain": {
+        "Judge": "success",
+        "Cause": "牛油果已留在砧板上，夹爪已撤离；其余三种食材仍在板外。",
+        "Sub": "继续抓取番茄，避免只完成一个目标就停止。",
+        "Fine": "对准后方番茄，从上方夹紧并抬起，确认随动后放到砧板空位。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "牛油果已留在砧板上，夹爪已撤离；其余三种食材仍在板外。",
+          "Sub": "继续抓取番茄，避免只完成一个目标就停止。",
+          "Fine": "对准后方番茄，从上方夹紧并抬起，确认随动后放到砧板空位。"
+        },
+        "action": "pick",
+        "object": "tomato",
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "tomato",
+        "object_lift_m": 1.348313270255197e-06,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 1159,
+      "step_end": 1416,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "番茄仍在后方台面，夹爪没有带起它；当前垂直接近姿态未完成抓取。",
+        "Sub": "改变手腕朝向，重新接近番茄。",
+        "Fine": "在番茄上方调整夹爪方向，略提高侧面接触点再夹紧，抬升后重新确认。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "番茄仍在后方台面，夹爪没有带起它；当前垂直接近姿态未完成抓取。",
+          "Sub": "改变手腕朝向，重新接近番茄。",
+          "Fine": "在番茄上方调整夹爪方向，略提高侧面接触点再夹紧，抬升后重新确认。"
+        },
+        "action": "pick",
+        "object": "tomato",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.16
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "tomato",
+        "object_lift_m": -0.0005704602230129918,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 6,
+      "step_start": 1416,
+      "step_end": 1462,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "番茄仍未被带起，后方抓取连续失效；需要尝试不同的接近角度。",
+        "Sub": "倾斜夹爪，从台面前方接近番茄。",
+        "Fine": "张开夹爪，采用倾斜姿态下降到番茄两侧，先确认能到达接触位置再闭合。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "番茄仍未被带起，后方抓取连续失效；需要尝试不同的接近角度。",
+          "Sub": "倾斜夹爪，从台面前方接近番茄。",
+          "Fine": "张开夹爪，采用倾斜姿态下降到番茄两侧，先确认能到达接触位置再闭合。"
+        },
+        "action": "move",
+        "position": [
+          2.3118521594598125,
+          -0.3032962303917576,
+          0.9575065538928306
+        ],
+        "rotation": [
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          [
+            0,
+            0.573576436351046,
+            -0.8191520442889918
+          ]
+        ],
+        "grip": -1,
+        "steps": 160,
+        "executor_target_spec": {
+          "source": "simulator localization",
+          "object": "tomato",
+          "offset": [
+            0,
+            0,
+            0.01
+          ]
+        }
+      },
+      "feedback": {
+        "action": "move",
+        "reached": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 7,
+      "step_start": 1462,
+      "step_end": 1487,
+      "brain": {
+        "Judge": "success",
+        "Cause": "倾斜接近后夹爪已到番茄两侧，接触位置比前次更接近目标。",
+        "Sub": "在当前位置夹紧番茄。",
+        "Fine": "保持手腕姿态，缓慢闭合夹爪，随后以同一姿态退出并抬升检查。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "倾斜接近后夹爪已到番茄两侧，接触位置比前次更接近目标。",
+          "Sub": "在当前位置夹紧番茄。",
+          "Fine": "保持手腕姿态，缓慢闭合夹爪，随后以同一姿态退出并抬升检查。"
+        },
+        "action": "gripper",
+        "close": 1,
+        "steps": 25
+      },
+      "feedback": {
+        "action": "gripper",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 8,
+      "step_start": 1487,
+      "step_end": 1572,
+      "brain": {
+        "Judge": "success",
+        "Cause": "夹爪已完成闭合，但手臂遮挡了物体，仍需通过抬升确认夹持结果。",
+        "Sub": "退出后方空间并抬起番茄。",
+        "Fine": "保持倾斜姿态和夹紧状态，向台面前方退出并抬高，检查番茄是否随动。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "夹爪已完成闭合，但手臂遮挡了物体，仍需通过抬升确认夹持结果。",
+          "Sub": "退出后方空间并抬起番茄。",
+          "Fine": "保持倾斜姿态和夹紧状态，向台面前方退出并抬高，检查番茄是否随动。"
+        },
+        "action": "move",
+        "position": [
+          2.311488727318746,
+          -0.4057934718259004,
+          1.1550325849487735
+        ],
+        "rotation": [
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          [
+            0,
+            0.573576436351046,
+            -0.8191520442889918
+          ]
+        ],
+        "grip": 1,
+        "steps": 150
+      },
+      "feedback": {
+        "action": "move",
+        "reached": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 9,
+      "step_start": 1572,
+      "step_end": 1973,
+      "brain": {
+        "Judge": "success",
+        "Cause": "抬升与退出动作已完成，局部遮挡使夹持状态仍需在放置后验证。",
+        "Sub": "把夹持内容移到砧板另一侧并检查落点。",
+        "Fine": "保持夹紧接近砧板空位，低位松手并撤离，检查番茄是否留在板上。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "抬升与退出动作已完成，局部遮挡使夹持状态仍需在放置后验证。",
+          "Sub": "把夹持内容移到砧板另一侧并检查落点。",
+          "Fine": "保持夹紧接近砧板空位，低位松手并撤离，检查番茄是否留在板上。"
+        },
+        "action": "place",
+        "object": "tomato",
+        "target": "receptacle",
+        "offset": [
+          0.045,
+          0.055,
+          0.045
+        ],
+        "yaw_degrees": 90
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 10,
+      "step_start": 1973,
+      "step_end": 2176,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "番茄落在砧板右侧台面，没有留在板内；运输后的落点仍需修正。",
+        "Sub": "在新的位置重新抓取番茄。",
+        "Fine": "从前方较开阔的位置对准番茄，夹紧抬起后再送到砧板空位。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "番茄落在砧板右侧台面，没有留在板内；运输后的落点仍需修正。",
+          "Sub": "在新的位置重新抓取番茄。",
+          "Fine": "从前方较开阔的位置对准番茄，夹紧抬起后再送到砧板空位。"
+        },
+        "action": "pick",
+        "object": "tomato",
+        "offset": [
+          0,
+          0,
+          0.01
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.16
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "tomato",
+        "object_lift_m": 0.15008104864951177,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 11,
+      "step_start": 2176,
+      "step_end": 2528,
+      "brain": {
+        "Judge": "success",
+        "Cause": "在前方位置重新抓取后，番茄已随夹爪抬起，抓取恢复成功。",
+        "Sub": "把番茄放到砧板空位。",
+        "Fine": "按物体中心对齐砧板右后侧空位，下降后松手，撤离检查是否落在板内。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "在前方位置重新抓取后，番茄已随夹爪抬起，抓取恢复成功。",
+          "Sub": "把番茄放到砧板空位。",
+          "Fine": "按物体中心对齐砧板右后侧空位，下降后松手，撤离检查是否落在板内。"
+        },
+        "action": "place",
+        "object": "tomato",
+        "target": "receptacle",
+        "offset": [
+          0.045,
+          0.045,
+          0.045
+        ],
+        "yaw_degrees": 90
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 12,
+      "step_start": 2528,
+      "step_end": 2528,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "牛油果已到砧板，但番茄仍在砧板右侧，其他食材也未全部到位；完整任务尚未完成。",
+        "Sub": "结束这次连续尝试，保留局部恢复与未完成结果。",
+        "Fine": "记录当前画面和官方任务判定，不把单次抓取成功当作四食材任务成功。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "牛油果已到砧板，但番茄仍在砧板右侧，其他食材也未全部到位；完整任务尚未完成。",
+          "Sub": "结束这次连续尝试，保留局部恢复与未完成结果。",
+          "Fine": "记录当前画面和官方任务判定，不把单次抓取成功当作四食材任务成功。"
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": false
+    }
+  ]
+}

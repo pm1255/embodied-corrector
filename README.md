@@ -24,6 +24,16 @@ https://github.com/user-attachments/assets/3cf1d45c-68d8-4eb9-8207-ace68186fb2e
 
 An overview of the motivation, RynnBrain training, NEPO, and recovery cases, with English narration and Chinese subtitles. Explore **seven failure categories** on the project page: four paper-frame walkthroughs and three protocol illustrations for navigation, reachability, and articulation. Frame walkthroughs present selected paper observations rather than original continuous recordings.
 
+## Continuous simulation cases
+
+[![Four-step GPT proxy with continuous simulation](docs/assets/simulations/libero-articulation-r1-poster.jpg)](https://pm1255.github.io/embodied-corrector/#simulations)
+
+[▶ Explore 6 complete case videos](https://pm1255.github.io/embodied-corrector/#simulations) · [Six-case video excerpts](https://pm1255.github.io/embodied-corrector/assets/simulations/highlights.mp4) · [All 9 attempts and running instructions](guides/simulation_report_zh.md)
+
+The left side preserves the GPT proxy's **Judge → Cause → Sub → Fine** records; the right side shows continuous simulator execution. Chinese text has no background box. Cases cover drawer clearance, relational negation, two-object placement, four-ingredient preparation, clearing a board, and cup stacking.
+
+These are **GPT-proxy demonstrations with a simulator-state-assisted analytical controller**. Interactive debugging also consulted state diagnostics. LIBERO-PRO completed 3 of 5 attempts; RoboCasa365 completed 0 of 4. Retries and failures are retained. These debugging cases are not trained RynnBrain / frozen π₀.₅ results or a benchmark success-rate estimate.
+
 ## Abstract
 
 Reliable embodied execution requires physical causal understanding, adaptation to the executor’s capabilities, and revision from interaction feedback. **Embodied-Corrector**, trained from **RynnBrain-8B**, connects observed failures with diagnosis and executable recovery through **Judge → Cause → Sub → Fine**. We construct controlled failure–recovery branches from successful trajectories, changing one physical factor at a time. **Evaluation-first SFT** learns assessment before planning; **NEPO** combines group-relative rewards with entropy-gated token-level guidance across generated and verified evaluation contexts. At inference time, the model uses public observations and within-episode history without parameter updates. The manuscript reports improvements in failure reasoning, planning transfer, and recovery with fixed execution backends, including **55.0% → 68.9%** macro-average success with a fixed code backend and **1.2% → 7.3%** on RoboCasa365 Composite-Unseen with frozen π₀.₅.

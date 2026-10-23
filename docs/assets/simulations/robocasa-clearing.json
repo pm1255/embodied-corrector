@@ -1,0 +1,449 @@
+{
+  "case": "robocasa-clearing",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Clear the non-vegetable object off the cutting board and place the vegetables onto it.",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "ClearCuttingBoard",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "2c69d39ba4d4f456e51bdcc4db0fbd7ce2f8f31bb91332cf032a6a717244eade"
+  },
+  "result": {
+    "success": false,
+    "steps": 2113,
+    "commands": 12,
+    "brain_records": 11,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 192,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "empty_place",
+        "target": "non_vegetable_container",
+        "offset": [
+          0,
+          0,
+          0.15
+        ],
+        "perturbation": "controlled missing pickup: empty gripper attempts placement on occupied cutting board"
+      },
+      "feedback": {
+        "action": "empty_place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 192,
+      "step_end": 448,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "空夹爪没有完成放置，砧板上仍有肉块；两种蔬菜也尚未移到砧板。",
+        "Sub": "先移走占据砧板的非蔬菜肉块。",
+        "Fine": "张开夹爪，对准砧板上的肉块低位夹紧并抬起，随后移到旁边空台面。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "空夹爪没有完成放置，砧板上仍有肉块；两种蔬菜也尚未移到砧板。",
+          "Sub": "先移走占据砧板的非蔬菜肉块。",
+          "Fine": "张开夹爪，对准砧板上的肉块低位夹紧并抬起，随后移到旁边空台面。"
+        },
+        "action": "pick",
+        "object": "non_vegetable",
+        "offset": [
+          0,
+          0,
+          -0.003
+        ],
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "non_vegetable",
+        "object_lift_m": -0.00019145891200900156,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 448,
+      "step_end": 700,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "肉块仍留在砧板，抬升后没有随动；当前夹持方向或接触位置不合适。",
+        "Sub": "调整夹爪方向，重新夹取目标。",
+        "Fine": "在目标上方旋转夹爪九十度，沿另一对侧面下降夹紧，再抬起确认。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "肉块仍留在砧板，抬升后没有随动；当前夹持方向或接触位置不合适。",
+          "Sub": "调整夹爪方向，重新夹取目标。",
+          "Fine": "在目标上方旋转夹爪九十度，沿另一对侧面下降夹紧，再抬起确认。"
+        },
+        "action": "pick",
+        "object": "non_vegetable",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "non_vegetable",
+        "object_lift_m": -4.328330558411864e-06,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 700,
+      "step_end": 736,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "换向后肉块仍未抬起，反复抓取没有清空砧板。",
+        "Sub": "改用沿板面轻推，把肉块移到旁边台面。",
+        "Fine": "闭合夹爪到肉块左侧低位，随后沿台面横向轻推，使其离开砧板边界。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "换向后肉块仍未抬起，反复抓取没有清空砧板。",
+          "Sub": "改用沿板面轻推，把肉块移到旁边台面。",
+          "Fine": "闭合夹爪到肉块左侧低位，随后沿台面横向轻推，使其离开砧板边界。"
+        },
+        "action": "move",
+        "position": [
+          2.0324380500682184,
+          -0.3530805807156881,
+          0.9737365907541773
+        ],
+        "grip": 1,
+        "steps": 130,
+        "executor_target_spec": {
+          "source": "simulator localization",
+          "object": "non_vegetable",
+          "offset": [
+            -0.09,
+            0,
+            0.005
+          ]
+        }
+      },
+      "feedback": {
+        "action": "move",
+        "reached": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 736,
+      "step_end": 813,
+      "brain": {
+        "Judge": "success",
+        "Cause": "夹爪已在肉块左侧低位就位，肉块仍位于砧板上。",
+        "Sub": "把肉块移出砧板。",
+        "Fine": "保持闭合夹爪低位，横向推动肉块到砧板右侧空台面，然后抬离确认。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "夹爪已在肉块左侧低位就位，肉块仍位于砧板上。",
+          "Sub": "把肉块移出砧板。",
+          "Fine": "保持闭合夹爪低位，横向推动肉块到砧板右侧空台面，然后抬离确认。"
+        },
+        "action": "move",
+        "position": [
+          2.32,
+          -0.3526126492551046,
+          0.9755743493153052
+        ],
+        "grip": 1,
+        "steps": 140
+      },
+      "feedback": {
+        "action": "move",
+        "reached": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 813,
+      "step_end": 1131,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "横向移动后肉块仍在砧板上，夹爪从其上方掠过，没有形成有效接触。",
+        "Sub": "降低接触高度，重新夹取肉块。",
+        "Fine": "回到肉块中心，下降到更低的侧面位置夹紧，避免在表面上方空合。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "横向移动后肉块仍在砧板上，夹爪从其上方掠过，没有形成有效接触。",
+          "Sub": "降低接触高度，重新夹取肉块。",
+          "Fine": "回到肉块中心，下降到更低的侧面位置夹紧，避免在表面上方空合。"
+        },
+        "action": "pick",
+        "object": "non_vegetable",
+        "offset": [
+          0,
+          0,
+          -0.025
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "non_vegetable",
+        "object_lift_m": -3.898047845618535e-07,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 6,
+      "step_start": 1131,
+      "step_end": 1212,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "降低抓取点后仍然空抬，肉块没有移动；需要改变到达目标的姿态。",
+        "Sub": "倾斜夹爪，从前方接近肉块。",
+        "Fine": "张开夹爪并倾斜手腕，下降到肉块两侧，确认接触位置后再夹紧。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "降低抓取点后仍然空抬，肉块没有移动；需要改变到达目标的姿态。",
+          "Sub": "倾斜夹爪，从前方接近肉块。",
+          "Fine": "张开夹爪并倾斜手腕，下降到肉块两侧，确认接触位置后再夹紧。"
+        },
+        "action": "move",
+        "position": [
+          2.1217923245875085,
+          -0.3529539662692924,
+          0.9587392042903077
+        ],
+        "rotation": [
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          [
+            0,
+            0.573576436351046,
+            -0.8191520442889918
+          ]
+        ],
+        "grip": -1,
+        "steps": 180
+      },
+      "feedback": {
+        "action": "move",
+        "reached": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 7,
+      "step_start": 1212,
+      "step_end": 1237,
+      "brain": {
+        "Judge": "success",
+        "Cause": "倾斜下降已到达肉块附近，目标暂被夹爪遮挡，需要夹紧后通过移动验证。",
+        "Sub": "夹紧肉块并准备移离砧板。",
+        "Fine": "保持当前姿态闭合夹爪，再向前退出并抬升，检查肉块是否随动。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "倾斜下降已到达肉块附近，目标暂被夹爪遮挡，需要夹紧后通过移动验证。",
+          "Sub": "夹紧肉块并准备移离砧板。",
+          "Fine": "保持当前姿态闭合夹爪，再向前退出并抬升，检查肉块是否随动。"
+        },
+        "action": "gripper",
+        "close": 1,
+        "steps": 25
+      },
+      "feedback": {
+        "action": "gripper",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 8,
+      "step_start": 1237,
+      "step_end": 1377,
+      "brain": {
+        "Judge": "success",
+        "Cause": "夹爪已闭合，肉块被手臂遮挡，仍需观察它是否随移动离开砧板。",
+        "Sub": "向前退出并抬升，验证是否夹住肉块。",
+        "Fine": "保持倾斜姿态和夹紧状态，退出后方空间，抬高后检查砧板是否腾空。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "夹爪已闭合，肉块被手臂遮挡，仍需观察它是否随移动离开砧板。",
+          "Sub": "向前退出并抬升，验证是否夹住肉块。",
+          "Fine": "保持倾斜姿态和夹紧状态，退出后方空间，抬高后检查砧板是否腾空。"
+        },
+        "action": "move",
+        "position": [
+          2.121052594737624,
+          -0.4755868229172812,
+          1.1558970424124253
+        ],
+        "rotation": [
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          [
+            0,
+            0.573576436351046,
+            -0.8191520442889918
+          ]
+        ],
+        "grip": 1,
+        "steps": 140
+      },
+      "feedback": {
+        "action": "move",
+        "reached": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 9,
+      "step_start": 1377,
+      "step_end": 1795,
+      "brain": {
+        "Judge": "success",
+        "Cause": "肉块已离开砧板并被夹爪带到前方，砧板腾空的前提正在恢复。",
+        "Sub": "将肉块放到前方空台面。",
+        "Fine": "保持物体离开砧板范围，下降到空台面后松手，再抬离确认。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "肉块已离开砧板并被夹爪带到前方，砧板腾空的前提正在恢复。",
+          "Sub": "将肉块放到前方空台面。",
+          "Fine": "保持物体离开砧板范围，下降到空台面后松手，再抬离确认。"
+        },
+        "action": "place",
+        "object": "non_vegetable",
+        "position": [
+          2.12,
+          -0.59,
+          0.96
+        ],
+        "yaw_degrees": 0
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 10,
+      "step_start": 1795,
+      "step_end": 2113,
+      "brain": {
+        "Judge": "success",
+        "Cause": "肉块已经离开砧板，板面空出；接下来还需把两种蔬菜移上去。",
+        "Sub": "先抓取靠近砧板的土豆。",
+        "Fine": "从上方对准土豆，夹紧后抬升确认，再放到砧板一侧。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "肉块已经离开砧板，板面空出；接下来还需把两种蔬菜移上去。",
+          "Sub": "先抓取靠近砧板的土豆。",
+          "Fine": "从上方对准土豆，夹紧后抬升确认，再放到砧板一侧。"
+        },
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.01
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.16
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable1",
+        "object_lift_m": -2.1935666794092867e-06,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 11,
+      "step_start": 2113,
+      "step_end": 2113,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "肉块仍在砧板前缘，土豆没有被稳定抓起；清空和蔬菜摆放条件尚未同时满足。",
+        "Sub": "结束当前恢复尝试并保留失败状态。",
+        "Fine": "保存完整动作与观察，记录官方任务未完成；后续需改善接近姿态和运输稳定性。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "肉块仍在砧板前缘，土豆没有被稳定抓起；清空和蔬菜摆放条件尚未同时满足。",
+          "Sub": "结束当前恢复尝试并保留失败状态。",
+          "Fine": "保存完整动作与观察，记录官方任务未完成；后续需改善接近姿态和运输稳定性。"
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": false
+    }
+  ]
+}

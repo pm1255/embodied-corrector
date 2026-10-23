@@ -1,0 +1,206 @@
+{
+  "case": "libero-articulation-r1",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "open the top layer of the drawer and put the cream cheese inside",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/libero-articulation.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "ff80d0fcdf5baa7dec18572e060af52dfe476bd9dbd93b85dd6918ceba23abc5"
+  },
+  "result": {
+    "success": true,
+    "steps": 1422,
+    "commands": 6,
+    "brain_records": 5,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 448,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pull_drawer",
+        "distance": 0.04,
+        "perturbation": "controlled early stop: pull the top drawer only 4 cm before attempting insertion"
+      },
+      "feedback": {
+        "action": "pull_drawer",
+        "drawer_before_m": 0.0,
+        "drawer_after_m": -0.03791963197840195,
+        "drawer_opened_m": 0.03791963197840195
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 448,
+      "step_end": 844,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "顶层抽屉只露出窄缝，开口仍不足以从上方放入奶油奶酪盒。",
+        "Sub": "先把顶层抽屉继续拉开。",
+        "Fine": "重新夹住顶层把手，沿抽屉滑轨向外拉，松手后抬离并检查上方净空。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "顶层抽屉只露出窄缝，开口仍不足以从上方放入奶油奶酪盒。",
+          "Sub": "先把顶层抽屉继续拉开。",
+          "Fine": "重新夹住顶层把手，沿抽屉滑轨向外拉，松手后抬离并检查上方净空。"
+        },
+        "action": "pull_drawer",
+        "distance": 0.13
+      },
+      "feedback": {
+        "action": "pull_drawer",
+        "drawer_before_m": -0.03791963197770015,
+        "drawer_after_m": -0.15995242820360697,
+        "drawer_opened_m": 0.12203279622590682
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 844,
+      "step_end": 1082,
+      "brain": {
+        "Judge": "success",
+        "Cause": "顶层抽屉已充分拉开，内部底面清晰可见，放入路径的前提已恢复。",
+        "Sub": "抓取右侧奶油奶酪盒。",
+        "Fine": "保持抽屉打开，对准桌面上的奶油奶酪盒，低位夹紧并抬离桌面。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "顶层抽屉已充分拉开，内部底面清晰可见，放入路径的前提已恢复。",
+          "Sub": "抓取右侧奶油奶酪盒。",
+          "Fine": "保持抽屉打开，对准桌面上的奶油奶酪盒，低位夹紧并抬离桌面。"
+        },
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.007
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.22
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.00010052276978611552,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 1082,
+      "step_end": 1254,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "夹爪抬起后盒子仍留在桌面，当前夹持方向没有形成有效夹紧。",
+        "Sub": "旋转夹爪后重新夹取奶油奶酪。",
+        "Fine": "在盒子上方把夹持方向转过九十度，沿另一对侧面低位夹紧，再竖直抬升。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "夹爪抬起后盒子仍留在桌面，当前夹持方向没有形成有效夹紧。",
+          "Sub": "旋转夹爪后重新夹取奶油奶酪。",
+          "Fine": "在盒子上方把夹持方向转过九十度，沿另一对侧面低位夹紧，再竖直抬升。"
+        },
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.22
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.21199621982459016,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 1254,
+      "step_end": 1422,
+      "brain": {
+        "Judge": "success",
+        "Cause": "旋转夹爪后奶油奶酪已夹稳并抬离桌面，抽屉仍保持打开。",
+        "Sub": "将奶油奶酪放入顶层抽屉。",
+        "Fine": "保持高位移到抽屉内部上方，下降后松手，再抬离观察盒子是否留在抽屉内。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "旋转夹爪后奶油奶酪已夹稳并抬离桌面，抽屉仍保持打开。",
+          "Sub": "将奶油奶酪放入顶层抽屉。",
+          "Fine": "保持高位移到抽屉内部上方，下降后松手，再抬离观察盒子是否留在抽屉内。"
+        },
+        "action": "place",
+        "target": "site:wooden_cabinet_1_top_region",
+        "offset": [
+          0,
+          0,
+          0.025
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 5,
+      "step_start": 1422,
+      "step_end": 1422,
+      "brain": {
+        "Judge": "success",
+        "Cause": "奶油奶酪留在打开的顶层抽屉内，夹爪已撤离，目标放置已完成。",
+        "Sub": "结束本轮任务。",
+        "Fine": "保留当前结果并记录最终成功判定。"
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "奶油奶酪留在打开的顶层抽屉内，夹爪已撤离，目标放置已完成。",
+          "Sub": "结束本轮任务。",
+          "Fine": "保留当前结果并记录最终成功判定。"
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ]
+}

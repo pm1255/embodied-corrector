@@ -1,0 +1,101 @@
+[
+  {
+    "case": "libero-articulation-r1",
+    "success": true,
+    "steps": 1422,
+    "commands": 6,
+    "brain_records": 5,
+    "termination": "finish_command",
+    "task": "open the top layer of the drawer and put the cream cheese inside",
+    "backend": "libero_pro",
+    "raw_video_sha256": "78ccae0c786139db17e83a155e13a2ae066c8def9eee59d6a6d2553664caa0e5"
+  },
+  {
+    "case": "libero-multiobject-r1",
+    "success": false,
+    "steps": 1407,
+    "commands": 12,
+    "brain_records": 11,
+    "termination": "finish_command",
+    "task": "put both the cream cheese box and the butter in the basket",
+    "backend": "libero_pro",
+    "raw_video_sha256": "6c8d6d78ca24f1fd988d41a023771da0b2d74fc0a7607fca8f934b219b412236"
+  },
+  {
+    "case": "libero-multiobject-r2",
+    "success": true,
+    "steps": 1349,
+    "commands": 7,
+    "brain_records": 6,
+    "termination": "finish_command",
+    "task": "put both the cream cheese box and the butter in the basket",
+    "backend": "libero_pro",
+    "raw_video_sha256": "8769516545d28122741bee95ab6d9cc46bf1aaf8b5d6903798789ac929062019"
+  },
+  {
+    "case": "libero-relational",
+    "success": false,
+    "steps": 890,
+    "commands": 11,
+    "brain_records": 10,
+    "termination": "finish_command",
+    "task": "pick the akita black bowl not between the plate and the ramekin and place it on the plate",
+    "backend": "libero_pro",
+    "raw_video_sha256": "79198060f27ae625ddc558761f3f9705f93a56e69767127213df150f388bca08"
+  },
+  {
+    "case": "libero-relational-r2",
+    "success": true,
+    "steps": 746,
+    "commands": 5,
+    "brain_records": 4,
+    "termination": "finish_command",
+    "task": "pick the akita black bowl not between the plate and the ramekin and place it on the plate",
+    "backend": "libero_pro",
+    "raw_video_sha256": "df4b89e12736705f61272769c88b695e8227dbe78ea7d765fe4c1fe92f97d8fb"
+  },
+  {
+    "case": "robocasa-clearing",
+    "success": false,
+    "steps": 2113,
+    "commands": 12,
+    "brain_records": 11,
+    "termination": "finish_command",
+    "task": "Clear the non-vegetable object off the cutting board and place the vegetables onto it.",
+    "backend": "robocasa365",
+    "raw_video_sha256": "461ea4568268dc3c3ae961484db4c7db87232f59ab89ff87b7fd06a0614fd3b2"
+  },
+  {
+    "case": "robocasa-salsa",
+    "success": false,
+    "steps": 2528,
+    "commands": 13,
+    "brain_records": 12,
+    "termination": "finish_command",
+    "task": "Place the avocado, onion, tomato, and bell pepper on the cutting board.",
+    "backend": "robocasa365",
+    "raw_video_sha256": "db11993d32fdd921dceeb0f26f665dabf657393954e6a85cf61e651a6fe1b5d7"
+  },
+  {
+    "case": "robocasa-sorting",
+    "success": false,
+    "steps": 816,
+    "commands": 4,
+    "brain_records": 3,
+    "termination": "finish_command",
+    "task": "Stack the cups from largest to smallest.",
+    "backend": "robocasa365",
+    "raw_video_sha256": "4290134edd4e83524f32b0d05c19494167288afc4843ff7eb6db48cf2e9093c7"
+  },
+  {
+    "case": "robocasa-sorting-r2",
+    "success": false,
+    "steps": 448,
+    "commands": 3,
+    "brain_records": 2,
+    "termination": "finish_command",
+    "task": "Stack the cups from largest to smallest.",
+    "backend": "robocasa365",
+    "raw_video_sha256": "e2d84c21e9452fcd32d849c84f2a10f2f7ab952a0e75bfc852c933ec940c82a9"
+  }
+]

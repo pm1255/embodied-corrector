@@ -1,0 +1,82 @@
+{
+  "attempt_count": 9,
+  "successful_attempts": 3,
+  "total_physics_steps": 11719,
+  "video_count": 7,
+  "all_videos_decoded": true,
+  "archive_matches_saved_records": true,
+  "records": [
+    {
+      "case": "libero-articulation-r1",
+      "steps": 1422,
+      "success": true,
+      "commands": 6,
+      "continuous_step_trace": true,
+      "brain_matches_saved_command": true
+    },
+    {
+      "case": "libero-multiobject-r1",
+      "steps": 1407,
+      "success": false,
+      "commands": 12,
+      "continuous_step_trace": true,
+      "brain_matches_saved_command": true
+    },
+    {
+      "case": "libero-multiobject-r2",
+      "steps": 1349,
+      "success": true,
+      "commands": 7,
+      "continuous_step_trace": true,
+      "brain_matches_saved_command": true
+    },
+    {
+      "case": "libero-relational",
+      "steps": 890,
+      "success": false,
+      "commands": 11,
+      "continuous_step_trace": true,
+      "brain_matches_saved_command": true
+    },
+    {
+      "case": "libero-relational-r2",
+      "steps": 746,
+      "success": true,
+      "commands": 5,
+      "continuous_step_trace": true,
+      "brain_matches_saved_command": true
+    },
+    {
+      "case": "robocasa-clearing",
+      "steps": 2113,
+      "success": false,
+      "commands": 12,
+      "continuous_step_trace": true,
+      "brain_matches_saved_command": true
+    },
+    {
+      "case": "robocasa-salsa",
+      "steps": 2528,
+      "success": false,
+      "commands": 13,
+      "continuous_step_trace": true,
+      "brain_matches_saved_command": true
+    },
+    {
+      "case": "robocasa-sorting",
+      "steps": 816,
+      "success": false,
+      "commands": 4,
+      "continuous_step_trace": true,
+      "brain_matches_saved_command": true
+    },
+    {
+      "case": "robocasa-sorting-r2",
+      "steps": 448,
+      "success": false,
+      "commands": 3,
+      "continuous_step_trace": true,
+      "brain_matches_saved_command": true
+    }
+  ]
+}

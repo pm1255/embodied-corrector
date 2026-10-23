@@ -1,0 +1,17 @@
+[
+  {
+    "name": "robocasa",
+    "repository": "robocasa/robocasa",
+    "commit": "2ce1aecdd76e29b52d32fdb160436c5a3e230b07"
+  },
+  {
+    "name": "robosuite",
+    "repository": "ARISE-Initiative/robosuite",
+    "commit": "5ce6643f3092639d08f7b0f90ed1c6a84f50552c"
+  },
+  {
+    "name": "LIBERO-PRO",
+    "repository": "Zxy-MLlab/LIBERO-PRO",
+    "commit": "eafdb809426b13153aa1e4c42d6601844217dfec"
+  }
+]

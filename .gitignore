@@ -1,4 +1,11 @@
 .venv/
+.venv-libero/
+.venv-robocasa/
+/vendor/LIBERO-PRO/
+/vendor/robocasa/
+/vendor/robosuite/
+/libero-config/
+/tasks/
 __pycache__/
 .pytest_cache/
 .ruff_cache/
