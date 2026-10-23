@@ -1,6 +1,6 @@
 # Embodied-Corrector · Video introduction
 
-English narration and bilingual subtitles. Based on the supplied manuscript; no authors are listed.
+English narration and Chinese subtitles, displayed without a background box or border. Based on the supplied manuscript; no authors are listed.
 
 Four case walkthroughs use selected paper observations. Their playback timing is illustrative, not original simulator timing. Figures 7–8 show paired executions; Figures 9–10 show observations from one continuous episode. Navigation, reachability and articulation animations are protocol illustrations. Quantitative results are paper-reported simulation results.
 

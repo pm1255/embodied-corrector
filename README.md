@@ -20,7 +20,7 @@
 
 [▶ Watch the introduction](https://pm1255.github.io/embodied-corrector/#video) · [Download MP4](https://pm1255.github.io/embodied-corrector/assets/video/introduction.mp4) · [Bilingual transcript](docs/assets/video/transcript.md)
 
-An overview of the motivation, RynnBrain training, NEPO, and recovery cases. Explore **seven failure categories** on the project page: four paper-frame walkthroughs and three protocol illustrations for navigation, reachability, and articulation. Frame walkthroughs present selected paper observations rather than original continuous recordings.
+An overview of the motivation, RynnBrain training, NEPO, and recovery cases, with English narration and Chinese subtitles. Explore **seven failure categories** on the project page: four paper-frame walkthroughs and three protocol illustrations for navigation, reachability, and articulation. Frame walkthroughs present selected paper observations rather than original continuous recordings.
 
 ## Motivation
 
