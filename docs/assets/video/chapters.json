@@ -1,0 +1,72 @@
+[
+  {
+    "title": "The question",
+    "start": 0,
+    "duration": 9.083333333333334
+  },
+  {
+    "title": "Motivation",
+    "start": 9.083333333333334,
+    "duration": 7.875
+  },
+  {
+    "title": "RynnBrain",
+    "start": 16.958333333333336,
+    "duration": 8.291666666666666
+  },
+  {
+    "title": "Structured correction",
+    "start": 25.25,
+    "duration": 8.791666666666666
+  },
+  {
+    "title": "Controlled data",
+    "start": 34.041666666666664,
+    "duration": 9.416666666666666
+  },
+  {
+    "title": "Evaluation-first SFT",
+    "start": 43.45833333333333,
+    "duration": 9.333333333333334
+  },
+  {
+    "title": "NEPO",
+    "start": 52.791666666666664,
+    "duration": 9.75
+  },
+  {
+    "title": "Case 01 \u00b7 prerequisite",
+    "start": 62.541666666666664,
+    "duration": 8.416666666666666
+  },
+  {
+    "title": "Case 02 \u00b7 target",
+    "start": 70.95833333333333,
+    "duration": 7.958333333333333
+  },
+  {
+    "title": "Case 03 \u00b7 grasp pose",
+    "start": 78.91666666666666,
+    "duration": 8.875
+  },
+  {
+    "title": "Case 04 \u00b7 timing",
+    "start": 87.79166666666666,
+    "duration": 8.041666666666666
+  },
+  {
+    "title": "Failure coverage",
+    "start": 95.83333333333333,
+    "duration": 9.833333333333334
+  },
+  {
+    "title": "Paper results",
+    "start": 105.66666666666666,
+    "duration": 10.041666666666666
+  },
+  {
+    "title": "Takeaway",
+    "start": 115.70833333333333,
+    "duration": 9.25
+  }
+]

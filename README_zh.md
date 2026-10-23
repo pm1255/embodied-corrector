@@ -7,9 +7,17 @@
 
 [English](README.md) · **中文**
 
-[项目主页](https://pm1255.github.io/embodied-corrector/) · [论文 PDF](docs/assets/paper.pdf) · [验证记录](guides/validation.md) · [训练说明](guides/training_zh.md)
+[项目主页](https://pm1255.github.io/embodied-corrector/) · [论文 PDF](docs/assets/paper.pdf) · [视频介绍](https://pm1255.github.io/embodied-corrector/#video) · [训练说明](guides/training_zh.md)
 
 </div>
+
+## 论文视频介绍
+
+[![Embodied-Corrector 论文介绍](docs/assets/video/introduction-poster.jpg)](https://pm1255.github.io/embodied-corrector/#video)
+
+[▶ 观看介绍视频](https://pm1255.github.io/embodied-corrector/#video) · [下载 MP4](https://pm1255.github.io/embodied-corrector/assets/video/introduction.mp4) · [中英讲稿](docs/assets/video/transcript.md)
+
+视频介绍研究动机、RynnBrain 训练方法、NEPO 和纠错案例。主页提供 **7 类案例**：4 个论文观察帧案例，以及导航、可达性、容器开合 3 类协议示意。观察帧按顺序展示，不代表原始连续视频。
 
 ## 研究动机
 
@@ -25,7 +33,7 @@
 
 ## 我们的方法
 
-我们提出 **Embodied-Corrector**，将物理执行反馈转化为原因诊断与可执行恢复。模型按照 **Judge → Cause → Sub → Fine** 依次判断执行结果、定位失败原因、选择恢复子任务并生成细粒度动作指导，使恢复计划建立在对执行过程的评估之上。
+我们提出基于 **RynnBrain-8B** 训练的 **Embodied-Corrector**，将物理执行反馈转化为原因诊断与可执行恢复。模型按照 **Judge → Cause → Sub → Fine** 依次判断执行结果、定位失败原因、选择恢复子任务并生成细粒度动作指导，使恢复计划建立在对执行过程的评估之上。
 
 <p align="center"><img src="docs/assets/figures/training.webp" alt="评估优先 SFT 与 NEPO 训练框架" width="960"></p>
 
@@ -37,6 +45,8 @@
 已验证评估仅用于训练；部署时模型从可观察执行证据生成完整的四字段响应。算法与代码对应关系见 [方法说明](guides/method.md)。
 
 ## 安装和训练
+
+论文模型的训练路线为 **RynnBrain-8B → 评估优先 SFT → NEPO → Embodied-Corrector**。下列 Qwen3-VL 命令是便于运行的代码流程示例；论文模型及主页中的论文结果均基于 RynnBrain。
 
 建议 Linux、Python 3.12、CUDA GPU。先安装 [uv](https://docs.astral.sh/uv/getting-started/installation/)，再执行：
 
@@ -64,7 +74,7 @@ bash scripts/train.sh \
 
 步数和 κ/β/λ 默认值是工程示例，不能视为论文披露的参数。完整说明见 [训练指南](guides/training_zh.md) 和 [数据格式](guides/data.md)。
 
-## 真实 EmbodiedBench 验证
+## EmbodiedBench 评估
 
 按照 [环境说明](guides/embodiedbench.md) 准备官方仓库、数据和 AI2-THOR：
 
@@ -75,21 +85,7 @@ export EC_CORRECTOR="$PWD/runs/qwen-vl-smoke/checkpoints/nepo-0002"
 bash scripts/validate_embodiedbench.sh
 ```
 
-基础 Qwen 充当规划器，训练后的检查点充当纠错器。模型只读取公开图像与执行反馈，环境 `task_success` 决定最终成功标志。实际动作、拒绝反馈、原始纠错和逐步图片都会保存。其他 EmbodiedBench 后端尚未适配。
-
-## 已完成的验证
-
-| 范围 | 结果 |
-|---|---|
-| 代码检查 | 18 项通过 |
-| SFT | 两阶段各 12 步 |
-| NEPO | 2 步，154 个规划 token，非零信号和参数更新 |
-| 保存与重新加载 | 两条评估输出完全一致 |
-| 诊断教学示例 | 格式 2/2，四字段联合命中 **0/2** |
-| 真实 EB-ALFRED | 11 次动作调用、10 次格式有效纠错，环境正常结束 |
-| 仿真任务成功 | **0/1** |
-
-这些结果证明代码路径可执行。动作调用包含环境拒绝的动作；格式有效不代表内容正确。正式效果需要完整标注数据、官方或经验证的判分器及独立评估。详细记录见 [验证报告](guides/validation.md)。
+此代码流程示例中，基础 Qwen 充当规划器，训练后的检查点充当纠错器。模型只读取公开图像与执行反馈，环境 `task_success` 决定最终成功标志。实际动作、拒绝反馈、原始纠错和逐步图片都会保存。其他 EmbodiedBench 后端尚未适配。
 
 ## 监控
 

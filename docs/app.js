@@ -35,12 +35,6 @@ const vlaResults = [
   ['π₀',34.6,6.1,1.1],['π₀ + Corrector',24.4,11.3,6.3],
   ['π₀.₅',39.6,7.1,1.2],['π₀.₅ + Corrector',35.6,12.5,7.3]
 ];
-const caseData = {
-  prerequisite:{env:'LIBERO-PRO · L1 · PREREQUISITE',title:'Pick up before placing.',failure:'The program attempts placement with an empty gripper. The orange-juice carton is still on the floor.',correction:'Restore the omitted dependency: localize the carton, grasp it, verify attachment, and lift before transport.',outcome:'The regenerated program places the carton inside the basket; the environment confirms task completion.',caption:'Figure 7 · Twelve raw observations from the failed rollout followed by the corrected rollout. These are separate executions, not one continuous trajectory.',alt:'Twelve frames of an empty-gripper placement attempt followed by corrected carton pickup, lift, and basket placement.',figure:7},
-  target:{env:'LIBERO-PRO · L2 · TARGET GROUNDING',title:'Ground the right bowl.',failure:'A dark non-bowl region enters the candidate set. Plausible arm motions act on the wrong referent.',correction:'Ground the plate, ramekin, and actual bowls. Apply the requested “not between” relation and reject invalid masks.',outcome:'The corrected program grasps the other black bowl and places it on the plate. The environment accepts the final relation.',caption:'Figure 8 · Twelve raw observations from a false-target execution followed by a corrected rollout with verified bowl placement.',alt:'Twelve simulated observations showing a false-target execution and corrected grounding and placement of the requested black bowl.',figure:8},
-  avocado:{env:'ROBOCASA365 · R1 · FROZEN π₀.₅',title:'Align before closing.',failure:'The gripper stays too high and laterally offset. Repeated closure fails to enclose the avocado in the sink.',correction:'Use empty-grasp history and the current observation to adjust approach height and lateral alignment before closing and lifting.',outcome:'The avocado leaves the sink and reaches the plate. The low-level VLA remains frozen throughout.',caption:'Figure 9 · Twelve observations from one continuous rollout, spanning the failed grasp state and successful continuation after correction.',alt:'Twelve frames of a high and offset avocado grasp, followed by directional realignment and transfer from the sink to the plate.',figure:9},
-  onion:{env:'ROBOCASA365 · R2 · FROZEN π₀.₅',title:'Reposition. Then grasp.',failure:'The gripper closes too late, knocks the onion, and leaves it in the sink. Repeating closure does not restore the grasp.',correction:'Coordinate forward, lateral, and downward repositioning before closure. Update the approach as visual evidence changes.',outcome:'The corrected approach encloses the onion and transfers it to the plate, satisfying the environment’s task predicate.',caption:'Figure 10 · Twelve observations from one continuous rollout, showing late closure and the subsequent coordinated recovery.',alt:'Twelve frames of late gripper closure with an onion remaining in the sink, followed by coordinated approach, grasp, and successful placement.',figure:10}
-};
 
 const panel = document.querySelector('#results-panel');
 let currentResult = 'diagnosis';
@@ -97,12 +91,6 @@ function renderResults(){
   document.querySelector('#domain-select')?.addEventListener('change',e=>{currentDomain=Number(e.target.value);renderResults();document.querySelector('#domain-select').focus();});
   document.querySelector('#policy-select')?.addEventListener('change',e=>{currentPolicy=e.target.value;renderResults();document.querySelector('#policy-select').focus();});
 }
-function renderCase(key){
-  const c=caseData[key];
-  const target=document.querySelector('#case-panel');
-  target.setAttribute('aria-labelledby',`case-${key}`);
-  target.innerHTML=`<figure class="case-media"><button class="figure-button" type="button" data-zoom="assets/cases/${key}.webp" data-caption="${c.caption}" aria-label="Enlarge ${key} recovery frames"><img src="assets/cases/${key}.webp" width="1310" height="980" loading="lazy" alt="${c.alt}"><span class="zoom-hint" aria-hidden="true">↗</span></button><figcaption>${c.caption}</figcaption></figure><div class="case-copy"><span class="small-label">${c.env}</span><h3>${c.title}</h3><div class="case-step"><strong>FAILED EXECUTION</strong><p>${c.failure}</p></div><div class="case-step"><strong>GROUNDED CORRECTION</strong><p>${c.correction}</p></div><div class="case-step"><strong>VERIFIED OUTCOME</strong><p>${c.outcome}</p></div><span class="case-verification">Environment-verified · Simulation</span></div>`;
-}
 function setupTabs(selector,callback){
   const list=document.querySelector(selector),buttons=[...list.querySelectorAll('[role="tab"]')];
   const select=button=>{buttons.forEach(b=>{b.setAttribute('aria-selected',String(b===button));b.tabIndex=b===button?0:-1;});callback(button);};
@@ -119,8 +107,7 @@ function setupTabs(selector,callback){
   });
 }
 setupTabs('.result-tabs',button=>{currentResult=button.dataset.result;renderResults();});
-setupTabs('.case-tabs',button=>renderCase(button.dataset.case));
-renderResults();renderCase('prerequisite');
+renderResults();
 
 const themeButton=document.querySelector('.theme-toggle');
 function setTheme(theme){
@@ -155,5 +142,38 @@ dialog.addEventListener('close',()=>figureTrigger?.focus({preventScroll:true}));
 if('IntersectionObserver' in window){
   const links=[...nav.querySelectorAll('a')];
   const observer=new IntersectionObserver(entries=>{for(const e of entries){if(e.isIntersecting)links.forEach(a=>{const active=a.hash===`#${e.target.id}`;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}},{rootMargin:'-15% 0px -65% 0px',threshold:0});
-  ['overview','method','results','cases'].forEach(id=>observer.observe(document.getElementById(id)));
+  ['video','overview','method','results','cases','citation'].forEach(id=>observer.observe(document.getElementById(id)));
 }
+
+// All media starts only after a user action; pause other clips when one plays.
+const videos=[...document.querySelectorAll('video')];
+const introduction=document.querySelector('#introduction');
+const videoStatus=document.querySelector('#video-status');
+async function playVideo(video,time){
+  if(!video)return;
+  try{
+    if(time!==undefined){
+      if(video.readyState===0){
+        await new Promise((resolve,reject)=>{
+          const done=()=>{cleanup();resolve();};
+          const fail=()=>{cleanup();reject(new Error('Media unavailable'));};
+          const cleanup=()=>{video.removeEventListener('loadedmetadata',done);video.removeEventListener('error',fail);};
+          video.addEventListener('loadedmetadata',done,{once:true});
+          video.addEventListener('error',fail,{once:true});
+          video.load();
+        });
+      }
+      video.currentTime=time;
+    }
+    await video.play();
+    videoStatus.textContent='Playing '+video.getAttribute('aria-label');
+  }catch{videoStatus.textContent='Playback could not start. Use the video controls or download the MP4.';}
+}
+document.querySelectorAll('[data-play]').forEach(button=>button.addEventListener('click',()=>playVideo(document.getElementById(button.dataset.play))));
+document.querySelectorAll('[data-seek]').forEach(button=>button.addEventListener('click',()=>playVideo(introduction,Number(button.dataset.seek))));
+videos.forEach(video=>video.addEventListener('play',()=>videos.forEach(other=>{if(other!==video)other.pause();})));
+const chapterButtons=[...document.querySelectorAll('[data-seek]')];
+introduction.addEventListener('timeupdate',()=>{
+  const active=chapterButtons.filter(button=>Number(button.dataset.seek)<=introduction.currentTime).at(-1);
+  chapterButtons.forEach(button=>{if(button===active)button.setAttribute('aria-current','true');else button.removeAttribute('aria-current');});
+});

@@ -1,8 +1,10 @@
-# Embodied-Corrector · verl + Qwen
+# Embodied-Corrector · 训练与评估说明
 
-根据用户提供的《Embodied-Corrector》论文实现：公共证据输入 → Judge/Cause SFT → 条件式 Sub/Fine SFT → NEPO → 检查点 → 独立评估 → 公开 EB-ALFRED 仿真调用。
+论文模型基于 **RynnBrain-8B**，通过评估优先 SFT 和 NEPO 训练。本文档中的 **Qwen** 是代码流程检查示例；已有 Qwen 运行记录不代表 RynnBrain 的训练结果。
 
-实现直接使用 **verl v0.9.1 的 DataProto、GRPO advantage、clipped PPO loss**，上游源码固定在 `vendor/verl`。训练器为单卡 PyTorch/Hugging Face 实现，可通过 Ray 单卡任务执行；没有把它包装成已经验证的原生 RayPPOTrainer/FSDP 多卡训练。完整实验状态见工作区的 [report_summary.md](validation.md)。
+根据《Embodied-Corrector》论文实现：公共证据输入 → Judge/Cause SFT → 条件式 Sub/Fine SFT → NEPO → 检查点 → 独立评估 → 公开 EB-ALFRED 仿真调用。
+
+实现直接使用 **verl v0.9.1 的 DataProto、GRPO advantage、clipped PPO loss**，上游源码固定在 `vendor/verl`。训练器为单卡 PyTorch/Hugging Face 实现，可通过 Ray 单卡任务执行；没有把它包装成已经验证的原生 RayPPOTrainer/FSDP 多卡训练。完整代码流程检查记录见 [验证详情](validation.md)。
 
 ## 快速开始
 
@@ -79,11 +81,4 @@ source scripts/env.sh
 
 本项目奖励使用显式字段/关键词规则，不是论文未公开的官方判分器。不要把夹具上的分数作为论文性能或真实机器人能力。
 
-## 已验证的最小闭环（2026-10-24）
-
-- Qwen3-VL-2B，单 H100，LoRA；18 项数值与接口检查通过。
-- 两阶段 SFT 各 12 步，NEPO 2 步；154 个规划 token、非零特权信号、参数更新。
-- 检查点重新加载后两条示例输出与原输出完全一致。
-- 公开 EB-ALFRED base 第 0 个任务：11 次真实动作调用、10 次有效四字段纠错、环境正常结束。**任务失败，成功率 0/1**，不是论文成绩。
-
-这证明代码和接口可执行，不证明少量示例训练后的模型具有可靠纠错能力。诊断示例仅 2 条训练 / 2 条评估，四字段联合命中也为 0。正式效果需要完整标注集和独立测试集。
+代码流程检查的历史记录见 [验证详情](validation.md)。
