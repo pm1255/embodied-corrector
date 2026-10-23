@@ -14,48 +14,30 @@
 
 </div>
 
-A research implementation for diagnosing physical execution failures and generating actionable corrections. The model reads public observations and execution feedback, then produces four linked fields: **Judge → Cause → Sub → Fine**.
+## Motivation
 
-This repository includes a paper project page, evaluation-first supervised fine-tuning, Noise-Aware Entropy-Gated Policy Optimization (**NEPO**) using **verl**, and a real **EmbodiedBench / EB-ALFRED** planning–execution–correction loop.
+Multimodal models can understand instructions, perceive scenes, and generate plans. Physical execution, however, is jointly constrained by the embodiment, controller, and environment. When an action produces an unexpected outcome, continuing the original plan can repeat the same failure. We ask: **how can an embodied brain understand why execution failed and turn interaction feedback into a recovery that its current executor can realize?**
 
-> **Implementation status.** The Qwen3-VL-2B single-GPU training and simulator pipelines have been executed end to end. This is a paper-derived implementation using verl's DataProto and GRPO/PPO kernels, not a native distributed RayPPOTrainer/FSDP integration. The small validation run does **not** reproduce the paper's benchmark performance.
+We identify three complementary capabilities:
 
-## News
+- **Physical causal understanding and failure localization:** trace execution to the action, physical relation, or unmet prerequisite that first invalidated progress—for example, distinguish mistimed grasping from an unsuitable contact pose or an omitted earlier step.
+- **Execution-capability identification and adaptation:** adapt the content and granularity of recovery instructions to the current state and executor, producing subtasks a fixed controller or frozen VLA can carry out.
+- **Learning from interaction experience:** use previous actions, observations, and correction outcomes as evidence for the next decision, adapting through context without updating model parameters at inference time.
 
-- **2026-10-24:** Initial release of the project page, Qwen + verl training pipeline, and real EB-ALFRED integration. Eighteen numerical and interface checks passed. See the [validation record](guides/validation.md).
+<p align="center"><img src="docs/assets/figures/diagnosis.webp" alt="Physical failure diagnosis and cause-level feedback" width="960"></p>
 
-## Overview
+## Our Method
 
-<p align="center"><img src="docs/assets/figures/diagnosis.webp" alt="Embodied-Corrector overview" width="960"></p>
+We introduce **Embodied-Corrector**, which turns physical execution feedback into failure diagnosis and executable recovery. Its structured reasoning follows **Judge → Cause → Sub → Fine**: assess the execution outcome, identify the failure cause, select a recovery subtask, and provide fine-grained action guidance. Recovery planning is thus grounded in an assessment of what actually happened.
 
-A physical failure is useful feedback only when it can be connected to an observable cause and an executable recovery. Embodied-Corrector links execution judgment, cause analysis, corrective subtask selection, and fine-grained action guidance in one structured response.
+<p align="center"><img src="docs/assets/figures/training.webp" alt="Evaluation-first SFT and NEPO training framework" width="960"></p>
 
-| Field | Purpose |
-|---|---|
-| **Judge** | Decide whether the preceding subtask succeeded. |
-| **Cause** | Identify a cause supported by observable evidence. |
-| **Sub** | Select the next executable recovery subtask. |
-| **Fine** | Describe concrete recovery actions and verification. |
+1. **Controlled failure–recovery data.** Branch successful trajectories at subtask boundaries and intervene on one physical factor to connect actions, observable consequences, causes, and recoveries. Retain observable, recoverable failures and split source trajectories before generating perturbations.
+2. **Evaluation-first supervised fine-tuning.** Learn outcome judgment and cause analysis (Judge/Cause), then learn recovery planning (Sub/Fine) conditioned on verified evaluations, connecting diagnosis with planning.
+3. **NEPO policy optimization.** Address the mismatch between verified evaluations used during training and model-generated evaluations at deployment. The same policy scores identical planning tokens under the two evaluation contexts. Noise-Aware Entropy-Gated Policy Optimization (**NEPO**) combines group-relative rewards with token probability differences, preserves positive guidance, and uses entropy gating to attenuate uncertain negative signals.
+4. **Closed-loop correction from interaction history.** Observe outcomes, diagnose failures, and revise subsequent plans while keeping the execution backend fixed. Within-episode actions and feedback inform the next decision without parameter updates at inference time.
 
-## Method
-
-<p align="center"><img src="docs/assets/figures/training.webp" alt="Evaluation-first SFT and NEPO training" width="960"></p>
-
-1. **Evaluation-first SFT:** learn Judge/Cause, then learn Sub/Fine conditioned on a verified evaluation prefix.
-2. **Paired policy scoring:** the same unchanged policy scores identical sampled planning tokens under generated and verified evaluation prefixes. Images and public evidence remain identical.
-3. **NEPO:** add a sampled-token probability gap to the group-relative advantage. Preserve positive guidance and attenuate negative guidance at high-entropy positions.
-4. **Closed-loop execution:** a planner chooses an action, the environment executes it, and the corrector supplies feedback for the next planning decision.
-
-For sampled token probabilities `p` and `q`, student entropy `h`, and planning mask `m`:
-
-```text
-s = q - p
-g = sigmoid((kappa - h) / beta)
-delta = m * (max(s, 0) + g * min(s, 0))
-A = A_GRPO + coefficient * delta
-```
-
-The probability gap is not a log-probability ratio or KL divergence. Old-policy statistics, teacher scores, and advantages are detached before the optimizer update. See [method and implementation boundaries](guides/method.md).
+Verified evaluations are used only during training. At deployment, the model generates all four fields from observable execution evidence. See the [method guide](guides/method.md) for equations and their correspondence to the implementation.
 
 ## Installation
 
@@ -144,12 +126,6 @@ source scripts/env.sh
 
 Open `http://localhost:6006`. Logs include stage waiting/running/completed/failed states, SFT loss, NEPO reward/entropy/probability gap, gradients, checkpoints and evaluation progress. Smoke and formal curves are separated.
 
-## Data and checkpoints
-
-The full training corpus, official EmbodiedDiag-Bench annotations, manuscript grader, pretrained Qwen weights and trained model checkpoints are not bundled. The four included paper-derived examples are labeled as demonstration fixtures. Synthetic text fixtures can be generated with `ec_verl.data fixture`.
-
-Checkpoints are saved by stage. Optimizer-state resume, native distributed verl training and paper-scale performance evaluation are not supported or validated in this release.
-
 ## Repository structure
 
 ```text
@@ -165,8 +141,23 @@ Checkpoints are saved by stage. Optimizer-state resume, native distributed verl 
 └── vendor/verl/      # Pinned upstream verl source and license
 ```
 
+## Citation
+
+If you find this work useful for your research, please cite Embodied-Corrector. The formal paper BibTeX will be added when its citation metadata is released. For now, the following entry cites the project page.
+
+```bibtex
+@misc{embodiedcorrector2026,
+  title        = {Embodied-Corrector},
+  year         = {2026},
+  howpublished = {Project page},
+  url          = {https://pm1255.github.io/embodied-corrector/}
+}
+```
+
+[Download the project citation](docs/citation.bib)
+
 ## Acknowledgements and rights
 
 Built with [verl](https://github.com/verl-project/verl), [Transformers](https://github.com/huggingface/transformers), [PEFT](https://github.com/huggingface/peft), [Qwen](https://github.com/QwenLM/Qwen3-VL), [EmbodiedBench](https://github.com/EmbodiedBench/EmbodiedBench) and [AI2-THOR](https://github.com/allenai/ai2thor). Repository presentation takes inspiration from [VLA-Corrector](https://github.com/ZJU-OmniAI/vla-corrector).
 
-Third-party code retains its original license. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The manuscript and its figures retain their respective rights. No author list or incomplete citation is added in this release.
+Third-party code retains its original license. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The manuscript and its figures retain their respective rights.

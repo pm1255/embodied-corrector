@@ -20,7 +20,7 @@
     <div class="nav-shell">
       <a class="wordmark" href="#top" aria-label="Embodied-Corrector home"><span class="brand-icon" aria-hidden="true">↻</span><span>Embodied<span class="wordmark-light">-Corrector</span></span></a>
       <nav id="main-nav" aria-label="Main navigation">
-        <a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#cases">Recovery cases</a>
+        <a href="#overview">Motivation</a><a href="#method">Method</a><a href="#results">Results</a><a href="#cases">Recovery cases</a><a href="#citation">Citation</a>
       </nav>
       <div class="nav-actions">
         <button class="theme-toggle icon-button" type="button" aria-label="Switch to dark theme" title="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.1 15.1A8.5 8.5 0 0 1 8.9 3.9a8.5 8.5 0 1 0 11.2 11.2Z"/></svg></button>
@@ -61,7 +61,7 @@
     </section>
 
     <section id="overview" class="section container">
-      <div class="section-heading"><p class="eyebrow">01 / THE IDEA</p><h2>A capable brain must know<br> what went wrong.</h2><p>Planning is only the beginning. Physical execution demands a model that can explain deviations—and use that evidence to change what happens next.</p></div>
+      <div class="section-heading"><p class="eyebrow">01 / MOTIVATION</p><h2>A capable brain must know<br> what went wrong.</h2><p>Physical execution is constrained by the embodiment, controller, and environment. How can an embodied brain explain unexpected outcomes and use feedback to plan a recovery its current executor can realize?</p></div>
       <div class="abstract-block"><span class="small-label">ABSTRACT</span><p>Embodied-Corrector connects actions, observable consequences, failure causes, and executable recoveries. Controlled failure–recovery data teaches physical causal understanding. Evaluation-first supervised training and noise-aware policy optimization teach the model to assess execution before planning a recovery. At inference time, interaction history informs the next decision without parameter updates. The result is a corrective brain that works with fixed execution backends, translating feedback into grounded continuation.</p></div>
       <div class="capability-grid">
         <article><div class="capability-number">01 <span aria-hidden="true">◎</span></div><h3>Understand the cause</h3><p>Locate the action, relation, or missing prerequisite that first invalidated progress—not just the unsuccessful outcome.</p><span class="capability-tag">Physical causal understanding</span></article>
@@ -118,6 +118,16 @@
         <div id="case-panel" role="tabpanel" aria-labelledby="case-prerequisite" tabindex="0" class="case-panel"></div>
         <noscript><img class="fallback-image" src="assets/cases/prerequisite.webp" alt="Twelve paper frames showing failed placement and corrected pickup and placement."></noscript>
       </div>
+    </section>
+
+    <section id="citation" class="section container citation-section" aria-labelledby="citation-title">
+      <div class="section-heading"><p class="eyebrow">05 / CITATION</p><h2 id="citation-title">Cite Embodied-Corrector.</h2><p>If this work supports your research, please cite Embodied-Corrector. The formal paper BibTeX will be added when its citation metadata is released.</p></div>
+      <div class="citation-card"><div class="citation-toolbar"><span class="small-label">PROJECT CITATION · BIBTEX</span><a class="text-link" href="citation.bib" download>Download .bib <span aria-hidden="true">↓</span></a></div><pre tabindex="0" aria-label="BibTeX citation for the project page"><code>@misc{embodiedcorrector2026,
+  title        = {Embodied-Corrector},
+  year         = {2026},
+  howpublished = {Project page},
+  url          = {https://pm1255.github.io/embodied-corrector/}
+}</code></pre><p class="fine-print">This entry cites the project page. It will be supplemented with the formal paper citation.</p></div>
     </section>
 
     <section class="section container closing-section">

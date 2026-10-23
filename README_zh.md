@@ -11,24 +11,30 @@
 
 </div>
 
-通过公开执行证据学习物理失败诊断与可执行纠错，统一输出 **Judge → Cause → Sub → Fine**。本仓库包含论文网页、evaluation-first SFT、基于 verl 的 NEPO 训练，以及公开 EmbodiedBench / EB-ALFRED 仿真闭环。
+## 研究动机
 
-**当前已验证单卡 Qwen 训练和真实仿真流程。** 训练使用 verl 的 DataProto、GRPO advantage 与 PPO loss；尚未实现原生分布式 RayPPOTrainer/FSDP。此次小样本运行没有复现论文表格效果。
+多模态模型已经能够理解任务、感知场景并生成计划，但物理执行会受到机器人形态、控制器能力和环境状态的共同约束。动作的实际结果可能偏离预期，继续沿用原有计划就可能重复失败。我们的核心问题是：**如何让具身大脑理解执行为什么失败，并从交互反馈中形成当前执行器能够完成的恢复方案？**
 
-## 更新
+这需要三种相互补充的能力：
 
-- **2026-10-24**：发布网页、代码和验证记录；18 项数值与接口检查通过，完成 Qwen3-VL-2B 训练、重新加载和真实 EB-ALFRED 仿真验证。
+- **物理因果理解与失败定位**：沿执行过程找到最先破坏任务进展的动作、物理关系或缺失前提，例如区分抓取时机错误、接触姿态不当和前置步骤遗漏。
+- **执行能力识别与适应**：根据当前状态和执行器能力调整指令内容与粒度，将恢复目标转化为固定控制器或冻结 VLA 可以执行的子任务。
+- **从交互经验中学习**：把历史动作、观察和纠错结果作为下一步决策的证据，在推理时通过上下文修正行为，无需更新模型参数。
 
-## 方法
+<p align="center"><img src="docs/assets/figures/diagnosis.webp" alt="物理失败诊断与因果反馈" width="960"></p>
 
-<p align="center"><img src="docs/assets/figures/training.webp" alt="SFT 与 NEPO" width="960"></p>
+## 我们的方法
 
-1. **评估优先 SFT**：先训练 Judge/Cause，再基于已验证评估前缀训练 Sub/Fine。
-2. **同策略双上下文打分**：同一未更新策略，在生成评估和已验证评估前缀下，对相同规划 token 计算概率。
-3. **NEPO**：使用 `q − p` 概率差，对高熵位置的负信号进行衰减，再叠加到 GRPO 优势。
-4. **执行闭环**：规划器选择动作，真实环境执行，纠错器读取反馈并向下一次规划提供四字段纠错。
+我们提出 **Embodied-Corrector**，将物理执行反馈转化为原因诊断与可执行恢复。模型按照 **Judge → Cause → Sub → Fine** 依次判断执行结果、定位失败原因、选择恢复子任务并生成细粒度动作指导，使恢复计划建立在对执行过程的评估之上。
 
-图片和公开证据在两条训练分支中保持一致。部署输入不包含训练标注或隐藏模拟器状态。详细公式与实现范围见 [方法说明](guides/method.md)。
+<p align="center"><img src="docs/assets/figures/training.webp" alt="评估优先 SFT 与 NEPO 训练框架" width="960"></p>
+
+1. **可控失败—恢复数据构建**：从成功轨迹的子任务边界出发，对单个物理因素施加干预，建立动作、可观察后果、失败原因与恢复方案之间的对应关系。保留可观察、可恢复的失败，并在生成扰动前按源轨迹划分训练与评估数据。
+2. **评估优先的监督微调**：先学习执行结果与失败原因（Judge/Cause），再学习在已验证评估条件下生成恢复计划（Sub/Fine），将诊断与规划联系起来。
+3. **NEPO 策略优化**：针对训练时使用已验证评估、部署时依赖模型自身评估的差异，用同一策略在两种评估上下文下对相同规划 token 打分。Noise-Aware Entropy-Gated Policy Optimization（NEPO）将组相对奖励与 token 概率差信号结合，保留正向指导，并用熵门控衰减不确定位置的负向信号。
+4. **基于交互历史的闭环纠错**：在固定执行后端上观察结果、诊断原因并修订后续计划。模型通过当前回合的历史动作和反馈调整决策，执行后端保持固定，推理过程中不更新参数。
+
+已验证评估仅用于训练；部署时模型从可观察执行证据生成完整的四字段响应。算法与代码对应关系见 [方法说明](guides/method.md)。
 
 ## 安装和训练
 
@@ -94,8 +100,19 @@ source scripts/env.sh
 
 打开 `http://localhost:6006`，可查看 SFT/NEPO loss、奖励、熵、概率差信号、梯度、检查点和评估进度。正式运行与 smoke 验证分开记录。
 
-## 数据和代码范围
+## 引用
 
-包含四条由论文图示整理的教学数据；未发布完整训练集、官方 EmbodiedDiag-Bench、预训练权重或正式模型检查点。训练器是单卡实现，目前不支持优化器断点续训。详细目录见 [英文 README](README.md#repository-structure)。
+如果这项工作对你的研究有帮助，欢迎引用 Embodied-Corrector。正式论文的 BibTeX 将在引用信息公开后补充；目前可使用以下条目引用项目主页。
 
-论文作者暂不展示。第三方源码与论文材料保留原有权利，见 [第三方说明](THIRD_PARTY_NOTICES.md)。
+```bibtex
+@misc{embodiedcorrector2026,
+  title        = {Embodied-Corrector},
+  year         = {2026},
+  howpublished = {Project page},
+  url          = {https://pm1255.github.io/embodied-corrector/}
+}
+```
+
+[下载项目引用条目](docs/citation.bib)
+
+第三方源码与论文材料保留原有权利，见 [第三方说明](THIRD_PARTY_NOTICES.md)。
