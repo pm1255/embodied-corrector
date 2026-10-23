@@ -11,13 +11,19 @@
 
 </div>
 
+[摘要](#摘要) · [研究动机](#研究动机) · [方法](#方法) · [实验](#实验) · [引用](#引用)
+
 ## 论文视频介绍
 
-[![Embodied-Corrector 论文介绍](docs/assets/video/introduction-poster.jpg)](https://pm1255.github.io/embodied-corrector/#video)
+https://github.com/user-attachments/assets/3cf1d45c-68d8-4eb9-8207-ace68186fb2e
 
 [▶ 观看介绍视频](https://pm1255.github.io/embodied-corrector/#video) · [下载 MP4](https://pm1255.github.io/embodied-corrector/assets/video/introduction.mp4) · [中英讲稿](docs/assets/video/transcript.md)
 
 视频采用英文配音与无底框中文字幕，介绍研究动机、RynnBrain 训练方法、NEPO 和纠错案例。主页提供 **7 类案例**：4 个论文观察帧案例，以及导航、可达性、容器开合 3 类协议示意。观察帧按顺序展示，不代表原始连续视频。
+
+## 摘要
+
+可靠的具身执行需要理解物理失败的原因、适应执行器能力，并根据交互反馈修订后续决策。我们提出基于 **RynnBrain-8B** 训练的 **Embodied-Corrector**，通过 **Judge → Cause → Sub → Fine** 将执行观察、失败诊断与可执行恢复联系起来。我们从成功轨迹构建可控的失败—恢复分支，每次只改变一个物理因素；采用**评估优先 SFT**，先学习判断与原因，再学习恢复规划；通过 **NEPO** 将组相对奖励与两种评估上下文之间的 token 级指导结合，并用熵门控抑制不确定的负向信号。部署时，模型只使用公开观察和当前回合历史，不更新参数。论文在失败推理、规划迁移和固定执行后端的恢复任务上进行评估：固定代码后端的宏平均成功率由 **55.0% 提升至 68.9%**，冻结 π₀.₅ 在 RoboCasa365 未见组合任务上的成功率由 **1.2% 提升至 7.3%**。
 
 ## 研究动机
 
@@ -31,7 +37,7 @@
 
 <p align="center"><img src="docs/assets/figures/diagnosis.webp" alt="物理失败诊断与因果反馈" width="960"></p>
 
-## 我们的方法
+## 方法
 
 我们提出基于 **RynnBrain-8B** 训练的 **Embodied-Corrector**，将物理执行反馈转化为原因诊断与可执行恢复。模型按照 **Judge → Cause → Sub → Fine** 依次判断执行结果、定位失败原因、选择恢复子任务并生成细粒度动作指导，使恢复计划建立在对执行过程的评估之上。
 
@@ -43,6 +49,39 @@
 4. **基于交互历史的闭环纠错**：在固定执行后端上观察结果、诊断原因并修订后续计划。模型通过当前回合的历史动作和反馈调整决策，执行后端保持固定，推理过程中不更新参数。
 
 已验证评估仅用于训练；部署时模型从可观察执行证据生成完整的四字段响应。算法与代码对应关系见 [方法说明](guides/method.md)。
+
+## 实验
+
+论文从**失败诊断 → 规划迁移 → 闭环恢复**评估纠错大脑。下表为论文报告的仿真结果。
+
+| 评估设置 | 比较条件 | 基线 | Embodied-Corrector | 提升 | 论文出处 |
+| --- | --- | ---: | ---: | ---: | --- |
+| 固定代码后端 | RynnBrain-8B → RynnBrain-NEPO；10 种条件宏平均 | 55.0% | 68.9% | +13.9 个百分点 | 表 3 |
+| 冻结 π₀.₅ | RoboCasa365 Composite-Unseen；加入纠错大脑 | 1.2% | 7.3% | +6.1 个百分点 | 图 4 |
+| 规划迁移 | EB-ALFRED Base；RynnBrain-8B → RynnBrain-NEPO | 30% | 78% | +48 个百分点 | 表 2 |
+| 失败判断 | EmbodiedDiag-Bench 导航；Judge | 23.6% | 79.6% | +56.0 个百分点 | 表 1 |
+| 原因诊断 | EmbodiedDiag-Bench 导航；Cause | 13.6% | 58.2% | +44.6 个百分点 | 表 1 |
+
+固定代码后端比较中，GPT-5.5 规划器、机器人解析函数、感知模块与执行预算保持一致，宏平均覆盖 4 个 OmniBehavior 和 6 个 LIBERO-PRO 条件。冻结 VLA 的提升对应**未见组合任务**；在短原子任务中，不必要的指令改写也可能使成功率下降。规划迁移使用相同观察、动作接口和步数限制，不提供显式失败提示或纠错 Harness。上述论文结果与下方 Qwen 工程流程示例分别对应不同用途。
+
+[查看四类评估、完整结果表及实验协议 →](https://pm1255.github.io/embodied-corrector/#results)
+
+<p align="center"><img src="docs/assets/figures/dynamics.webp" alt="NEPO 的训练损失、答案奖励和 token 熵" width="960"></p>
+
+## 引用
+
+如果这项工作对你的研究有帮助，欢迎引用 Embodied-Corrector。正式论文的 BibTeX 将在引用信息公开后补充；目前可使用以下条目引用项目主页。
+
+```bibtex
+@misc{embodiedcorrector2026,
+  title        = {Embodied-Corrector},
+  year         = {2026},
+  howpublished = {Project page},
+  url          = {https://pm1255.github.io/embodied-corrector/}
+}
+```
+
+[下载项目引用条目](docs/citation.bib)
 
 ## 安装和训练
 
@@ -95,20 +134,5 @@ source scripts/env.sh
 ```
 
 打开 `http://localhost:6006`，可查看 SFT/NEPO loss、奖励、熵、概率差信号、梯度、检查点和评估进度。正式运行与 smoke 验证分开记录。
-
-## 引用
-
-如果这项工作对你的研究有帮助，欢迎引用 Embodied-Corrector。正式论文的 BibTeX 将在引用信息公开后补充；目前可使用以下条目引用项目主页。
-
-```bibtex
-@misc{embodiedcorrector2026,
-  title        = {Embodied-Corrector},
-  year         = {2026},
-  howpublished = {Project page},
-  url          = {https://pm1255.github.io/embodied-corrector/}
-}
-```
-
-[下载项目引用条目](docs/citation.bib)
 
 第三方源码与论文材料保留原有权利，见 [第三方说明](THIRD_PARTY_NOTICES.md)。

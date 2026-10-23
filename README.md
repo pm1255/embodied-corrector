@@ -14,13 +14,19 @@
 
 </div>
 
+[Abstract](#abstract) · [Motivation](#motivation) · [Method](#method) · [Experiments](#experiments) · [Citation](#citation)
+
 ## Video introduction
 
-[![Embodied-Corrector video introduction](docs/assets/video/introduction-poster.jpg)](https://pm1255.github.io/embodied-corrector/#video)
+https://github.com/user-attachments/assets/3cf1d45c-68d8-4eb9-8207-ace68186fb2e
 
 [▶ Watch the introduction](https://pm1255.github.io/embodied-corrector/#video) · [Download MP4](https://pm1255.github.io/embodied-corrector/assets/video/introduction.mp4) · [Bilingual transcript](docs/assets/video/transcript.md)
 
 An overview of the motivation, RynnBrain training, NEPO, and recovery cases, with English narration and Chinese subtitles. Explore **seven failure categories** on the project page: four paper-frame walkthroughs and three protocol illustrations for navigation, reachability, and articulation. Frame walkthroughs present selected paper observations rather than original continuous recordings.
+
+## Abstract
+
+Reliable embodied execution requires physical causal understanding, adaptation to the executor’s capabilities, and revision from interaction feedback. **Embodied-Corrector**, trained from **RynnBrain-8B**, connects observed failures with diagnosis and executable recovery through **Judge → Cause → Sub → Fine**. We construct controlled failure–recovery branches from successful trajectories, changing one physical factor at a time. **Evaluation-first SFT** learns assessment before planning; **NEPO** combines group-relative rewards with entropy-gated token-level guidance across generated and verified evaluation contexts. At inference time, the model uses public observations and within-episode history without parameter updates. The manuscript reports improvements in failure reasoning, planning transfer, and recovery with fixed execution backends, including **55.0% → 68.9%** macro-average success with a fixed code backend and **1.2% → 7.3%** on RoboCasa365 Composite-Unseen with frozen π₀.₅.
 
 ## Motivation
 
@@ -34,7 +40,7 @@ We identify three complementary capabilities:
 
 <p align="center"><img src="docs/assets/figures/diagnosis.webp" alt="Physical failure diagnosis and cause-level feedback" width="960"></p>
 
-## Our Method
+## Method
 
 We introduce **Embodied-Corrector**, trained from **RynnBrain-8B** with evaluation-first SFT and NEPO, which turns physical execution feedback into failure diagnosis and executable recovery. Its structured reasoning follows **Judge → Cause → Sub → Fine**: assess the execution outcome, identify the failure cause, select a recovery subtask, and provide fine-grained action guidance. Recovery planning is thus grounded in an assessment of what actually happened.
 
@@ -46,6 +52,39 @@ We introduce **Embodied-Corrector**, trained from **RynnBrain-8B** with evaluati
 4. **Closed-loop correction from interaction history.** Observe outcomes, diagnose failures, and revise subsequent plans while keeping the execution backend fixed. Within-episode actions and feedback inform the next decision without parameter updates at inference time.
 
 Verified evaluations are used only during training. At deployment, the model generates all four fields from observable execution evidence. See the [method guide](guides/method.md) for equations and their correspondence to the implementation.
+
+## Experiments
+
+The paper evaluates the corrective brain from **failure diagnosis → planning transfer → closed-loop recovery**. All results below are reported in the manuscript and measured in simulation.
+
+| Setting | Comparison | Baseline | Embodied-Corrector | Gain | Source |
+| --- | --- | ---: | ---: | ---: | --- |
+| Fixed code backend | RynnBrain-8B → RynnBrain-NEPO; macro-average across 10 conditions | 55.0% | 68.9% | +13.9 pp | Table 3 |
+| Frozen π₀.₅ | RoboCasa365 Composite-Unseen; add corrective brain | 1.2% | 7.3% | +6.1 pp | Figure 4 |
+| Planning transfer | EB-ALFRED Base; RynnBrain-8B → RynnBrain-NEPO | 30% | 78% | +48 pp | Table 2 |
+| Failure judgment | EmbodiedDiag-Bench Navigation; Judge | 23.6% | 79.6% | +56.0 pp | Table 1 |
+| Cause diagnosis | EmbodiedDiag-Bench Navigation; Cause | 13.6% | 58.2% | +44.6 pp | Table 1 |
+
+The code-backend comparison fixes the GPT-5.5 planner, analytic robot functions, perception, and execution budget; its macro-average covers four OmniBehavior and six LIBERO-PRO conditions. The frozen-VLA gain is specific to **Composite-Unseen**; Atomic-Seen can regress when unnecessary instruction changes are introduced. Planning transfer uses identical observation/action interfaces and step limits, without an explicit failure prompt or corrective Harness. These paper results are distinct from the runnable Qwen software example below.
+
+[Explore all four evaluation settings and full result tables →](https://pm1255.github.io/embodied-corrector/#results)
+
+<p align="center"><img src="docs/assets/figures/dynamics.webp" alt="NEPO post-training loss, answer reward and token entropy" width="960"></p>
+
+## Citation
+
+If you find this work useful for your research, please cite Embodied-Corrector. The formal paper BibTeX will be added when its citation metadata is released. For now, the following entry cites the project page.
+
+```bibtex
+@misc{embodiedcorrector2026,
+  title        = {Embodied-Corrector},
+  year         = {2026},
+  howpublished = {Project page},
+  url          = {https://pm1255.github.io/embodied-corrector/}
+}
+```
+
+[Download the project citation](docs/citation.bib)
 
 ## Installation
 
@@ -135,21 +174,6 @@ Open `http://localhost:6006`. Logs include stage waiting/running/completed/faile
 ├── docs/             # Author-free project page for GitHub Pages
 └── vendor/verl/      # Pinned upstream verl source and license
 ```
-
-## Citation
-
-If you find this work useful for your research, please cite Embodied-Corrector. The formal paper BibTeX will be added when its citation metadata is released. For now, the following entry cites the project page.
-
-```bibtex
-@misc{embodiedcorrector2026,
-  title        = {Embodied-Corrector},
-  year         = {2026},
-  howpublished = {Project page},
-  url          = {https://pm1255.github.io/embodied-corrector/}
-}
-```
-
-[Download the project citation](docs/citation.bib)
 
 ## Acknowledgements and rights
 

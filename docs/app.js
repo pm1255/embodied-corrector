@@ -142,7 +142,7 @@ dialog.addEventListener('close',()=>figureTrigger?.focus({preventScroll:true}));
 if('IntersectionObserver' in window){
   const links=[...nav.querySelectorAll('a')];
   const observer=new IntersectionObserver(entries=>{for(const e of entries){if(e.isIntersecting)links.forEach(a=>{const active=a.hash===`#${e.target.id}`;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}},{rootMargin:'-15% 0px -65% 0px',threshold:0});
-  ['video','overview','method','results','cases','citation'].forEach(id=>observer.observe(document.getElementById(id)));
+  ['video','abstract','overview','method','results','cases','citation'].forEach(id=>observer.observe(document.getElementById(id)));
 }
 
 // All media starts only after a user action; pause other clips when one plays.
@@ -176,4 +176,24 @@ const chapterButtons=[...document.querySelectorAll('[data-seek]')];
 introduction.addEventListener('timeupdate',()=>{
   const active=chapterButtons.filter(button=>Number(button.dataset.seek)<=introduction.currentTime).at(-1);
   chapterButtons.forEach(button=>{if(button===active)button.setAttribute('aria-current','true');else button.removeAttribute('aria-current');});
+});
+
+// Make the research overview cards open the corresponding complete comparison.
+document.querySelectorAll('[data-open-result]').forEach(link=>link.addEventListener('click',()=>{
+  document.querySelector(`[data-result="${link.dataset.openResult}"]`).click();
+}));
+const copyCitation=document.querySelector('#copy-citation');
+copyCitation.addEventListener('click',async()=>{
+  const citation=document.querySelector('#citation-code');
+  try{
+    await navigator.clipboard.writeText(citation.textContent);
+    copyCitation.textContent='Copied ✓';
+    document.querySelector('#citation-status').textContent='BibTeX copied to clipboard.';
+    setTimeout(()=>{copyCitation.textContent='Copy BibTeX';},2500);
+  }catch{
+    const selection=window.getSelection(),range=document.createRange();
+    range.selectNodeContents(citation);selection.removeAllRanges();selection.addRange(range);
+    document.querySelector('#citation-status').textContent='Citation selected. Copy the selected text or download the .bib file.';
+    copyCitation.textContent='Selected — copy text';
+  }
 });
