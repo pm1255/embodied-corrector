@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "embodied-corrector-verl"
+version = "0.1.0"
+description = "Evaluation-first SFT, paper-defined NEPO, and embodied correction evaluation on verl"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.6", "transformers==5.5.3", "peft==0.19.0", "ray==2.49.2", "tensordict>=0.8,<=0.10,!=0.9.0", "hydra-core", "numpy", "pandas", "pyarrow", "datasets", "accelerate", "codetiming", "torchdata", "tensorboard", "pillow", "fastapi", "uvicorn", "python-multipart", "requests"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+ec-train = "ec_verl.train:main"
+ec-evaluate = "ec_verl.evaluate:main"
+ec-data = "ec_verl.data:main"
+ec-serve = "ec_verl.serve:main"
+ec-embodiedbench = "ec_verl.embodiedbench:main"
+
+[tool.setuptools.packages.find]
+include = ["ec_verl*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f9f9fd">
+  <meta name="description" content="Embodied-Corrector learns from physical execution feedback to diagnose failures, adapt to fixed executors, and plan grounded recoveries.">
+  <meta property="og:title" content="Embodied-Corrector — Recover, Don’t Just Continue">
+  <meta property="og:description" content="Learning from Feedback for Physical Failure Understanding and Correction.">
+  <meta property="og:type" content="website">
+  <title>Embodied-Corrector | Recover, Don’t Just Continue</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="wordmark" href="#top" aria-label="Embodied-Corrector home"><span class="brand-icon" aria-hidden="true">↻</span><span>Embodied<span class="wordmark-light">-Corrector</span></span></a>
+      <nav id="main-nav" aria-label="Main navigation">
+        <a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#cases">Recovery cases</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle icon-button" type="button" aria-label="Switch to dark theme" title="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.1 15.1A8.5 8.5 0 0 1 8.9 3.9a8.5 8.5 0 1 0 11.2 11.2Z"/></svg></button>
+        <a class="nav-paper" href="assets/paper.pdf" target="_blank" rel="noopener">Paper <span aria-hidden="true">↗</span></a>
+        <button class="menu-toggle icon-button" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="eyebrow hero-eyebrow"><span class="status-dot"></span> LEARNING FROM PHYSICAL FEEDBACK</div>
+        <h1 id="hero-title">Embodied<span>-Corrector</span></h1>
+        <p class="hero-statement">Recover, don’t just continue.</p>
+        <p class="hero-subtitle">Learning from Feedback for Physical Failure<br class="desktop-break"> Understanding and Correction</p>
+        <div class="hero-actions">
+          <a class="button primary" href="assets/paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Z"/><path d="M14 3v5h5M8 12h8M8 16h6"/></svg>Read the paper <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="https://github.com/pm1255/embodied-corrector" target="_blank" rel="noopener">Code on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-story">
+          <div class="story-topline"><span><span class="live-dot"></span> FROM FAILURE TO RECOVERY</span><span>LIBERO-PRO · Simulation</span></div>
+          <div class="story-frames">
+            <figure class="story-frame"><div class="frame-image"><img src="assets/hero-failed.webp" width="320" height="320" alt="An empty robot gripper attempts placement over the basket while the orange-juice carton remains on the floor." fetchpriority="high"><span class="frame-badge failed">01 <span>Failed execution</span></span></div><figcaption><strong>Placement without pickup</strong><span>The gripper is empty. The prerequisite is missing.</span></figcaption></figure>
+            <figure class="story-frame"><div class="frame-image"><img src="assets/hero-recover.webp" width="320" height="320" alt="The corrected program grasps and lifts the orange-juice carton."><span class="frame-badge recovery">02 <span>Grounded recovery</span></span></div><figcaption><strong>Restore the missing step</strong><span>Locate, grasp, and verify attachment before moving.</span></figcaption></figure>
+            <figure class="story-frame"><div class="frame-image"><img src="assets/hero-success.webp" width="320" height="320" alt="The orange-juice carton is inside the basket after corrected placement."><span class="frame-badge success">03 <span>Verified success</span></span></div><figcaption><strong>Continue from a valid state</strong><span>The carton is in the basket. The task is complete.</span></figcaption></figure>
+          </div>
+          <div class="story-footer"><span>Diagnose the cause. Restore the condition. Then continue.</span><a href="#cases">Explore recovery cases <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <p class="media-note">Selected paper frames · failed and corrected rollouts · Figure 7</p>
+        <div class="hero-metrics" aria-label="Research highlights">
+          <div><strong>+13.9<span> pp</span></strong><p>Fixed code-backend success</p><small>Macro-average over 10 conditions</small></div>
+          <div><strong>+6.1<span> pp</span></strong><p>Frozen π<sub>0.5</sub> success</p><small>Composite-Unseen · RoboCasa365</small></div>
+          <div><strong>1.58<span>M</span></strong><p>Valid correction rounds</p><small>350 source tasks · 148,415 rollouts</small></div>
+        </div>
+        <p class="metric-note">All execution results are simulation-based. Gains are absolute percentage points (pp); baselines are detailed below.</p>
+      </div>
+    </section>
+
+    <section id="overview" class="section container">
+      <div class="section-heading"><p class="eyebrow">01 / THE IDEA</p><h2>A capable brain must know<br> what went wrong.</h2><p>Planning is only the beginning. Physical execution demands a model that can explain deviations—and use that evidence to change what happens next.</p></div>
+      <div class="abstract-block"><span class="small-label">ABSTRACT</span><p>Embodied-Corrector connects actions, observable consequences, failure causes, and executable recoveries. Controlled failure–recovery data teaches physical causal understanding. Evaluation-first supervised training and noise-aware policy optimization teach the model to assess execution before planning a recovery. At inference time, interaction history informs the next decision without parameter updates. The result is a corrective brain that works with fixed execution backends, translating feedback into grounded continuation.</p></div>
+      <div class="capability-grid">
+        <article><div class="capability-number">01 <span aria-hidden="true">◎</span></div><h3>Understand the cause</h3><p>Locate the action, relation, or missing prerequisite that first invalidated progress—not just the unsuccessful outcome.</p><span class="capability-tag">Physical causal understanding</span></article>
+        <article><div class="capability-number">02 <span aria-hidden="true">⌘</span></div><h3>Adapt to the executor</h3><p>Translate a recovery into state-conditioned subtasks that the current controller or frozen VLA can actually realize.</p><span class="capability-tag">Capability-aware planning</span></article>
+        <article><div class="capability-number">03 <span aria-hidden="true">↻</span></div><h3>Learn from the interaction</h3><p>Use prior actions, observations, and corrections as evidence for the next decision, without updating model parameters.</p><span class="capability-tag">In-context adaptation</span></article>
+      </div>
+      <div class="insight"><span class="insight-icon" aria-hidden="true">↳</span><p><strong>“It failed” is not enough.</strong> On EB-ALFRED, cause-level feedback improves replanning more consistently than repeating the failed outcome.</p><button class="text-button" data-zoom="assets/figures/diagnosis.webp" data-caption="Figure 1 · Failure diagnosis and the effect of cause-level feedback on EB-ALFRED." type="button">See the evidence <span aria-hidden="true">↗</span></button></div>
+    </section>
+
+    <section id="method" class="section section-tinted">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">02 / THE METHOD</p><h2>Assess first.<br> <span class="gradient-text">Then plan a recovery.</span></h2><p>A single inference connects execution evidence to four structured outputs, giving the same downstream planner a better basis for its next action.</p></div>
+        <div class="reasoning-chain" aria-label="Four structured outputs">
+          <div><span class="step-index">01</span><h3>Judge</h3><p>Did the subtask succeed?</p><div class="example-output">Placement incomplete</div></div>
+          <div><span class="step-index">02</span><h3>Cause</h3><p>Which condition was violated?</p><div class="example-output">The carton was never grasped</div></div>
+          <div><span class="step-index">03</span><h3>Sub</h3><p>What should happen next?</p><div class="example-output">Locate and pick up the carton</div></div>
+          <div><span class="step-index">04</span><h3>Fine</h3><p>How can it be executed?</p><div class="example-output">Grasp → verify → lift → place</div></div>
+        </div>
+        <p class="figure-note">Illustrative summary of the paper’s orange-juice recovery case.</p>
+        <div class="method-section">
+          <div class="method-copy"><span class="small-label">DATA CONSTRUCTION</span><h3>One controlled change.<br> A learnable physical cause.</h3><p>Branch successful trajectories at subtask boundaries, intervene on one factor, and pair failures with aligned correction targets. Keep only failures that are observable and recoverable.</p><div class="factor-list"><span>Navigation</span><span>Reachability</span><span>Grasp pose</span><span>Timing</span><span>Articulation</span><span>Prerequisites</span><span>Target grounding</span></div><p class="fine-print">Sources: RoboCasa365 and OmniBehavior. Source trajectories are split before perturbation generation to prevent shared prefixes across training and evaluation.</p></div>
+          <figure class="paper-figure"><button class="figure-button" data-zoom="assets/figures/data-pipeline.webp" data-caption="Figure 2 · Controlled failure-data construction and the four supervision fields." type="button" aria-label="Enlarge data construction figure"><img src="assets/figures/data-pipeline.webp" width="1815" height="1024" loading="lazy" alt="Paper diagram of successful trajectory sources, controlled perturbations, failed and corrected traces, and four-field training targets."><span class="zoom-hint" aria-hidden="true">↗</span></button><figcaption><span>FIGURE 2</span> Controlled failure–recovery data</figcaption></figure>
+        </div>
+        <div class="method-section reverse">
+          <div class="method-copy"><span class="small-label">EVALUATION-FIRST TRAINING</span><h3>Turn verified evaluations<br> into the model’s own reasoning.</h3><p>First learn <strong>Judge + Cause</strong>, then learn <strong>Sub + Fine</strong> conditioned on verified evaluations. NEPO combines group-relative rewards with entropy-gated on-policy distillation to reduce the training-to-deployment mismatch.</p><ul class="plain-list"><li><span>1</span>Learn to assess before learning to continue.</li><li><span>2</span>Retain positive guidance; attenuate uncertain negative signals.</li><li><span>3</span>Generate all four fields in one deployment pass.</li></ul><p class="fine-print">Verified evaluation labels are available during training only.</p></div>
+          <figure class="paper-figure"><button class="figure-button" data-zoom="assets/figures/training.webp" data-caption="Figure 3 · Evaluation-first SFT and Noise-Aware Entropy-Gated Policy Optimization (NEPO)." type="button" aria-label="Enlarge training architecture"><img src="assets/figures/training.webp" width="1815" height="887" loading="lazy" alt="Paper diagram of evaluation-first supervised training, student and verified-evaluation teacher views, entropy gating, and the GRPO branch of NEPO."><span class="zoom-hint" aria-hidden="true">↗</span></button><figcaption><span>FIGURE 3</span> SFT → NEPO → one-pass correction</figcaption></figure>
+        </div>
+        <div class="architecture-panel"><div><p class="small-label">THE CLOSED LOOP</p><h3>Better feedback.<br> The same execution backend.</h3><p>The corrective brain reads public execution evidence and returns a structured correction. A fixed planner revises the workflow; the environment verifies the result.</p><a class="text-link" href="assets/paper.pdf#page=18" target="_blank" rel="noopener">Read the Harness details <span aria-hidden="true">↗</span></a></div><button class="figure-button" data-zoom="assets/figures/harness.webp" data-caption="Figure 6 · The corrective Harness. Formal evaluations use only within-episode working memory; cross-episode retrieval and memory updates are disabled." type="button" aria-label="Enlarge closed-loop Harness architecture"><img src="assets/figures/harness.webp" width="1779" height="1007" loading="lazy" alt="Closed-loop Harness connecting task and context, fixed execution interfaces, Embodied-Corrector, and workflow revision."><span class="zoom-hint" aria-hidden="true">↗</span></button></div>
+      </div>
+    </section>
+
+    <section id="results" class="section container">
+      <div class="section-heading"><p class="eyebrow">03 / EXPERIMENTS</p><h2>From understanding failure<br> to improving execution.</h2><p>Evaluated at the brain level and with fixed execution backends. Explore the reported results across four complementary settings.</p></div>
+      <div class="tab-list result-tabs" role="tablist" aria-label="Evaluation setting">
+        <button id="tab-diagnosis" role="tab" aria-selected="true" aria-controls="results-panel" data-result="diagnosis" type="button">Failure reasoning</button>
+        <button id="tab-planning" role="tab" aria-selected="false" aria-controls="results-panel" data-result="planning" tabindex="-1" type="button">Planning transfer</button>
+        <button id="tab-code" role="tab" aria-selected="false" aria-controls="results-panel" data-result="code" tabindex="-1" type="button">Fixed code backend</button>
+        <button id="tab-vla" role="tab" aria-selected="false" aria-controls="results-panel" data-result="vla" tabindex="-1" type="button">Frozen VLA</button>
+      </div>
+      <div id="results-panel" class="results-panel" role="tabpanel" aria-labelledby="tab-diagnosis" tabindex="0"></div>
+      <noscript><p>Interactive charts require JavaScript. All reported results are available in <a href="assets/paper.pdf#page=6">Tables 1–3 and Figure 4 of the paper</a>.</p></noscript>
+      <div class="dynamics-panel"><div><p class="small-label">POST-TRAINING DYNAMICS</p><h3>Stronger reward.<br> Without entropy collapse.</h3><p>Under matched VQA post-training conditions, NEPO achieves the highest answer-level reward while avoiding the low-entropy regime of vanilla OPD.</p></div><button class="figure-button" data-zoom="assets/figures/dynamics.webp" data-caption="Figure 5 · VQA post-training dynamics. Curves are reproduced directly from the manuscript." type="button" aria-label="Enlarge post-training curves"><img src="assets/figures/dynamics.webp" width="1815" height="582" loading="lazy" alt="Original loss, answer reward, and token entropy curves comparing GRPO, GSPO, OPD, and NEPO."><span class="zoom-hint" aria-hidden="true">↗</span></button></div>
+    </section>
+
+    <section id="cases" class="section section-tinted">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">04 / RECOVERY IN ACTION</p><h2>Change the premise.<br> <span class="gradient-text">Change the outcome.</span></h2><p>Four examples of restoring the physical conditions that make task progress possible, using observations reproduced from the paper.</p></div>
+        <div class="tab-list case-tabs" role="tablist" aria-label="Recovery example">
+          <button id="case-prerequisite" role="tab" aria-selected="true" aria-controls="case-panel" data-case="prerequisite" type="button"><span>01</span> Missing prerequisite</button>
+          <button id="case-target" role="tab" aria-selected="false" aria-controls="case-panel" data-case="target" tabindex="-1" type="button"><span>02</span> Wrong target</button>
+          <button id="case-avocado" role="tab" aria-selected="false" aria-controls="case-panel" data-case="avocado" tabindex="-1" type="button"><span>03</span> Misaligned grasp</button>
+          <button id="case-onion" role="tab" aria-selected="false" aria-controls="case-panel" data-case="onion" tabindex="-1" type="button"><span>04</span> Late closure</button>
+        </div>
+        <div id="case-panel" role="tabpanel" aria-labelledby="case-prerequisite" tabindex="0" class="case-panel"></div>
+        <noscript><img class="fallback-image" src="assets/cases/prerequisite.webp" alt="Twelve paper frames showing failed placement and corrected pickup and placement."></noscript>
+      </div>
+    </section>
+
+    <section class="section container closing-section">
+      <div class="scope-note"><span class="small-label">SCOPE & OPEN QUESTIONS</span><h3>Toward reliable physical recovery.</h3><p>Data construction and quantitative evaluation are currently simulation-based. Real-world observation noise, state uncertainty, and brain–VLA language alignment remain open challenges. Short atomic tasks can regress when a corrector introduces unnecessary instruction changes.</p></div>
+      <div class="paper-cta"><span class="brand-icon large" aria-hidden="true">↻</span><h2>Recover, don’t just continue.</h2><p>Explore the full method, protocols, and experimental results.</p><a class="button primary" href="assets/paper.pdf" target="_blank" rel="noopener">Read the full paper <span aria-hidden="true">↗</span></a><span class="paper-meta">PDF · 26 pages</span></div>
+    </section>
+  </main>
+  <footer class="site-footer container"><a class="wordmark" href="#top"><span class="brand-icon" aria-hidden="true">↻</span>Embodied-Corrector</a><p>Learning from feedback. Grounded in execution.</p><a href="#top">Back to top ↑</a></footer>
+  <dialog id="figure-dialog" aria-labelledby="figure-caption"><form method="dialog"><button class="dialog-close" type="submit" aria-label="Close enlarged figure">×</button></form><div class="dialog-image-wrap"><img id="figure-image" alt=""></div><p id="figure-caption"></p></dialog>
+</body>
+</html>

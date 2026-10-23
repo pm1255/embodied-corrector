@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/EmbodiedBench/EmbodiedBench",
+  "commit": "9be4e980e9cd6bcb38373cd4aab7c32724bdd401",
+  "dataset_repository": "https://huggingface.co/datasets/EmbodiedBench/EB-ALFRED",
+  "dataset_commit": "af55cc721725ed058830fd7a8aee66c1f69efbaa",
+  "tested_subset": "base",
+  "tested_indexes": [
+    0
+  ],
+  "thor_sha256": "cc61de810ddb8d681e9f6a7e342dd2d2c8454db413dd681de6bc85d2b2f70459"
+}

@@ -1,0 +1,15 @@
+ai2thor==2.1.0
+gym==0.26.2
+gym-notices==0.1.0
+numpy==1.26.4
+networkx==3.7
+revtok==0.0.3
+vocab==0.0.5
+progressbar2==4.6.0
+python-utils==4.1.4
+python-xlib==0.33
+flask==2.0.3
+werkzeug==2.0.3
+flask-cors==6.0.5
+opencv-python-headless>=4.8,<4.12
+scipy>=1.11,<1.16

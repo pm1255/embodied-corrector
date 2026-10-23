@@ -1,0 +1,20 @@
+{
+  "model_example": "Qwen/Qwen3-VL-2B-Instruct",
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "lora": true,
+  "lora_rank": 8,
+  "lora_alpha": 16,
+  "sft_steps_per_stage": 12,
+  "nepo_steps": 2,
+  "group_size": 2,
+  "max_new_tokens": 192,
+  "learning_rate": 0.0002,
+  "kappa": 1.0,
+  "beta": 0.5,
+  "opd_coefficient": 1.0,
+  "clip_ratio": 0.2,
+  "seed": 42,
+  "scope": "smoke",
+  "note": "Documented settings for scripts/validate_gpu.sh; not manuscript hyperparameters. CLI is authoritative."
+}

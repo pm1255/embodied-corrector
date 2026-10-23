@@ -1,0 +1,20 @@
+{
+  "subset": "base",
+  "episodes": 1,
+  "success_rate": 0.0,
+  "environment": "official EB-ALFRED",
+  "results": [
+    {
+      "success": false,
+      "steps": 11,
+      "executed_actions": 11,
+      "environment_done": true,
+      "adapter_step_limit_reached": false,
+      "correction_enabled": true,
+      "correction_calls": 10,
+      "valid_structured_corrections": 10,
+      "source": "EBAlfEnv.task_success",
+      "mock": false
+    }
+  ]
+}
