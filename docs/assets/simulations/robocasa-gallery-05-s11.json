@@ -1,0 +1,174 @@
+{
+  "case": "robocasa-gallery-05-s11",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Stack the cups from largest to smallest.",
+    "seed": 11,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "SizeSorting",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "f3634a46f92c9fa9ff8aa93c3c33c62a70be96f984e2adf928dc2d0a6262f465",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "gallery_spec": {
+      "id": "robocasa-gallery-05-s11",
+      "backend": "robocasa365",
+      "suite": "RoboCasa365",
+      "task": "SizeSorting",
+      "source_task": "SizeSorting",
+      "title": "容器按大小堆叠",
+      "seed": 11,
+      "pairs": [
+        [
+          "obj_1",
+          "obj_0"
+        ]
+      ]
+    },
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": false,
+    "steps": 688,
+    "commands": 6,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "brain": null,
+      "controller_note": "Observe the initial scene; no learned model is used.",
+      "command": {
+        "action": "wait",
+        "steps": 10,
+        "brain": null,
+        "controller_note": "Observe the initial scene; no learned model is used."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 328,
+      "brain": null,
+      "controller_note": "Attempt to grasp obj_1; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "obj_1",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp obj_1; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "obj_1",
+        "object_lift_m": 2.285651854894155e-06,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 328,
+      "step_end": 646,
+      "brain": null,
+      "controller_note": "Previous lift was 0.000 m; change grasp offset and orientation.",
+      "command": {
+        "action": "pick",
+        "object": "obj_1",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Previous lift was 0.000 m; change grasp offset and orientation."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "obj_1",
+        "object_lift_m": -5.917090887264109e-07,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 646,
+      "step_end": 658,
+      "brain": null,
+      "controller_note": "Lift check failed again; release and continue without claiming successful placement.",
+      "command": {
+        "action": "gripper",
+        "close": -1,
+        "steps": 12,
+        "brain": null,
+        "controller_note": "Lift check failed again; release and continue without claiming successful placement."
+      },
+      "feedback": {
+        "action": "gripper",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 658,
+      "step_end": 688,
+      "brain": null,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated.",
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": null,
+        "controller_note": "Let contacts settle before the official task predicate is evaluated."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 688,
+      "step_end": 688,
+      "brain": null,
+      "controller_note": "End this bounded episode; retain the official success or failure.",
+      "command": {
+        "action": "finish",
+        "brain": null,
+        "controller_note": "End this bounded episode; retain the official success or failure."
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": false
+    }
+  ],
+  "video_sha256": "e53e08241a794f45e3f503adfe9ddd50ffe6c7008aca3083de4d45256d1ae6f0"
+}

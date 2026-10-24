@@ -18,21 +18,17 @@
 
 ## Video introduction
 
-https://github.com/user-attachments/assets/3cf1d45c-68d8-4eb9-8207-ace68186fb2e
+[![Project introduction](docs/assets/video/introduction-poster.jpg)](https://pm1255.github.io/embodied-corrector/#video)
 
 [▶ Watch the introduction](https://pm1255.github.io/embodied-corrector/#video) · [Download MP4](https://pm1255.github.io/embodied-corrector/assets/video/introduction.mp4) · [Bilingual transcript](docs/assets/video/transcript.md)
 
-An overview of the motivation, RynnBrain training, NEPO, and recovery cases, with English narration and Chinese subtitles. Explore **seven failure categories** on the project page: four paper-frame walkthroughs and three protocol illustrations for navigation, reachability, and articulation. Frame walkthroughs present selected paper observations rather than original continuous recordings.
+An overview of motivation, RynnBrain training, NEPO, and recovery, with English narration and Chinese subtitles. Robot-motion excerpts come from continuous simulator recordings; the poster is the video's first frame.
 
 ## Continuous simulation cases
 
-[![Four-step GPT proxy with continuous simulation](docs/assets/simulations/libero-articulation-r1-poster.jpg)](https://pm1255.github.io/embodied-corrector/#simulations)
+[▶ Explore 20 LIBERO-PRO and 30 RoboCasa365 episodes](https://pm1255.github.io/embodied-corrector/#simulations) · [Execution records and provenance](guides/simulation_report_zh.md)
 
-[▶ Explore 6 complete case videos](https://pm1255.github.io/embodied-corrector/#simulations) · [Six-case video excerpts](https://pm1255.github.io/embodied-corrector/assets/simulations/highlights.mp4) · [All 9 attempts and running instructions](guides/simulation_report_zh.md)
-
-The left side preserves the GPT proxy's **Judge → Cause → Sub → Fine** records; the right side shows continuous simulator execution. Chinese text has no background box. Cases cover drawer clearance, relational negation, two-object placement, four-ingredient preparation, clearing a board, and cup stacking.
-
-These are **GPT-proxy demonstrations with a simulator-state-assisted analytical controller**. Interactive debugging also consulted state diagnostics. LIBERO-PRO completed 3 of 5 attempts; RoboCasa365 completed 0 of 4. Retries and failures are retained. These debugging cases are not trained RynnBrain / frozen π₀.₅ results or a benchmark success-rate estimate.
+The gallery contains 6 GPT-proxy interactive demonstrations and 44 explicitly labelled scripted episodes. All use an analytical controller with simulator-state localization. Each independently recorded episode retains its task, seed, commands, feedback, and official success or failure. These are demonstration episodes, not fifty different tasks or trained-model benchmark results. The manuscript performance tables are presented separately in Experiments.
 
 ## Abstract
 
@@ -159,6 +155,10 @@ bash scripts/validate_embodiedbench.sh
 The default run evaluates one base-subset simulation task with a 30-decision budget. Per-step images, actions, raw and normalized corrections, environment feedback and final metrics are saved. The script closes its inference and display processes on exit.
 
 This Qwen planner verifies the interface; it differs from the fixed planner in the manuscript. Habitat, Navigation and Manipulation backends are not implemented here.
+
+## DiagBench evaluation
+
+The released EmbodiedDiag-Bench small dataset and its collect → visual judge → aggregate protocol are integrated, including a pinned download, integrity checks, a local RynnBrain-8B server, safe resume and TensorBoard. See the [DiagBench guide](guides/diagbench.md) for the 28-prediction smoke run and full 11,612-prediction evaluation.
 
 ## Monitoring
 

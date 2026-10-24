@@ -1,0 +1,155 @@
+{
+  "case": "libero-gallery-04-s11",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put the wine bottle on the rack",
+    "seed": 11,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-04-s11.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "703d0da3cc79e0d13e7bdc3e36ef2cc989656d9ed6412942ba733b51ceec2896",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "gallery_spec": {
+      "id": "libero-gallery-04-s11",
+      "backend": "libero_pro",
+      "suite": "LIBERO-PRO",
+      "task": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-04-s11.bddl",
+      "source_task": "put_the_wine_bottle_on_the_rack",
+      "title": "酒瓶移到置物架",
+      "seed": 11,
+      "perturbation": "official SwapPerturbator",
+      "perturbation_seed": 11,
+      "bddl_sha256": "f6f5079b27ae1b758ee8ebf0d8f40ec525bef116dd591db923afce98e26f8059",
+      "pairs": [
+        [
+          "wine_bottle_1",
+          "wine_rack_1"
+        ]
+      ]
+    },
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": false,
+    "steps": 486,
+    "commands": 5,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "brain": null,
+      "controller_note": "Observe the initial scene; no learned model is used.",
+      "command": {
+        "action": "wait",
+        "steps": 10,
+        "brain": null,
+        "controller_note": "Observe the initial scene; no learned model is used."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 187,
+      "brain": null,
+      "controller_note": "Attempt to grasp wine_bottle_1; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "wine_bottle_1",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp wine_bottle_1; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "wine_bottle_1",
+        "object_lift_m": 0.05537702811551293,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 187,
+      "step_end": 456,
+      "brain": null,
+      "controller_note": "Measured lift passed 0.05 m; attempt placement at wine_rack_1. This does not certify task success.",
+      "command": {
+        "action": "place",
+        "object": "wine_bottle_1",
+        "target": "wine_rack_1",
+        "offset": [
+          0,
+          0,
+          0.045
+        ],
+        "brain": null,
+        "controller_note": "Measured lift passed 0.05 m; attempt placement at wine_rack_1. This does not certify task success."
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 456,
+      "step_end": 486,
+      "brain": null,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated.",
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": null,
+        "controller_note": "Let contacts settle before the official task predicate is evaluated."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 486,
+      "step_end": 486,
+      "brain": null,
+      "controller_note": "End this bounded episode; retain the official success or failure.",
+      "command": {
+        "action": "finish",
+        "brain": null,
+        "controller_note": "End this bounded episode; retain the official success or failure."
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": false
+    }
+  ],
+  "video_sha256": "0d5704bb77f763eb0afc055c780c08d053183573b33141677a1cb714c24b6e78"
+}

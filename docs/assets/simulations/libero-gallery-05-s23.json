@@ -1,0 +1,155 @@
+{
+  "case": "libero-gallery-05-s23",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put the wine bottle on the top of the drawer",
+    "seed": 23,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-05-s23.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "0f7af59adfe6c69cbb575b4ca2a9e47ac909cbb728d9fe3224415923f132f5ac",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "gallery_spec": {
+      "id": "libero-gallery-05-s23",
+      "backend": "libero_pro",
+      "suite": "LIBERO-PRO",
+      "task": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-05-s23.bddl",
+      "source_task": "put_the_wine_bottle_on_top_of_the_cabinet",
+      "title": "酒瓶移到柜顶",
+      "seed": 23,
+      "perturbation": "official SwapPerturbator",
+      "perturbation_seed": 23,
+      "bddl_sha256": "af8a8953ad5bcb34f5cb3b5c5a3e27d99ed165ba298a202cd9dc876777deb19c",
+      "pairs": [
+        [
+          "wine_bottle_1",
+          "wooden_cabinet_1"
+        ]
+      ]
+    },
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": false,
+    "steps": 480,
+    "commands": 5,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "brain": null,
+      "controller_note": "Observe the initial scene; no learned model is used.",
+      "command": {
+        "action": "wait",
+        "steps": 10,
+        "brain": null,
+        "controller_note": "Observe the initial scene; no learned model is used."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 179,
+      "brain": null,
+      "controller_note": "Attempt to grasp wine_bottle_1; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "wine_bottle_1",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp wine_bottle_1; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "wine_bottle_1",
+        "object_lift_m": 0.05539454039764624,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 179,
+      "step_end": 450,
+      "brain": null,
+      "controller_note": "Measured lift passed 0.05 m; attempt placement at wooden_cabinet_1. This does not certify task success.",
+      "command": {
+        "action": "place",
+        "object": "wine_bottle_1",
+        "target": "wooden_cabinet_1",
+        "offset": [
+          0,
+          0,
+          0.045
+        ],
+        "brain": null,
+        "controller_note": "Measured lift passed 0.05 m; attempt placement at wooden_cabinet_1. This does not certify task success."
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 450,
+      "step_end": 480,
+      "brain": null,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated.",
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": null,
+        "controller_note": "Let contacts settle before the official task predicate is evaluated."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 480,
+      "step_end": 480,
+      "brain": null,
+      "controller_note": "End this bounded episode; retain the official success or failure.",
+      "command": {
+        "action": "finish",
+        "brain": null,
+        "controller_note": "End this bounded episode; retain the official success or failure."
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": false
+    }
+  ],
+  "video_sha256": "5061ff31d7d854b2c22c68e130a244c251bbb012e653b65edec3f3c73b110993"
+}

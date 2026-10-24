@@ -1,0 +1,251 @@
+{
+  "case": "robocasa-gallery-01-s23",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the tangerine and the sweet potato on separate cutting boards.",
+    "seed": 23,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "OrganizeVegetables",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "a3886085a344e0610336f3b9bed1860f749c9b1fb5182c8826286bfac543b5a3",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "gallery_spec": {
+      "id": "robocasa-gallery-01-s23",
+      "backend": "robocasa365",
+      "suite": "RoboCasa365",
+      "task": "OrganizeVegetables",
+      "source_task": "OrganizeVegetables",
+      "title": "蔬菜分盘摆放",
+      "seed": 23,
+      "pairs": [
+        [
+          "vegetable1",
+          "cutting_board1"
+        ],
+        [
+          "vegetable2",
+          "cutting_board2"
+        ]
+      ]
+    },
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": false,
+    "steps": 1336,
+    "commands": 9,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "brain": null,
+      "controller_note": "Observe the initial scene; no learned model is used.",
+      "command": {
+        "action": "wait",
+        "steps": 10,
+        "brain": null,
+        "controller_note": "Observe the initial scene; no learned model is used."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 328,
+      "brain": null,
+      "controller_note": "Attempt to grasp vegetable1; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp vegetable1; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable1",
+        "object_lift_m": -2.6705825439954367e-08,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 328,
+      "step_end": 646,
+      "brain": null,
+      "controller_note": "Previous lift was -0.000 m; change grasp offset and orientation.",
+      "command": {
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Previous lift was -0.000 m; change grasp offset and orientation."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable1",
+        "object_lift_m": -4.387180174703076e-09,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 646,
+      "step_end": 658,
+      "brain": null,
+      "controller_note": "Lift check failed again; release and continue without claiming successful placement.",
+      "command": {
+        "action": "gripper",
+        "close": -1,
+        "steps": 12,
+        "brain": null,
+        "controller_note": "Lift check failed again; release and continue without claiming successful placement."
+      },
+      "feedback": {
+        "action": "gripper",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 658,
+      "step_end": 976,
+      "brain": null,
+      "controller_note": "Attempt to grasp vegetable2; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp vegetable2; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable2",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 976,
+      "step_end": 1294,
+      "brain": null,
+      "controller_note": "Previous lift was 0.000 m; change grasp offset and orientation.",
+      "command": {
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Previous lift was 0.000 m; change grasp offset and orientation."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable2",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 6,
+      "step_start": 1294,
+      "step_end": 1306,
+      "brain": null,
+      "controller_note": "Lift check failed again; release and continue without claiming successful placement.",
+      "command": {
+        "action": "gripper",
+        "close": -1,
+        "steps": 12,
+        "brain": null,
+        "controller_note": "Lift check failed again; release and continue without claiming successful placement."
+      },
+      "feedback": {
+        "action": "gripper",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 7,
+      "step_start": 1306,
+      "step_end": 1336,
+      "brain": null,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated.",
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": null,
+        "controller_note": "Let contacts settle before the official task predicate is evaluated."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 8,
+      "step_start": 1336,
+      "step_end": 1336,
+      "brain": null,
+      "controller_note": "End this bounded episode; retain the official success or failure.",
+      "command": {
+        "action": "finish",
+        "brain": null,
+        "controller_note": "End this bounded episode; retain the official success or failure."
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": false
+    }
+  ],
+  "video_sha256": "4cf4963824fcec85c4e089e6ea5c2f79040d0afb78cc0799f51464d986b8531f"
+}

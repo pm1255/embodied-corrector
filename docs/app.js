@@ -8,17 +8,39 @@ async function initializeSimulations(){
   const holder=document.getElementById('simulation-events');
   let request=0;
   try{
-    const response=await fetch('assets/simulations/catalog.json');
+    const response=await fetch('assets/simulations/catalog.json?v=gallery-50-3');
     if(!response.ok)throw new Error('catalog');
     const catalog=await response.json();
+    let suite='LIBERO-PRO', page=0, selected=catalog[0].id;
+    const pageSize=6, grid=document.getElementById('gallery-grid'), jump=document.getElementById('gallery-case');
+    function renderGallery(){
+      const items=catalog.filter(c=>c.suite===suite), pages=Math.ceil(items.length/pageSize);
+      page=Math.max(0,Math.min(page,pages-1));grid.replaceChildren();jump.replaceChildren();
+      for(const item of items){const o=document.createElement('option');o.value=item.id;o.textContent=item.title+(item.seed!==undefined?' · 种子 '+item.seed:' · 交互案例');o.selected=item.id===selected;jump.append(o);}
+      for(const item of items.slice(page*pageSize,(page+1)*pageSize)){
+        const b=document.createElement('button');b.type='button';b.dataset.simulation=item.id;b.setAttribute('aria-pressed',String(item.id===selected));
+        const tag=document.createElement('span'),title=document.createElement('strong'),status=document.createElement('small');
+        tag.textContent=item.kind==='scripted'?'脚本控制 · 种子 '+item.seed:'GPT 代理交互';title.textContent=item.title;status.textContent=item.success?'官方任务完成':'官方任务未完成';b.append(tag,title,status);b.addEventListener('click',()=>selectCase(item.id));grid.append(b);
+      }
+      document.getElementById('gallery-page').textContent=`${suite} · ${items.length} 个回合 · 第 ${page+1} / ${pages} 页`;
+      document.getElementById('gallery-prev').disabled=page===0;document.getElementById('gallery-next').disabled=page===pages-1;
+      document.querySelectorAll('[data-suite]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.suite===suite)));
+    }
+    document.querySelectorAll('[data-suite]').forEach(b=>b.addEventListener('click',()=>{suite=b.dataset.suite;page=0;selectCase(catalog.find(c=>c.suite===suite).id);renderGallery();}));
+    document.getElementById('gallery-prev').addEventListener('click',()=>{page--;renderGallery();});
+    document.getElementById('gallery-next').addEventListener('click',()=>{page++;renderGallery();});
+    jump.addEventListener('change',()=>{const items=catalog.filter(c=>c.suite===suite);page=Math.floor(items.findIndex(c=>c.id===jump.value)/pageSize);selectCase(jump.value);renderGallery();});
+    renderGallery();
     async function selectCase(id,changeVideo=true){
       const selection=++request, item=catalog.find(c=>c.id===id);
       if(!item)return;
+      selected=id;jump.value=id;
       const base='assets/simulations/'+id;
       if(changeVideo){
-        player.pause();player.src=base+'.mp4';player.poster=base+'-poster.jpg';player.load();
+        player.pause();player.src=base+'.mp4';player.poster=base+'-poster.jpg?v=first-frame-2';player.load();
       }
       player.setAttribute('aria-label','连续仿真：'+item.title);
+      document.getElementById('simulation-playback').textContent=(item.kind==='scripted'?'脚本控制':'GPT 代理交互')+' · 连续轨迹 · '+(item.playback_speed||2)+'× 播放';
       document.getElementById('simulation-title').textContent=item.title;
       document.getElementById('simulation-tag').textContent=item.suite+' · '+item.tag;
       document.getElementById('simulation-description').textContent=item.description;
@@ -27,7 +49,7 @@ async function initializeSimulations(){
       document.getElementById('simulation-download').href=base+'.mp4';
       document.getElementById('simulation-record').href=base+'.json';
       document.querySelectorAll('[data-simulation]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.simulation===id)));
-      holder.textContent='正在加载四步记录…';
+      holder.textContent='正在加载执行记录…';
       try{
         const res=await fetch(base+'.json');if(!res.ok)throw new Error('record');
         const record=await res.json();if(selection!==request)return;
@@ -35,9 +57,10 @@ async function initializeSimulations(){
         for(const event of record.events){
           const article=document.createElement('article');article.className='simulation-record';
           const button=document.createElement('button');button.type='button';
-          const seek=event.step_start===0?0:2+Math.floor(event.step_start/2)/20;
-          button.textContent=`▶ 第 ${event.index+1} 段 · ${event.step_start}–${event.step_end} 步${event.brain?'':' · 受控扰动，尚未调用纠错大脑'}`;
+          const seek=event.step_start===0?0:(item.lead_seconds??2)+event.step_start/(record.manifest.control_frequency_hz*(item.playback_speed||2));
+          button.textContent=`▶ 第 ${event.index+1} 段 · ${event.step_start}–${event.step_end} 步${event.brain?' · GPT 四字段记录':event.controller_note?' · 脚本控制':' · 受控扰动'}`;
           button.addEventListener('click',()=>playVideo(player,seek));article.append(button);
+          if(event.controller_note){const note=document.createElement('p');note.textContent=event.controller_note;article.append(note);}
           if(event.brain){
             const dl=document.createElement('dl');
             for(const key of ['Judge','Cause','Sub','Fine']){
@@ -49,7 +72,6 @@ async function initializeSimulations(){
         }
       }catch{if(selection===request)holder.textContent='文字记录暂时无法加载，请使用“四步原始记录”链接查看。';}
     }
-    document.querySelectorAll('[data-simulation]').forEach(b=>b.addEventListener('click',()=>selectCase(b.dataset.simulation)));
     await selectCase(catalog[0].id,false);
   }catch{holder.textContent='案例列表暂时无法加载；仍可播放默认视频并下载原始记录。';}
 }
@@ -197,7 +219,7 @@ dialog.addEventListener('close',()=>figureTrigger?.focus({preventScroll:true}));
 if('IntersectionObserver' in window){
   const links=[...nav.querySelectorAll('a')];
   const observer=new IntersectionObserver(entries=>{for(const e of entries){if(e.isIntersecting)links.forEach(a=>{const active=a.hash===`#${e.target.id}`;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}},{rootMargin:'-15% 0px -65% 0px',threshold:0});
-  ['video','abstract','overview','method','results','cases','citation'].forEach(id=>observer.observe(document.getElementById(id)));
+  ['video','abstract','overview','method','results','simulations','citation'].forEach(id=>{const section=document.getElementById(id);if(section)observer.observe(section);});
 }
 
 // All media starts only after a user action; pause other clips when one plays.

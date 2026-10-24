@@ -1,43 +1,57 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:09.083
+1
+00:00:00.000 --> 00:00:08.917
 When physical execution fails, continuing the same plan can repeat the same mistake. Embodied Corrector learns to understand the cause and recover.
 
-00:00:09.083 --> 00:00:16.958
+2
+00:00:08.917 --> 00:00:16.625
 A corrective brain needs physical causal understanding, awareness of its executor, and the ability to learn from interaction history.
 
-00:00:16.958 --> 00:00:25.250
+3
+00:00:16.625 --> 00:00:24.833
 We train RynnBrain-8B with evaluation-first supervised fine-tuning and NEPO. The resulting model is Embodied-Corrector.
 
-00:00:25.250 --> 00:00:34.042
+4
+00:00:24.833 --> 00:00:33.500
 Judge assesses the outcome. Cause explains the failure. Sub selects the recovery subtask, and Fine provides executable guidance.
 
-00:00:34.042 --> 00:00:43.458
+5
+00:00:33.500 --> 00:00:42.792
 We branch successful trajectories and change one physical factor. Observable, recoverable failures provide aligned diagnosis and correction targets.
 
-00:00:43.458 --> 00:00:52.792
+6
+00:00:42.792 --> 00:00:52.000
 Supervised training first teaches judgment and cause. Planning then learns from verified evaluations, connecting failure diagnosis with recovery.
 
-00:00:52.792 --> 00:01:02.542
+7
+00:00:52.000 --> 00:01:01.583
 NEPO compares the same planning tokens under generated and verified evaluations. It preserves positive guidance and entropy gates uncertain negative signals.
 
-00:01:02.542 --> 00:01:10.958
-An empty gripper cannot place the carton. The corrector restores pickup, verifies attachment, and then resumes transport and placement.
+8
+00:01:01.583 --> 00:01:11.042
+This continuous simulator recording illustrates the interface with a GPT proxy and a state assisted controller. It is separate from the trained model evaluation.
 
-00:01:10.958 --> 00:01:18.917
-Plausible motions can still target the wrong object. Regrounding the bowls and the requested spatial relation restores the correct plan.
+9
+00:01:11.042 --> 00:01:19.583
+The instruction asks for the other bowl. The proxy revises the target and grasp. The full episode and official outcome are available in the gallery.
 
-00:01:18.917 --> 00:01:27.792
-The avocado remains in the sink after repeated empty grasps. Observation conditioned alignment guides the frozen policy toward a stable grasp.
+10
+00:01:19.583 --> 00:01:28.292
+The drawer must open before insertion. This is a continuous segment from the same simulated episode, with no reset between corrective actions.
 
-00:01:27.792 --> 00:01:35.833
-Late closure leaves the onion behind. Coordinating approach and closure enables recovery while the low level policy remains frozen.
+11
+00:01:28.292 --> 00:01:38.625
+In the kitchen task, grasping remains difficult. We retain incomplete episodes and report the simulator outcome, rather than treating attempted recovery as success.
 
-00:01:35.833 --> 00:01:45.667
-The intervention protocol also covers navigation, reachability, and articulation. Each recovery restores a physical condition needed for task progress.
+12
+00:01:38.625 --> 00:01:49.958
+The paper studies seven physical failure categories. The website also provides continuous demonstration episodes, with controller identity and official outcomes recorded separately.
 
-00:01:45.667 --> 00:01:55.708
+13
+00:01:49.958 --> 00:01:59.875
 The paper reports a thirteen point nine percentage point gain with a fixed code backend, and six point one on unseen composite tasks with frozen pi zero point five.
 
-00:01:55.708 --> 00:02:04.958
+14
+00:01:59.875 --> 00:02:08.958
 Observe the outcome. Diagnose the cause. Restore the condition. Then continue. Explore the method and recovery cases on our project page.

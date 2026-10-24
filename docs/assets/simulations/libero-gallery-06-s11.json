@@ -1,0 +1,155 @@
+{
+  "case": "libero-gallery-06-s11",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put the bowl on the top of the drawer",
+    "seed": 11,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-06-s11.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "703d0da3cc79e0d13e7bdc3e36ef2cc989656d9ed6412942ba733b51ceec2896",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "gallery_spec": {
+      "id": "libero-gallery-06-s11",
+      "backend": "libero_pro",
+      "suite": "LIBERO-PRO",
+      "task": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-06-s11.bddl",
+      "source_task": "put_the_bowl_on_top_of_the_cabinet",
+      "title": "碗移到柜顶",
+      "seed": 11,
+      "perturbation": "official SwapPerturbator",
+      "perturbation_seed": 11,
+      "bddl_sha256": "a62b2bb692f0a2621dee56bf15f456d7342ace4677ba534cc4d65762af80d8c6",
+      "pairs": [
+        [
+          "akita_black_bowl_1",
+          "wooden_cabinet_1"
+        ]
+      ]
+    },
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": false,
+    "steps": 528,
+    "commands": 5,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "brain": null,
+      "controller_note": "Observe the initial scene; no learned model is used.",
+      "command": {
+        "action": "wait",
+        "steps": 10,
+        "brain": null,
+        "controller_note": "Observe the initial scene; no learned model is used."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 181,
+      "brain": null,
+      "controller_note": "Attempt to grasp akita_black_bowl_1; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "akita_black_bowl_1",
+        "offset": [
+          0.045,
+          0,
+          0.025
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp akita_black_bowl_1; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "akita_black_bowl_1",
+        "object_lift_m": 0.1620021178307185,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 181,
+      "step_end": 498,
+      "brain": null,
+      "controller_note": "Measured lift passed 0.05 m; attempt placement at wooden_cabinet_1. This does not certify task success.",
+      "command": {
+        "action": "place",
+        "object": "akita_black_bowl_1",
+        "target": "wooden_cabinet_1",
+        "offset": [
+          0,
+          0,
+          0.045
+        ],
+        "brain": null,
+        "controller_note": "Measured lift passed 0.05 m; attempt placement at wooden_cabinet_1. This does not certify task success."
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 498,
+      "step_end": 528,
+      "brain": null,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated.",
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": null,
+        "controller_note": "Let contacts settle before the official task predicate is evaluated."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 528,
+      "step_end": 528,
+      "brain": null,
+      "controller_note": "End this bounded episode; retain the official success or failure.",
+      "command": {
+        "action": "finish",
+        "brain": null,
+        "controller_note": "End this bounded episode; retain the official success or failure."
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": false
+    }
+  ],
+  "video_sha256": "e68039a3dfa770fa2e62bb880ca3009ef7ecf716e84ead1e37d3cc977478f5f4"
+}

@@ -1,0 +1,288 @@
+{
+  "case": "robocasa-gallery-03-s11",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the avocado, onion, tomato, and bell pepper on the cutting board.",
+    "seed": 11,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "ColorfulSalsa",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "e17f45557efd1f37c38ec5d0bdded8950647ca90813dec6cb95b78c225f98a85",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "gallery_spec": {
+      "id": "robocasa-gallery-03-s11",
+      "backend": "robocasa365",
+      "suite": "RoboCasa365",
+      "task": "ColorfulSalsa",
+      "source_task": "ColorfulSalsa",
+      "title": "多食材移到砧板",
+      "seed": 11,
+      "pairs": [
+        [
+          "avocado",
+          "receptacle"
+        ],
+        [
+          "tomato",
+          "receptacle"
+        ],
+        [
+          "bell_pepper",
+          "receptacle"
+        ],
+        [
+          "onion",
+          "receptacle"
+        ]
+      ]
+    },
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": false,
+    "steps": 1461,
+    "commands": 10,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "brain": null,
+      "controller_note": "Observe the initial scene; no learned model is used.",
+      "command": {
+        "action": "wait",
+        "steps": 10,
+        "brain": null,
+        "controller_note": "Observe the initial scene; no learned model is used."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 328,
+      "brain": null,
+      "controller_note": "Attempt to grasp avocado; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "avocado",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp avocado; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "avocado",
+        "object_lift_m": 8.098272931245099e-06,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 328,
+      "step_end": 614,
+      "brain": null,
+      "controller_note": "Previous lift was 0.000 m; change grasp offset and orientation.",
+      "command": {
+        "action": "pick",
+        "object": "avocado",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Previous lift was 0.000 m; change grasp offset and orientation."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "avocado",
+        "object_lift_m": 0.004213743440303341,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 614,
+      "step_end": 626,
+      "brain": null,
+      "controller_note": "Lift check failed again; release and continue without claiming successful placement.",
+      "command": {
+        "action": "gripper",
+        "close": -1,
+        "steps": 12,
+        "brain": null,
+        "controller_note": "Lift check failed again; release and continue without claiming successful placement."
+      },
+      "feedback": {
+        "action": "gripper",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 626,
+      "step_end": 812,
+      "brain": null,
+      "controller_note": "Attempt to grasp tomato; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "tomato",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp tomato; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "tomato",
+        "object_lift_m": 0.17676802784290202,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 812,
+      "step_end": 1021,
+      "brain": null,
+      "controller_note": "Measured lift passed 0.05 m; attempt placement at receptacle. This does not certify task success.",
+      "command": {
+        "action": "place",
+        "object": "tomato",
+        "target": "receptacle",
+        "offset": [
+          0,
+          0,
+          0.045
+        ],
+        "brain": null,
+        "controller_note": "Measured lift passed 0.05 m; attempt placement at receptacle. This does not certify task success."
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 6,
+      "step_start": 1021,
+      "step_end": 1194,
+      "brain": null,
+      "controller_note": "Attempt to grasp bell_pepper; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "bell_pepper",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp bell_pepper; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "bell_pepper",
+        "object_lift_m": 0.17639387985640165,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 7,
+      "step_start": 1194,
+      "step_end": 1431,
+      "brain": null,
+      "controller_note": "Measured lift passed 0.05 m; attempt placement at receptacle. This does not certify task success.",
+      "command": {
+        "action": "place",
+        "object": "bell_pepper",
+        "target": "receptacle",
+        "offset": [
+          0,
+          0,
+          0.045
+        ],
+        "brain": null,
+        "controller_note": "Measured lift passed 0.05 m; attempt placement at receptacle. This does not certify task success."
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 8,
+      "step_start": 1431,
+      "step_end": 1461,
+      "brain": null,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated.",
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": null,
+        "controller_note": "Let contacts settle before the official task predicate is evaluated."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 9,
+      "step_start": 1461,
+      "step_end": 1461,
+      "brain": null,
+      "controller_note": "End this bounded episode; retain the official success or failure.",
+      "command": {
+        "action": "finish",
+        "brain": null,
+        "controller_note": "End this bounded episode; retain the official success or failure."
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": false
+    }
+  ],
+  "video_sha256": "37016c1cb192cd9333b1a081c1ef5d58abcf909909a43ace03ed858a5cdc1a5a"
+}

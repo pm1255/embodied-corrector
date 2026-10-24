@@ -1,97 +1,87 @@
 # Embodied-Corrector · Video introduction
 
-English narration and Chinese subtitles, displayed without a background box or border. Based on the supplied manuscript; no authors are listed.
+English narration with Chinese subtitles. Robot motion is decoded from continuous simulator MP4 recordings; no paper-frame sequence is used to simulate motion. The gallery demonstrations use a GPT proxy and an analytical controller with privileged simulator localization. They are separate from trained-model, manuscript-reported quantitative results. All excerpts play at 1×.
 
-Four case walkthroughs use selected paper observations. Their playback timing is illustrative, not original simulator timing. Figures 7–8 show paired executions; Figures 9–10 show observations from one continuous episode. Navigation, reachability and articulation animations are protocol illustrations. Quantitative results are paper-reported simulation results.
-
-## 00:00:00 · The question
+## 00:00 · Recover, don’t just continue.
 
 When physical execution fails, continuing the same plan can repeat the same mistake. Embodied Corrector learns to understand the cause and recover.
 
 物理执行失败后，继续原计划可能重复同样的错误。Embodied-Corrector 学习理解原因并恢复执行。
 
-## 00:00:09 · Motivation
+## 00:08 · Understand why. Decide how.
 
 A corrective brain needs physical causal understanding, awareness of its executor, and the ability to learn from interaction history.
 
 纠错大脑需要理解物理因果、识别执行器能力，并利用交互历史调整决策。
 
-## 00:00:16 · RynnBrain
+## 00:16 · Built on RynnBrain-8B.
 
 We train RynnBrain-8B with evaluation-first supervised fine-tuning and NEPO. The resulting model is Embodied-Corrector.
 
 我们以 RynnBrain-8B 为基础，通过评估优先的监督微调与 NEPO，训练得到 Embodied-Corrector。
 
-## 00:00:25 · Structured correction
+## 00:24 · Assess first. Then plan.
 
 Judge assesses the outcome. Cause explains the failure. Sub selects the recovery subtask, and Fine provides executable guidance.
 
 Judge 判断结果，Cause 解释原因，Sub 选择恢复子任务，Fine 给出可执行的细粒度指导。
 
-## 00:00:34 · Controlled data
+## 00:33 · One change. A learnable cause.
 
 We branch successful trajectories and change one physical factor. Observable, recoverable failures provide aligned diagnosis and correction targets.
 
 从成功轨迹创建分支，每次改变一个物理因素。可观察、可恢复的失败提供对齐的诊断与纠错目标。
 
-## 00:00:43 · Evaluation-first SFT
+## 00:42 · Learn evaluation before planning.
 
 Supervised training first teaches judgment and cause. Planning then learns from verified evaluations, connecting failure diagnosis with recovery.
 
 监督训练先学习结果判断与原因分析，再在已验证评估条件下学习规划，将失败诊断与恢复连接起来。
 
-## 00:00:52 · NEPO
+## 00:52 · Bridge training and deployment.
 
 NEPO compares the same planning tokens under generated and verified evaluations. It preserves positive guidance and entropy gates uncertain negative signals.
 
 NEPO 在模型生成和已验证两种评估上下文下比较相同规划 token，保留正向指导，并以熵门控衰减不确定的负向信号。
 
-## 00:01:02 · Case 01 · prerequisite
+## 01:01 · Continuous simulation: grasp before placement.
 
-An empty gripper cannot place the carton. The corrector restores pickup, verifies attachment, and then resumes transport and placement.
+This continuous simulator recording illustrates the interface with a GPT proxy and a state assisted controller. It is separate from the trained model evaluation.
 
-空夹爪无法完成纸盒放置。纠错器恢复抓取步骤、验证物体附着，再继续搬运和放置。
+连续仿真展示 GPT 代理与状态辅助控制器的交互，独立于训练模型评测。
 
-## 00:01:10 · Case 02 · target
+## 01:11 · Continuous simulation: identify the target.
 
-Plausible motions can still target the wrong object. Regrounding the bowls and the requested spatial relation restores the correct plan.
+The instruction asks for the other bowl. The proxy revises the target and grasp. The full episode and official outcome are available in the gallery.
 
-看似合理的动作也可能作用于错误对象。重新定位碗并核对目标空间关系，才能恢复正确计划。
+根据空间关系重新选择目标并调整抓取。完整回合及官方判定见案例库。
 
-## 00:01:18 · Case 03 · grasp pose
+## 01:19 · Continuous simulation: open the drawer.
 
-The avocado remains in the sink after repeated empty grasps. Observation conditioned alignment guides the frozen policy toward a stable grasp.
+The drawer must open before insertion. This is a continuous segment from the same simulated episode, with no reset between corrective actions.
 
-反复空抓后，牛油果仍留在水槽中。根据观察调整姿态，引导冻结策略形成稳定抓取。
+放置前先打开抽屉。片段来自同一连续仿真回合，纠错动作之间不重置环境。
 
-## 00:01:27 · Case 04 · timing
+## 01:28 · Continuous simulation: preserve failures.
 
-Late closure leaves the onion behind. Coordinating approach and closure enables recovery while the low level policy remains frozen.
+In the kitchen task, grasping remains difficult. We retain incomplete episodes and report the simulator outcome, rather than treating attempted recovery as success.
 
-闭合过晚使洋葱仍留在水槽中。协调接近动作与闭合时机，在低层策略冻结的情况下实现恢复。
+厨房任务中仍有抓取困难。保留未完成回合，并按仿真官方条件报告结果。
 
-## 00:01:35 · Failure coverage
+## 01:38 · Seven factors. One correction interface.
 
-The intervention protocol also covers navigation, reachability, and articulation. Each recovery restores a physical condition needed for task progress.
+The paper studies seven physical failure categories. The website also provides continuous demonstration episodes, with controller identity and official outcomes recorded separately.
 
-干预协议还覆盖导航、可达性和关节开合。每次纠错都恢复任务继续推进所需的物理条件。
+论文研究七类物理失败。网页另提供连续演示回合，明确记录控制器身份与官方结果。
 
-## 00:01:45 · Paper results
+## 01:49 · Better recovery with fixed executors.
 
 The paper reports a thirteen point nine percentage point gain with a fixed code backend, and six point one on unseen composite tasks with frozen pi zero point five.
 
 论文报告：固定代码后端提升 13.9 个百分点；冻结 π₀.₅ 在未见组合任务上提升 6.1 个百分点。
 
-## 00:01:55 · Takeaway
+## 01:59 · Feedback becomes a recovery plan.
 
 Observe the outcome. Diagnose the cause. Restore the condition. Then continue. Explore the method and recovery cases on our project page.
 
 观察结果，诊断原因，恢复条件，再继续执行。更多方法细节与纠错案例见项目主页。
-
-## Results context
-
-- Fixed code backend: 55.0% → 68.9%, macro-average across ten conditions; base RynnBrain-8B corrective brain compared with RynnBrain-NEPO.
-- Frozen π₀.₅: 1.2% → 7.3%, Composite-Unseen on RoboCasa365. Short atomic tasks can regress; this gain does not describe every task setting.
-- NEPO: the same policy scores the same planning tokens under generated and verified evaluations; the probability-gap signal is combined with group-relative reward guidance.
-
-Voice: macOS Samantha system voice. Diagrams and motion graphics created for this project; case imagery reproduced from the manuscript.

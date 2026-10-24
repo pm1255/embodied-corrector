@@ -1,0 +1,155 @@
+{
+  "case": "libero-gallery-03-s37",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put the cream cheese on the bowl",
+    "seed": 37,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-03-s37.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "4b094e7eafbc248a5971b74c94fa1b473ec23ad93c5efd1820b5b2af4a112c6a",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "gallery_spec": {
+      "id": "libero-gallery-03-s37",
+      "backend": "libero_pro",
+      "suite": "LIBERO-PRO",
+      "task": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-03-s37.bddl",
+      "source_task": "put_the_cream_cheese_in_the_bowl",
+      "title": "奶酪放入碗中",
+      "seed": 37,
+      "perturbation": "official SwapPerturbator",
+      "perturbation_seed": 37,
+      "bddl_sha256": "53ab183c49350548625456d23574023165616a38bc06baf03403112eb47118fd",
+      "pairs": [
+        [
+          "cream_cheese_1",
+          "akita_black_bowl_1"
+        ]
+      ]
+    },
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": true,
+    "steps": 491,
+    "commands": 5,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "brain": null,
+      "controller_note": "Observe the initial scene; no learned model is used.",
+      "command": {
+        "action": "wait",
+        "steps": 10,
+        "brain": null,
+        "controller_note": "Observe the initial scene; no learned model is used."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 214,
+      "brain": null,
+      "controller_note": "Attempt to grasp cream_cheese_1; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp cream_cheese_1; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.18127855397816706,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 214,
+      "step_end": 461,
+      "brain": null,
+      "controller_note": "Measured lift passed 0.05 m; attempt placement at akita_black_bowl_1. This does not certify task success.",
+      "command": {
+        "action": "place",
+        "object": "cream_cheese_1",
+        "target": "akita_black_bowl_1",
+        "offset": [
+          0,
+          0,
+          0.045
+        ],
+        "brain": null,
+        "controller_note": "Measured lift passed 0.05 m; attempt placement at akita_black_bowl_1. This does not certify task success."
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 3,
+      "step_start": 461,
+      "step_end": 491,
+      "brain": null,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated.",
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": null,
+        "controller_note": "Let contacts settle before the official task predicate is evaluated."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 4,
+      "step_start": 491,
+      "step_end": 491,
+      "brain": null,
+      "controller_note": "End this bounded episode; retain the official success or failure.",
+      "command": {
+        "action": "finish",
+        "brain": null,
+        "controller_note": "End this bounded episode; retain the official success or failure."
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "video_sha256": "dd1c9d55e309015fc681fc28a2cd30d64d5c04964d55743a76f25182e5ef3f4f"
+}

@@ -1,0 +1,332 @@
+{
+  "case": "robocasa-gallery-03-s23",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the avocado, onion, tomato, and bell pepper on the cutting board.",
+    "seed": 23,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "ColorfulSalsa",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "0319103777ff29c63ec8fb9a486aec3f3babb089e4b9035a8a28416178c1eb92",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "gallery_spec": {
+      "id": "robocasa-gallery-03-s23",
+      "backend": "robocasa365",
+      "suite": "RoboCasa365",
+      "task": "ColorfulSalsa",
+      "source_task": "ColorfulSalsa",
+      "title": "多食材移到砧板",
+      "seed": 23,
+      "pairs": [
+        [
+          "avocado",
+          "receptacle"
+        ],
+        [
+          "tomato",
+          "receptacle"
+        ],
+        [
+          "bell_pepper",
+          "receptacle"
+        ],
+        [
+          "onion",
+          "receptacle"
+        ]
+      ]
+    },
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": false,
+    "steps": 1984,
+    "commands": 12,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "brain": null,
+      "controller_note": "Observe the initial scene; no learned model is used.",
+      "command": {
+        "action": "wait",
+        "steps": 10,
+        "brain": null,
+        "controller_note": "Observe the initial scene; no learned model is used."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 328,
+      "brain": null,
+      "controller_note": "Attempt to grasp avocado; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "avocado",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp avocado; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "avocado",
+        "object_lift_m": -5.283082999185673e-06,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 328,
+      "step_end": 646,
+      "brain": null,
+      "controller_note": "Previous lift was -0.000 m; change grasp offset and orientation.",
+      "command": {
+        "action": "pick",
+        "object": "avocado",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Previous lift was -0.000 m; change grasp offset and orientation."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "avocado",
+        "object_lift_m": 2.6989768111551626e-06,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 646,
+      "step_end": 658,
+      "brain": null,
+      "controller_note": "Lift check failed again; release and continue without claiming successful placement.",
+      "command": {
+        "action": "gripper",
+        "close": -1,
+        "steps": 12,
+        "brain": null,
+        "controller_note": "Lift check failed again; release and continue without claiming successful placement."
+      },
+      "feedback": {
+        "action": "gripper",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 658,
+      "step_end": 976,
+      "brain": null,
+      "controller_note": "Attempt to grasp tomato; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "tomato",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp tomato; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "tomato",
+        "object_lift_m": -1.3424337585998813e-07,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 976,
+      "step_end": 1294,
+      "brain": null,
+      "controller_note": "Previous lift was -0.000 m; change grasp offset and orientation.",
+      "command": {
+        "action": "pick",
+        "object": "tomato",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Previous lift was -0.000 m; change grasp offset and orientation."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "tomato",
+        "object_lift_m": -4.422695852102088e-06,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 6,
+      "step_start": 1294,
+      "step_end": 1306,
+      "brain": null,
+      "controller_note": "Lift check failed again; release and continue without claiming successful placement.",
+      "command": {
+        "action": "gripper",
+        "close": -1,
+        "steps": 12,
+        "brain": null,
+        "controller_note": "Lift check failed again; release and continue without claiming successful placement."
+      },
+      "feedback": {
+        "action": "gripper",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 7,
+      "step_start": 1306,
+      "step_end": 1624,
+      "brain": null,
+      "controller_note": "Attempt to grasp bell_pepper; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "bell_pepper",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp bell_pepper; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "bell_pepper",
+        "object_lift_m": 3.5049623348104575e-07,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 8,
+      "step_start": 1624,
+      "step_end": 1942,
+      "brain": null,
+      "controller_note": "Previous lift was 0.000 m; change grasp offset and orientation.",
+      "command": {
+        "action": "pick",
+        "object": "bell_pepper",
+        "offset": [
+          0,
+          0,
+          0.015
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Previous lift was 0.000 m; change grasp offset and orientation."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "bell_pepper",
+        "object_lift_m": 9.27512200377123e-07,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 9,
+      "step_start": 1942,
+      "step_end": 1954,
+      "brain": null,
+      "controller_note": "Lift check failed again; release and continue without claiming successful placement.",
+      "command": {
+        "action": "gripper",
+        "close": -1,
+        "steps": 12,
+        "brain": null,
+        "controller_note": "Lift check failed again; release and continue without claiming successful placement."
+      },
+      "feedback": {
+        "action": "gripper",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 10,
+      "step_start": 1954,
+      "step_end": 1984,
+      "brain": null,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated.",
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": null,
+        "controller_note": "Let contacts settle before the official task predicate is evaluated."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 11,
+      "step_start": 1984,
+      "step_end": 1984,
+      "brain": null,
+      "controller_note": "End this bounded episode; retain the official success or failure.",
+      "command": {
+        "action": "finish",
+        "brain": null,
+        "controller_note": "End this bounded episode; retain the official success or failure."
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": false
+    }
+  ],
+  "video_sha256": "b541d9db29852ccb77201f2859d5132810ad4a4c3d378d4f14a21394af99ad76"
+}

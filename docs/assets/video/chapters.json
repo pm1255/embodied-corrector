@@ -1,72 +1,72 @@
 [
   {
-    "title": "The question",
     "start": 0,
+    "title": "Recover, don’t just continue.",
+    "duration": 8.916666666666666
+  },
+  {
+    "start": 8.916666666666666,
+    "title": "Understand why. Decide how.",
+    "duration": 7.708333333333333
+  },
+  {
+    "start": 16.625,
+    "title": "Built on RynnBrain-8B.",
+    "duration": 8.208333333333334
+  },
+  {
+    "start": 24.833333333333336,
+    "title": "Assess first. Then plan.",
+    "duration": 8.666666666666666
+  },
+  {
+    "start": 33.5,
+    "title": "One change. A learnable cause.",
+    "duration": 9.291666666666666
+  },
+  {
+    "start": 42.791666666666664,
+    "title": "Learn evaluation before planning.",
+    "duration": 9.208333333333334
+  },
+  {
+    "start": 52.0,
+    "title": "Bridge training and deployment.",
+    "duration": 9.583333333333334
+  },
+  {
+    "start": 61.583333333333336,
+    "title": "Continuous simulation: grasp before placement.",
+    "duration": 9.458333333333334
+  },
+  {
+    "start": 71.04166666666667,
+    "title": "Continuous simulation: identify the target.",
+    "duration": 8.541666666666666
+  },
+  {
+    "start": 79.58333333333334,
+    "title": "Continuous simulation: open the drawer.",
+    "duration": 8.708333333333334
+  },
+  {
+    "start": 88.29166666666667,
+    "title": "Continuous simulation: preserve failures.",
+    "duration": 10.333333333333334
+  },
+  {
+    "start": 98.625,
+    "title": "Seven factors. One correction interface.",
+    "duration": 11.333333333333334
+  },
+  {
+    "start": 109.95833333333333,
+    "title": "Better recovery with fixed executors.",
+    "duration": 9.916666666666666
+  },
+  {
+    "start": 119.875,
+    "title": "Feedback becomes a recovery plan.",
     "duration": 9.083333333333334
-  },
-  {
-    "title": "Motivation",
-    "start": 9.083333333333334,
-    "duration": 7.875
-  },
-  {
-    "title": "RynnBrain",
-    "start": 16.958333333333336,
-    "duration": 8.291666666666666
-  },
-  {
-    "title": "Structured correction",
-    "start": 25.25,
-    "duration": 8.791666666666666
-  },
-  {
-    "title": "Controlled data",
-    "start": 34.041666666666664,
-    "duration": 9.416666666666666
-  },
-  {
-    "title": "Evaluation-first SFT",
-    "start": 43.45833333333333,
-    "duration": 9.333333333333334
-  },
-  {
-    "title": "NEPO",
-    "start": 52.791666666666664,
-    "duration": 9.75
-  },
-  {
-    "title": "Case 01 \u00b7 prerequisite",
-    "start": 62.541666666666664,
-    "duration": 8.416666666666666
-  },
-  {
-    "title": "Case 02 \u00b7 target",
-    "start": 70.95833333333333,
-    "duration": 7.958333333333333
-  },
-  {
-    "title": "Case 03 \u00b7 grasp pose",
-    "start": 78.91666666666666,
-    "duration": 8.875
-  },
-  {
-    "title": "Case 04 \u00b7 timing",
-    "start": 87.79166666666666,
-    "duration": 8.041666666666666
-  },
-  {
-    "title": "Failure coverage",
-    "start": 95.83333333333333,
-    "duration": 9.833333333333334
-  },
-  {
-    "title": "Paper results",
-    "start": 105.66666666666666,
-    "duration": 10.041666666666666
-  },
-  {
-    "title": "Takeaway",
-    "start": 115.70833333333333,
-    "duration": 9.25
   }
 ]

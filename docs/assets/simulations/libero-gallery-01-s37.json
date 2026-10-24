@@ -1,0 +1,155 @@
+{
+  "case": "libero-gallery-01-s37",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put the bowl on the plate",
+    "seed": 37,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-01-s37.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "2087edc6b8092892122f8fe98c2ad0b8f36c33a65a692a8724acdd28372d7950",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "gallery_spec": {
+      "id": "libero-gallery-01-s37",
+      "backend": "libero_pro",
+      "suite": "LIBERO-PRO",
+      "task": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-01-s37.bddl",
+      "source_task": "put_the_bowl_on_the_plate",
+      "title": "碗放入盘中",
+      "seed": 37,
+      "perturbation": "official SwapPerturbator",
+      "perturbation_seed": 37,
+      "bddl_sha256": "a601bf1724195336d9eef6b7b4629cbe25b79adaa6112a91547100065c8e2b46",
+      "pairs": [
+        [
+          "akita_black_bowl_1",
+          "plate_1"
+        ]
+      ]
+    },
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": true,
+    "steps": 391,
+    "commands": 5,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "brain": null,
+      "controller_note": "Observe the initial scene; no learned model is used.",
+      "command": {
+        "action": "wait",
+        "steps": 10,
+        "brain": null,
+        "controller_note": "Observe the initial scene; no learned model is used."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 181,
+      "brain": null,
+      "controller_note": "Attempt to grasp akita_black_bowl_1; object position comes from simulator state.",
+      "command": {
+        "action": "pick",
+        "object": "akita_black_bowl_1",
+        "offset": [
+          0.045,
+          0,
+          0.025
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.18,
+        "brain": null,
+        "controller_note": "Attempt to grasp akita_black_bowl_1; object position comes from simulator state."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "akita_black_bowl_1",
+        "object_lift_m": 0.1620449680131586,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 181,
+      "step_end": 361,
+      "brain": null,
+      "controller_note": "Measured lift passed 0.05 m; attempt placement at plate_1. This does not certify task success.",
+      "command": {
+        "action": "place",
+        "object": "akita_black_bowl_1",
+        "target": "plate_1",
+        "offset": [
+          0,
+          0,
+          0.045
+        ],
+        "brain": null,
+        "controller_note": "Measured lift passed 0.05 m; attempt placement at plate_1. This does not certify task success."
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 3,
+      "step_start": 361,
+      "step_end": 391,
+      "brain": null,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated.",
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": null,
+        "controller_note": "Let contacts settle before the official task predicate is evaluated."
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 4,
+      "step_start": 391,
+      "step_end": 391,
+      "brain": null,
+      "controller_note": "End this bounded episode; retain the official success or failure.",
+      "command": {
+        "action": "finish",
+        "brain": null,
+        "controller_note": "End this bounded episode; retain the official success or failure."
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "video_sha256": "74c6a27eee1546dd54e3ca7b108cf28f0457bf9457f3ae18e69e3143b22ffa71"
+}
