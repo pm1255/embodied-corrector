@@ -1,0 +1,100 @@
+{
+  "case": "libero-articulation-r1",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "open the top layer of the drawer and put the cream cheese inside",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/libero-articulation.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "ff80d0fcdf5baa7dec18572e060af52dfe476bd9dbd93b85dd6918ceba23abc5"
+  },
+  "result": {
+    "success": true,
+    "steps": 1422,
+    "commands": 6,
+    "brain_records": 5,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 448,
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 448,
+      "step_end": 844,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The top drawer is only slightly open; there is insufficient clearance to insert the cream cheese box from above.",
+        "Sub": "Open the top drawer farther.",
+        "Fine": "Grasp the handle again, pull outward along the drawer rails, release, lift away, and check overhead clearance."
+      }
+    },
+    {
+      "index": 2,
+      "step_start": 844,
+      "step_end": 1082,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The top drawer is fully open and its interior is visible; the placement prerequisite has been restored.",
+        "Sub": "Grasp the cream cheese box on the right.",
+        "Fine": "Keep the drawer open, align with the box on the table, grasp low, and lift it off the surface."
+      }
+    },
+    {
+      "index": 3,
+      "step_start": 1082,
+      "step_end": 1254,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The box remains on the table after the gripper rises; the current grasp orientation did not secure it.",
+        "Sub": "Rotate the gripper and grasp the cream cheese again.",
+        "Fine": "Rotate the grasp direction by 90 degrees above the box, close low on the other pair of sides, and lift vertically."
+      }
+    },
+    {
+      "index": 4,
+      "step_start": 1254,
+      "step_end": 1422,
+      "official_success": true,
+      "brain": {
+        "Judge": "success",
+        "Cause": "After rotating the gripper, the cream cheese is securely held above the table; the drawer remains open.",
+        "Sub": "Place the cream cheese in the top drawer.",
+        "Fine": "Move above the drawer at a safe height, descend, release, and lift away to verify that the box remains inside."
+      }
+    },
+    {
+      "index": 5,
+      "step_start": 1422,
+      "step_end": 1422,
+      "official_success": true,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The cream cheese remains inside the open top drawer after gripper withdrawal; placement is complete.",
+        "Sub": "Finish this episode.",
+        "Fine": "Preserve the scene and record the final success judgment."
+      }
+    }
+  ],
+  "record_note": "English presentation of the source execution record. Proxy judgments are historical observations and may differ from the official task outcome. Numeric event boundaries and official outcomes are unchanged."
+}

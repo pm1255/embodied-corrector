@@ -42,7 +42,7 @@ The drawer must open before insertion. This is a continuous segment from the sam
 
 11
 00:01:28.292 --> 00:01:38.625
-In the kitchen task, grasping remains difficult. We retain incomplete episodes and report the simulator outcome, rather than treating attempted recovery as success.
+This kitchen episode corrects a failed grasp and places both objects on separate boards. The simulator confirms final success. The gallery shows the complete brain output and continuous recording.
 
 12
 00:01:38.625 --> 00:01:49.958

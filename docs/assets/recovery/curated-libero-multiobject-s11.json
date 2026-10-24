@@ -1,0 +1,220 @@
+{
+  "case": "curated-libero-multiobject-s11",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put both the cream cheese box and the butter in the basket",
+    "seed": 11,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v3-mobile",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/libero-multiobject.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "9d8e710b95d0e55cf5dd760589939639d4178b86b723afe595a0e53f573cef65"
+  },
+  "result": {
+    "success": true,
+    "steps": 1166,
+    "commands": 6,
+    "brain_records": 5,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 128,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "empty_place",
+        "target": "basket_1",
+        "offset": [
+          0,
+          0,
+          0.15
+        ],
+        "perturbation": "Controlled missing pickup: execute placement with an empty gripper."
+      },
+      "feedback": {
+        "action": "empty_place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 128,
+      "step_end": 423,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The basket is still empty; placement was attempted without first picking up either target.",
+        "Sub": "Pick up the cream cheese first.",
+        "Fine": "Align with the cream cheese, close across its narrow sides, and verify attachment while lifting."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The basket is still empty; placement was attempted without first picking up either target.",
+          "Sub": "Pick up the cream cheese first.",
+          "Fine": "Align with the cream cheese, close across its narrow sides, and verify attachment while lifting."
+        },
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.25
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.2434509130495468,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 423,
+      "step_end": 715,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The cream cheese is held above the table. The butter is still outside the basket.",
+        "Sub": "Place the cream cheese in the basket.",
+        "Fine": "Lower the held box into one side of the basket, release and leave room for the butter."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The cream cheese is held above the table. The butter is still outside the basket.",
+          "Sub": "Place the cream cheese in the basket.",
+          "Fine": "Lower the held box into one side of the basket, release and leave room for the butter."
+        },
+        "action": "place",
+        "object": "cream_cheese_1",
+        "target": "basket_1",
+        "offset": [
+          0,
+          -0.035,
+          0.12
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 715,
+      "step_end": 929,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The cream cheese is in the basket. The butter is still on the table.",
+        "Sub": "Pick up the remaining butter.",
+        "Fine": "Align across the narrow faces, close low on the box and lift vertically."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The cream cheese is in the basket. The butter is still on the table.",
+          "Sub": "Pick up the remaining butter.",
+          "Fine": "Align across the narrow faces, close low on the box and lift vertically."
+        },
+        "action": "pick",
+        "object": "butter_1",
+        "offset": [
+          0,
+          0,
+          -0.007
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.25
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "butter_1",
+        "object_lift_m": 0.24103498193758044,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 929,
+      "step_end": 1166,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The butter is securely lifted; the cream cheese is already in the basket.",
+        "Sub": "Place the butter beside the cream cheese.",
+        "Fine": "Lower the butter into the free side of the basket, release it and move the gripper away."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The butter is securely lifted; the cream cheese is already in the basket.",
+          "Sub": "Place the butter beside the cream cheese.",
+          "Fine": "Lower the butter into the free side of the basket, release it and move the gripper away."
+        },
+        "action": "place",
+        "object": "butter_1",
+        "target": "basket_1",
+        "offset": [
+          0,
+          0.035,
+          0.12
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 5,
+      "step_start": 1166,
+      "step_end": 1166,
+      "brain": {
+        "Judge": "success",
+        "Cause": "Both boxes remain inside the basket and the official task check is true.",
+        "Sub": "Finish the recovered episode.",
+        "Fine": "Keep the final scene and record the verified successful outcome."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "Both boxes remain inside the basket and the official task check is true.",
+          "Sub": "Finish the recovered episode.",
+          "Fine": "Keep the final scene and record the verified successful outcome."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "e335aae3313571ad4545b345dbc63013503dddf8991f92bfd4a52941426be817",
+    "action_trace_sha256": "1332d0b9ce11c290813516eba5502625fa5f34fe443f93714e86110654a9d18e",
+    "decision_origin": "Written interactively after observing the preceding action and its feedback; GPT proxy, not a trained RynnBrain checkpoint."
+  }
+}

@@ -80,7 +80,7 @@ p, li, dd, figcaption { line-height:1.5 !important; }
 .episode-suite-heading h3 span { margin-left:10px; }
 .episode-title { min-height:74px; padding:12px 14px; align-items:baseline; }
 .episode-title h4 { overflow-wrap:anywhere; }
-.episode-card video { aspect-ratio:5/4; }
+.episode-card video { aspect-ratio:16/9; }
 .episode-actions { flex-wrap:wrap; gap:6px 12px; }
 .episode-meta { margin-bottom:8px; }
 .simulation-outcome { white-space:normal; }
@@ -124,3 +124,13 @@ p, li, dd, figcaption { line-height:1.5 !important; }
   .citation-toolbar { padding:16px; }
   .citation-card pre { padding:16px; }
 }
+
+/* Readable, matching brain-output videos on desktop and mobile. */
+.episode-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.episode-title { min-height:0; }
+.episode-actions { flex-wrap:wrap; gap:10px 16px; }
+#video-dialog { width:min(1500px,96vw); max-width:96vw; padding:24px; border:1px solid var(--line); border-radius:14px; background:var(--bg); color:var(--text); }
+#video-dialog h2 { font-size:24px; padding-right:36px; margin:0 0 14px; }
+#expanded-video { display:block; width:100%; max-height:80vh; background:#111a2a; }
+#video-dialog::backdrop { background:rgba(8,12,20,.85); }
+@media(max-width:760px) { .episode-grid { grid-template-columns:1fr; } #video-dialog { padding:14px; } }

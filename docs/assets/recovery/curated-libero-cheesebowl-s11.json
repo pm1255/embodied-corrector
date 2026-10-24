@@ -1,0 +1,156 @@
+{
+  "case": "curated-libero-cheesebowl-s11",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put the cream cheese on the bowl",
+    "seed": 11,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v3-mobile",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/gallery/libero-gallery-03-s11.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "068dc2058638be03f0af63179d59bfca722867d0e3e0378e16ae7c42473eff64"
+  },
+  "result": {
+    "success": true,
+    "steps": 657,
+    "commands": 4,
+    "brain_records": 3,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 164,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          0.13
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.15
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 164,
+      "step_end": 340,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The box stayed on the table while the empty gripper rose; the grasp was above the box.",
+        "Sub": "Lower and rotate the grasp.",
+        "Fine": "Align with the cream cheese, close across its narrow sides near the body and verify a vertical lift."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The box stayed on the table while the empty gripper rose; the grasp was above the box.",
+          "Sub": "Lower and rotate the grasp.",
+          "Fine": "Align with the cream cheese, close across its narrow sides near the body and verify a vertical lift."
+        },
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.19307850114806324,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 340,
+      "step_end": 657,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The cream cheese now follows the gripper above the table.",
+        "Sub": "Place the box in the bowl.",
+        "Fine": "Center the held box over the bowl opening, lower it, release and retract to check the final relation."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The cream cheese now follows the gripper above the table.",
+          "Sub": "Place the box in the bowl.",
+          "Fine": "Center the held box over the bowl opening, lower it, release and retract to check the final relation."
+        },
+        "action": "place",
+        "object": "cream_cheese_1",
+        "target": "akita_black_bowl_1",
+        "offset": [
+          0,
+          0,
+          0.045
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 3,
+      "step_start": 657,
+      "step_end": 657,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The box remains in the bowl after release, and the official task check confirms success.",
+        "Sub": "Finish the recovered episode.",
+        "Fine": "Preserve the scene and record the final successful result."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The box remains in the bowl after release, and the official task check confirms success.",
+          "Sub": "Finish the recovered episode.",
+          "Fine": "Preserve the scene and record the final successful result."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "9288e5871ec8a15472f9315c768b3056e6e1b70db98af3f2a07bc47c25a4f321",
+    "action_trace_sha256": "a6e6995d6e1c7f033ec2771008d723ec5299b7ad3f90ee8c72e22d7011f42753",
+    "decision_origin": "Written interactively after observing the preceding action and its feedback; GPT proxy, not a trained RynnBrain checkpoint."
+  }
+}

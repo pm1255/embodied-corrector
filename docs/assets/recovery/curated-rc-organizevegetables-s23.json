@@ -1,0 +1,258 @@
+{
+  "case": "curated-rc-organizevegetables-s23",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the tangerine and the sweet potato on separate cutting boards.",
+    "seed": 23,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v3-mobile",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "OrganizeVegetables",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "0cb9b29295ffdbb4489b8a08c2789def5e830ef4ac32e00f02fbc691140a3129"
+  },
+  "result": {
+    "success": true,
+    "steps": 1375,
+    "commands": 7,
+    "brain_records": 6,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 241,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.15
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.15
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable1",
+        "object_lift_m": -1.8297496517938328e-07,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 241,
+      "step_end": 438,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The tangerine remains on the counter. The fingers closed too high above the object.",
+        "Sub": "Lower the grasp to the body of the tangerine.",
+        "Fine": "Approach above the fruit, descend to its center, close across the body and verify a vertical lift."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The tangerine remains on the counter. The fingers closed too high above the object.",
+          "Sub": "Lower the grasp to the body of the tangerine.",
+          "Fine": "Approach above the fruit, descend to its center, close across the body and verify a vertical lift."
+        },
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable1",
+        "object_lift_m": 0.1621475657262369,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 438,
+      "step_end": 626,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The tangerine now follows the gripper. The second vegetable remains on the counter.",
+        "Sub": "Place the tangerine on the first board.",
+        "Fine": "Center the fruit over the board, lower it, release and withdraw while preserving the other board for the second object."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The tangerine now follows the gripper. The second vegetable remains on the counter.",
+          "Sub": "Place the tangerine on the first board.",
+          "Fine": "Center the fruit over the board, lower it, release and withdraw while preserving the other board for the second object."
+        },
+        "action": "place",
+        "object": "vegetable1",
+        "target": "cutting_board1",
+        "offset": [
+          0,
+          0,
+          0.04
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 626,
+      "step_end": 889,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The tangerine rests on one cutting board. The sweet potato still needs to be moved to the other board.",
+        "Sub": "Pick up the sweet potato.",
+        "Fine": "Descend to the center of the second object, close the fingers and verify that it rises before transporting it."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The tangerine rests on one cutting board. The sweet potato still needs to be moved to the other board.",
+          "Sub": "Pick up the sweet potato.",
+          "Fine": "Descend to the center of the second object, close the fingers and verify that it rises before transporting it."
+        },
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable2",
+        "object_lift_m": 0.00031333946475109453,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 889,
+      "step_end": 1151,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The sweet potato did not rise with the gripper. The current finger direction did not secure its narrow body.",
+        "Sub": "Change the grasp direction.",
+        "Fine": "Rotate the fingers perpendicular to the previous approach, close slightly above the object center and test a lift."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The sweet potato did not rise with the gripper. The current finger direction did not secure its narrow body.",
+          "Sub": "Change the grasp direction.",
+          "Fine": "Rotate the fingers perpendicular to the previous approach, close slightly above the object center and test a lift."
+        },
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          0.01
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable2",
+        "object_lift_m": 0.15783284820802546,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 1151,
+      "step_end": 1375,
+      "brain": {
+        "Judge": "success",
+        "Cause": "Changing the finger direction secured the sweet potato. The tangerine is already on the first board.",
+        "Sub": "Place the sweet potato on the other board.",
+        "Fine": "Center the held vegetable over the empty cutting board, lower, release and withdraw."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "Changing the finger direction secured the sweet potato. The tangerine is already on the first board.",
+          "Sub": "Place the sweet potato on the other board.",
+          "Fine": "Center the held vegetable over the empty cutting board, lower, release and withdraw."
+        },
+        "action": "place",
+        "object": "vegetable2",
+        "target": "cutting_board2",
+        "offset": [
+          0,
+          0,
+          0.03
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 6,
+      "step_start": 1375,
+      "step_end": 1375,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The tangerine and sweet potato rest on separate boards. The official task check confirms completion.",
+        "Sub": "Finish the recovered episode.",
+        "Fine": "Keep the final scene and save the successful environment result."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The tangerine and sweet potato rest on separate boards. The official task check confirms completion.",
+          "Sub": "Finish the recovered episode.",
+          "Fine": "Keep the final scene and save the successful environment result."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "c5d9306b457de67cf9f074e39a27a7d48c936a46d991ff782318a534e8abf4c8",
+    "action_trace_sha256": "69309d3739daa7813f5c55887d835d88c5be91e260b6e8d1f926e1446f54714c",
+    "decision_origin": "Written interactively after observing the preceding action and its feedback; GPT proxy, not a trained RynnBrain checkpoint."
+  }
+}

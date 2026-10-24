@@ -1,6 +1,6 @@
 'use strict';
 
-// All 50 video cards are present in HTML; records load only when requested.
+// All 12 selected video cards are present in HTML; records load only when requested.
 const episodeDialog=document.getElementById('episode-dialog');
 const episodeEvents=document.getElementById('simulation-events');
 let episodeRequest=0;
@@ -9,10 +9,10 @@ document.querySelectorAll('[data-record]').forEach(button=>button.addEventListen
   const card=document.getElementById('case-'+id), player=document.getElementById('video-'+id);
   document.getElementById('episode-dialog-title').textContent=card.querySelector('h4').textContent+' · Execution record';
   document.getElementById('episode-dialog-description').textContent=card.querySelector('.episode-meta').textContent;
-  document.getElementById('episode-original-record').href='assets/simulations/records-en/'+id+'.json';
+  document.getElementById('episode-original-record').href=button.dataset.recordPath;
   episodeEvents.textContent='Loading execution record…';episodeDialog.showModal();
   try{
-    const response=await fetch('assets/simulations/records-en/'+id+'.json');
+    const response=await fetch(button.dataset.recordPath);
     if(!response.ok)throw new Error('record');
     const record=await response.json();if(request!==episodeRequest)return;
     const speed=Number(card.dataset.playbackSpeed),lead=Number(card.dataset.leadSeconds);
@@ -234,3 +234,17 @@ copyCitation.addEventListener('click',async()=>{
     copyCitation.textContent='Selected — copy text';
   }
 });
+
+// Reuse the exact card asset in a large viewer so four-field text stays legible.
+const expandedDialog=document.getElementById('video-dialog');
+const expandedVideo=document.getElementById('expanded-video');
+document.querySelectorAll('[data-expand]').forEach(button=>button.addEventListener('click',()=>{
+  const source=document.getElementById('video-'+button.dataset.expand);
+  source.pause();
+  document.getElementById('video-dialog-title').textContent=document.getElementById('case-'+button.dataset.expand).querySelector('h4').textContent;
+  expandedVideo.src=source.currentSrc||source.src;
+  expandedVideo.poster=source.poster||source.dataset.poster;
+  expandedDialog.showModal();
+  playVideo(expandedVideo,source.currentTime);
+}));
+expandedDialog.addEventListener('close',()=>expandedVideo.pause());

@@ -1,0 +1,325 @@
+{
+  "case": "curated-rc-organizevegetables-s11",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the tangerine and the garlic on separate cutting boards.",
+    "seed": 11,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v3-mobile",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "OrganizeVegetables",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "eec3e19582ddd7dd0c219c33d4ab701cbc5f1dcf86395aec0b73ce24f3d6d7b2"
+  },
+  "result": {
+    "success": true,
+    "steps": 2217,
+    "commands": 9,
+    "brain_records": 8,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 263,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.15
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.15
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable1",
+        "object_lift_m": -1.6173957728682353e-07,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 263,
+      "step_end": 411,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The tangerine remains on the counter. The fingers closed too high above the object.",
+        "Sub": "Lower the grasp to the body of the tangerine.",
+        "Fine": "Approach above the fruit, descend to its center, close across the body and verify a vertical lift."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The tangerine remains on the counter. The fingers closed too high above the object.",
+          "Sub": "Lower the grasp to the body of the tangerine.",
+          "Fine": "Approach above the fruit, descend to its center, close across the body and verify a vertical lift."
+        },
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.18
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable1",
+        "object_lift_m": 0.17672106625366302,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 411,
+      "step_end": 728,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The tangerine now follows the gripper. The second vegetable remains on the counter.",
+        "Sub": "Place the tangerine on the first board.",
+        "Fine": "Center the fruit over the board, lower it, release and withdraw while preserving the other board for the second object."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The tangerine now follows the gripper. The second vegetable remains on the counter.",
+          "Sub": "Place the tangerine on the first board.",
+          "Fine": "Center the fruit over the board, lower it, release and withdraw while preserving the other board for the second object."
+        },
+        "action": "place",
+        "object": "vegetable1",
+        "target": "cutting_board1",
+        "offset": [
+          0,
+          0,
+          0.04
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 728,
+      "step_end": 887,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The tangerine rests on one cutting board. The garlic still needs to be moved to the other board.",
+        "Sub": "Pick up the garlic.",
+        "Fine": "Descend to the center of the second object, close the fingers and verify that it rises before transporting it."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The tangerine rests on one cutting board. The garlic still needs to be moved to the other board.",
+          "Sub": "Pick up the garlic.",
+          "Fine": "Descend to the center of the second object, close the fingers and verify that it rises before transporting it."
+        },
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable2",
+        "object_lift_m": 0.19473076247093868,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 887,
+      "step_end": 1397,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The garlic is held securely. The empty cutting board is farther to the left.",
+        "Sub": "Align the base with the second board.",
+        "Fine": "Keep the gripper closed and shift left along the counter before lowering the garlic."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The garlic is held securely. The empty cutting board is farther to the left.",
+          "Sub": "Align the base with the second board.",
+          "Fine": "Keep the gripper closed and shift left along the counter before lowering the garlic."
+        },
+        "action": "base_shift",
+        "delta_world": [
+          -0.2,
+          0
+        ],
+        "steps": 500
+      },
+      "feedback": {
+        "action": "base_shift",
+        "base_displacement_world": [
+          -0.1334067003464594,
+          -0.00015137728734060385,
+          -5.57868428230357e-06
+        ],
+        "reached": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 1397,
+      "step_end": 1779,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The base has shifted left while the garlic remains held. The second board is now closer.",
+        "Sub": "Place the garlic on the empty board.",
+        "Fine": "Move the held garlic over the second board, lower it onto the surface, release and retreat."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The base has shifted left while the garlic remains held. The second board is now closer.",
+          "Sub": "Place the garlic on the empty board.",
+          "Fine": "Move the held garlic over the second board, lower it onto the surface, release and retreat."
+        },
+        "action": "place",
+        "object": "vegetable2",
+        "target": "cutting_board2",
+        "offset": [
+          0,
+          0,
+          0.03
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 6,
+      "step_start": 1779,
+      "step_end": 1934,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The garlic is still on the counter. It slipped during the base movement, so the later placement carried no object.",
+        "Sub": "Regrasp the garlic from the new base position.",
+        "Fine": "Close low around the garlic, verify the lift and keep the next transfer short."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The garlic is still on the counter. It slipped during the base movement, so the later placement carried no object.",
+          "Sub": "Regrasp the garlic from the new base position.",
+          "Fine": "Close low around the garlic, verify the lift and keep the next transfer short."
+        },
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          0.002
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.16
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable2",
+        "object_lift_m": 0.15567380771247674,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 7,
+      "step_start": 1934,
+      "step_end": 2217,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The garlic has been lifted again from the counter. The base is already aligned closer to the empty board.",
+        "Sub": "Transfer the garlic directly to the second board.",
+        "Fine": "Keep the base fixed, lower the held garlic onto the empty board, release and withdraw."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The garlic has been lifted again from the counter. The base is already aligned closer to the empty board.",
+          "Sub": "Transfer the garlic directly to the second board.",
+          "Fine": "Keep the base fixed, lower the held garlic onto the empty board, release and withdraw."
+        },
+        "action": "place",
+        "object": "vegetable2",
+        "target": "cutting_board2",
+        "offset": [
+          0,
+          0,
+          0.03
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 8,
+      "step_start": 2217,
+      "step_end": 2217,
+      "brain": {
+        "Judge": "success",
+        "Cause": "Both vegetables are on separate boards; the environment success check is positive.",
+        "Sub": "Finish the recovered task.",
+        "Fine": "Stop after the verified placement."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "Both vegetables are on separate boards; the environment success check is positive.",
+          "Sub": "Finish the recovered task.",
+          "Fine": "Stop after the verified placement."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "794dc2b4d8941306fa167f6feeff09d8865616d8b0ec3024ca3c39ceb5e7fe7c",
+    "action_trace_sha256": "6bbe61c66a71bc1964d70a11a14bf8b143b45a94751dafcf63046f9e789a945c",
+    "decision_origin": "Written interactively after observing the preceding action and its feedback; GPT proxy, not a trained RynnBrain checkpoint."
+  }
+}

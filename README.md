@@ -7,33 +7,41 @@
 [![Code](https://img.shields.io/badge/Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pm1255/embodied-corrector)
 [![Project Page](https://img.shields.io/badge/Project_Page-5969EC?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pm1255.github.io/embodied-corrector/)
 
-**English** · [中文](README_zh.md)
+**English** · [Chinese](README_zh.md)
 
 </div>
 
 ## Overview
 
-https://github.com/user-attachments/assets/d41e20cd-94c3-4598-b413-608e2d1d3d80
+https://github.com/user-attachments/assets/a2b439b6-98d1-4bb5-bfef-ddec572810bf
 
-Research overview with English narration and Chinese subtitles. Robot motion comes from continuous simulator recordings.
+Research overview with English narration and subtitles. Robot motion comes from continuous simulator recordings.
 
-## Continuous simulation cases
+## Selected successful recoveries
 
-### LIBERO-PRO · Drawer placement
+Each video shows an observed failure, the **Judge → Cause → Sub → Fine** output, corrective actions, and a verified successful ending. Videos retain the complete simulator episode at **1× speed**, with a three-second final result hold.
 
-Open the top drawer, recover from an unsuccessful grasp, and place the cream cheese inside. **Official task result: completed.** Full episode shown at 2× speed, with diagnosis and action annotations.
+### LIBERO-PRO · Drawer access and grasp recovery
 
-https://github.com/user-attachments/assets/8c6f4297-f74d-459e-87ec-ab9f6eb27e0e
+Restore drawer clearance, correct an unsuccessful grasp, and place the cream cheese inside. **Final environment result: success.**
 
-### RoboCasa365 · Colorful Salsa
+https://github.com/user-attachments/assets/9aad4e4a-d6d4-4db4-a6ff-70fe7442b61f
 
-Attempt to place four ingredients on the cutting board. **Official task result: incomplete.** Full episode shown at 2× speed; unsuccessful attempts are retained.
+### LIBERO-PRO · Two-object basket recovery
 
-https://github.com/user-attachments/assets/ec48e161-533e-44c1-86d1-64503f6fc8d0
+Recover an omitted pickup, grasp both required objects, and complete the basket task. **Final environment result: success.**
 
-These two examples use a GPT proxy and an analytical controller with simulator-state localization. They demonstrate the interaction workflow; they are not trained Embodied-Corrector or RynnBrain evaluation results.
+https://github.com/user-attachments/assets/58b59586-1e27-4fe1-b5ed-bddcd9ca3faa
 
-The [project gallery](https://pm1255.github.io/embodied-corrector/#simulations) contains **20 LIBERO-PRO and 30 RoboCasa365 episodes**: 6 GPT-proxy demonstrations and 44 labelled scripted episodes. Each retains its task, seed, actions, feedback, and official outcome. See the [execution records and provenance](guides/simulation_report_zh.md).
+### RoboCasa365 · Regrasp and separate the vegetables
+
+Correct a missed grasp and place the two vegetables on separate cutting boards. **Final environment result: success.**
+
+https://github.com/user-attachments/assets/c9dcd501-c9fd-4cfe-aa18-fdbef5edb70d
+
+These demonstrations use a **GPT proxy with simulator-state-assisted analytical control**. They illustrate the correction workflow and are separate from trained Embodied-Corrector / RynnBrain evaluation results.
+
+The [project gallery](https://pm1255.github.io/embodied-corrector/#simulations) contains **12 selected successful recovery episodes: 9 LIBERO-PRO and 3 RoboCasa365**, using the same video layout and visible brain output. They cover task and seed variations; they are not 12 distinct tasks or an estimate of benchmark success rate. See [episode provenance and verification](guides/selected_recoveries.md).
 
 ## Abstract
 
@@ -140,7 +148,7 @@ bash scripts/train.sh \
   --kappa 1 --beta .5 --opd-coef 1
 ```
 
-These hyperparameters are engineering examples, not values disclosed by the paper. Split by original source trajectory before constructing perturbation branches. Image inputs require a vision-language model. See [data schema](guides/data.md) and [中文训练说明](guides/training_zh.md).
+These hyperparameters are engineering examples, not values disclosed by the paper. Split by original source trajectory before constructing perturbation branches. Image inputs require a vision-language model. See [data schema](guides/data.md) and [training guide in Chinese](guides/training_zh.md).
 
 ## EmbodiedBench evaluation
 

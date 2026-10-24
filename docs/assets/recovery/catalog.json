@@ -1,0 +1,122 @@
+[
+  {
+    "id": "libero-articulation-r1",
+    "title": "Restore drawer access and correct the grasp",
+    "suite": "LIBERO-PRO",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 7,
+    "steps": 1422,
+    "challenge": "Drawer clearance and grasp orientation"
+  },
+  {
+    "id": "curated-libero-articulation-s11",
+    "title": "Recover from blocked access and a missed placement",
+    "suite": "LIBERO-PRO",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 11,
+    "steps": 3242,
+    "challenge": "Cabinet collision, regrasp and drawer placement"
+  },
+  {
+    "id": "libero-relational-r2",
+    "title": "Correct placement on the wrong side",
+    "suite": "LIBERO-PRO",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 7,
+    "steps": 746,
+    "challenge": "Incorrect spatial target"
+  },
+  {
+    "id": "curated-libero-relational-s11",
+    "title": "Restore the intended spatial relation",
+    "suite": "LIBERO-PRO",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 11,
+    "steps": 596,
+    "challenge": "Relational target correction"
+  },
+  {
+    "id": "libero-multiobject-r2",
+    "title": "Recover both objects into the basket",
+    "suite": "LIBERO-PRO",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 7,
+    "steps": 1349,
+    "challenge": "Two-object completion"
+  },
+  {
+    "id": "curated-libero-multiobject-s11",
+    "title": "Restore an omitted pickup before packing",
+    "suite": "LIBERO-PRO",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 11,
+    "steps": 1166,
+    "challenge": "Missing prerequisite and multi-object recovery"
+  },
+  {
+    "id": "curated-libero-cheesebowl-s11",
+    "title": "Regrasp and place the cheese in the bowl",
+    "suite": "LIBERO-PRO",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 11,
+    "steps": 657,
+    "challenge": "Missed grasp and precise placement"
+  },
+  {
+    "id": "curated-libero-cheesebowl-s23",
+    "title": "Correct the grasp after scene rearrangement",
+    "suite": "LIBERO-PRO",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 23,
+    "steps": 522,
+    "challenge": "Object-position variation and regrasp"
+  },
+  {
+    "id": "curated-libero-cheesebowl-s37",
+    "title": "Recover a shifted object into the bowl",
+    "suite": "LIBERO-PRO",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 37,
+    "steps": 536,
+    "challenge": "Object-position variation and regrasp"
+  },
+  {
+    "id": "curated-rc-organizevegetables-s11",
+    "title": "Recover a slipped garlic grasp and separate both objects",
+    "suite": "RoboCasa365",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 11,
+    "steps": 2217,
+    "challenge": "Slippage, regrasp and separate-board placement"
+  },
+  {
+    "id": "curated-rc-organizevegetables-s23",
+    "title": "Regrasp the sweet potato and separate both objects",
+    "suite": "RoboCasa365",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 23,
+    "steps": 1375,
+    "challenge": "Missed grasp and two-object separation"
+  },
+  {
+    "id": "curated-rc-organizevegetables-s37",
+    "title": "Restore the missing pickup before placement",
+    "suite": "RoboCasa365",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 37,
+    "steps": 1076,
+    "challenge": "Missing pickup and two-object separation"
+  }
+]

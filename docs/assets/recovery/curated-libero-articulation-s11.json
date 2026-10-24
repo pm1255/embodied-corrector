@@ -1,0 +1,440 @@
+{
+  "case": "curated-libero-articulation-s11",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "open the top layer of the drawer and put the cream cheese inside",
+    "seed": 11,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v3-mobile",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/libero-articulation.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "e7420a16638522d16f076364349a0c3c6aef77f5753a86efe383a87857e3d70f"
+  },
+  "result": {
+    "success": true,
+    "steps": 3242,
+    "commands": 13,
+    "brain_records": 12,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 447,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pull_drawer",
+        "distance": 0.04,
+        "perturbation": "Controlled early stop: open only 4 cm before correction."
+      },
+      "feedback": {
+        "action": "pull_drawer",
+        "drawer_before_m": 0.0,
+        "drawer_after_m": -0.03778309782511603,
+        "drawer_opened_m": 0.03778309782511603
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 447,
+      "step_end": 843,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The drawer remains almost closed; there is insufficient clearance for the box.",
+        "Sub": "Open the drawer fully.",
+        "Fine": "Regrasp the handle, pull along the rails, release, and clear the opening."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The drawer remains almost closed; there is insufficient clearance for the box.",
+          "Sub": "Open the drawer fully.",
+          "Fine": "Regrasp the handle, pull along the rails, release, and clear the opening."
+        },
+        "action": "pull_drawer",
+        "distance": 0.13
+      },
+      "feedback": {
+        "action": "pull_drawer",
+        "drawer_before_m": -0.03778418260214441,
+        "drawer_after_m": -0.15995378228796422,
+        "drawer_opened_m": 0.12216959968581981
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 843,
+      "step_end": 1161,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The top drawer is fully open, leaving clearance for placement.",
+        "Sub": "Pick up the cream cheese.",
+        "Fine": "Close across the narrow sides of the box, lift it and verify that it follows the gripper."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The top drawer is fully open, leaving clearance for placement.",
+          "Sub": "Pick up the cream cheese.",
+          "Fine": "Close across the narrow sides of the box, lift it and verify that it follows the gripper."
+        },
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.22
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 1161,
+      "step_end": 1341,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The gripper remained above the drawer, and the cream cheese did not move. The transfer path was obstructed.",
+        "Sub": "Clear the drawer before approaching the box.",
+        "Fine": "Raise the open gripper and move above the cream cheese with a neutral orientation."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The gripper remained above the drawer, and the cream cheese did not move. The transfer path was obstructed.",
+          "Sub": "Clear the drawer before approaching the box.",
+          "Fine": "Raise the open gripper and move above the cream cheese with a neutral orientation."
+        },
+        "action": "move",
+        "position": [
+          -0.06273101431456575,
+          0.13621502036163133,
+          1.2589069548372152
+        ],
+        "grip": -1,
+        "yaw_degrees": 0,
+        "steps": 180
+      },
+      "feedback": {
+        "action": "move",
+        "reached": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 1341,
+      "step_end": 1541,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The gripper has not reached the approach point. The cabinet still obstructs the transfer.",
+        "Sub": "Move back into free space.",
+        "Fine": "Retract away from the cabinet before trying another grasp."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The gripper has not reached the approach point. The cabinet still obstructs the transfer.",
+          "Sub": "Move back into free space.",
+          "Fine": "Retract away from the cabinet before trying another grasp."
+        },
+        "action": "move",
+        "position": [
+          0.0,
+          -0.15,
+          1.3
+        ],
+        "grip": -1,
+        "yaw_degrees": 0,
+        "steps": 200
+      },
+      "feedback": {
+        "action": "move",
+        "reached": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 1541,
+      "step_end": 1605,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The previous retraction still did not reach its target. The current arm orientation is blocking motion.",
+        "Sub": "Change wrist orientation to free the arm.",
+        "Fine": "Rotate the open wrist and move toward the unobstructed side of the table before descending."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The previous retraction still did not reach its target. The current arm orientation is blocking motion.",
+          "Sub": "Change wrist orientation to free the arm.",
+          "Fine": "Rotate the open wrist and move toward the unobstructed side of the table before descending."
+        },
+        "action": "move",
+        "position": [
+          -0.1,
+          0.1,
+          1.2
+        ],
+        "yaw_degrees": 180,
+        "grip": -1,
+        "steps": 180
+      },
+      "feedback": {
+        "action": "move",
+        "reached": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 6,
+      "step_start": 1605,
+      "step_end": 1923,
+      "brain": {
+        "Judge": "success",
+        "Cause": "Changing the wrist orientation freed the arm and it reached the unobstructed approach region.",
+        "Sub": "Grasp the cream cheese from free space.",
+        "Fine": "Descend over the box, close across its narrow faces and lift before moving back to the drawer."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "Changing the wrist orientation freed the arm and it reached the unobstructed approach region.",
+          "Sub": "Grasp the cream cheese from free space.",
+          "Fine": "Descend over the box, close across its narrow faces and lift before moving back to the drawer."
+        },
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.22
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 7,
+      "step_start": 1923,
+      "step_end": 2123,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The ninety-degree wrist pose again brought the arm toward the cabinet instead of the box.",
+        "Sub": "Use the opposite wrist configuration.",
+        "Fine": "Turn the wrist to the opposite orientation with the same finger alignment, then grasp and lift the cream cheese."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The ninety-degree wrist pose again brought the arm toward the cabinet instead of the box.",
+          "Sub": "Use the opposite wrist configuration.",
+          "Fine": "Turn the wrist to the opposite orientation with the same finger alignment, then grasp and lift the cream cheese."
+        },
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 270,
+        "lift": 0.22
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.21242596662683655,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 8,
+      "step_start": 2123,
+      "step_end": 2419,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The opposite wrist configuration secured the cream cheese; it now follows the gripper.",
+        "Sub": "Place the box inside the top drawer.",
+        "Fine": "Move above the open drawer, lower into the compartment, release and withdraw."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The opposite wrist configuration secured the cream cheese; it now follows the gripper.",
+          "Sub": "Place the box inside the top drawer.",
+          "Fine": "Move above the open drawer, lower into the compartment, release and withdraw."
+        },
+        "action": "place",
+        "target": "site:wooden_cabinet_1_top_region",
+        "offset": [
+          0,
+          0,
+          0.025
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 9,
+      "step_start": 2419,
+      "step_end": 2837,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The box rests on the cabinet top. The drawer was pushed closed during the obstructed grasp attempts, so the placement prerequisite was lost.",
+        "Sub": "Reopen the top drawer.",
+        "Fine": "Grasp the handle, pull the drawer fully out and clear the opening before moving the box again."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The box rests on the cabinet top. The drawer was pushed closed during the obstructed grasp attempts, so the placement prerequisite was lost.",
+          "Sub": "Reopen the top drawer.",
+          "Fine": "Grasp the handle, pull the drawer fully out and clear the opening before moving the box again."
+        },
+        "action": "pull_drawer",
+        "distance": 0.16
+      },
+      "feedback": {
+        "action": "pull_drawer",
+        "drawer_before_m": 0.0009418805240662728,
+        "drawer_after_m": -0.15907240649977752,
+        "drawer_opened_m": 0.1600142870238438
+      },
+      "official_success": false
+    },
+    {
+      "index": 10,
+      "step_start": 2837,
+      "step_end": 3032,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The drawer is fully open again. The cream cheese remains on the cabinet top.",
+        "Sub": "Retrieve the box from the cabinet top.",
+        "Fine": "Use the reachable wrist orientation, grasp the box on top and lift it clear without contacting the open drawer."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The drawer is fully open again. The cream cheese remains on the cabinet top.",
+          "Sub": "Retrieve the box from the cabinet top.",
+          "Fine": "Use the reachable wrist orientation, grasp the box on top and lift it clear without contacting the open drawer."
+        },
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 270,
+        "lift": 0.18
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.17398696197301655,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 11,
+      "step_start": 3032,
+      "step_end": 3242,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The cheese now follows the gripper and the drawer remains open.",
+        "Sub": "Lower the cheese into the open top drawer.",
+        "Fine": "Align over the drawer interior, descend, release, and withdraw."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The cheese now follows the gripper and the drawer remains open.",
+          "Sub": "Lower the cheese into the open top drawer.",
+          "Fine": "Align over the drawer interior, descend, release, and withdraw."
+        },
+        "action": "place",
+        "target": "site:wooden_cabinet_1_top_region",
+        "offset": [
+          0,
+          0,
+          0.025
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 12,
+      "step_start": 3242,
+      "step_end": 3242,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The cheese has been released inside the open top drawer and the environment confirms task success.",
+        "Sub": "Finish the recovered drawer task.",
+        "Fine": "Stop after the verified placement."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The cheese has been released inside the open top drawer and the environment confirms task success.",
+          "Sub": "Finish the recovered drawer task.",
+          "Fine": "Stop after the verified placement."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "2e43435940b421f49f450d8864905b415658682539463180e70a0666440179d0",
+    "action_trace_sha256": "4a5a8d5333a66aab584702542bcc31af4ab07572e1c72a0760f25479dd5505c1",
+    "decision_origin": "Written interactively after observing the preceding action and its feedback; GPT proxy, not a trained RynnBrain checkpoint."
+  }
+}

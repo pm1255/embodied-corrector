@@ -11,29 +11,37 @@
 
 </div>
 
-## 项目介绍
+## Overview
 
-https://github.com/user-attachments/assets/d41e20cd-94c3-4598-b413-608e2d1d3d80
+https://github.com/user-attachments/assets/a2b439b6-98d1-4bb5-bfef-ddec572810bf
 
-英文配音、中文字幕，介绍研究动机与方法。机械臂运动来自连续仿真录像。
+Research overview with English narration and subtitles. Robot motion comes from continuous simulator recordings.
 
-## 连续仿真案例
+## Selected successful recoveries
 
-### LIBERO-PRO · 抽屉放置
+Each video shows an observed failure, the **Judge → Cause → Sub → Fine** output, corrective actions, and a verified successful ending. Videos retain the complete simulator episode at **1× speed**, with a three-second final result hold.
 
-拉开顶层抽屉，在一次抓取失败后调整夹持方向，将奶油奶酪放入抽屉。**官方任务判定：完成。** 完整回合以 2 倍速播放，并展示诊断与动作说明。
+### LIBERO-PRO · Drawer access and grasp recovery
 
-https://github.com/user-attachments/assets/8c6f4297-f74d-459e-87ec-ab9f6eb27e0e
+Restore drawer clearance, correct an unsuccessful grasp, and place the cream cheese inside. **Final environment result: success.**
 
-### RoboCasa365 · Colorful Salsa
+https://github.com/user-attachments/assets/9aad4e4a-d6d4-4db4-a6ff-70fe7442b61f
 
-尝试将四种食材放到砧板上。**官方任务判定：未完成。** 完整回合以 2 倍速播放，保留未成功的尝试。
+### LIBERO-PRO · Two-object basket recovery
 
-https://github.com/user-attachments/assets/ec48e161-533e-44c1-86d1-64503f6fc8d0
+Recover an omitted pickup, grasp both required objects, and complete the basket task. **Final environment result: success.**
 
-以上两个案例使用 GPT 代理与仿真状态辅助定位的解析控制器，展示交互流程，不代表训练后的 Embodied-Corrector 或 RynnBrain 测评成绩。
+https://github.com/user-attachments/assets/58b59586-1e27-4fe1-b5ed-bddcd9ca3faa
 
-[项目案例库](https://pm1255.github.io/embodied-corrector/#simulations) 包含 **20 个 LIBERO-PRO 和 30 个 RoboCasa365 回合**：6 个 GPT 代理演示和 44 个明确标注的脚本控制回合。每个回合保留任务、种子、动作、反馈和官方结果，详见[执行记录与来源说明](guides/simulation_report_zh.md)。
+### RoboCasa365 · Regrasp and separate the vegetables
+
+Correct a missed grasp and place the two vegetables on separate cutting boards. **Final environment result: success.**
+
+https://github.com/user-attachments/assets/c9dcd501-c9fd-4cfe-aa18-fdbef5edb70d
+
+These demonstrations use a **GPT proxy with simulator-state-assisted analytical control**. They illustrate the correction workflow and are separate from trained Embodied-Corrector / RynnBrain evaluation results.
+
+The [project gallery](https://pm1255.github.io/embodied-corrector/#simulations) contains **12 selected successful recovery episodes: 9 LIBERO-PRO and 3 RoboCasa365**, using the same video layout and visible brain output. They cover task and seed variations; they are not 12 distinct tasks or an estimate of benchmark success rate. See [episode provenance and verification](guides/selected_recoveries.md).
 
 ## 摘要
 

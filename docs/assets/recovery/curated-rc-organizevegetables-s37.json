@@ -1,0 +1,219 @@
+{
+  "case": "curated-rc-organizevegetables-s37",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the garlic and the mushroom on separate cutting boards.",
+    "seed": 37,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v3-mobile",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "OrganizeVegetables",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "905f4ed0f6776df71e6f4fc6c895208bafea5a35b35650f14f8f7d49c5e7d41d"
+  },
+  "result": {
+    "success": true,
+    "steps": 1076,
+    "commands": 6,
+    "brain_records": 5,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 192,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "empty_place",
+        "target": "cutting_board1",
+        "offset": [
+          0,
+          0,
+          0.12
+        ]
+      },
+      "feedback": {
+        "action": "empty_place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 192,
+      "step_end": 352,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "Both boards remain empty because the initial placement motion carried no object.",
+        "Sub": "Pick up the garlic first.",
+        "Fine": "Descend over the garlic, close the fingers around its body and verify attachment while lifting."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "Both boards remain empty because the initial placement motion carried no object.",
+          "Sub": "Pick up the garlic first.",
+          "Fine": "Descend over the garlic, close the fingers around its body and verify attachment while lifting."
+        },
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable1",
+        "object_lift_m": 0.19357709381584265,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 352,
+      "step_end": 641,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The garlic now follows the gripper after the missing pickup was restored.",
+        "Sub": "Place the garlic on the first board.",
+        "Fine": "Center it over the cutting board, lower gently, release and move the gripper away."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The garlic now follows the gripper after the missing pickup was restored.",
+          "Sub": "Place the garlic on the first board.",
+          "Fine": "Center it over the cutting board, lower gently, release and move the gripper away."
+        },
+        "action": "place",
+        "object": "vegetable1",
+        "target": "cutting_board1",
+        "offset": [
+          0,
+          0,
+          0.035
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 641,
+      "step_end": 832,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The garlic is on one cutting board. The mushroom is still on the counter.",
+        "Sub": "Pick up the mushroom for the other board.",
+        "Fine": "Approach the mushroom body, close the fingers around its stem region and test a vertical lift."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The garlic is on one cutting board. The mushroom is still on the counter.",
+          "Sub": "Pick up the mushroom for the other board.",
+          "Fine": "Approach the mushroom body, close the fingers around its stem region and test a vertical lift."
+        },
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable2",
+        "object_lift_m": 0.19143912198524626,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 832,
+      "step_end": 1076,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The mushroom now follows the gripper; the garlic is already on one board.",
+        "Sub": "Place the mushroom on the other board.",
+        "Fine": "Center the mushroom over the empty board, lower it gently, release and retract."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The mushroom now follows the gripper; the garlic is already on one board.",
+          "Sub": "Place the mushroom on the other board.",
+          "Fine": "Center the mushroom over the empty board, lower it gently, release and retract."
+        },
+        "action": "place",
+        "object": "vegetable2",
+        "target": "cutting_board2",
+        "offset": [
+          0,
+          0,
+          0.035
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 5,
+      "step_start": 1076,
+      "step_end": 1076,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The garlic and mushroom are on separate boards and the environment confirms success.",
+        "Sub": "Finish the recovered task.",
+        "Fine": "Stop after the verified placement."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The garlic and mushroom are on separate boards and the environment confirms success.",
+          "Sub": "Finish the recovered task.",
+          "Fine": "Stop after the verified placement."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "1666feb63ee07d15dff7bb011b8c7864805ceb35ebc1657afa5ad5e116278329",
+    "action_trace_sha256": "63b49475326f4abc1a93c161ebaca71df13a5445a659b3dbef59ef3d20e3a1fd",
+    "decision_origin": "Written interactively after observing the preceding action and its feedback; GPT proxy, not a trained RynnBrain checkpoint."
+  }
+}

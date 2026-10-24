@@ -1,4 +1,4 @@
-"""Bundle the ten paper figures into HTML so dropped asset requests cannot hide them.
+"""Bundle the six paper figures into HTML so dropped asset requests cannot hide them.
 
 Run after replacing a figure asset. data-source retains the editable source path;
 the video-gallery renderer preserves these tags when regenerating its own section.
@@ -29,6 +29,6 @@ def embed(match):
 
 
 html = re.sub(r'<img\b[^>]*>', embed, page.read_text())
-assert count == 10, f'Expected ten manuscript figures, found {count}'
+assert count == 6, f'Expected six manuscript figures, found {count}'
 page.write_text(html)
 print(f'Embedded {count} original figures in {len(html.encode()):,} bytes of HTML')

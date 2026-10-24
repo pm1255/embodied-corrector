@@ -1,0 +1,155 @@
+{
+  "case": "curated-libero-relational-s11",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "pick the akita black bowl not between the plate and the ramekin and place it on the plate",
+    "seed": 11,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v3-mobile",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/libero-relational.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "5b00b2decc77134d6ceac3fb38ddfc686795c4ee03b77f3b3d51dd0883c1108d"
+  },
+  "result": {
+    "success": true,
+    "steps": 596,
+    "commands": 4,
+    "brain_records": 3,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 173,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pick",
+        "object": "akita_black_bowl_1",
+        "offset": [
+          0.03,
+          0,
+          0.015
+        ],
+        "perturbation": "Controlled incorrect target: select the bowl between the plate and ramekin."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "akita_black_bowl_1",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 173,
+      "step_end": 333,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The attempted bowl is between the plate and ramekin, and it was not lifted. The instruction asks for the other bowl.",
+        "Sub": "Select the bowl outside that pair.",
+        "Fine": "Approach the right bowl at its rim, close across the rim and verify a lift."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The attempted bowl is between the plate and ramekin, and it was not lifted. The instruction asks for the other bowl.",
+          "Sub": "Select the bowl outside that pair.",
+          "Fine": "Approach the right bowl at its rim, close across the rim and verify a lift."
+        },
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "offset": [
+          0.045,
+          0,
+          0.025
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.2
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "object_lift_m": 0.18084877055531023,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 333,
+      "step_end": 596,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The correct bowl now follows the gripper.",
+        "Sub": "Place this bowl on the plate.",
+        "Fine": "Center the held bowl over the plate, lower it gently, release and withdraw."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The correct bowl now follows the gripper.",
+          "Sub": "Place this bowl on the plate.",
+          "Fine": "Center the held bowl over the plate, lower it gently, release and withdraw."
+        },
+        "action": "place",
+        "object": "akita_black_bowl_2",
+        "target": "plate_1",
+        "offset": [
+          0,
+          0,
+          0.04
+        ]
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 3,
+      "step_start": 596,
+      "step_end": 596,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The requested bowl is on the plate, and the official task check confirms completion.",
+        "Sub": "Finish the episode.",
+        "Fine": "Keep the recovered scene and record the verified final success."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The requested bowl is on the plate, and the official task check confirms completion.",
+          "Sub": "Finish the episode.",
+          "Fine": "Keep the recovered scene and record the verified final success."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "888a6bfcc178ce349a5be8001c76e8492705a26b98caa6f63699467e013cffc8",
+    "action_trace_sha256": "93fc14b438210c828b21d73489e963d471a1838fec6168c69e374f5455631f47",
+    "decision_origin": "Written interactively after observing the preceding action and its feedback; GPT proxy, not a trained RynnBrain checkpoint."
+  }
+}

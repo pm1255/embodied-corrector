@@ -42,9 +42,9 @@ The instruction asks for the other bowl. The proxy revises the target and grasp.
 
 The drawer must open before insertion. This is a continuous segment from the same simulated episode, with no reset between corrective actions.
 
-## 00:01:28 · Continuous simulation: preserve failures.
+## 00:01:28 · Continuous simulation: complete the recovery.
 
-In the kitchen task, grasping remains difficult. We retain incomplete episodes and report the simulator outcome, rather than treating attempted recovery as success.
+This kitchen episode corrects a failed grasp and places both objects on separate boards. The simulator confirms final success. The gallery shows the complete brain output and continuous recording.
 
 ## 00:01:38 · Seven factors. One correction interface.
 
