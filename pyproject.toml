@@ -18,9 +18,15 @@ ec-evaluate = "ec_verl.evaluate:main"
 ec-data = "ec_verl.data:main"
 ec-serve = "ec_verl.serve:main"
 ec-embodiedbench = "ec_verl.embodiedbench:main"
+ec-diagbench = "ec_verl.diagbench.evaluate:main"
+ec-diagbench-download = "ec_verl.diagbench.download:main"
+ec-diagbench-validate = "ec_verl.diagbench.validate:main"
 
 [tool.setuptools.packages.find]
 include = ["ec_verl*"]
+
+[tool.setuptools.package-data]
+"ec_verl.diagbench" = ["LICENSE", "NOTICE"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

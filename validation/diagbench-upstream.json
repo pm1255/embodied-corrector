@@ -1,0 +1,11 @@
+{
+  "dataset": "KagaKouko/diagbench",
+  "revision": "93a7e12e7e89459c16269d2ffc8416ab0e1be338",
+  "archive_sha256": "fa4c95649fb44b703aa545c773a96a8d7482eb4e65083befb4405bb4d1d6e31f",
+  "scripts": {
+    "media.py": "2a6b7b098c0e765a3c5e57dc3f4b2df52f8d634dc537c2bdb6307c9ed58d72d0",
+    "serve_transformers.py": "88119c8672d84c1a0ed75fc7da6f90b66d78b26a52bd9c5a36ff384585b07a2f",
+    "validate.py": "94e99b2e28199a896ae2f8e597347abfe42f558357e5849cce4f94af383294ca",
+    "evaluate.py": "e3a192101875f5c3f994a37c10eef18f07aca56556d8b3324438eb447815071e"
+  }
+}

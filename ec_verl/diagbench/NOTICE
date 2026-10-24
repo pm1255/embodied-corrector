@@ -1,0 +1,12 @@
+EmbodiedDiag-Bench small integration
+
+Adapted from scripts distributed by KagaKouko/diagbench on ModelScope,
+revision 93a7e12e7e89459c16269d2ffc8416ab0e1be338 (2026-10-24).
+The upstream dataset card declares Apache License 2.0.
+Source: https://modelscope.cn/datasets/KagaKouko/diagbench/files
+
+The Embodied-Corrector integration changes package imports and adds release
+verification, progress monitoring, stricter result validation, safe resume,
+service provenance and local orchestration. Original script hashes are recorded
+in validation/diagbench-upstream.json. Downloaded videos and annotations retain
+the rights of their respective sources and are not redistributed in this package.

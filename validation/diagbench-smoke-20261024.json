@@ -1,0 +1,25 @@
+{
+  "complete": true,
+  "predictions": 28,
+  "judgments": 28,
+  "truncated_predictions": 6,
+  "unchanged_existing_judgments": 26,
+  "retry_records": [
+    {
+      "id": "small-step-002003",
+      "judge_format_retries": 1
+    },
+    {
+      "id": "small-traj-000030-turn-0004",
+      "judge_format_retries": 1
+    }
+  ],
+  "prediction_sha256": "6418dcd165ec5b8ee542b00af62f36638df0d1327f247da91624669022a1a23c",
+  "summary_sha256": "b12079e98bbc13acd51369e5b8c66167c6ce21e733b89b1db730274ea06df851",
+  "scope": "Pipeline smoke only, not paper-comparable performance",
+  "model": "DAMO_Academy/RynnBrain-8B",
+  "model_revision": "5561702f9437f4130ad849855d8eb7330a3794d1",
+  "judge": "Qwen3-VL-2B-Instruct",
+  "hardware": "1 x H100",
+  "tests_passed": 28
+}

@@ -7,3 +7,12 @@
 - The continuous simulation recordings in `docs/assets/simulations/` were rendered with RoboCasa365, robosuite and LIBERO-PRO. The BDDL task variants were generated with LIBERO-PRO's official perturbators. Source revisions and asset provenance are recorded in `scripts/simulations/sources.json` and `assets.json`; upstream simulator source, models and asset archives are not redistributed. Their respective upstream licenses and asset terms remain applicable.
 
 No repository-wide open-source license has yet been selected for the newly added implementation. Public repository visibility does not replace a license grant. Third-party licenses remain in force for their respective material.
+
+## EmbodiedDiag-Bench small (2026-10-24)
+
+`ec_verl/diagbench/{evaluate,media,validate,serve_transformers}.py` is adapted from
+the scripts distributed with [KagaKouko/diagbench](https://modelscope.cn/datasets/KagaKouko/diagbench/files).
+The dataset card declares Apache License 2.0. Original script hashes, release pin
+and integration changes are documented in `guides/diagbench.md`. Data, videos,
+original annotations and reference smoke results remain in the downloaded package;
+they are not embedded in this Git repository. Their third-party source rights remain applicable.

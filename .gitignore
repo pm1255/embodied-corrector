@@ -22,3 +22,6 @@ data/generated/
 .env.*
 *.pem
 *.key
+
+# ModelScope benchmark downloads and video assets
+/data/diagbench/

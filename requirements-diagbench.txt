@@ -1,0 +1,4 @@
+# Lightweight download/validation/client/scoring environment; no torch required.
+Pillow>=11.3,<14
+tensorboard>=2.16,<3
+# For the local model server also install the repository's core environment.
