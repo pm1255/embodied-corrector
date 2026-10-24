@@ -81,3 +81,112 @@ h3{line-height:1.35}.method-copy h3,.architecture-panel h3,.nepo-explainer h3,.d
 /* Compact navigation for fifty independently recorded episodes. */
 .gallery-controls{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin:28px 0 18px}.gallery-suite{display:flex;gap:10px;flex-wrap:wrap}.gallery-suite button,.gallery-pagination button{font:inherit;font-size:14px;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:11px 16px;cursor:pointer}.gallery-suite button[aria-pressed=true]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-deep)}.gallery-suite span{font-size:12px;margin-left:8px}.gallery-controls label{font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:center}.gallery-controls select{font:inherit;max-width:300px;padding:11px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--text)}.gallery-pagination{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:16px 0 26px;font-size:13px;color:var(--muted)}.gallery-pagination>div{display:flex;gap:8px}.gallery-pagination button:disabled{opacity:.4;cursor:default}.simulation-select span,.simulation-select small{font-size:12px;line-height:1.5}.simulation-select strong{font-size:17px;line-height:1.45;margin:8px 0}.simulation-select button{padding:17px 18px}.simulation-record>p{font-size:14px;line-height:1.75;color:var(--muted)}.simulation-footer p,.simulation-footer .text-link{font-size:13px}.simulation-heading .small-label{font-size:13px}.simulation-description{font-size:15px;line-height:1.8}.simulation-select button:focus-visible,.gallery-suite button:focus-visible,.gallery-pagination button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 @media(max-width:700px){.gallery-controls{align-items:stretch}.gallery-controls label{width:100%}.gallery-controls select{flex:1;min-width:0;max-width:none}.gallery-suite{width:100%}.gallery-suite button{flex:1;padding:11px 10px}.gallery-pagination{align-items:flex-start;flex-direction:column;gap:10px}.simulation-select strong{font-size:15px}.simulation-select span,.simulation-select small{font-size:11px}.simulation-select button{padding:14px 12px}.video-toolbar .text-link{white-space:normal}.hero-title{overflow-wrap:anywhere}}
+/* Compact reading rhythm and a complete, directly playable episode gallery. */
+body{font-size:16px;line-height:1.55}
+.section{padding-block:40px}
+.hero{padding-top:40px}
+.hero-actions{margin:20px 0 22px}
+.hero-subtitle{font-size:18px;line-height:1.5;margin-top:14px}
+.backbone-label{font-size:15px;margin-top:12px}
+.video-section{padding-top:12px;padding-bottom:32px}
+.section-heading{max-width:100%;margin-bottom:20px}
+.section-heading .eyebrow{margin-bottom:9px}
+.section-heading h2{font-size:clamp(30px,3vw,40px);line-height:1.2}
+.section-heading>p:last-child{font-size:16px;line-height:1.55;margin-top:12px;max-width:960px}
+.section-lead{margin-top:14px;font-size:24px;line-height:1.35}
+.eyebrow,.small-label{font-size:12px;letter-spacing:1.3px;line-height:1.5}
+.abstract-layout{display:block;margin-top:0}
+.abstract-section .section-heading{margin-bottom:16px}
+.abstract-copy p{font-size:17px;line-height:1.65;margin-bottom:12px}
+.abstract-copy p:last-child{margin-bottom:0}
+.method-copy p,.capability-grid p,.architecture-panel p:not(.small-label),.nepo-explainer p,.dynamics-panel p:last-child{font-size:16px;line-height:1.6}
+.method-section{margin-top:38px;gap:36px}
+.architecture-panel{margin-top:36px;padding:26px;gap:28px}
+.nepo-explainer{margin-top:32px;padding:28px;gap:30px}
+.capability-grid{gap:24px}
+.capability-grid h3{margin:16px 0 8px;font-size:21px}
+.capability-grid article{padding-bottom:8px}
+.capability-tag{font-size:13px;margin-top:12px}
+.insight{padding:17px 20px;margin-top:20px}
+.insight p{font-size:14px;line-height:1.6}
+.reasoning-chain{margin-top:24px}
+.reasoning-chain p,.example-output,.plain-list li{font-size:14px;line-height:1.55}
+.example-output{margin-top:12px;padding-top:10px}
+.model-pipeline{margin-top:22px;padding:16px 20px;font-size:15px}
+.factor-list span{font-size:12px;padding:5px 9px}
+.text-link,.text-button,.figure-note,.media-note,.paper-figure figcaption,.paper-figure figcaption span{font-size:13px;line-height:1.55}
+.text-link{margin-top:12px}
+.fine-print,.table-caption,.result-caveat,.experiment-protocol,.simulation-scope{font-size:14px!important;line-height:1.6!important}
+.experiment-overview{margin:24px 0 18px}
+.experiment-overview article{padding:22px}
+.experiment-overview p{font-size:14px;line-height:1.55;margin:12px 0;min-height:0}
+.experiment-overview a,.experiment-overview article>strong{font-size:13px}
+.benchmark-results{margin:28px 0}
+.benchmark-intro{margin-bottom:16px}
+.benchmark-table-heading{padding:15px 18px}
+.benchmark-table-heading span{font-size:13px}
+.benchmark-table table{font-size:14px}
+.benchmark-table th,.benchmark-table td{padding:10px 8px}
+.benchmark-table th:first-child{padding-left:14px}
+.result-header p{font-size:15px;line-height:1.6}
+.results-panel{min-height:0;padding:24px;margin-top:20px}
+.result-header{margin-bottom:22px}
+.source-pill,.legend,.chart-meta,.chart-labels,.chart-labels>span>small,.result-select,.result-select select{font-size:12px}
+.result-takeaway{font-size:14px;line-height:1.6}
+.tab-list button,.data-table summary{font-size:14px}
+.dynamics-panel{margin-top:32px;gap:30px}
+.video-toolbar{margin-top:14px;gap:14px}
+.video-toolbar>span,.video-toolbar .text-link,.video-chapters button{font-size:14px}
+.video-chapters{margin-top:16px}
+.video-chapters button{padding:10px 12px}
+.video-chapters button span{font-size:12px;margin-bottom:3px}
+.citation-card{margin-top:20px}
+.citation-card pre{font-size:14px;line-height:1.55}
+.citation-section{padding-bottom:36px}
+.site-footer{padding-block:26px}
+.episode-directory{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0 14px}
+.episode-directory>a{display:flex;align-items:center;gap:16px;border:1px solid var(--line);border-radius:9px;background:var(--card);padding:10px 16px;font-size:16px;font-weight:600}
+.episode-directory strong{color:var(--accent)}
+.episode-directory>span{color:var(--muted);font-size:14px}
+.simulation-scope{margin:14px 0 22px;max-width:none;padding-left:14px}
+.episode-suite{scroll-margin-top:96px;margin-top:24px}
+.episode-suite+.episode-suite{margin-top:32px}
+.episode-suite-heading{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:14px}
+.episode-suite-heading h3{font-size:25px;line-height:1.35}
+.episode-suite-heading h3 span{font-size:15px;font-weight:450;color:var(--muted);margin-left:12px}
+.episode-suite-heading>a{font-size:13px;color:var(--accent);white-space:nowrap}
+.episode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.episode-card{min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;scroll-margin-top:90px}
+.episode-title{display:flex;align-items:baseline;gap:9px;padding:12px 14px}
+.episode-title>span{font-size:12px;color:var(--accent);font-variant-numeric:tabular-nums}
+.episode-title h4{font-size:17px;line-height:1.4;font-weight:600;margin:0}
+.episode-card video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#101725}
+.episode-copy{padding:10px 14px 12px}
+.episode-meta{font-size:13px;line-height:1.5;color:var(--muted)}
+.episode-actions{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:6px}
+.episode-actions .simulation-outcome{font-size:13px;line-height:1.5}
+.episode-record-button{background:none;padding:3px 0;font-size:13px;color:var(--accent);white-space:nowrap}
+.simulation-footer{margin-top:22px;padding-top:16px}
+.simulation-footer p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.simulation-footer .text-link{margin-top:0;font-size:14px}
+#episode-dialog{width:min(820px,94vw);padding:38px 28px 24px}
+#episode-dialog h2{font-size:25px;line-height:1.4;margin-bottom:10px}
+#episode-dialog-description{font-size:14px;color:var(--muted)}
+.simulation-record{padding:16px 0}
+.simulation-record>button,.simulation-record small{font-size:13px}
+.simulation-record dl{font-size:15px;line-height:1.6}
+@media(max-width:1000px){.episode-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.benchmark-table table{font-size:14px}}
+@media(max-width:700px){
+  .section{padding-block:28px}.hero{padding-top:28px}.video-section{padding-top:8px;padding-bottom:22px}
+  .hero-subtitle{font-size:16px}.backbone-label{font-size:14px}.hero-actions{margin:18px 0}
+  .section-heading{margin-bottom:16px}.section-heading h2{font-size:30px}.section-heading>p:last-child{font-size:15px;line-height:1.6}
+  .abstract-copy p{font-size:16px;line-height:1.65}.method-section{margin-top:28px;gap:20px}
+  .method-copy p,.capability-grid p,.architecture-panel p:not(.small-label),.nepo-explainer p,.dynamics-panel p:last-child{font-size:15px}
+  .architecture-panel,.nepo-explainer{padding:20px;margin-top:26px}.dynamics-panel{margin-top:28px;gap:20px}
+  .episode-grid{gap:14px}.episode-title{padding:10px}.episode-title h4{font-size:16px}.episode-copy{padding:9px 10px 11px}
+  .episode-suite-heading h3{font-size:22px}.episode-suite-heading h3 span{font-size:14px;margin-left:8px}
+  .episode-directory>a{font-size:15px;padding:9px 12px}.episode-directory>span{width:100%}
+  .benchmark-table table{font-size:13px}.benchmark-table th,.benchmark-table td{padding:9px 8px}
+  .results-panel{padding:18px}.citation-card pre{font-size:13px}.video-chapters button{font-size:13px}
+}
+@media(max-width:540px){.episode-grid{grid-template-columns:1fr}.episode-title h4{font-size:17px}.episode-title{padding:11px 13px}.episode-copy{padding:10px 13px 12px}.episode-suite-heading>a{font-size:12px}}
