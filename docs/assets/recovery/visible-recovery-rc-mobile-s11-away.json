@@ -1,0 +1,3207 @@
+{
+  "case": "visible-recovery-rc-mobile-s11-away",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the tangerine and the garlic on separate cutting boards.",
+    "seed": 11,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v6-visible-mobile-recovery",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "OrganizeVegetables",
+    "camera": "fixed whole-robot view with simultaneous counter close-up",
+    "action_dim": 12,
+    "initial_model_sha256": "f8f3b57b512460482ae52af30478b2332768331beb556a7394f8d7cbba253623",
+    "navigation": true,
+    "navigation_and_manipulation": true,
+    "task_variant": "OrganizeVegetables with a disclosed farther mobile-base start",
+    "initialization_only_base_offset": [
+      0,
+      -0.75,
+      0
+    ],
+    "prep_position": [
+      2.271197359765954,
+      -0.8179532981688284,
+      0.0
+    ],
+    "prep_yaw": 1.5660979700370787,
+    "raw_width": 960,
+    "raw_height": 720,
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "smooth-baseline-rc-vegetables-s11",
+      "success": true,
+      "trajectory_sha256": "42134e7fdd746d81069e6bc4799f40c1068d85e6fa0705261c65aca54408d107",
+      "reference_waypoints_sha256": "dfd29becc76bdb15e48cb857645b6a6f1dcb4efe947219812845c47823b176b4",
+      "commands_sha256": "ed51ad1201a7a00c37aa72238313fbcf49b1f73e8e934c7642467a2972d89772",
+      "origin": "Newly collected simulator success; mobile start is a disclosed demonstration variant."
+    }
+  },
+  "result": {
+    "success": true,
+    "steps": 2163,
+    "commands": 6,
+    "brain_records": 5,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 100,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "navigate",
+        "delta_world": [
+          -0.2,
+          -0.35,
+          0
+        ],
+        "perturbation": "Incorrect navigation waypoint, executed before any failure diagnosis.",
+        "decision_provenance": "GPT-authored plan replay, gated by preceding execution feedback; not a trained-model response."
+      },
+      "feedback": {
+        "action": "navigate",
+        "base_start": [
+          2.2721840110551046,
+          -1.5679556159929637,
+          0.0
+        ],
+        "base_end": [
+          2.0721823544843603,
+          -1.9206500129179664,
+          0.0
+        ],
+        "target_distance_m": 0.002694397434249482,
+        "heading_error_rad": 1.6740118593538968e-06,
+        "reached": true,
+        "steps": 100
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 100,
+      "step_end": 322,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The base moved in the wrong direction. Its distance from the prep pose increased from 0.75 m to 1.12 m.",
+        "Sub": "Return to the prep counter before grasping.",
+        "Fine": "Keep the arm stable and drive to the original working pose. Stop before starting manipulation."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The base moved in the wrong direction. Its distance from the prep pose increased from 0.75 m to 1.12 m.",
+          "Sub": "Return to the prep counter before grasping.",
+          "Fine": "Keep the arm stable and drive to the original working pose. Stop before starting manipulation."
+        },
+        "action": "navigate_prep",
+        "decision_provenance": "GPT-authored plan replay, gated by preceding execution feedback; not a trained-model response."
+      },
+      "feedback": {
+        "action": "navigate",
+        "base_start": [
+          2.0721823544843603,
+          -1.9206500129179664,
+          0.0
+        ],
+        "base_end": [
+          2.2666523838142916,
+          -0.821686799913765,
+          0.0
+        ],
+        "target_distance_m": 0.005881822989569879,
+        "heading_error_rad": 6.166194373546929e-06,
+        "reached": true,
+        "steps": 222
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 322,
+      "step_end": 1633,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The base has returned to the prep counter within one centimeter of the working pose.",
+        "Sub": "Place the vegetables on separate boards.",
+        "Fine": "Execute the saved successful grasp and placement path, then check the complete task."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The base has returned to the prep counter within one centimeter of the working pose.",
+          "Sub": "Place the vegetables on separate boards.",
+          "Fine": "Execute the saved successful grasp and placement path, then check the complete task."
+        },
+        "action": "source_reference",
+        "decision_provenance": "GPT-authored plan replay, gated by preceding execution feedback; not a trained-model response."
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "smooth-baseline-rc-vegetables-s11",
+        "source_reference_sha256": "dfd29becc76bdb15e48cb857645b6a6f1dcb4efe947219812845c47823b176b4",
+        "references": [
+          {
+            "source_index": 0,
+            "kind": "move",
+            "step_start": 322,
+            "step_end": 574,
+            "reached": false
+          },
+          {
+            "source_index": 1,
+            "kind": "move",
+            "step_start": 574,
+            "step_end": 643,
+            "reached": true
+          },
+          {
+            "source_index": 2,
+            "kind": "hold",
+            "step_start": 643,
+            "step_end": 661,
+            "reached": true
+          },
+          {
+            "source_index": 3,
+            "kind": "move",
+            "step_start": 661,
+            "step_end": 737,
+            "reached": true
+          },
+          {
+            "source_index": 4,
+            "kind": "move",
+            "step_start": 737,
+            "step_end": 771,
+            "reached": true
+          },
+          {
+            "source_index": 5,
+            "kind": "move",
+            "step_start": 771,
+            "step_end": 859,
+            "reached": true
+          },
+          {
+            "source_index": 6,
+            "kind": "move",
+            "step_start": 859,
+            "step_end": 911,
+            "reached": true
+          },
+          {
+            "source_index": 7,
+            "kind": "hold",
+            "step_start": 911,
+            "step_end": 929,
+            "reached": true
+          },
+          {
+            "source_index": 8,
+            "kind": "move",
+            "step_start": 929,
+            "step_end": 1015,
+            "reached": false
+          },
+          {
+            "source_index": 9,
+            "kind": "navigate",
+            "step_start": 1015,
+            "step_end": 1078,
+            "reached": true
+          },
+          {
+            "source_index": 10,
+            "kind": "move",
+            "step_start": 1078,
+            "step_end": 1147,
+            "reached": true
+          },
+          {
+            "source_index": 11,
+            "kind": "move",
+            "step_start": 1147,
+            "step_end": 1215,
+            "reached": true
+          },
+          {
+            "source_index": 12,
+            "kind": "hold",
+            "step_start": 1215,
+            "step_end": 1233,
+            "reached": true
+          },
+          {
+            "source_index": 13,
+            "kind": "move",
+            "step_start": 1233,
+            "step_end": 1308,
+            "reached": true
+          },
+          {
+            "source_index": 14,
+            "kind": "move",
+            "step_start": 1308,
+            "step_end": 1342,
+            "reached": true
+          },
+          {
+            "source_index": 15,
+            "kind": "move",
+            "step_start": 1342,
+            "step_end": 1459,
+            "reached": true
+          },
+          {
+            "source_index": 16,
+            "kind": "move",
+            "step_start": 1459,
+            "step_end": 1513,
+            "reached": true
+          },
+          {
+            "source_index": 17,
+            "kind": "hold",
+            "step_start": 1513,
+            "step_end": 1531,
+            "reached": true
+          },
+          {
+            "source_index": 18,
+            "kind": "move",
+            "step_start": 1531,
+            "step_end": 1613,
+            "reached": true
+          },
+          {
+            "source_index": 19,
+            "kind": "hold",
+            "step_start": 1613,
+            "step_end": 1633,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 1633,
+      "step_end": 1899,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The tangerine is on its board, but the garlic remains on the counter after the saved grasp missed its shifted position.",
+        "Sub": "Regrasp the garlic at its current position.",
+        "Fine": "Use a deeper contact pose and a modest lift. Verify attachment before carrying it to the second board."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The tangerine is on its board, but the garlic remains on the counter after the saved grasp missed its shifted position.",
+          "Sub": "Regrasp the garlic at its current position.",
+          "Fine": "Use a deeper contact pose and a modest lift. Verify attachment before carrying it to the second board."
+        },
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          -0.008
+        ],
+        "yaw_degrees": 90,
+        "approach_height": 0.15,
+        "lift": 0.14
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable2",
+        "object_lift_m": 0.13510582505902402,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 1899,
+      "step_end": 2163,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The deeper grasp lifted the garlic by 13.5 cm and it follows the gripper.",
+        "Sub": "Place the garlic on the remaining board.",
+        "Fine": "Carry at low clearance, lower to the board, release, and withdraw. Check both final placements."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The deeper grasp lifted the garlic by 13.5 cm and it follows the gripper.",
+          "Sub": "Place the garlic on the remaining board.",
+          "Fine": "Carry at low clearance, lower to the board, release, and withdraw. Check both final placements."
+        },
+        "action": "sequence",
+        "commands": [
+          {
+            "action": "move",
+            "position": [
+              1.950347600157167,
+              -0.43956408405460345,
+              1.0815419106167277
+            ],
+            "grip": 1,
+            "yaw_degrees": 90
+          },
+          {
+            "action": "move",
+            "position": [
+              1.950347600157167,
+              -0.43956408405460345,
+              0.9615419106167277
+            ],
+            "grip": 1
+          },
+          {
+            "action": "gripper",
+            "close": -1,
+            "steps": 18
+          },
+          {
+            "action": "move",
+            "position": [
+              1.950347600157167,
+              -0.43956408405460345,
+              1.1315419106167277
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                1.950347600157167,
+                -0.43956408405460345,
+                1.0815419106167277
+              ],
+              "grip": 1,
+              "yaw_degrees": 90
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 2033,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                1.950347600157167,
+                -0.43956408405460345,
+                0.9615419106167277
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 2080,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": -1,
+              "steps": 18
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 2098,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                1.950347600157167,
+                -0.43956408405460345,
+                1.1315419106167277
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 2163,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 5,
+      "step_start": 2163,
+      "step_end": 2163,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The tangerine and garlic are on separate boards. The official environment check confirms complete task success.",
+        "Sub": "Finish the recovered navigation and manipulation task.",
+        "Fine": "Keep both placements and save the uninterrupted episode, including the observed-state regrasp."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The tangerine and garlic are on separate boards. The official environment check confirms complete task success.",
+          "Sub": "Finish the recovered navigation and manipulation task.",
+          "Fine": "Keep both placements and save the uninterrupted episode, including the observed-state regrasp."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "618fb853f3130ac36b125fa9ee6769d11f0701558d6ededf81bcac5ae52addc1",
+    "action_trace_sha256": "b0eebf2138e02453e771c5fe92083d1c480497bf7c5f4dc26008d8a307b88088",
+    "decision_origin": "GPT-authored instructions: known prefixes replayed with preceding-feedback gates; later corrections use current observations. Not online inference from a trained RynnBrain checkpoint.",
+    "trajectory_use": "Saved successful reference waypoints are read and executed from the perturbed state through bounded, smooth control. Simulator states are not replayed or assigned."
+  },
+  "source_baseline": {
+    "manifest": {
+      "backend": "robocasa365",
+      "task": "Place the tangerine and the garlic on separate cutting boards.",
+      "seed": 11,
+      "brain": "none; deterministic successful-trajectory collection",
+      "output_schema": [],
+      "executor": "analytical OSC controller with simulator-state localization",
+      "executor_version": "v5-minimum-jerk",
+      "continuous_episode": true,
+      "reset_after_failure": false,
+      "control_frequency_hz": 20,
+      "recording_fps": 20,
+      "task_source": "OrganizeVegetables",
+      "camera": "robot0_agentview_left",
+      "action_dim": 12,
+      "initial_model_sha256": "74e58ff108515dda1708ea62713f20e9377407651e43fcd9a96f7bb83875e9b8",
+      "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+      "arm_reference": "world",
+      "source_success_baseline": null,
+      "navigation": false
+    },
+    "result": {
+      "success": true,
+      "steps": 1430,
+      "commands": 6,
+      "brain_records": 0,
+      "termination": "baseline_plan"
+    },
+    "events": [
+      {
+        "index": 0,
+        "step_start": 0,
+        "step_end": 418,
+        "brain": null,
+        "command": {
+          "action": "pick",
+          "object": "vegetable1",
+          "offset": [
+            0,
+            0,
+            0.005
+          ],
+          "yaw_degrees": 90,
+          "lift": 0.2
+        },
+        "feedback": {
+          "action": "pick",
+          "object": "vegetable1",
+          "object_lift_m": 0.1943926498586841,
+          "object_follows_gripper": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 1,
+        "step_start": 418,
+        "step_end": 696,
+        "brain": null,
+        "command": {
+          "action": "place",
+          "object": "vegetable1",
+          "target": "cutting_board1",
+          "offset": [
+            0,
+            0,
+            0.035
+          ]
+        },
+        "feedback": {
+          "action": "place",
+          "released": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 2,
+        "step_start": 696,
+        "step_end": 753,
+        "brain": null,
+        "command": {
+          "action": "base_shift",
+          "delta_world": [
+            -0.15,
+            0,
+            0
+          ]
+        },
+        "feedback": {
+          "action": "navigate",
+          "base_start": [
+            2.2714551098397067,
+            -0.8181069861635581,
+            0.0
+          ],
+          "base_end": [
+            2.1122187001642696,
+            -0.8441028413039713,
+            0.0
+          ],
+          "target_distance_m": 0.027587963827978557,
+          "heading_error_rad": 0.0022572086452152806,
+          "reached": true,
+          "steps": 57
+        },
+        "official_success": false
+      },
+      {
+        "index": 3,
+        "step_start": 753,
+        "step_end": 1106,
+        "brain": null,
+        "command": {
+          "action": "pick",
+          "object": "vegetable2",
+          "offset": [
+            0,
+            0,
+            0.005
+          ],
+          "yaw_degrees": 90,
+          "lift": 0.2
+        },
+        "feedback": {
+          "action": "pick",
+          "object": "vegetable2",
+          "object_lift_m": 0.1929850023492522,
+          "object_follows_gripper": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 4,
+        "step_start": 1106,
+        "step_end": 1410,
+        "brain": null,
+        "command": {
+          "action": "place",
+          "object": "vegetable2",
+          "target": "cutting_board2",
+          "offset": [
+            0,
+            0,
+            0.035
+          ]
+        },
+        "feedback": {
+          "action": "place",
+          "released": true
+        },
+        "official_success": true
+      },
+      {
+        "index": 5,
+        "step_start": 1410,
+        "step_end": 1430,
+        "brain": null,
+        "command": {
+          "action": "wait",
+          "steps": 20
+        },
+        "feedback": {
+          "action": "wait",
+          "completed": true
+        },
+        "official_success": true
+      }
+    ],
+    "reference_waypoints": [
+      {
+        "step": 0,
+        "kind": "move",
+        "position": [
+          2.1828154264172404,
+          -0.5837887189932136,
+          1.1303223989190991
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 213
+      },
+      {
+        "step": 253,
+        "kind": "move",
+        "position": [
+          2.1828154264172404,
+          -0.5837887189932136,
+          0.9503223989190991
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 58
+      },
+      {
+        "step": 324,
+        "kind": "hold",
+        "position": [
+          2.1836172632401496,
+          -0.5837622475634582,
+          0.9525446135808159
+        ],
+        "rotation": [
+          [
+            0.0009005666031277811,
+            -0.9999959690284617,
+            0.0026927507529044045
+          ],
+          [
+            -0.9999993261491837,
+            -0.0009025357672503923,
+            -0.0007301577660342839
+          ],
+          [
+            0.0007325851266558987,
+            -0.0026920913826930125,
+            -0.9999961079739338
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 18
+      },
+      {
+        "step": 342,
+        "kind": "move",
+        "position": [
+          2.1828154264172404,
+          -0.5837887189932136,
+          1.1503223989190992
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 47
+      },
+      {
+        "step": 418,
+        "kind": "move",
+        "position": [
+          2.1825391375426864,
+          -0.5835178712531977,
+          1.2285284665641674
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 19
+      },
+      {
+        "step": 452,
+        "kind": "move",
+        "position": [
+          2.3588060334614673,
+          -0.39302947879799444,
+          1.1164480617817816
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 67
+      },
+      {
+        "step": 540,
+        "kind": "move",
+        "position": [
+          2.3588060334614673,
+          -0.39302947879799444,
+          0.9764480617817817
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 32
+      },
+      {
+        "step": 592,
+        "kind": "hold",
+        "position": [
+          2.358630628350443,
+          -0.39152279071276586,
+          0.983202036176159
+        ],
+        "rotation": [
+          [
+            -0.0006975329877281451,
+            -0.999999182335194,
+            0.001071809998180889
+          ],
+          [
+            -0.9999925247962725,
+            0.0007016037775209087,
+            0.00380238132141009
+          ],
+          [
+            -0.0038031301982802174,
+            -0.0010691496997791915,
+            -0.999992196529359
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 18
+      },
+      {
+        "step": 610,
+        "kind": "move",
+        "position": [
+          2.3588060334614673,
+          -0.39302947879799444,
+          1.1764480617817816
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 46
+      },
+      {
+        "step": 696,
+        "kind": "navigate",
+        "position": [
+          2.1214551098397068,
+          -0.8181069861635581,
+          0.0
+        ],
+        "yaw": 1.5669910355831207,
+        "duration_steps": 26
+      },
+      {
+        "step": 753,
+        "kind": "move",
+        "position": [
+          2.2622653710059755,
+          -0.575782786408015,
+          1.1250704426228921
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 150
+      },
+      {
+        "step": 943,
+        "kind": "move",
+        "position": [
+          2.2622653710059755,
+          -0.575782786408015,
+          0.9450704426228921
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 47
+      },
+      {
+        "step": 1012,
+        "kind": "hold",
+        "position": [
+          2.262287314991907,
+          -0.5755824209236847,
+          0.9477657353833944
+        ],
+        "rotation": [
+          [
+            -0.00035377586992873855,
+            -0.9999998738159744,
+            -0.00035666604542444427
+          ],
+          [
+            -0.999999265782951,
+            0.00035418898507583396,
+            -0.0011588717447294154
+          ],
+          [
+            0.001158997925682954,
+            0.0003562558026945255,
+            -0.999999264902535
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 18
+      },
+      {
+        "step": 1030,
+        "kind": "move",
+        "position": [
+          2.2622653710059755,
+          -0.575782786408015,
+          1.1450704426228921
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 47
+      },
+      {
+        "step": 1106,
+        "kind": "move",
+        "position": [
+          2.2623170751366906,
+          -0.5756922161159387,
+          1.222928257988191
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 19
+      },
+      {
+        "step": 1140,
+        "kind": "move",
+        "position": [
+          1.949626586705481,
+          -0.4386870336177746,
+          1.1172343239081952
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 84
+      },
+      {
+        "step": 1257,
+        "kind": "move",
+        "position": [
+          1.949626586705481,
+          -0.4386870336177746,
+          0.9772343239081953
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 33
+      },
+      {
+        "step": 1311,
+        "kind": "hold",
+        "position": [
+          1.9498628920259795,
+          -0.43829478788568255,
+          0.9814621170698902
+        ],
+        "rotation": [
+          [
+            0.0004960750599981154,
+            -0.9999993777203163,
+            -0.0009992339622511197
+          ],
+          [
+            -0.999997049927906,
+            -0.0004984494125936247,
+            0.002377326999906157
+          ],
+          [
+            -0.002377823588125396,
+            0.0009980516818047802,
+            -0.9999966749183823
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 18
+      },
+      {
+        "step": 1329,
+        "kind": "move",
+        "position": [
+          1.949626586705481,
+          -0.4386870336177746,
+          1.1772343239081953
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 46
+      },
+      {
+        "step": 1410,
+        "kind": "hold",
+        "position": [
+          1.9496470429597308,
+          -0.4418584884552993,
+          1.1718260015511706
+        ],
+        "rotation": [
+          [
+            -0.00011846007989863221,
+            -0.9999990441916006,
+            -0.0013775278913277984
+          ],
+          [
+            -0.999976128863664,
+            0.00010894045930126346,
+            0.006908678224783709
+          ],
+          [
+            -0.006908521552889863,
+            0.0013783134107462017,
+            -0.999975185983178
+          ]
+        ],
+        "grip": null,
+        "duration_steps": 20
+      }
+    ]
+  },
+  "motion_evidence": {
+    "recording_fps": 20,
+    "control_hz": 20,
+    "native_frames": 2163,
+    "interpolated_frames": 0,
+    "quintic_reference": true,
+    "eef_speed_p95_m_s": 0.18196222462000328,
+    "eef_acceleration_p95_m_s2": 0.2001366395929553,
+    "measurement_note": "Descriptive kinematic measurements, not a perceptual guarantee of zero jitter."
+  },
+  "navigation_evidence": {
+    "task_source": "OrganizeVegetables with disclosed farther mobile start",
+    "combined_with_manipulation": true,
+    "initial_prep_distance_m": 0.7500029668090265,
+    "wrong_way_prep_distance_m": 1.120511944178095,
+    "distance_increased_m": 0.3705089773690686,
+    "dock_error_m": 0.005881822989569879,
+    "dock_reached": true,
+    "base_path_length_m": 1.6541500909884879,
+    "initial_position": [
+      2.2721840110551046,
+      -1.5679556159929637,
+      0.0
+    ],
+    "wrong_way_position": [
+      2.0721823544843603,
+      -1.9206500129179664,
+      0.0
+    ],
+    "prep_position": [
+      2.271197359765954,
+      -0.8179532981688284,
+      0.0
+    ],
+    "base_trace": [
+      {
+        "step": 1,
+        "position": [
+          2.27225792025178,
+          -1.5679909159104835,
+          0.0
+        ],
+        "yaw": 1.5662609169138022
+      },
+      {
+        "step": 11,
+        "position": [
+          2.2706571201511148,
+          -1.5693544683008724,
+          0.0
+        ],
+        "yaw": 1.5658206260420429
+      },
+      {
+        "step": 21,
+        "position": [
+          2.2420709085336794,
+          -1.6104319119042125,
+          0.0
+        ],
+        "yaw": 1.5661135564726
+      },
+      {
+        "step": 31,
+        "position": [
+          2.1908492010021616,
+          -1.7051806574579425,
+          0.0
+        ],
+        "yaw": 1.5660769371542556
+      },
+      {
+        "step": 41,
+        "position": [
+          2.1351403110788763,
+          -1.80564819176123,
+          0.0
+        ],
+        "yaw": 1.566135419078227
+      },
+      {
+        "step": 51,
+        "position": [
+          2.090702688104831,
+          -1.8837541894199308,
+          0.0
+        ],
+        "yaw": 1.5660965228368364
+      },
+      {
+        "step": 61,
+        "position": [
+          2.0739057370267746,
+          -1.919625583301539,
+          0.0
+        ],
+        "yaw": 1.5660716963103978
+      },
+      {
+        "step": 71,
+        "position": [
+          2.072179217370236,
+          -1.9210386844611729,
+          0.0
+        ],
+        "yaw": 1.5661067746214703
+      },
+      {
+        "step": 81,
+        "position": [
+          2.0721820889170344,
+          -1.9206610531493764,
+          0.0
+        ],
+        "yaw": 1.566097431918871
+      },
+      {
+        "step": 91,
+        "position": [
+          2.0721823545278313,
+          -1.9206500128953543,
+          0.0
+        ],
+        "yaw": 1.5660962963103866
+      },
+      {
+        "step": 101,
+        "position": [
+          2.0721827339144165,
+          -1.9206488604487995,
+          0.0
+        ],
+        "yaw": 1.5660962763266957
+      },
+      {
+        "step": 111,
+        "position": [
+          2.072410485995797,
+          -1.9199780975672311,
+          0.0
+        ],
+        "yaw": 1.5660962207719116
+      },
+      {
+        "step": 121,
+        "position": [
+          2.0736384235844527,
+          -1.9142252361520538,
+          0.0
+        ],
+        "yaw": 1.5660857889826731
+      },
+      {
+        "step": 131,
+        "position": [
+          2.0763673272899106,
+          -1.8875367408984485,
+          0.0
+        ],
+        "yaw": 1.5660909715513855
+      },
+      {
+        "step": 141,
+        "position": [
+          2.0804758174046194,
+          -1.8443189888208766,
+          0.0
+        ],
+        "yaw": 1.5660893519707535
+      },
+      {
+        "step": 151,
+        "position": [
+          2.088126341974062,
+          -1.7842603436101925,
+          0.0
+        ],
+        "yaw": 1.5660947263494565
+      },
+      {
+        "step": 161,
+        "position": [
+          2.1030782548568236,
+          -1.7080077584138387,
+          0.0
+        ],
+        "yaw": 1.5660892282439467
+      },
+      {
+        "step": 171,
+        "position": [
+          2.1209279167293382,
+          -1.617770371654887,
+          0.0
+        ],
+        "yaw": 1.566088002206768
+      },
+      {
+        "step": 181,
+        "position": [
+          2.140364001223636,
+          -1.5169269332756496,
+          0.0
+        ],
+        "yaw": 1.5660877418368757
+      },
+      {
+        "step": 191,
+        "position": [
+          2.160535096694523,
+          -1.4096538839224613,
+          0.0
+        ],
+        "yaw": 1.5660882310947886
+      },
+      {
+        "step": 201,
+        "position": [
+          2.1806034082435297,
+          -1.3005841295257587,
+          0.0
+        ],
+        "yaw": 1.5660894150587295
+      },
+      {
+        "step": 211,
+        "position": [
+          2.1996869645483357,
+          -1.1944805695910095,
+          0.0
+        ],
+        "yaw": 1.5660912283086583
+      },
+      {
+        "step": 221,
+        "position": [
+          2.216866799692982,
+          -1.095916613104015,
+          0.0
+        ],
+        "yaw": 1.5660934000893567
+      },
+      {
+        "step": 231,
+        "position": [
+          2.2312343442432914,
+          -1.0089607682416961,
+          0.0
+        ],
+        "yaw": 1.5660956793718184
+      },
+      {
+        "step": 241,
+        "position": [
+          2.242032649582562,
+          -0.936860613889538,
+          0.0
+        ],
+        "yaw": 1.566097867025977
+      },
+      {
+        "step": 251,
+        "position": [
+          2.248910682839178,
+          -0.8817294241998936,
+          0.0
+        ],
+        "yaw": 1.5660997719753225
+      },
+      {
+        "step": 261,
+        "position": [
+          2.2536729535672295,
+          -0.8443245522912118,
+          0.0
+        ],
+        "yaw": 1.5661035979092282
+      },
+      {
+        "step": 271,
+        "position": [
+          2.2580444267671873,
+          -0.826224468090177,
+          0.0
+        ],
+        "yaw": 1.566107673312031
+      },
+      {
+        "step": 281,
+        "position": [
+          2.261661307432852,
+          -0.8238171648351926,
+          0.0
+        ],
+        "yaw": 1.5660975171015559
+      },
+      {
+        "step": 291,
+        "position": [
+          2.2642924185487026,
+          -0.8226119206006747,
+          0.0
+        ],
+        "yaw": 1.5660975465283404
+      },
+      {
+        "step": 301,
+        "position": [
+          2.266216050716042,
+          -0.8218447476996078,
+          0.0
+        ],
+        "yaw": 1.566097590898241
+      },
+      {
+        "step": 311,
+        "position": [
+          2.266652382780151,
+          -0.8216867995221664,
+          0.0
+        ],
+        "yaw": 1.5660918096925627
+      },
+      {
+        "step": 321,
+        "position": [
+          2.266652383731967,
+          -0.8216867998824996,
+          0.0
+        ],
+        "yaw": 1.5660918043100185
+      },
+      {
+        "step": 331,
+        "position": [
+          2.2666527549949587,
+          -0.8216868006956615,
+          0.0
+        ],
+        "yaw": 1.5660921824412193
+      },
+      {
+        "step": 341,
+        "position": [
+          2.266655149902368,
+          -0.8216869203828847,
+          0.0
+        ],
+        "yaw": 1.56609350186644
+      },
+      {
+        "step": 351,
+        "position": [
+          2.2666591867953514,
+          -0.8216872269349599,
+          0.0
+        ],
+        "yaw": 1.5660959042538265
+      },
+      {
+        "step": 361,
+        "position": [
+          2.266664873449966,
+          -0.8216878520685719,
+          0.0
+        ],
+        "yaw": 1.5660965582630706
+      },
+      {
+        "step": 371,
+        "position": [
+          2.266672238622258,
+          -0.8216889934678004,
+          0.0
+        ],
+        "yaw": 1.566092126477884
+      },
+      {
+        "step": 381,
+        "position": [
+          2.2666774970836996,
+          -0.8216907377857803,
+          0.0
+        ],
+        "yaw": 1.5660662261662357
+      },
+      {
+        "step": 391,
+        "position": [
+          2.2666840941726667,
+          -0.8216922736359732,
+          0.0
+        ],
+        "yaw": 1.5660300483591643
+      },
+      {
+        "step": 401,
+        "position": [
+          2.266692648047534,
+          -0.8216935254988086,
+          0.0
+        ],
+        "yaw": 1.56598117745324
+      },
+      {
+        "step": 411,
+        "position": [
+          2.2667026710082148,
+          -0.8216943393767675,
+          0.0
+        ],
+        "yaw": 1.5659223378507687
+      },
+      {
+        "step": 421,
+        "position": [
+          2.2667130104688615,
+          -0.8216947606528036,
+          0.0
+        ],
+        "yaw": 1.5658610962348312
+      },
+      {
+        "step": 431,
+        "position": [
+          2.2667239017909457,
+          -0.8216953410622541,
+          0.0
+        ],
+        "yaw": 1.5657984996337988
+      },
+      {
+        "step": 441,
+        "position": [
+          2.266734838350849,
+          -0.8216962527858599,
+          0.0
+        ],
+        "yaw": 1.56573853724545
+      },
+      {
+        "step": 451,
+        "position": [
+          2.2667453358904432,
+          -0.821697667207193,
+          0.0
+        ],
+        "yaw": 1.5656867702756525
+      },
+      {
+        "step": 461,
+        "position": [
+          2.2667550773766343,
+          -0.8216990864177933,
+          0.0
+        ],
+        "yaw": 1.5656455296839962
+      },
+      {
+        "step": 471,
+        "position": [
+          2.2667634084415416,
+          -0.8217004677344638,
+          0.0
+        ],
+        "yaw": 1.565614393564319
+      },
+      {
+        "step": 481,
+        "position": [
+          2.2667703799584795,
+          -0.8217016039299418,
+          0.0
+        ],
+        "yaw": 1.5655930562588654
+      },
+      {
+        "step": 491,
+        "position": [
+          2.2667722271712405,
+          -0.821698117264607,
+          0.0
+        ],
+        "yaw": 1.5656020353990194
+      },
+      {
+        "step": 501,
+        "position": [
+          2.266774500031314,
+          -0.8216956559419493,
+          0.0
+        ],
+        "yaw": 1.5656037262324407
+      },
+      {
+        "step": 511,
+        "position": [
+          2.2667765002532843,
+          -0.8216939690881593,
+          0.0
+        ],
+        "yaw": 1.5656035260070846
+      },
+      {
+        "step": 521,
+        "position": [
+          2.2667779243113126,
+          -0.8216922706780272,
+          0.0
+        ],
+        "yaw": 1.5656038255083722
+      },
+      {
+        "step": 531,
+        "position": [
+          2.266779505638384,
+          -0.8216911027475216,
+          0.0
+        ],
+        "yaw": 1.565601672158768
+      },
+      {
+        "step": 541,
+        "position": [
+          2.2667810994550748,
+          -0.821691068493665,
+          0.0
+        ],
+        "yaw": 1.5655968278521928
+      },
+      {
+        "step": 551,
+        "position": [
+          2.266782548963519,
+          -0.8216915163709335,
+          0.0
+        ],
+        "yaw": 1.5655918011582421
+      },
+      {
+        "step": 561,
+        "position": [
+          2.2667839520216155,
+          -0.8216918457830781,
+          0.0
+        ],
+        "yaw": 1.5655875967107205
+      },
+      {
+        "step": 571,
+        "position": [
+          2.2667853555853967,
+          -0.8216921629050165,
+          0.0
+        ],
+        "yaw": 1.565583865328748
+      },
+      {
+        "step": 581,
+        "position": [
+          2.2667586572393246,
+          -0.8216923195337461,
+          0.0
+        ],
+        "yaw": 1.5656537901346965
+      },
+      {
+        "step": 591,
+        "position": [
+          2.266778102537375,
+          -0.8216918571467087,
+          0.0
+        ],
+        "yaw": 1.5656027090800824
+      },
+      {
+        "step": 601,
+        "position": [
+          2.266787639015074,
+          -0.8216919030025305,
+          0.0
+        ],
+        "yaw": 1.565576194992961
+      },
+      {
+        "step": 611,
+        "position": [
+          2.266789766197025,
+          -0.8216933456536273,
+          0.0
+        ],
+        "yaw": 1.5655678185301378
+      },
+      {
+        "step": 621,
+        "position": [
+          2.266780963250096,
+          -0.8216947525652835,
+          0.0
+        ],
+        "yaw": 1.565593078185055
+      },
+      {
+        "step": 631,
+        "position": [
+          2.2667686994382827,
+          -0.8216944496523821,
+          0.0
+        ],
+        "yaw": 1.5656261588255633
+      },
+      {
+        "step": 641,
+        "position": [
+          2.2667679840375117,
+          -0.82169374920928,
+          0.0
+        ],
+        "yaw": 1.5656273479095353
+      },
+      {
+        "step": 651,
+        "position": [
+          2.266766130109618,
+          -0.8216916864707735,
+          0.0
+        ],
+        "yaw": 1.5656336288849588
+      },
+      {
+        "step": 661,
+        "position": [
+          2.266766016945751,
+          -0.8216915271301147,
+          0.0
+        ],
+        "yaw": 1.5656348336802917
+      },
+      {
+        "step": 671,
+        "position": [
+          2.2667653641836747,
+          -0.82168992006318,
+          0.0
+        ],
+        "yaw": 1.5656363090289995
+      },
+      {
+        "step": 681,
+        "position": [
+          2.2667644603608244,
+          -0.8216885516916017,
+          0.0
+        ],
+        "yaw": 1.565640563094706
+      },
+      {
+        "step": 691,
+        "position": [
+          2.2667654960521904,
+          -0.8216900798411326,
+          0.0
+        ],
+        "yaw": 1.5656411034574633
+      },
+      {
+        "step": 701,
+        "position": [
+          2.26676584709998,
+          -0.8216909489624817,
+          0.0
+        ],
+        "yaw": 1.5656415090358062
+      },
+      {
+        "step": 711,
+        "position": [
+          2.2667658447889116,
+          -0.8216909786933272,
+          0.0
+        ],
+        "yaw": 1.5656411938501646
+      },
+      {
+        "step": 721,
+        "position": [
+          2.266766123468005,
+          -0.8216915549647534,
+          0.0
+        ],
+        "yaw": 1.5656402241742466
+      },
+      {
+        "step": 731,
+        "position": [
+          2.266766409479153,
+          -0.8216921468476756,
+          0.0
+        ],
+        "yaw": 1.5656392538589898
+      },
+      {
+        "step": 741,
+        "position": [
+          2.266766337116321,
+          -0.8216911990267157,
+          0.0
+        ],
+        "yaw": 1.565636395233191
+      },
+      {
+        "step": 751,
+        "position": [
+          2.266766485722344,
+          -0.8216921633899302,
+          0.0
+        ],
+        "yaw": 1.565637259046094
+      },
+      {
+        "step": 761,
+        "position": [
+          2.26676669490033,
+          -0.8216928865103269,
+          0.0
+        ],
+        "yaw": 1.5656374539004143
+      },
+      {
+        "step": 771,
+        "position": [
+          2.266766629645477,
+          -0.8216927816995829,
+          0.0
+        ],
+        "yaw": 1.5656370836183169
+      },
+      {
+        "step": 781,
+        "position": [
+          2.2667619474739165,
+          -0.8216925163616717,
+          0.0
+        ],
+        "yaw": 1.5656483011356557
+      },
+      {
+        "step": 791,
+        "position": [
+          2.266746490410225,
+          -0.8216990027807846,
+          0.0
+        ],
+        "yaw": 1.5656906003695408
+      },
+      {
+        "step": 801,
+        "position": [
+          2.2667408888868024,
+          -0.8217017249013885,
+          0.0
+        ],
+        "yaw": 1.5657044390709043
+      },
+      {
+        "step": 811,
+        "position": [
+          2.2667392461651845,
+          -0.8217027327734032,
+          0.0
+        ],
+        "yaw": 1.565707781986221
+      },
+      {
+        "step": 821,
+        "position": [
+          2.266737877818712,
+          -0.8217041348190374,
+          0.0
+        ],
+        "yaw": 1.5657107267241293
+      },
+      {
+        "step": 831,
+        "position": [
+          2.266736890809895,
+          -0.8217052517971253,
+          0.0
+        ],
+        "yaw": 1.5657129831842154
+      },
+      {
+        "step": 841,
+        "position": [
+          2.2666430426848043,
+          -0.8217648804805011,
+          0.0
+        ],
+        "yaw": 1.5659178034098136
+      },
+      {
+        "step": 851,
+        "position": [
+          2.266616761179263,
+          -0.8218231789328071,
+          0.0
+        ],
+        "yaw": 1.5659483870550803
+      },
+      {
+        "step": 861,
+        "position": [
+          2.2665829869235488,
+          -0.8218783755296523,
+          0.0
+        ],
+        "yaw": 1.5660030240849234
+      },
+      {
+        "step": 871,
+        "position": [
+          2.266582802322331,
+          -0.8218813552436732,
+          0.0
+        ],
+        "yaw": 1.566003075699366
+      },
+      {
+        "step": 881,
+        "position": [
+          2.26658253179485,
+          -0.8218818566556471,
+          0.0
+        ],
+        "yaw": 1.56600397558537
+      },
+      {
+        "step": 891,
+        "position": [
+          2.2665828663188776,
+          -0.8218820854103269,
+          0.0
+        ],
+        "yaw": 1.5660034079551446
+      },
+      {
+        "step": 901,
+        "position": [
+          2.266583109290104,
+          -0.8218819120174818,
+          0.0
+        ],
+        "yaw": 1.566003227784852
+      },
+      {
+        "step": 911,
+        "position": [
+          2.2665668347968655,
+          -0.8218923062082857,
+          0.0
+        ],
+        "yaw": 1.566035102816245
+      },
+      {
+        "step": 921,
+        "position": [
+          2.2665628486831286,
+          -0.8218992403000491,
+          0.0
+        ],
+        "yaw": 1.5660386920832798
+      },
+      {
+        "step": 931,
+        "position": [
+          2.2665627485600885,
+          -0.821899248279913,
+          0.0
+        ],
+        "yaw": 1.5660385754897235
+      },
+      {
+        "step": 941,
+        "position": [
+          2.2665626084749158,
+          -0.8218957393049672,
+          0.0
+        ],
+        "yaw": 1.5660387841580494
+      },
+      {
+        "step": 951,
+        "position": [
+          2.2665629791512583,
+          -0.8218967203484595,
+          0.0
+        ],
+        "yaw": 1.5660368408586431
+      },
+      {
+        "step": 961,
+        "position": [
+          2.266563141708508,
+          -0.8218970747603473,
+          0.0
+        ],
+        "yaw": 1.566035965868568
+      },
+      {
+        "step": 971,
+        "position": [
+          2.2665633083765946,
+          -0.821897656005334,
+          0.0
+        ],
+        "yaw": 1.5660354982736455
+      },
+      {
+        "step": 981,
+        "position": [
+          2.2665705859154426,
+          -0.8219054992440399,
+          0.0
+        ],
+        "yaw": 1.5660134462273678
+      },
+      {
+        "step": 991,
+        "position": [
+          2.2666309705831864,
+          -0.821899862504214,
+          0.0
+        ],
+        "yaw": 1.5658638242685319
+      },
+      {
+        "step": 1001,
+        "position": [
+          2.2666910465076047,
+          -0.8218969700402778,
+          0.0
+        ],
+        "yaw": 1.565713781900817
+      },
+      {
+        "step": 1011,
+        "position": [
+          2.266749222351787,
+          -0.8218954753498561,
+          0.0
+        ],
+        "yaw": 1.5655677807357637
+      },
+      {
+        "step": 1021,
+        "position": [
+          2.265826150123947,
+          -0.8217625892238152,
+          0.0
+        ],
+        "yaw": 1.5662274835311067
+      },
+      {
+        "step": 1031,
+        "position": [
+          2.2537939754197405,
+          -0.8208337280381721,
+          0.0
+        ],
+        "yaw": 1.5677222648814715
+      },
+      {
+        "step": 1041,
+        "position": [
+          2.1843879811675726,
+          -0.8201852445313744,
+          0.0
+        ],
+        "yaw": 1.5670966785464588
+      },
+      {
+        "step": 1051,
+        "position": [
+          2.15421942134571,
+          -0.8198368082559243,
+          0.0
+        ],
+        "yaw": 1.567006779618207
+      },
+      {
+        "step": 1061,
+        "position": [
+          2.1441085577362893,
+          -0.8196183399406687,
+          0.0
+        ],
+        "yaw": 1.5669975231127025
+      },
+      {
+        "step": 1071,
+        "position": [
+          2.1426020489679507,
+          -0.8196203009182954,
+          0.0
+        ],
+        "yaw": 1.5669494478282449
+      },
+      {
+        "step": 1081,
+        "position": [
+          2.1426193102315008,
+          -0.8196186303544749,
+          0.0
+        ],
+        "yaw": 1.5669064049626273
+      },
+      {
+        "step": 1091,
+        "position": [
+          2.1425410309456323,
+          -0.8195995760392236,
+          0.0
+        ],
+        "yaw": 1.5671156171022864
+      },
+      {
+        "step": 1101,
+        "position": [
+          2.142358063409551,
+          -0.8195670394165355,
+          0.0
+        ],
+        "yaw": 1.567591958160906
+      },
+      {
+        "step": 1111,
+        "position": [
+          2.1422208854641402,
+          -0.8195448188621987,
+          0.0
+        ],
+        "yaw": 1.5679438918229707
+      },
+      {
+        "step": 1121,
+        "position": [
+          2.142232413209985,
+          -0.8195456727755929,
+          0.0
+        ],
+        "yaw": 1.5679130215591852
+      },
+      {
+        "step": 1131,
+        "position": [
+          2.1422343513152198,
+          -0.8195452162985831,
+          0.0
+        ],
+        "yaw": 1.5679101606690775
+      },
+      {
+        "step": 1141,
+        "position": [
+          2.1422347254054435,
+          -0.8195457527328326,
+          0.0
+        ],
+        "yaw": 1.5679113705695538
+      },
+      {
+        "step": 1151,
+        "position": [
+          2.142238048855841,
+          -0.819555886722352,
+          0.0
+        ],
+        "yaw": 1.5678927183979607
+      },
+      {
+        "step": 1161,
+        "position": [
+          2.1422366570135734,
+          -0.8195572234445079,
+          0.0
+        ],
+        "yaw": 1.5678977119055113
+      },
+      {
+        "step": 1171,
+        "position": [
+          2.1422365563324797,
+          -0.8195561280621814,
+          0.0
+        ],
+        "yaw": 1.5679028223843405
+      },
+      {
+        "step": 1181,
+        "position": [
+          2.142236349874617,
+          -0.8195567968650088,
+          0.0
+        ],
+        "yaw": 1.567904402952716
+      },
+      {
+        "step": 1191,
+        "position": [
+          2.1422361990197354,
+          -0.8195577028129145,
+          0.0
+        ],
+        "yaw": 1.5679051990597974
+      },
+      {
+        "step": 1201,
+        "position": [
+          2.1422359732705574,
+          -0.8195586363107326,
+          0.0
+        ],
+        "yaw": 1.567905877827634
+      },
+      {
+        "step": 1211,
+        "position": [
+          2.142233840377072,
+          -0.8195575317777424,
+          0.0
+        ],
+        "yaw": 1.5679114783295767
+      },
+      {
+        "step": 1221,
+        "position": [
+          2.142193712650801,
+          -0.8195345332160799,
+          0.0
+        ],
+        "yaw": 1.5680206299888224
+      },
+      {
+        "step": 1231,
+        "position": [
+          2.1421831161294476,
+          -0.8195279427964899,
+          0.0
+        ],
+        "yaw": 1.5680508652879193
+      },
+      {
+        "step": 1241,
+        "position": [
+          2.1421618060250744,
+          -0.8195291744378614,
+          0.0
+        ],
+        "yaw": 1.568093720335011
+      },
+      {
+        "step": 1251,
+        "position": [
+          2.1421631871098534,
+          -0.819527171044238,
+          0.0
+        ],
+        "yaw": 1.5680896116787937
+      },
+      {
+        "step": 1261,
+        "position": [
+          2.142162826046703,
+          -0.8195285310065059,
+          0.0
+        ],
+        "yaw": 1.5680861514700661
+      },
+      {
+        "step": 1271,
+        "position": [
+          2.142162552593491,
+          -0.81952953601483,
+          0.0
+        ],
+        "yaw": 1.5680850078637885
+      },
+      {
+        "step": 1281,
+        "position": [
+          2.1421623576607645,
+          -0.8195300694238612,
+          0.0
+        ],
+        "yaw": 1.5680856014287248
+      },
+      {
+        "step": 1291,
+        "position": [
+          2.1421622439180927,
+          -0.8195302742445364,
+          0.0
+        ],
+        "yaw": 1.5680865625622844
+      },
+      {
+        "step": 1301,
+        "position": [
+          2.14216214063146,
+          -0.8195308350666769,
+          0.0
+        ],
+        "yaw": 1.5680873820180228
+      },
+      {
+        "step": 1311,
+        "position": [
+          2.142161091931521,
+          -0.8195307548187101,
+          0.0
+        ],
+        "yaw": 1.5680924184462701
+      },
+      {
+        "step": 1321,
+        "position": [
+          2.142162172003212,
+          -0.8195307315218205,
+          0.0
+        ],
+        "yaw": 1.56808960479346
+      },
+      {
+        "step": 1331,
+        "position": [
+          2.142161906242431,
+          -0.8195318467809907,
+          0.0
+        ],
+        "yaw": 1.568089494288368
+      },
+      {
+        "step": 1341,
+        "position": [
+          2.1421611410705808,
+          -0.8195320497185079,
+          0.0
+        ],
+        "yaw": 1.5680917701425086
+      },
+      {
+        "step": 1351,
+        "position": [
+          2.1421639071813297,
+          -0.8195305037335482,
+          0.0
+        ],
+        "yaw": 1.5680869549143623
+      },
+      {
+        "step": 1361,
+        "position": [
+          2.142179256058428,
+          -0.8195326503390523,
+          0.0
+        ],
+        "yaw": 1.5680469666442025
+      },
+      {
+        "step": 1371,
+        "position": [
+          2.142186900819363,
+          -0.8195363255958066,
+          0.0
+        ],
+        "yaw": 1.5680271317480696
+      },
+      {
+        "step": 1381,
+        "position": [
+          2.14218923111609,
+          -0.8195401532697065,
+          0.0
+        ],
+        "yaw": 1.568022066769262
+      },
+      {
+        "step": 1391,
+        "position": [
+          2.1421913781749375,
+          -0.8195422235223948,
+          0.0
+        ],
+        "yaw": 1.5680189221518577
+      },
+      {
+        "step": 1401,
+        "position": [
+          2.142193072477,
+          -0.8195414097638718,
+          0.0
+        ],
+        "yaw": 1.56801628312221
+      },
+      {
+        "step": 1411,
+        "position": [
+          2.142194565410218,
+          -0.8195385465001526,
+          0.0
+        ],
+        "yaw": 1.5680118756714825
+      },
+      {
+        "step": 1421,
+        "position": [
+          2.1421959932658945,
+          -0.8195347375075257,
+          0.0
+        ],
+        "yaw": 1.5680062850791412
+      },
+      {
+        "step": 1431,
+        "position": [
+          2.1421972838959245,
+          -0.8195329518665554,
+          0.0
+        ],
+        "yaw": 1.5680017579488525
+      },
+      {
+        "step": 1441,
+        "position": [
+          2.1421985435322832,
+          -0.819533309942053,
+          0.0
+        ],
+        "yaw": 1.5679985927678435
+      },
+      {
+        "step": 1451,
+        "position": [
+          2.1421999023081852,
+          -0.8195337511553259,
+          0.0
+        ],
+        "yaw": 1.5679952191219642
+      },
+      {
+        "step": 1461,
+        "position": [
+          2.142174734761342,
+          -0.8195322635425726,
+          0.0
+        ],
+        "yaw": 1.5680643128314917
+      },
+      {
+        "step": 1471,
+        "position": [
+          2.1421758114132547,
+          -0.8195328636808987,
+          0.0
+        ],
+        "yaw": 1.5680599104604016
+      },
+      {
+        "step": 1481,
+        "position": [
+          2.142175976568657,
+          -0.8195326761487498,
+          0.0
+        ],
+        "yaw": 1.5680583647806052
+      },
+      {
+        "step": 1491,
+        "position": [
+          2.142175996593966,
+          -0.8195340922165718,
+          0.0
+        ],
+        "yaw": 1.568058819336871
+      },
+      {
+        "step": 1501,
+        "position": [
+          2.142175901013125,
+          -0.8195347343277045,
+          0.0
+        ],
+        "yaw": 1.568059173851223
+      },
+      {
+        "step": 1511,
+        "position": [
+          2.142175242453516,
+          -0.8195330327415686,
+          0.0
+        ],
+        "yaw": 1.56805951046397
+      },
+      {
+        "step": 1521,
+        "position": [
+          2.1421742257828256,
+          -0.8195315650051063,
+          0.0
+        ],
+        "yaw": 1.568062375531691
+      },
+      {
+        "step": 1531,
+        "position": [
+          2.142174373211691,
+          -0.8195317205510476,
+          0.0
+        ],
+        "yaw": 1.5680624052857841
+      },
+      {
+        "step": 1541,
+        "position": [
+          2.1421737105961385,
+          -0.8195292161077656,
+          0.0
+        ],
+        "yaw": 1.5680624853199423
+      },
+      {
+        "step": 1551,
+        "position": [
+          2.1421730965300494,
+          -0.8195291167594728,
+          0.0
+        ],
+        "yaw": 1.5680648929079373
+      },
+      {
+        "step": 1561,
+        "position": [
+          2.1421731077417707,
+          -0.8195296684958646,
+          0.0
+        ],
+        "yaw": 1.5680657816142374
+      },
+      {
+        "step": 1571,
+        "position": [
+          2.1421731147633754,
+          -0.8195301164515855,
+          0.0
+        ],
+        "yaw": 1.5680664003949907
+      },
+      {
+        "step": 1581,
+        "position": [
+          2.1421732323685876,
+          -0.8195306661155922,
+          0.0
+        ],
+        "yaw": 1.5680663890046866
+      },
+      {
+        "step": 1591,
+        "position": [
+          2.1421727843288854,
+          -0.8195326854863967,
+          0.0
+        ],
+        "yaw": 1.568069882389185
+      },
+      {
+        "step": 1601,
+        "position": [
+          2.142168253992456,
+          -0.8195668217908914,
+          0.0
+        ],
+        "yaw": 1.568129812760232
+      },
+      {
+        "step": 1611,
+        "position": [
+          2.1421487082486053,
+          -0.8196183487048825,
+          0.0
+        ],
+        "yaw": 1.568249927354344
+      },
+      {
+        "step": 1621,
+        "position": [
+          2.142141997601667,
+          -0.8196312263725399,
+          0.0
+        ],
+        "yaw": 1.5682835939118678
+      },
+      {
+        "step": 1631,
+        "position": [
+          2.142141621106317,
+          -0.8196350175372836,
+          0.0
+        ],
+        "yaw": 1.5682896690719175
+      },
+      {
+        "step": 1641,
+        "position": [
+          2.1421367499582673,
+          -0.8196374670024202,
+          0.0
+        ],
+        "yaw": 1.5683063990042054
+      },
+      {
+        "step": 1651,
+        "position": [
+          2.142124200754038,
+          -0.8196345920894835,
+          0.0
+        ],
+        "yaw": 1.5683383127763992
+      },
+      {
+        "step": 1661,
+        "position": [
+          2.142113454476536,
+          -0.8196301053475057,
+          0.0
+        ],
+        "yaw": 1.5683622106843544
+      },
+      {
+        "step": 1671,
+        "position": [
+          2.142112519893416,
+          -0.8196275499353469,
+          0.0
+        ],
+        "yaw": 1.568360447968213
+      },
+      {
+        "step": 1681,
+        "position": [
+          2.142111199617994,
+          -0.8196262952322904,
+          0.0
+        ],
+        "yaw": 1.5683606908382228
+      },
+      {
+        "step": 1691,
+        "position": [
+          2.142109444886322,
+          -0.8196262234149718,
+          0.0
+        ],
+        "yaw": 1.5683644067779028
+      },
+      {
+        "step": 1701,
+        "position": [
+          2.1421078562575535,
+          -0.8196279400584204,
+          0.0
+        ],
+        "yaw": 1.5683700982071036
+      },
+      {
+        "step": 1711,
+        "position": [
+          2.142106575756724,
+          -0.8196309277744686,
+          0.0
+        ],
+        "yaw": 1.5683777713284388
+      },
+      {
+        "step": 1721,
+        "position": [
+          2.1421057425483956,
+          -0.819634278971454,
+          0.0
+        ],
+        "yaw": 1.5683829053608138
+      },
+      {
+        "step": 1731,
+        "position": [
+          2.142105104627379,
+          -0.8196363155686457,
+          0.0
+        ],
+        "yaw": 1.5683846972323745
+      },
+      {
+        "step": 1741,
+        "position": [
+          2.142104110020547,
+          -0.8196371872998256,
+          0.0
+        ],
+        "yaw": 1.5683858083177789
+      },
+      {
+        "step": 1751,
+        "position": [
+          2.1421029979839434,
+          -0.8196373212768666,
+          0.0
+        ],
+        "yaw": 1.5683872246229922
+      },
+      {
+        "step": 1761,
+        "position": [
+          2.1421020229845555,
+          -0.8196375724405516,
+          0.0
+        ],
+        "yaw": 1.5683875966086056
+      },
+      {
+        "step": 1771,
+        "position": [
+          2.142117560627234,
+          -0.8196375779671847,
+          0.0
+        ],
+        "yaw": 1.568346187731497
+      },
+      {
+        "step": 1781,
+        "position": [
+          2.1421221195310527,
+          -0.819636573195964,
+          0.0
+        ],
+        "yaw": 1.5683391565132352
+      },
+      {
+        "step": 1791,
+        "position": [
+          2.14211984451863,
+          -0.8196366104913819,
+          0.0
+        ],
+        "yaw": 1.5683475823343516
+      },
+      {
+        "step": 1801,
+        "position": [
+          2.1421204257606643,
+          -0.8196381915712212,
+          0.0
+        ],
+        "yaw": 1.5683442606273732
+      },
+      {
+        "step": 1811,
+        "position": [
+          2.142121361733239,
+          -0.8196390345212811,
+          0.0
+        ],
+        "yaw": 1.5683412682117037
+      },
+      {
+        "step": 1821,
+        "position": [
+          2.1421215482627476,
+          -0.8196399095212709,
+          0.0
+        ],
+        "yaw": 1.5683395958483297
+      },
+      {
+        "step": 1831,
+        "position": [
+          2.142123871881677,
+          -0.8196365312780083,
+          0.0
+        ],
+        "yaw": 1.568335812910217
+      },
+      {
+        "step": 1841,
+        "position": [
+          2.1421236181908396,
+          -0.8196362688473433,
+          0.0
+        ],
+        "yaw": 1.5683352403862014
+      },
+      {
+        "step": 1851,
+        "position": [
+          2.142124653151301,
+          -0.8196352638264892,
+          0.0
+        ],
+        "yaw": 1.5683337266572075
+      },
+      {
+        "step": 1861,
+        "position": [
+          2.1421260388927554,
+          -0.8196328072782182,
+          0.0
+        ],
+        "yaw": 1.5683312201333115
+      },
+      {
+        "step": 1871,
+        "position": [
+          2.1421257619782366,
+          -0.8196342644569579,
+          0.0
+        ],
+        "yaw": 1.5683265523750969
+      },
+      {
+        "step": 1881,
+        "position": [
+          2.1421254570027375,
+          -0.8196352806861149,
+          0.0
+        ],
+        "yaw": 1.5683240416171513
+      },
+      {
+        "step": 1891,
+        "position": [
+          2.1421253022430387,
+          -0.8196356965984817,
+          0.0
+        ],
+        "yaw": 1.5683239413138483
+      },
+      {
+        "step": 1901,
+        "position": [
+          2.1421237329604925,
+          -0.8196368491142538,
+          0.0
+        ],
+        "yaw": 1.5683285067173727
+      },
+      {
+        "step": 1911,
+        "position": [
+          2.1421295288772115,
+          -0.819636730652375,
+          0.0
+        ],
+        "yaw": 1.5683156445769715
+      },
+      {
+        "step": 1921,
+        "position": [
+          2.1421467590156165,
+          -0.8196385652960492,
+          0.0
+        ],
+        "yaw": 1.568268376669293
+      },
+      {
+        "step": 1931,
+        "position": [
+          2.142152391721467,
+          -0.8196420472860446,
+          0.0
+        ],
+        "yaw": 1.5682504281367713
+      },
+      {
+        "step": 1941,
+        "position": [
+          2.142155528200227,
+          -0.8196460068485938,
+          0.0
+        ],
+        "yaw": 1.5682419317476488
+      },
+      {
+        "step": 1951,
+        "position": [
+          2.1421575389033567,
+          -0.8196479283760192,
+          0.0
+        ],
+        "yaw": 1.5682413288475028
+      },
+      {
+        "step": 1961,
+        "position": [
+          2.142158630402583,
+          -0.8196472679513247,
+          0.0
+        ],
+        "yaw": 1.5682436066498266
+      },
+      {
+        "step": 1971,
+        "position": [
+          2.1421592929854523,
+          -0.8196449016088756,
+          0.0
+        ],
+        "yaw": 1.568244381158486
+      },
+      {
+        "step": 1981,
+        "position": [
+          2.142160163236754,
+          -0.8196417252052864,
+          0.0
+        ],
+        "yaw": 1.5682416564468524
+      },
+      {
+        "step": 1991,
+        "position": [
+          2.142161282337934,
+          -0.8196390903775935,
+          0.0
+        ],
+        "yaw": 1.5682375454244242
+      },
+      {
+        "step": 2001,
+        "position": [
+          2.142162534226339,
+          -0.8196385760510703,
+          0.0
+        ],
+        "yaw": 1.568233599532907
+      },
+      {
+        "step": 2011,
+        "position": [
+          2.1421638458608765,
+          -0.8196391207393428,
+          0.0
+        ],
+        "yaw": 1.5682304090677806
+      },
+      {
+        "step": 2021,
+        "position": [
+          2.142165148590536,
+          -0.8196394789442886,
+          0.0
+        ],
+        "yaw": 1.5682273877864814
+      },
+      {
+        "step": 2031,
+        "position": [
+          2.1421615002311136,
+          -0.8196396631889127,
+          0.0
+        ],
+        "yaw": 1.568238509321766
+      },
+      {
+        "step": 2041,
+        "position": [
+          2.142140038495272,
+          -0.8196393631982718,
+          0.0
+        ],
+        "yaw": 1.568296664077445
+      },
+      {
+        "step": 2051,
+        "position": [
+          2.1421430910775596,
+          -0.8196390878727406,
+          0.0
+        ],
+        "yaw": 1.5682863184292484
+      },
+      {
+        "step": 2061,
+        "position": [
+          2.142142557884861,
+          -0.8196406670865544,
+          0.0
+        ],
+        "yaw": 1.5682886438531316
+      },
+      {
+        "step": 2071,
+        "position": [
+          2.1421417938057354,
+          -0.8196413159164713,
+          0.0
+        ],
+        "yaw": 1.5682904114240541
+      },
+      {
+        "step": 2081,
+        "position": [
+          2.1421407046633734,
+          -0.8196378071262854,
+          0.0
+        ],
+        "yaw": 1.5682912954707577
+      },
+      {
+        "step": 2091,
+        "position": [
+          2.1421401360268284,
+          -0.8196376470316926,
+          0.0
+        ],
+        "yaw": 1.5682934426214106
+      },
+      {
+        "step": 2101,
+        "position": [
+          2.1421402173641937,
+          -0.819637503836792,
+          0.0
+        ],
+        "yaw": 1.568293228059287
+      },
+      {
+        "step": 2111,
+        "position": [
+          2.142138429656639,
+          -0.8196337212557281,
+          0.0
+        ],
+        "yaw": 1.5682960864828606
+      },
+      {
+        "step": 2121,
+        "position": [
+          2.1421388319393757,
+          -0.8196349422979514,
+          0.0
+        ],
+        "yaw": 1.568296259270671
+      },
+      {
+        "step": 2131,
+        "position": [
+          2.142138749571703,
+          -0.8196354235291885,
+          0.0
+        ],
+        "yaw": 1.5682972581170638
+      },
+      {
+        "step": 2141,
+        "position": [
+          2.1421387032871193,
+          -0.8196358718685195,
+          0.0
+        ],
+        "yaw": 1.5682980878238848
+      },
+      {
+        "step": 2151,
+        "position": [
+          2.1421389438481433,
+          -0.8196364884329087,
+          0.0
+        ],
+        "yaw": 1.5682977837180392
+      },
+      {
+        "step": 2161,
+        "position": [
+          2.1421398555578484,
+          -0.8196382963766167,
+          0.0
+        ],
+        "yaw": 1.568296651032317
+      }
+    ]
+  },
+  "presentation": {
+    "initial_diagnosis": false,
+    "first_diagnosis_step": 100,
+    "diagnosis_starts_after_observed_failure": true
+  }
+}

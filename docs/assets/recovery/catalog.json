@@ -1,134 +1,146 @@
 [
   {
-    "id": "smooth-recovery-libero-articulation-s7",
+    "id": "visible-recovery-libero-articulation-s7",
     "title": "Open the top layer of the drawer and put the cream cheese inside",
     "suite": "LIBERO-PRO",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 7,
     "steps": 996,
-    "challenge": "Handle contact height",
-    "navigation": false
+    "challenge": "Missed handle contact",
+    "navigation": false,
+    "navigation_and_manipulation": false
   },
   {
-    "id": "smooth-recovery-libero-articulation-s11",
+    "id": "visible-recovery-libero-articulation-s11",
     "title": "Open the top layer of the drawer and put the cream cheese inside",
     "suite": "LIBERO-PRO",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 11,
     "steps": 1000,
-    "challenge": "Handle contact height",
-    "navigation": false
+    "challenge": "Missed handle contact",
+    "navigation": false,
+    "navigation_and_manipulation": false
   },
   {
-    "id": "smooth-recovery-libero-relational-s7",
+    "id": "visible-recovery-libero-relational-s7",
     "title": "Pick the akita black bowl not between the plate and the ramekin and place it on the plate",
     "suite": "LIBERO-PRO",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 7,
     "steps": 811,
-    "challenge": "Grasp contact height",
-    "navigation": false
+    "challenge": "Raised grasp contact",
+    "navigation": false,
+    "navigation_and_manipulation": false
   },
   {
-    "id": "smooth-recovery-libero-relational-s11",
+    "id": "visible-recovery-libero-relational-s11",
     "title": "Pick the akita black bowl not between the plate and the ramekin and place it on the plate",
     "suite": "LIBERO-PRO",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 11,
     "steps": 820,
-    "challenge": "Grasp contact height",
-    "navigation": false
+    "challenge": "Raised grasp contact",
+    "navigation": false,
+    "navigation_and_manipulation": false
   },
   {
-    "id": "smooth-recovery-libero-multiobject-s7",
+    "id": "visible-recovery-libero-multiobject-s7",
     "title": "Put both the cream cheese box and the butter in the basket",
     "suite": "LIBERO-PRO",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 7,
     "steps": 1501,
-    "challenge": "Grasp contact height",
-    "navigation": false
+    "challenge": "Raised grasp contact",
+    "navigation": false,
+    "navigation_and_manipulation": false
   },
   {
-    "id": "smooth-recovery-libero-multiobject-s11",
+    "id": "visible-recovery-libero-multiobject-s11",
     "title": "Put both the cream cheese box and the butter in the basket",
     "suite": "LIBERO-PRO",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 11,
     "steps": 1507,
-    "challenge": "Grasp contact height",
-    "navigation": false
+    "challenge": "Raised grasp contact",
+    "navigation": false,
+    "navigation_and_manipulation": false
   },
   {
-    "id": "smooth-recovery-rc-navigation-s11",
-    "title": "Navigate to the stove.",
-    "suite": "RoboCasa365",
-    "kind": "gpt_proxy",
-    "success": true,
-    "seed": 11,
-    "steps": 529,
-    "challenge": "Premature navigation stop",
-    "navigation": true
-  },
-  {
-    "id": "smooth-recovery-rc-vegetables-s11",
-    "title": "Place the tangerine and the garlic on separate cutting boards.",
-    "suite": "RoboCasa365",
-    "kind": "gpt_proxy",
-    "success": true,
-    "seed": 11,
-    "steps": 2469,
-    "challenge": "Grasp contact height",
-    "navigation": false
-  },
-  {
-    "id": "smooth-recovery-rc-navigation-s23",
-    "title": "Navigate to the fridge.",
-    "suite": "RoboCasa365",
-    "kind": "gpt_proxy",
-    "success": true,
-    "seed": 23,
-    "steps": 487,
-    "challenge": "Premature navigation stop",
-    "navigation": true
-  },
-  {
-    "id": "smooth-recovery-rc-vegetables-s23",
-    "title": "Place the tangerine and the sweet potato on separate cutting boards.",
-    "suite": "RoboCasa365",
-    "kind": "gpt_proxy",
-    "success": true,
-    "seed": 23,
-    "steps": 1497,
-    "challenge": "Grasp contact height",
-    "navigation": false
-  },
-  {
-    "id": "smooth-recovery-rc-navigation-s37",
-    "title": "Navigate to the toaster.",
-    "suite": "RoboCasa365",
-    "kind": "gpt_proxy",
-    "success": true,
-    "seed": 37,
-    "steps": 379,
-    "challenge": "Premature navigation stop",
-    "navigation": true
-  },
-  {
-    "id": "smooth-recovery-rc-vegetables-s37",
+    "id": "visible-recovery-rc-mobile-s37-away",
     "title": "Place the garlic and the mushroom on separate cutting boards.",
     "suite": "RoboCasa365",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 37,
-    "steps": 1400,
-    "challenge": "Grasp contact height",
-    "navigation": false
+    "steps": 1485,
+    "challenge": "Wrong-way navigation",
+    "navigation": true,
+    "navigation_and_manipulation": true
+  },
+  {
+    "id": "visible-recovery-rc-mobile-s37-side",
+    "title": "Place the garlic and the mushroom on separate cutting boards.",
+    "suite": "RoboCasa365",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 37,
+    "steps": 1612,
+    "challenge": "Wrong-way navigation + high grasp",
+    "navigation": true,
+    "navigation_and_manipulation": true
+  },
+  {
+    "id": "visible-recovery-rc-mobile-s23-away",
+    "title": "Place the tangerine and the sweet potato on separate cutting boards.",
+    "suite": "RoboCasa365",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 23,
+    "steps": 1717,
+    "challenge": "Wrong-way navigation",
+    "navigation": true,
+    "navigation_and_manipulation": true
+  },
+  {
+    "id": "visible-recovery-rc-mobile-s23-side",
+    "title": "Place the tangerine and the sweet potato on separate cutting boards.",
+    "suite": "RoboCasa365",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 23,
+    "steps": 1783,
+    "challenge": "Wrong-way navigation + high grasp",
+    "navigation": true,
+    "navigation_and_manipulation": true
+  },
+  {
+    "id": "visible-recovery-rc-mobile-s11-away",
+    "title": "Place the tangerine and the garlic on separate cutting boards.",
+    "suite": "RoboCasa365",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 11,
+    "steps": 2163,
+    "challenge": "Wrong-way navigation",
+    "navigation": true,
+    "navigation_and_manipulation": true
+  },
+  {
+    "id": "visible-recovery-rc-mobile-s11-side",
+    "title": "Place the tangerine and the garlic on separate cutting boards.",
+    "suite": "RoboCasa365",
+    "kind": "gpt_proxy",
+    "success": true,
+    "seed": 11,
+    "steps": 2178,
+    "challenge": "Wrong-way navigation + high grasp",
+    "navigation": true,
+    "navigation_and_manipulation": true
   }
 ]

@@ -120,7 +120,14 @@ class SmoothSession(Session):
         n=int(math.ceil(seconds*20));last=np.zeros(3);start_step=self.step
         ctrl=self.robot.composite_controller.part_controllers['base']
         armctrl=self.robot.composite_controller.part_controllers['right'];old_frame=armctrl.input_ref_frame
-        if old_frame!='base':armctrl.input_ref_frame='base';armctrl.reset_goal()
+        if old_frame!='base':
+            self.robot.composite_controller.update_state()
+            armctrl.update(force=True)
+            armctrl.input_ref_frame='base'
+            # reset_goal stores world coordinates; explicitly transform the hold
+            # pose when switching to a moving base reference frame.
+            armctrl.goal_pos=armctrl.origin_ori.T@(armctrl.ref_pos-armctrl.origin_pos)
+            armctrl.goal_ori=armctrl.origin_ori.T@armctrl.ref_ori_mat
         self.references.append(dict(step=self.step,kind='navigate',position=target.tolist(),yaw=yaw,duration_steps=n))
         stable=0
         for i in range(1,n+161):

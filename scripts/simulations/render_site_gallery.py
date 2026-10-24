@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 catalog = json.loads((ROOT / 'docs/assets/recovery/catalog.json').read_text())
 assert len(catalog) == 12 and len({x['id'] for x in catalog}) == 12
 assert all(sum(x['suite'] == suite for x in catalog) == 6 for suite in ['LIBERO-PRO', 'RoboCasa365'])
-assert sum(bool(x.get('navigation')) for x in catalog) == 3
+assert sum(bool(x.get('navigation')) for x in catalog) == 6
 assert all(x['success'] and x['kind'] == 'gpt_proxy' for x in catalog)
 groups, directory = [], []
 for suite, anchor in [('LIBERO-PRO', 'libero-videos'), ('RoboCasa365', 'robocasa-videos')]:
@@ -23,7 +23,7 @@ for suite, anchor in [('LIBERO-PRO', 'libero-videos'), ('RoboCasa365', 'robocasa
         seed, base = record['manifest']['seed'], 'assets/recovery/' + identity
         cards.append(f'''          <article class="episode-card" id="case-{identity}" data-playback-speed="1" data-lead-seconds="0">
             <div class="episode-title"><span>{catalog.index(item)+1:02d}</span><h4>{title}</h4></div>
-            <video id="video-{identity}" controls playsinline preload="none" data-poster="{base}-poster.jpg?v=smooth-en-12" aria-label="{suite} · {title} · Seed {seed}" src="{base}.mp4?v=smooth-en-12"></video>
+            <video id="video-{identity}" controls playsinline preload="none" data-poster="{base}-poster.jpg?v=visible-failure-12" aria-label="{suite} · {title} · Seed {seed}" src="{base}.mp4?v=visible-failure-12"></video>
             <div class="episode-copy"><p class="episode-meta">{escape(item['challenge'])} · Seed {seed} · 1×</p><div class="episode-actions"><span class="simulation-outcome">Recovery succeeded</span><button type="button" class="episode-record-button" data-expand="{identity}">Expand video ↗</button><button type="button" class="episode-record-button" data-record="{identity}" data-record-path="{base}.json" aria-haspopup="dialog">Execution record ↗</button></div></div>
           </article>''')
     groups.append(f'''      <section class="episode-suite" id="{anchor}" aria-labelledby="{anchor}-title">
@@ -35,11 +35,11 @@ for suite, anchor in [('LIBERO-PRO', 'libero-videos'), ('RoboCasa365', 'robocasa
 
 block = '''    <!-- BEGIN SIMULATION GALLERY -->
     <section id="simulations" class="section container simulation-section" aria-labelledby="simulations-title" lang="en">
-      <div class="section-heading"><p class="eyebrow">FAILURE → DIAGNOSIS → RECOVERY</p><h2 id="simulations-title">12 selected recovery episodes</h2><p>6 LIBERO-PRO episodes and 6 RoboCasa365 episodes, including 3 mobile-base navigation recoveries. Follow Judge → Cause → Sub → Fine from failure to a verified successful outcome; expand any video to read the complete brain output.</p></div>
+      <div class="section-heading"><p class="eyebrow">FAILURE → DIAGNOSIS → RECOVERY</p><h2 id="simulations-title">12 selected recovery episodes</h2><p>6 LIBERO-PRO episodes and 6 RoboCasa365 episodes. Every RoboCasa episode combines navigation and manipulation. Watch the incorrect action first, then Judge → Cause → Sub → Fine and the successful recovery.</p></div>
       <nav class="episode-directory" aria-label="Video episode directory">''' + ''.join(directory) + '''<span>Native 20 fps · Original speed · First-frame covers</span></nav>
       <p class="simulation-scope">These selected demonstrations use a GPT proxy with simulator-state-assisted analytical control, not the trained RynnBrain model. They are 12 independent episodes across task and seed variations, not 12 distinct tasks or an estimate of benchmark success rate.</p>
 ''' + '\n'.join(groups) + '''
-      <div class="simulation-footer"><p>Each episode perturbs a newly collected, verified successful simulator trajectory, then rejoins its saved reference path. English brain output and every action frame are retained, with no reset after the failure.</p><div><a class="text-link" href="https://github.com/pm1255/embodied-corrector/blob/main/guides/selected_recoveries.md">Episode provenance and verification ↗</a><a class="text-link" href="assets/recovery/execution-records.zip" download>Download execution records ↓</a></div></div>
+      <div class="simulation-footer"><p>RoboCasa uses a disclosed mobile-start variant: the base begins 0.75 m from the original prep pose, takes a wrong route, returns, and completes both placements. Three episodes also include a raised grasp or premature closure. Every action frame is retained; diagnosis begins after the observed outcome.</p><div><a class="text-link" href="https://github.com/pm1255/embodied-corrector/blob/main/guides/selected_recoveries.md">Episode provenance and verification ↗</a><a class="text-link" href="assets/recovery/execution-records.zip" download>Download execution records ↓</a></div></div>
     </section>
     <dialog id="episode-dialog" aria-labelledby="episode-dialog-title">
       <form method="dialog"><button class="dialog-close" type="submit" aria-label="Close execution record">×</button></form>

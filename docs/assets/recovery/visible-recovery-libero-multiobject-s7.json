@@ -1,0 +1,950 @@
+{
+  "case": "visible-recovery-libero-multiobject-s7",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put both the cream cheese box and the butter in the basket",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "tasks/libero-multiobject.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "9d8e710b95d0e55cf5dd760589939639d4178b86b723afe595a0e53f573cef65",
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "smooth-baseline-libero-multiobject-s7",
+      "success": true,
+      "trajectory_sha256": "c9638c8aa1a37145b1980e18fccc818f105b8a96b6c394902ef55d0c25069319",
+      "reference_waypoints_sha256": "32e29f6c23d2576a25178423daac813c2c1fce57eb875a7ca9cf8a71fab21f79",
+      "commands_sha256": "16a6e6b6581b8ca68845467cd54391a235fc2c64d76dcad433a9d4c56a0626f7",
+      "origin": "Newly collected simulator success, not a public human demonstration dataset."
+    },
+    "navigation": false
+  },
+  "result": {
+    "success": true,
+    "steps": 1501,
+    "commands": 3,
+    "brain_records": 2,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 285,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          0.12
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.16,
+        "perturbation": "Controlled grasp-height offset above the successful contact path."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 285,
+      "step_end": 1501,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed above the cream cheese; the object stayed on the table.",
+        "Sub": "Restore the grasp height and complete both placements.",
+        "Fine": "Rejoin the verified successful reference path. Grasp and place the cream cheese, then pick up the butter and place it in the basket."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed above the cream cheese; the object stayed on the table.",
+          "Sub": "Restore the grasp height and complete both placements.",
+          "Fine": "Rejoin the verified successful reference path. Grasp and place the cream cheese, then pick up the butter and place it in the basket."
+        },
+        "action": "source_reference"
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "smooth-baseline-libero-multiobject-s7",
+        "source_reference_sha256": "32e29f6c23d2576a25178423daac813c2c1fce57eb875a7ca9cf8a71fab21f79",
+        "references": [
+          {
+            "source_index": 0,
+            "kind": "move",
+            "step_start": 285,
+            "step_end": 325,
+            "reached": true
+          },
+          {
+            "source_index": 1,
+            "kind": "move",
+            "step_start": 325,
+            "step_end": 408,
+            "reached": true
+          },
+          {
+            "source_index": 2,
+            "kind": "hold",
+            "step_start": 408,
+            "step_end": 426,
+            "reached": true
+          },
+          {
+            "source_index": 3,
+            "kind": "move",
+            "step_start": 426,
+            "step_end": 524,
+            "reached": false
+          },
+          {
+            "source_index": 4,
+            "kind": "move",
+            "step_start": 524,
+            "step_end": 558,
+            "reached": true
+          },
+          {
+            "source_index": 5,
+            "kind": "move",
+            "step_start": 558,
+            "step_end": 703,
+            "reached": true
+          },
+          {
+            "source_index": 6,
+            "kind": "move",
+            "step_start": 703,
+            "step_end": 776,
+            "reached": false
+          },
+          {
+            "source_index": 7,
+            "kind": "hold",
+            "step_start": 776,
+            "step_end": 794,
+            "reached": true
+          },
+          {
+            "source_index": 8,
+            "kind": "move",
+            "step_start": 794,
+            "step_end": 860,
+            "reached": true
+          },
+          {
+            "source_index": 9,
+            "kind": "move",
+            "step_start": 860,
+            "step_end": 984,
+            "reached": true
+          },
+          {
+            "source_index": 10,
+            "kind": "move",
+            "step_start": 984,
+            "step_end": 1052,
+            "reached": true
+          },
+          {
+            "source_index": 11,
+            "kind": "hold",
+            "step_start": 1052,
+            "step_end": 1070,
+            "reached": true
+          },
+          {
+            "source_index": 12,
+            "kind": "move",
+            "step_start": 1070,
+            "step_end": 1161,
+            "reached": true
+          },
+          {
+            "source_index": 13,
+            "kind": "move",
+            "step_start": 1161,
+            "step_end": 1195,
+            "reached": true
+          },
+          {
+            "source_index": 14,
+            "kind": "move",
+            "step_start": 1195,
+            "step_end": 1333,
+            "reached": false
+          },
+          {
+            "source_index": 15,
+            "kind": "move",
+            "step_start": 1333,
+            "step_end": 1387,
+            "reached": true
+          },
+          {
+            "source_index": 16,
+            "kind": "hold",
+            "step_start": 1387,
+            "step_end": 1405,
+            "reached": true
+          },
+          {
+            "source_index": 17,
+            "kind": "move",
+            "step_start": 1405,
+            "step_end": 1481,
+            "reached": true
+          },
+          {
+            "source_index": 18,
+            "kind": "hold",
+            "step_start": 1481,
+            "step_end": 1501,
+            "reached": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 2,
+      "step_start": 1501,
+      "step_end": 1501,
+      "brain": {
+        "Judge": "success",
+        "Cause": "Both the cream cheese and butter are in the basket; the environment confirms task completion.",
+        "Sub": "Finish the recovered task.",
+        "Fine": "Keep the verified final scene and save the continuous episode."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "Both the cream cheese and butter are in the basket; the environment confirms task completion.",
+          "Sub": "Finish the recovered task.",
+          "Fine": "Keep the verified final scene and save the continuous episode."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "97f928864ac6e46b0874e7ea331ab1eb1804f581fa1bff79b3f1059523557791",
+    "action_trace_sha256": "3becb7d15e637c7f6e39b681c503e5425b28801d858c9ab3ba63d4f74b5daba9",
+    "decision_origin": "GPT proxy decisions written after observing preceding execution feedback; not a trained RynnBrain checkpoint.",
+    "trajectory_use": "Saved successful reference waypoints are read and executed from the perturbed state through bounded, smooth control. Simulator states are not replayed or assigned."
+  },
+  "source_baseline": {
+    "manifest": {
+      "backend": "libero_pro",
+      "task": "put both the cream cheese box and the butter in the basket",
+      "seed": 7,
+      "brain": "none; deterministic successful-trajectory collection",
+      "output_schema": [],
+      "executor": "analytical OSC controller with simulator-state localization",
+      "executor_version": "v5-minimum-jerk",
+      "continuous_episode": true,
+      "reset_after_failure": false,
+      "control_frequency_hz": 20,
+      "recording_fps": 20,
+      "task_source": "tasks/libero-multiobject.bddl",
+      "camera": "agentview",
+      "action_dim": 7,
+      "initial_model_sha256": "9d8e710b95d0e55cf5dd760589939639d4178b86b723afe595a0e53f573cef65",
+      "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+      "arm_reference": "world",
+      "source_success_baseline": null,
+      "navigation": false
+    },
+    "result": {
+      "success": true,
+      "steps": 1314,
+      "commands": 5,
+      "brain_records": 0,
+      "termination": "baseline_plan"
+    },
+    "events": [
+      {
+        "index": 0,
+        "step_start": 0,
+        "step_end": 338,
+        "brain": null,
+        "command": {
+          "action": "pick",
+          "object": "cream_cheese_1",
+          "offset": [
+            0,
+            0,
+            -0.004
+          ],
+          "yaw_degrees": 90,
+          "lift": 0.25
+        },
+        "feedback": {
+          "action": "pick",
+          "object": "cream_cheese_1",
+          "object_lift_m": 0.21444157409447018,
+          "object_follows_gripper": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 1,
+        "step_start": 338,
+        "step_end": 673,
+        "brain": null,
+        "command": {
+          "action": "place",
+          "object": "cream_cheese_1",
+          "target": "basket_1",
+          "offset": [
+            0,
+            -0.035,
+            0.12
+          ]
+        },
+        "feedback": {
+          "action": "place",
+          "released": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 2,
+        "step_start": 673,
+        "step_end": 974,
+        "brain": null,
+        "command": {
+          "action": "pick",
+          "object": "butter_1",
+          "offset": [
+            0,
+            0,
+            -0.007
+          ],
+          "yaw_degrees": 0,
+          "lift": 0.25
+        },
+        "feedback": {
+          "action": "pick",
+          "object": "butter_1",
+          "object_lift_m": 0.2403788584987902,
+          "object_follows_gripper": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 3,
+        "step_start": 974,
+        "step_end": 1294,
+        "brain": null,
+        "command": {
+          "action": "place",
+          "object": "butter_1",
+          "target": "basket_1",
+          "offset": [
+            0,
+            0.035,
+            0.12
+          ]
+        },
+        "feedback": {
+          "action": "place",
+          "released": true
+        },
+        "official_success": true
+      },
+      {
+        "index": 4,
+        "step_start": 1294,
+        "step_end": 1314,
+        "brain": null,
+        "command": {
+          "action": "wait",
+          "steps": 20
+        },
+        "feedback": {
+          "action": "wait",
+          "completed": true
+        },
+        "official_success": true
+      }
+    ],
+    "reference_waypoints": [
+      {
+        "step": 0,
+        "kind": "move",
+        "position": [
+          -0.2717031826547048,
+          -0.16059272003460032,
+          0.621
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 113
+      },
+      {
+        "step": 139,
+        "kind": "move",
+        "position": [
+          -0.2717031826547048,
+          -0.16059272003460032,
+          0.441
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 43
+      },
+      {
+        "step": 222,
+        "kind": "hold",
+        "position": [
+          -0.26791434110439954,
+          -0.16525331296239715,
+          0.44603363033453547
+        ],
+        "rotation": [
+          [
+            -0.02685312233243944,
+            -0.9996296578033608,
+            -0.004411015861701485
+          ],
+          [
+            -0.9996375281782712,
+            0.026844294714079873,
+            0.0020484381701503284
+          ],
+          [
+            -0.0019292689372787217,
+            0.004464423953519911,
+            -0.9999881733501292
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 18
+      },
+      {
+        "step": 240,
+        "kind": "move",
+        "position": [
+          -0.2717031826547048,
+          -0.16059272003460032,
+          0.6910000000000001
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 58
+      },
+      {
+        "step": 338,
+        "kind": "move",
+        "position": [
+          -0.2733513241912995,
+          -0.15963060749948932,
+          0.7407040617953912
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 19
+      },
+      {
+        "step": 371,
+        "kind": "move",
+        "position": [
+          0.0004303387410548032,
+          0.23051543408734393,
+          0.6922628381099817
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 113
+      },
+      {
+        "step": 516,
+        "kind": "move",
+        "position": [
+          0.0004303387410548032,
+          0.23051543408734393,
+          0.5522628381099817
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 33
+      },
+      {
+        "step": 589,
+        "kind": "hold",
+        "position": [
+          0.002584334647048526,
+          0.23629229900131585,
+          0.5812712552052446
+        ],
+        "rotation": [
+          [
+            -0.002160931356558608,
+            -0.9999881044143604,
+            -0.00437280292763654
+          ],
+          [
+            -0.9999829761169885,
+            0.0021845802427205977,
+            -0.005410645559544614
+          ],
+          [
+            0.005420133935628028,
+            0.004361036451902228,
+            -0.9999758014618066
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 18
+      },
+      {
+        "step": 607,
+        "kind": "move",
+        "position": [
+          0.0004303387410548032,
+          0.23051543408734393,
+          0.7522628381099816
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 40
+      },
+      {
+        "step": 673,
+        "kind": "move",
+        "position": [
+          0.04953829445455353,
+          -0.10638076553074706,
+          0.61846992152
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 86
+      },
+      {
+        "step": 797,
+        "kind": "move",
+        "position": [
+          0.04953829445455353,
+          -0.10638076553074706,
+          0.43846992152
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 43
+      },
+      {
+        "step": 865,
+        "kind": "hold",
+        "position": [
+          0.05001335154068915,
+          -0.10683148994668443,
+          0.44599620838708304
+        ],
+        "rotation": [
+          [
+            -0.9999996820419408,
+            -0.0007806859438169759,
+            -0.00016262063913857503
+          ],
+          [
+            -0.0007808067937854753,
+            0.9999994180991109,
+            0.0007444072731037021
+          ],
+          [
+            0.0001620393962148935,
+            0.0007445340117132602,
+            -0.9999997097061265
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 18
+      },
+      {
+        "step": 883,
+        "kind": "move",
+        "position": [
+          0.04953829445455353,
+          -0.10638076553074706,
+          0.6884699215200001
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 57
+      },
+      {
+        "step": 974,
+        "kind": "move",
+        "position": [
+          0.04945638497814909,
+          -0.10645118906308944,
+          0.7664021018962234
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 19
+      },
+      {
+        "step": 1008,
+        "kind": "move",
+        "position": [
+          -0.002315520414601681,
+          0.3014493577217896,
+          0.692689546417068
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 98
+      },
+      {
+        "step": 1146,
+        "kind": "move",
+        "position": [
+          -0.002315520414601681,
+          0.3014493577217896,
+          0.552689546417068
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 34
+      },
+      {
+        "step": 1200,
+        "kind": "hold",
+        "position": [
+          -0.0022602772756322703,
+          0.3016548953288179,
+          0.5551092336466414
+        ],
+        "rotation": [
+          [
+            -0.999999713894397,
+            -0.0005055625990284087,
+            -0.0005626878188022675
+          ],
+          [
+            -0.0005051864061649282,
+            0.9999996489434627,
+            -0.0006685055309836673
+          ],
+          [
+            0.0005630255926607396,
+            -0.0006682210774835161,
+            -0.9999996182413132
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 18
+      },
+      {
+        "step": 1218,
+        "kind": "move",
+        "position": [
+          -0.002315520414601681,
+          0.3014493577217896,
+          0.752689546417068
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 47
+      },
+      {
+        "step": 1294,
+        "kind": "hold",
+        "position": [
+          -0.00223399010525982,
+          0.301458964813932,
+          0.7506384919330127
+        ],
+        "rotation": [
+          [
+            -0.9999997664071572,
+            0.0006715157730371963,
+            -0.00012748409372605115
+          ],
+          [
+            0.0006715563261179858,
+            0.9999997238399042,
+            -0.00031832721018136746
+          ],
+          [
+            0.00012727029677740812,
+            -0.00031841274857203114,
+            -0.999999941207793
+          ]
+        ],
+        "grip": null,
+        "duration_steps": 20
+      }
+    ]
+  },
+  "motion_evidence": {
+    "recording_fps": 20,
+    "control_hz": 20,
+    "native_frames": 1501,
+    "interpolated_frames": 0,
+    "quintic_reference": true,
+    "eef_speed_p95_m_s": 0.08768107325676554,
+    "eef_acceleration_p95_m_s2": 0.1896604502532582,
+    "measurement_note": "Descriptive kinematic measurements, not a perceptual guarantee of zero jitter."
+  },
+  "presentation": {
+    "initial_diagnosis": false,
+    "diagnosis_starts_after_observed_failure": true,
+    "action_frames": "All native frames retained; no synthesized motion."
+  }
+}

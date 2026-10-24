@@ -1,0 +1,68 @@
+[
+  {
+    "id": "rc-mobile-s37-away",
+    "seed": 37,
+    "variant": "away",
+    "start_offset": [
+      0,
+      -0.75,
+      0
+    ],
+    "baseline": "smooth-baseline-rc-vegetables-s37"
+  },
+  {
+    "id": "rc-mobile-s37-side",
+    "seed": 37,
+    "variant": "side",
+    "start_offset": [
+      0,
+      -0.75,
+      0
+    ],
+    "baseline": "smooth-baseline-rc-vegetables-s37"
+  },
+  {
+    "id": "rc-mobile-s23-away",
+    "seed": 23,
+    "variant": "away",
+    "start_offset": [
+      0,
+      -0.75,
+      0
+    ],
+    "baseline": "smooth-baseline-rc-vegetables-s23"
+  },
+  {
+    "id": "rc-mobile-s23-side",
+    "seed": 23,
+    "variant": "side",
+    "start_offset": [
+      0,
+      -0.75,
+      0
+    ],
+    "baseline": "smooth-baseline-rc-vegetables-s23"
+  },
+  {
+    "id": "rc-mobile-s11-away",
+    "seed": 11,
+    "variant": "away",
+    "start_offset": [
+      0,
+      -0.75,
+      0
+    ],
+    "baseline": "smooth-baseline-rc-vegetables-s11"
+  },
+  {
+    "id": "rc-mobile-s11-side",
+    "seed": 11,
+    "variant": "side",
+    "start_offset": [
+      0,
+      -0.75,
+      0
+    ],
+    "baseline": "smooth-baseline-rc-vegetables-s11"
+  }
+]

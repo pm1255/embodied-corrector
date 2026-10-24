@@ -13,13 +13,17 @@
 
 ## Overview
 
+The [latest introduction and 12 recovery videos](https://pm1255.github.io/embodied-corrector/?v=visible-failure-12#video) are on the project page. Native attachments below are from the previous recording revision.
+
 https://github.com/user-attachments/assets/a89f5368-ed4c-44c3-905a-4011c73f6d9b
 
 Research overview with English narration and subtitles. Robot motion comes from continuous simulator recordings.
 
 ## Selected successful recoveries
 
-Each video shows an observed failure, the **Judge → Cause → Sub → Fine** output, corrective actions, and a verified successful ending. Titles use the original task instructions; all video text is English. Videos retain every action frame at **native 20 fps and 1× speed**, with a three-second final result hold. Each recovery rejoins a newly collected, verified successful reference trajectory after a controlled perturbation.
+[Watch the updated 12-episode gallery](https://pm1255.github.io/embodied-corrector/?v=visible-failure-12#simulations): all six RoboCasa videos now combine wrong-way navigation and manipulation.
+
+The updated project gallery shows the initial action without a premature Judge/Cause label, followed by an observed failure, the **Judge → Cause → Sub → Fine** output, corrective actions, and a verified successful ending. Titles use the original task instructions; all video text is English. Videos retain every action frame at **native 20 fps and 1× speed**, with a three-second final result hold. Each recovery rejoins a newly collected, verified successful reference trajectory after a controlled perturbation.
 
 ### Open the top layer of the drawer and put the cream cheese inside
 
@@ -35,13 +39,13 @@ https://github.com/user-attachments/assets/02a661f5-b2cf-48b2-9925-1acb15dbcd65
 
 ### Place the garlic and the mushroom on separate cutting boards.
 
-**RoboCasa365.** Correct a missed grasp and place the two vegetables on separate cutting boards. **Final environment result: success.**
+**RoboCasa365, previous recording.** Correct a missed grasp and place the two vegetables on separate cutting boards. **Final environment result: success.**
 
 https://github.com/user-attachments/assets/e5711720-0fca-4182-a5aa-a25259f95a6c
 
 These demonstrations use a **GPT proxy with simulator-state-assisted analytical control**. They illustrate the correction workflow and are separate from trained Embodied-Corrector / RynnBrain evaluation results.
 
-The [project gallery](https://pm1255.github.io/embodied-corrector/?v=smooth-en-12#simulations) contains **12 selected successful recovery episodes: 6 LIBERO-PRO and 6 RoboCasa365**, including three mobile-base navigation recoveries, using the same video layout and visible brain output. They cover task and seed variations; they are not 12 distinct tasks or an estimate of benchmark success rate. See [episode provenance and verification](guides/selected_recoveries.md).
+The [project gallery](https://pm1255.github.io/embodied-corrector/?v=visible-failure-12#simulations) contains **12 selected successful recovery episodes: 6 LIBERO-PRO and 6 RoboCasa365**, with navigation and manipulation combined in all six RoboCasa episodes, using the same video layout and visible brain output. They cover task and seed variations; they are not 12 distinct tasks or an estimate of benchmark success rate. See [episode provenance and verification](guides/selected_recoveries.md).
 
 ## 摘要
 

@@ -134,7 +134,7 @@ class Session:
     p=self.commands/f'{idx:03d}.json';self.status('waiting_for_gpt',next_command=str(p))
     start=time.time()
     while not p.exists():
-     if time.time()-start>1800:raise TimeoutError('No external GPT command for 30 minutes')
+     if time.time()-start>getattr(self.a,'command_timeout',1800):raise TimeoutError('External command wait limit exceeded')
      time.sleep(.5)
     cmd=json.loads(p.read_text());fields=cmd.get('brain')
     if fields is not None:
