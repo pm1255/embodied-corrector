@@ -79,7 +79,7 @@ p, li, dd, figcaption { line-height:1.5 !important; }
 .episode-suite-heading { flex-wrap:wrap; }
 .episode-suite-heading h3 span { margin-left:10px; }
 .episode-title { min-height:74px; padding:12px 14px; align-items:baseline; }
-.episode-title h4 { overflow-wrap:anywhere; }
+.episode-title h4 { overflow-wrap:normal; word-break:normal; text-wrap:pretty; font-size:16px !important; line-height:1.35; }
 .episode-card video { aspect-ratio:16/9; }
 .episode-actions { flex-wrap:wrap; gap:6px 12px; }
 .episode-meta { margin-bottom:8px; }

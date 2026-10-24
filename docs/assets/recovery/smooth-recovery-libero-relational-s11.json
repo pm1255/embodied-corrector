@@ -1,0 +1,629 @@
+{
+  "case": "smooth-recovery-libero-relational-s11",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "pick the akita black bowl not between the plate and the ramekin and place it on the plate",
+    "seed": 11,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "tasks/libero-relational.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "5b00b2decc77134d6ceac3fb38ddfc686795c4ee03b77f3b3d51dd0883c1108d",
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "smooth-baseline-libero-relational-s11",
+      "success": true,
+      "trajectory_sha256": "e622e0eb03ee6052c38c0405e4da5cab5d771201d298ceead8d858c3d4d2ae37",
+      "reference_waypoints_sha256": "0b6f333a55713f3710aad34555b80346cef3926679957aede1b095741da5510e",
+      "commands_sha256": "4aa34130adf50242a2c9efae1e4a3ec3f32910c14c55766f6a40b8e595f699a3",
+      "origin": "Newly collected simulator success, not a public human demonstration dataset."
+    },
+    "navigation": false
+  },
+  "result": {
+    "success": true,
+    "steps": 820,
+    "commands": 3,
+    "brain_records": 2,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 272,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "offset": [
+          0.045,
+          0,
+          0.14
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.16,
+        "perturbation": "Controlled upward offset of the grasp from the verified successful trajectory."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "object_lift_m": 0.0,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 272,
+      "step_end": 820,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed above the bowl rim, and the requested bowl stayed on the table.",
+        "Sub": "Restore rim contact on the requested bowl.",
+        "Fine": "Rejoin the successful grasp and placement references. Lower to the rim, close securely, lift and place the bowl on the plate."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed above the bowl rim, and the requested bowl stayed on the table.",
+          "Sub": "Restore rim contact on the requested bowl.",
+          "Fine": "Rejoin the successful grasp and placement references. Lower to the rim, close securely, lift and place the bowl on the plate."
+        },
+        "action": "source_reference",
+        "begin": 1
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "smooth-baseline-libero-relational-s11",
+        "source_reference_sha256": "0b6f333a55713f3710aad34555b80346cef3926679957aede1b095741da5510e",
+        "references": [
+          {
+            "source_index": 1,
+            "kind": "move",
+            "step_start": 272,
+            "step_end": 335,
+            "reached": true
+          },
+          {
+            "source_index": 2,
+            "kind": "move",
+            "step_start": 335,
+            "step_end": 404,
+            "reached": true
+          },
+          {
+            "source_index": 3,
+            "kind": "hold",
+            "step_start": 404,
+            "step_end": 422,
+            "reached": true
+          },
+          {
+            "source_index": 4,
+            "kind": "move",
+            "step_start": 422,
+            "step_end": 497,
+            "reached": true
+          },
+          {
+            "source_index": 5,
+            "kind": "move",
+            "step_start": 497,
+            "step_end": 531,
+            "reached": true
+          },
+          {
+            "source_index": 6,
+            "kind": "move",
+            "step_start": 531,
+            "step_end": 630,
+            "reached": true
+          },
+          {
+            "source_index": 7,
+            "kind": "move",
+            "step_start": 630,
+            "step_end": 703,
+            "reached": true
+          },
+          {
+            "source_index": 8,
+            "kind": "hold",
+            "step_start": 703,
+            "step_end": 721,
+            "reached": true
+          },
+          {
+            "source_index": 9,
+            "kind": "move",
+            "step_start": 721,
+            "step_end": 800,
+            "reached": true
+          },
+          {
+            "source_index": 10,
+            "kind": "hold",
+            "step_start": 800,
+            "step_end": 820,
+            "reached": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 2,
+      "step_start": 820,
+      "step_end": 820,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The requested bowl is on the plate, and the environment confirms success.",
+        "Sub": "Finish the recovered placement.",
+        "Fine": "Keep the final scene and save the verified continuous episode."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The requested bowl is on the plate, and the environment confirms success.",
+          "Sub": "Finish the recovered placement.",
+          "Fine": "Keep the final scene and save the verified continuous episode."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "20d8d89227dea1c1ffe130e202f3e3b147ae8376a85c3bedf531601befa65f6b",
+    "action_trace_sha256": "49e3b9a4f305bd0cc0f8b6b3e0aedb18af8cbf8ddcad8447f68e6ab1a250f6cf",
+    "decision_origin": "GPT proxy decisions written after observing preceding execution feedback; not a trained RynnBrain checkpoint.",
+    "trajectory_use": "Saved successful reference waypoints are read and executed from the perturbed state through bounded, smooth control. Simulator states are not replayed or assigned."
+  },
+  "source_baseline": {
+    "manifest": {
+      "backend": "libero_pro",
+      "task": "pick the akita black bowl not between the plate and the ramekin and place it on the plate",
+      "seed": 11,
+      "brain": "none; deterministic successful-trajectory collection",
+      "output_schema": [],
+      "executor": "analytical OSC controller with simulator-state localization",
+      "executor_version": "v5-minimum-jerk",
+      "continuous_episode": true,
+      "reset_after_failure": false,
+      "control_frequency_hz": 20,
+      "recording_fps": 20,
+      "task_source": "tasks/libero-relational.bddl",
+      "camera": "agentview",
+      "action_dim": 7,
+      "initial_model_sha256": "5b00b2decc77134d6ceac3fb38ddfc686795c4ee03b77f3b3d51dd0883c1108d",
+      "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+      "arm_reference": "world",
+      "source_success_baseline": null,
+      "navigation": false
+    },
+    "result": {
+      "success": true,
+      "steps": 646,
+      "commands": 4,
+      "brain_records": 0,
+      "termination": "baseline_plan"
+    },
+    "events": [
+      {
+        "index": 0,
+        "step_start": 0,
+        "step_end": 40,
+        "brain": null,
+        "command": {
+          "action": "wait",
+          "steps": 40
+        },
+        "feedback": {
+          "action": "wait",
+          "completed": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 1,
+        "step_start": 40,
+        "step_end": 323,
+        "brain": null,
+        "command": {
+          "action": "pick",
+          "object": "akita_black_bowl_2",
+          "offset": [
+            0.045,
+            0,
+            0.025
+          ],
+          "yaw_degrees": 0,
+          "lift": 0.2
+        },
+        "feedback": {
+          "action": "pick",
+          "object": "akita_black_bowl_2",
+          "object_lift_m": 0.18027768291110335,
+          "object_follows_gripper": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 2,
+        "step_start": 323,
+        "step_end": 626,
+        "brain": null,
+        "command": {
+          "action": "place",
+          "object": "akita_black_bowl_2",
+          "target": "plate_1",
+          "offset": [
+            0,
+            0,
+            0.04
+          ]
+        },
+        "feedback": {
+          "action": "place",
+          "released": true
+        },
+        "official_success": true
+      },
+      {
+        "index": 3,
+        "step_start": 626,
+        "step_end": 646,
+        "brain": null,
+        "command": {
+          "action": "wait",
+          "steps": 20
+        },
+        "feedback": {
+          "action": "wait",
+          "completed": true
+        },
+        "official_success": true
+      }
+    ],
+    "reference_waypoints": [
+      {
+        "step": 0,
+        "kind": "hold",
+        "position": [
+          -0.2084646605658239,
+          0.0,
+          1.1732794757296405
+        ],
+        "rotation": [
+          [
+            -0.0004918296871690936,
+            0.9983867450712572,
+            -0.056777331476359764
+          ],
+          [
+            0.9999998786606131,
+            0.0004926243561613802,
+            0.0
+          ],
+          [
+            2.7969896363104485e-05,
+            -0.05677732458703325,
+            -0.9983868662149061
+          ]
+        ],
+        "grip": null,
+        "duration_steps": 40
+      },
+      {
+        "step": 40,
+        "kind": "move",
+        "position": [
+          -0.13896156966303463,
+          0.3343485942227929,
+          1.103404150188853
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 82
+      },
+      {
+        "step": 162,
+        "kind": "move",
+        "position": [
+          -0.13896156966303463,
+          0.3343485942227929,
+          0.923404150188853
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 43
+      },
+      {
+        "step": 230,
+        "kind": "hold",
+        "position": [
+          -0.13913962129781557,
+          0.3344475738563403,
+          0.9256579154294027
+        ],
+        "rotation": [
+          [
+            -0.9999997832140933,
+            -0.0005464906079324891,
+            -0.0003673142793292002
+          ],
+          [
+            -0.0005462684794701106,
+            0.9999996680457035,
+            -0.0006045653226067682
+          ],
+          [
+            0.0003676445466683337,
+            -0.0006043645393326704,
+            -0.9999997497904631
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 18
+      },
+      {
+        "step": 248,
+        "kind": "move",
+        "position": [
+          -0.13896156966303463,
+          0.3343485942227929,
+          1.123404150188853
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 47
+      },
+      {
+        "step": 323,
+        "kind": "move",
+        "position": [
+          -0.13927715468612292,
+          0.33405641453828805,
+          1.200734630392134
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 19
+      },
+      {
+        "step": 357,
+        "kind": "move",
+        "position": [
+          0.10268716399256891,
+          0.21131259878637715,
+          1.1246713321112054
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 66
+      },
+      {
+        "step": 456,
+        "kind": "move",
+        "position": [
+          0.10268716399256891,
+          0.21131259878637715,
+          0.9846713321112053
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 33
+      },
+      {
+        "step": 529,
+        "kind": "hold",
+        "position": [
+          0.10312280968100244,
+          0.21118419889903436,
+          0.9870753925872658
+        ],
+        "rotation": [
+          [
+            -0.9999962845157457,
+            -0.0008244653896154391,
+            -0.0025983093584152506
+          ],
+          [
+            -0.0008242102508509399,
+            0.9999996554120596,
+            -9.92633933456079e-05
+          ],
+          [
+            0.0025983903023014537,
+            -9.712147132594528e-05,
+            -0.9999966194619128
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 18
+      },
+      {
+        "step": 547,
+        "kind": "move",
+        "position": [
+          0.10268716399256891,
+          0.21131259878637715,
+          1.1846713321112052
+        ],
+        "rotation": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 47
+      },
+      {
+        "step": 626,
+        "kind": "hold",
+        "position": [
+          0.1005692755972861,
+          0.21102226998228887,
+          1.1812516017329486
+        ],
+        "rotation": [
+          [
+            -0.9999433404390731,
+            0.0010522178623494959,
+            0.010592863121765597
+          ],
+          [
+            0.0010784946143636179,
+            0.999996355104583,
+            0.002475202398584768
+          ],
+          [
+            -0.010590220059710638,
+            0.0024864865005311764,
+            -0.9999408305614728
+          ]
+        ],
+        "grip": null,
+        "duration_steps": 20
+      }
+    ]
+  },
+  "motion_evidence": {
+    "recording_fps": 20,
+    "control_hz": 20,
+    "native_frames": 820,
+    "interpolated_frames": 0,
+    "quintic_reference": true,
+    "eef_speed_p95_m_s": 0.08435135418988633,
+    "eef_acceleration_p95_m_s2": 0.16308522015309154,
+    "measurement_note": "Descriptive kinematic measurements, not a perceptual guarantee of zero jitter."
+  }
+}

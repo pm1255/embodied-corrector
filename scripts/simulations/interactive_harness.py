@@ -32,14 +32,14 @@ class Session:
   else:
    import robocasa,robosuite
    from robosuite.controllers import load_composite_controller_config
-   cfg=load_composite_controller_config(robot='PandaOmron');cfg['body_parts']['right']['input_ref_frame']='world'
+   cfg=load_composite_controller_config(robot='PandaOmron');cfg['body_parts']['right']['input_ref_frame']=getattr(args,'arm_reference','world')
    self.env=robosuite.make(args.task,robots='PandaOmron',controller_configs=cfg,has_renderer=False,has_offscreen_renderer=True,use_camera_obs=False,use_object_obs=True,camera_names=['robot0_agentview_left'],control_freq=20,horizon=args.horizon,ignore_done=True,seed=args.seed,layout_ids=[args.layout],style_ids=[args.style],obj_instance_split='target',obj_registries=('objaverse','lightwheel'),generative_textures=None)
    self.obs=self.env.reset();self.task=self.env.get_ep_meta()['lang'];self.camera='robot0_agentview_left';self.arm_frame='world'
   self.sim=self.env.sim;self.robot=self.env.robots[0]
   sid=self.robot.eef_site_id;self.eef_id=sid['right'] if isinstance(sid,dict) else sid
   self.home=self.eef().copy();self.default_rot=np.array([[-1.,0,0],[0,1,0],[0,0,-1]])
-  self.writer=imageio.get_writer(str(self.root/'raw.mp4'),fps=10,codec='libx264',quality=7,macro_block_size=2)
-  self.manifest={'backend':args.backend,'task':self.task,'seed':args.seed,'brain':'GPT proxy (Codex session), not trained RynnBrain','output_schema':['Judge','Cause','Sub','Fine'],'executor':'analytical OSC controller with simulator-state localization','executor_version':'v3-mobile','continuous_episode':True,'reset_after_failure':False,'control_frequency_hz':20,'recording_fps':10,'task_source':args.task,'camera':self.camera,'action_dim':self.env.action_dim,'initial_model_sha256':hashlib.sha256(self.sim.model.get_xml().encode()).hexdigest()}
+  self.writer=imageio.get_writer(str(self.root/'raw.mp4'),fps=getattr(args,'recording_fps',10),codec='libx264',quality=7,macro_block_size=2)
+  self.manifest={'backend':args.backend,'task':self.task,'seed':args.seed,'brain':'GPT proxy (Codex session), not trained RynnBrain','output_schema':['Judge','Cause','Sub','Fine'],'executor':'analytical OSC controller with simulator-state localization','executor_version':'v3-mobile','continuous_episode':True,'reset_after_failure':False,'control_frequency_hz':20,'recording_fps':getattr(args,'recording_fps',10),'task_source':args.task,'camera':self.camera,'action_dim':self.env.action_dim,'initial_model_sha256':hashlib.sha256(self.sim.model.get_xml().encode()).hexdigest()}
   (self.root/'manifest.json').write_text(json.dumps(self.manifest,indent=2,ensure_ascii=False))
   self.snapshot('initial');self.status('ready')
  def eef(self):return self.sim.data.site_xpos[self.eef_id].copy()

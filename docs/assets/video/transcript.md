@@ -34,9 +34,9 @@ NEPO compares the same planning tokens under generated and verified evaluations.
 
 This continuous simulator recording illustrates the interface with a GPT proxy and a state assisted controller. It is separate from the trained model evaluation.
 
-## 00:01:11 · Continuous simulation: identify the target.
+## 00:01:11 · Continuous simulation: restore rim contact.
 
-The instruction asks for the other bowl. The proxy revises the target and grasp. The full episode and official outcome are available in the gallery.
+The grasp is too high. The proxy restores contact with the bowl rim, then follows the successful path to the plate.
 
 ## 00:01:19 · Continuous simulation: open the drawer.
 

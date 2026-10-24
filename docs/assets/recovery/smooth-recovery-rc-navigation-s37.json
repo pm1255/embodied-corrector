@@ -1,0 +1,669 @@
+{
+  "case": "smooth-recovery-rc-navigation-s37",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Navigate to the toaster.",
+    "seed": 37,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "NavigateKitchen",
+    "camera": "base_following_third_person",
+    "action_dim": 12,
+    "initial_model_sha256": "5cac17bc05a08ed58289052a9d3e0b23eb059d273db1a2b05e986379d2e0bfd6",
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "base",
+    "source_success_baseline": {
+      "case": "smooth-baseline-rc-navigation-s37",
+      "success": true,
+      "trajectory_sha256": "66b4e390b4e1cc8f4bb2f405bb0efd001ea9fccb9d7d2cfb6c33c7842c907e6e",
+      "reference_waypoints_sha256": "fd50d8e757420ec717dfc59bcb9208102dd31b3e939aa4bb5799c6578a468101",
+      "commands_sha256": "3fbfc3e5179aa0e9c6a381e020f0291c4bec12a83720d5aeb24f214b9b8b9a0f",
+      "origin": "Newly collected simulator success, not a public human demonstration dataset."
+    },
+    "navigation": true,
+    "target_fixture": "toaster",
+    "target_position": [
+      3.965063735520693,
+      -0.8,
+      0.0
+    ],
+    "target_yaw": 1.5707963267948966
+  },
+  "result": {
+    "success": true,
+    "steps": 379,
+    "commands": 3,
+    "brain_records": 2,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 156,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "navigate",
+        "position": [
+          2.9585597891646893,
+          -0.8144015760102203,
+          0.0
+        ],
+        "yaw": 1.5707965294070216,
+        "perturbation": "Controlled premature stop at 42 percent of the successful navigation route."
+      },
+      "feedback": {
+        "action": "navigate",
+        "base_start": [
+          2.2297121038724113,
+          -0.8248303034658971,
+          0.0
+        ],
+        "base_end": [
+          2.9591390602518977,
+          -0.8164935593130942,
+          0.0
+        ],
+        "target_distance_m": 0.0021707024512766706,
+        "heading_error_rad": -1.2544945282577658e-06,
+        "reached": true,
+        "steps": 156
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 156,
+      "step_end": 379,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The base stopped before reaching the toaster; the destination condition is still unmet.",
+        "Sub": "Resume the successful route to the toaster.",
+        "Fine": "Use the saved destination reference, translate smoothly along the remaining route and brake at the target while holding the arm steady."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The base stopped before reaching the toaster; the destination condition is still unmet.",
+          "Sub": "Resume the successful route to the toaster.",
+          "Fine": "Use the saved destination reference, translate smoothly along the remaining route and brake at the target while holding the arm steady."
+        },
+        "action": "source_reference"
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "smooth-baseline-rc-navigation-s37",
+        "source_reference_sha256": "fd50d8e757420ec717dfc59bcb9208102dd31b3e939aa4bb5799c6578a468101",
+        "references": [
+          {
+            "source_index": 0,
+            "kind": "navigate",
+            "step_start": 156,
+            "step_end": 359,
+            "reached": true
+          },
+          {
+            "source_index": 1,
+            "kind": "hold",
+            "step_start": 359,
+            "step_end": 379,
+            "reached": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 2,
+      "step_start": 379,
+      "step_end": 379,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The base reached the toaster with a valid final position and heading. The official task check confirms success.",
+        "Sub": "Finish navigation.",
+        "Fine": "Hold the final pose and save the complete successful recovery."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The base reached the toaster with a valid final position and heading. The official task check confirms success.",
+          "Sub": "Finish navigation.",
+          "Fine": "Hold the final pose and save the complete successful recovery."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "ad8c2f9f9e66e1a83f7ed03c630339e0ec80c7ca4928535389edb48e9cbfc2e3",
+    "action_trace_sha256": "bef99ec8f278fddbf58c60804921f02067469634c46262485b87444e2bb656c3",
+    "decision_origin": "GPT proxy decisions written after observing preceding execution feedback; not a trained RynnBrain checkpoint.",
+    "trajectory_use": "Saved successful reference waypoints are read and executed from the perturbed state through bounded, smooth control. Simulator states are not replayed or assigned."
+  },
+  "source_baseline": {
+    "manifest": {
+      "backend": "robocasa365",
+      "task": "Navigate to the toaster.",
+      "seed": 37,
+      "brain": "none; deterministic successful-trajectory collection",
+      "output_schema": [],
+      "executor": "analytical OSC controller with simulator-state localization",
+      "executor_version": "v5-minimum-jerk",
+      "continuous_episode": true,
+      "reset_after_failure": false,
+      "control_frequency_hz": 20,
+      "recording_fps": 20,
+      "task_source": "NavigateKitchen",
+      "camera": "base_following_third_person",
+      "action_dim": 12,
+      "initial_model_sha256": "d4cea8fdf042577190344331f5a131745c5ca15c3518a5fc8433b608df9ef781",
+      "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+      "arm_reference": "base",
+      "source_success_baseline": null,
+      "navigation": true,
+      "target_fixture": "toaster",
+      "target_position": [
+        3.965063735520693,
+        -0.8,
+        0.0
+      ],
+      "target_yaw": 1.5707963267948966
+    },
+    "result": {
+      "success": true,
+      "steps": 347,
+      "commands": 2,
+      "brain_records": 0,
+      "termination": "baseline_plan"
+    },
+    "events": [
+      {
+        "index": 0,
+        "step_start": 0,
+        "step_end": 327,
+        "brain": null,
+        "command": {
+          "action": "navigate"
+        },
+        "feedback": {
+          "action": "navigate",
+          "base_start": [
+            2.2297121038724113,
+            -0.8248303034658971,
+            0.0
+          ],
+          "base_end": [
+            3.9615086469990493,
+            -0.8019540307180791,
+            0.0
+          ],
+          "target_distance_m": 0.004056709312228319,
+          "heading_error_rad": 7.654985890059862e-06,
+          "reached": true,
+          "steps": 327
+        },
+        "official_success": true
+      },
+      {
+        "index": 1,
+        "step_start": 327,
+        "step_end": 347,
+        "brain": null,
+        "command": {
+          "action": "wait",
+          "steps": 20
+        },
+        "feedback": {
+          "action": "wait",
+          "completed": true
+        },
+        "official_success": true
+      }
+    ],
+    "reference_waypoints": [
+      {
+        "step": 0,
+        "kind": "navigate",
+        "position": [
+          3.965063735520693,
+          -0.8,
+          0.0
+        ],
+        "yaw": 1.5707965294070216,
+        "duration_steps": 296
+      },
+      {
+        "step": 327,
+        "kind": "hold",
+        "position": [
+          3.9736760831929314,
+          -0.5471305163883953,
+          1.288518594168656
+        ],
+        "rotation": [
+          [
+            -0.9974553675567254,
+            -0.07055664414384041,
+            -0.010224954739997216
+          ],
+          [
+            -0.07062014896215796,
+            0.9581500010018681,
+            0.2774191236030427
+          ],
+          [
+            -0.009776721988383587,
+            0.27743528172760784,
+            -0.9606945821435043
+          ]
+        ],
+        "grip": null,
+        "duration_steps": 20
+      }
+    ]
+  },
+  "motion_evidence": {
+    "recording_fps": 20,
+    "control_hz": 20,
+    "native_frames": 379,
+    "interpolated_frames": 0,
+    "quintic_reference": true,
+    "eef_speed_p95_m_s": 0.22059286323781183,
+    "eef_acceleration_p95_m_s2": 0.12654302147615765,
+    "measurement_note": "Descriptive kinematic measurements, not a perceptual guarantee of zero jitter."
+  },
+  "navigation_evidence": {
+    "task_source": "RoboCasa365 NavigateKitchen",
+    "target_fixture": "toaster",
+    "target_position": [
+      3.965063735520693,
+      -0.8,
+      0.0
+    ],
+    "target_yaw": 1.5707963267948966,
+    "initial_position": [
+      2.2297121038724113,
+      -0.8248303034658971,
+      0.0
+    ],
+    "final_position": [
+      3.963648337928261,
+      -0.8025819975217094,
+      0.0
+    ],
+    "base_path_length_m": 1.7355853876936345,
+    "base_displacement_m": 1.7340789632796911,
+    "final_target_distance_m": 0.002944496824039021,
+    "final_heading_error_rad": -3.198181654395782e-06,
+    "post_perturbation_position": [
+      2.9591390602518977,
+      -0.8164935593130942,
+      0.0
+    ],
+    "post_perturbation_official_success": false,
+    "official_position_tolerance_m": 0.2,
+    "official_heading_cosine_threshold": 0.98,
+    "base_trace": [
+      {
+        "step": 1,
+        "position": [
+          2.2297169957548855,
+          -0.8248302476405094,
+          0.0
+        ],
+        "yaw": 1.5707967585119467
+      },
+      {
+        "step": 11,
+        "position": [
+          2.2316453787727113,
+          -0.824807203369345,
+          0.0
+        ],
+        "yaw": 1.5708008030522977
+      },
+      {
+        "step": 21,
+        "position": [
+          2.251799317323126,
+          -0.8246828062405392,
+          0.0
+        ],
+        "yaw": 1.5708249649279604
+      },
+      {
+        "step": 31,
+        "position": [
+          2.3025351951554227,
+          -0.8243912550438062,
+          0.0
+        ],
+        "yaw": 1.5708258959153878
+      },
+      {
+        "step": 41,
+        "position": [
+          2.37897977840165,
+          -0.8238997297044279,
+          0.0
+        ],
+        "yaw": 1.5708233378252656
+      },
+      {
+        "step": 51,
+        "position": [
+          2.4762174240716086,
+          -0.8232106159527451,
+          0.0
+        ],
+        "yaw": 1.5708162978042806
+      },
+      {
+        "step": 61,
+        "position": [
+          2.5853769376250435,
+          -0.822356686816319,
+          0.0
+        ],
+        "yaw": 1.5708059949982016
+      },
+      {
+        "step": 71,
+        "position": [
+          2.6955494235607316,
+          -0.8213922311215605,
+          0.0
+        ],
+        "yaw": 1.5707939003169886
+      },
+      {
+        "step": 81,
+        "position": [
+          2.7956150708290854,
+          -0.8203839096238299,
+          0.0
+        ],
+        "yaw": 1.5707819704986847
+      },
+      {
+        "step": 91,
+        "position": [
+          2.876008598483648,
+          -0.8194027855289105,
+          0.0
+        ],
+        "yaw": 1.5707727466735817
+      },
+      {
+        "step": 101,
+        "position": [
+          2.9304677714000094,
+          -0.8185157317086382,
+          0.0
+        ],
+        "yaw": 1.5707687141054352
+      },
+      {
+        "step": 111,
+        "position": [
+          2.956141059258247,
+          -0.8177727023199535,
+          0.0
+        ],
+        "yaw": 1.5707502634254142
+      },
+      {
+        "step": 121,
+        "position": [
+          2.959292931153788,
+          -0.8171878652290299,
+          0.0
+        ],
+        "yaw": 1.5707923080814052
+      },
+      {
+        "step": 131,
+        "position": [
+          2.959253122813715,
+          -0.8167214765103296,
+          0.0
+        ],
+        "yaw": 1.570796646989104
+      },
+      {
+        "step": 141,
+        "position": [
+          2.959139061248847,
+          -0.8164935593914183,
+          0.0
+        ],
+        "yaw": 1.5707977813165148
+      },
+      {
+        "step": 151,
+        "position": [
+          2.959139060566113,
+          -0.8164935593385279,
+          0.0
+        ],
+        "yaw": 1.5707977830909108
+      },
+      {
+        "step": 161,
+        "position": [
+          2.959302714053974,
+          -0.816492059610859,
+          0.0
+        ],
+        "yaw": 1.5708003631763916
+      },
+      {
+        "step": 171,
+        "position": [
+          2.962208938043063,
+          -0.8164576017571097,
+          0.0
+        ],
+        "yaw": 1.5708011196910858
+      },
+      {
+        "step": 181,
+        "position": [
+          2.980039274604287,
+          -0.8163333877050181,
+          0.0
+        ],
+        "yaw": 1.5708185244780075
+      },
+      {
+        "step": 191,
+        "position": [
+          3.01907690028306,
+          -0.8160705973429964,
+          0.0
+        ],
+        "yaw": 1.5708186526658605
+      },
+      {
+        "step": 201,
+        "position": [
+          3.077247399080254,
+          -0.8156352348529262,
+          0.0
+        ],
+        "yaw": 1.5708194143431575
+      },
+      {
+        "step": 211,
+        "position": [
+          3.153902970636783,
+          -0.8150114097997083,
+          0.0
+        ],
+        "yaw": 1.5708181276503763
+      },
+      {
+        "step": 221,
+        "position": [
+          3.246303662882704,
+          -0.8142016594421404,
+          0.0
+        ],
+        "yaw": 1.570815084917524
+      },
+      {
+        "step": 231,
+        "position": [
+          3.3501232722905874,
+          -0.8132246011475451,
+          0.0
+        ],
+        "yaw": 1.5708105437932434
+      },
+      {
+        "step": 241,
+        "position": [
+          3.4599992386188982,
+          -0.8121110441512606,
+          0.0
+        ],
+        "yaw": 1.5708047912846856
+      },
+      {
+        "step": 251,
+        "position": [
+          3.5700471638692646,
+          -0.8108999595196936,
+          0.0
+        ],
+        "yaw": 1.5707982348626752
+      },
+      {
+        "step": 261,
+        "position": [
+          3.674356722130659,
+          -0.8096352517758725,
+          0.0
+        ],
+        "yaw": 1.5707914731018386
+      },
+      {
+        "step": 271,
+        "position": [
+          3.760091537923048,
+          -0.8088094498120169,
+          0.0
+        ],
+        "yaw": 1.571539883462933
+      },
+      {
+        "step": 281,
+        "position": [
+          3.8386369189738687,
+          -0.8075783661426512,
+          0.0
+        ],
+        "yaw": 1.570777613950297
+      },
+      {
+        "step": 291,
+        "position": [
+          3.900401760696862,
+          -0.8063707421925845,
+          0.0
+        ],
+        "yaw": 1.570775770697917
+      },
+      {
+        "step": 301,
+        "position": [
+          3.9407301615545913,
+          -0.805296843482521,
+          0.0
+        ],
+        "yaw": 1.5707756298363778
+      },
+      {
+        "step": 311,
+        "position": [
+          3.9585454924131978,
+          -0.8043838517824151,
+          0.0
+        ],
+        "yaw": 1.570769803476041
+      },
+      {
+        "step": 321,
+        "position": [
+          3.9621178940135953,
+          -0.8036371913125033,
+          0.0
+        ],
+        "yaw": 1.5707931340563466
+      },
+      {
+        "step": 331,
+        "position": [
+          3.963176374305332,
+          -0.8030306725455504,
+          0.0
+        ],
+        "yaw": 1.570796270258452
+      },
+      {
+        "step": 341,
+        "position": [
+          3.9636480500245708,
+          -0.8025806385676414,
+          0.0
+        ],
+        "yaw": 1.570793533242822
+      },
+      {
+        "step": 351,
+        "position": [
+          3.9636480660385214,
+          -0.8025799372847371,
+          0.0
+        ],
+        "yaw": 1.5707935281470429
+      },
+      {
+        "step": 361,
+        "position": [
+          3.9636485798381265,
+          -0.8025790204121344,
+          0.0
+        ],
+        "yaw": 1.5707923731162101
+      },
+      {
+        "step": 371,
+        "position": [
+          3.963651675737852,
+          -0.8025801829781263,
+          0.0
+        ],
+        "yaw": 1.5707856406315517
+      }
+    ]
+  }
+}

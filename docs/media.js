@@ -65,8 +65,7 @@ document.querySelectorAll('main .figure-button img[data-fallback]').forEach(imag
   }
 });
 
-// Keep all fifty players in the page, but do not request fifty offscreen
-// posters at once. Paper figures get the network before the video gallery.
+// Load offscreen video covers lazily so paper figures can load first.
 const deferredPosters = document.querySelectorAll('video[data-poster]');
 function loadPoster(video) {
   if (!video.hasAttribute('poster')) video.poster = video.dataset.poster;

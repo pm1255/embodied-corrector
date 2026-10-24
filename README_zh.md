@@ -13,35 +13,35 @@
 
 ## Overview
 
-https://github.com/user-attachments/assets/a2b439b6-98d1-4bb5-bfef-ddec572810bf
+https://github.com/user-attachments/assets/a89f5368-ed4c-44c3-905a-4011c73f6d9b
 
 Research overview with English narration and subtitles. Robot motion comes from continuous simulator recordings.
 
 ## Selected successful recoveries
 
-Each video shows an observed failure, the **Judge → Cause → Sub → Fine** output, corrective actions, and a verified successful ending. Videos retain the complete simulator episode at **1× speed**, with a three-second final result hold.
+Each video shows an observed failure, the **Judge → Cause → Sub → Fine** output, corrective actions, and a verified successful ending. Titles use the original task instructions; all video text is English. Videos retain every action frame at **native 20 fps and 1× speed**, with a three-second final result hold. Each recovery rejoins a newly collected, verified successful reference trajectory after a controlled perturbation.
 
-### LIBERO-PRO · Drawer access and grasp recovery
+### Open the top layer of the drawer and put the cream cheese inside
 
-Restore drawer clearance, correct an unsuccessful grasp, and place the cream cheese inside. **Final environment result: success.**
+**LIBERO-PRO.** Restore handle contact, open the top drawer, and place the cream cheese inside. **Final environment result: success.**
 
-https://github.com/user-attachments/assets/9aad4e4a-d6d4-4db4-a6ff-70fe7442b61f
+https://github.com/user-attachments/assets/943e6c8b-d766-4894-96d0-f1cc69fdd9ec
 
-### LIBERO-PRO · Two-object basket recovery
+### Put both the cream cheese box and the butter in the basket
 
-Recover an omitted pickup, grasp both required objects, and complete the basket task. **Final environment result: success.**
+**LIBERO-PRO.** Correct the grasp height and put both required objects in the basket. **Final environment result: success.**
 
-https://github.com/user-attachments/assets/58b59586-1e27-4fe1-b5ed-bddcd9ca3faa
+https://github.com/user-attachments/assets/02a661f5-b2cf-48b2-9925-1acb15dbcd65
 
-### RoboCasa365 · Regrasp and separate the vegetables
+### Place the garlic and the mushroom on separate cutting boards.
 
-Correct a missed grasp and place the two vegetables on separate cutting boards. **Final environment result: success.**
+**RoboCasa365.** Correct a missed grasp and place the two vegetables on separate cutting boards. **Final environment result: success.**
 
-https://github.com/user-attachments/assets/c9dcd501-c9fd-4cfe-aa18-fdbef5edb70d
+https://github.com/user-attachments/assets/e5711720-0fca-4182-a5aa-a25259f95a6c
 
 These demonstrations use a **GPT proxy with simulator-state-assisted analytical control**. They illustrate the correction workflow and are separate from trained Embodied-Corrector / RynnBrain evaluation results.
 
-The [project gallery](https://pm1255.github.io/embodied-corrector/#simulations) contains **12 selected successful recovery episodes: 6 LIBERO-PRO and 6 RoboCasa365**, including three mobile-base navigation recoveries, using the same video layout and visible brain output. They cover task and seed variations; they are not 12 distinct tasks or an estimate of benchmark success rate. See [episode provenance and verification](guides/selected_recoveries.md).
+The [project gallery](https://pm1255.github.io/embodied-corrector/?v=smooth-en-12#simulations) contains **12 selected successful recovery episodes: 6 LIBERO-PRO and 6 RoboCasa365**, including three mobile-base navigation recoveries, using the same video layout and visible brain output. They cover task and seed variations; they are not 12 distinct tasks or an estimate of benchmark success rate. See [episode provenance and verification](guides/selected_recoveries.md).
 
 ## 摘要
 

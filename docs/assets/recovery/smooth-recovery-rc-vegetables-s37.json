@@ -1,0 +1,945 @@
+{
+  "case": "smooth-recovery-rc-vegetables-s37",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the garlic and the mushroom on separate cutting boards.",
+    "seed": 37,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "OrganizeVegetables",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "471993b8191ea271d2649d3ad05e10b9bbb072f11b3085a635ea59faa5dc39d8",
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "smooth-baseline-rc-vegetables-s37",
+      "success": true,
+      "trajectory_sha256": "3c7e623f3c7038945a31354787d02f7ab9181f68df46a2929e7e87311e01176d",
+      "reference_waypoints_sha256": "7ec444eb0ce496444a7cebbf162334119c1c3159aaa6f3854a050590f20051da",
+      "commands_sha256": "0aa28f70453329402eefb8d4fe8ff868bc5927d75f1bd2b011349946a4a7af6e",
+      "origin": "Newly collected simulator success, not a public human demonstration dataset."
+    },
+    "navigation": false
+  },
+  "result": {
+    "success": true,
+    "steps": 1400,
+    "commands": 3,
+    "brain_records": 2,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 347,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.13
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.16,
+        "perturbation": "Controlled upward offset of the grasp from the verified successful trajectory."
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "vegetable1",
+        "object_lift_m": 6.731656854164214e-08,
+        "object_follows_gripper": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 347,
+      "step_end": 1400,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed above the garlic. Both vegetables are still on the counter.",
+        "Sub": "Restore contact and move each vegetable to its own board.",
+        "Fine": "Rejoin the verified grasp and placement path. Secure the garlic first, then grasp the mushroom and place it on the second board."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed above the garlic. Both vegetables are still on the counter.",
+          "Sub": "Restore contact and move each vegetable to its own board.",
+          "Fine": "Rejoin the verified grasp and placement path. Secure the garlic first, then grasp the mushroom and place it on the second board."
+        },
+        "action": "source_reference"
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "smooth-baseline-rc-vegetables-s37",
+        "source_reference_sha256": "7ec444eb0ce496444a7cebbf162334119c1c3159aaa6f3854a050590f20051da",
+        "references": [
+          {
+            "source_index": 0,
+            "kind": "move",
+            "step_start": 347,
+            "step_end": 418,
+            "reached": true
+          },
+          {
+            "source_index": 1,
+            "kind": "move",
+            "step_start": 418,
+            "step_end": 486,
+            "reached": true
+          },
+          {
+            "source_index": 2,
+            "kind": "hold",
+            "step_start": 486,
+            "step_end": 504,
+            "reached": true
+          },
+          {
+            "source_index": 3,
+            "kind": "move",
+            "step_start": 504,
+            "step_end": 580,
+            "reached": true
+          },
+          {
+            "source_index": 4,
+            "kind": "move",
+            "step_start": 580,
+            "step_end": 614,
+            "reached": true
+          },
+          {
+            "source_index": 5,
+            "kind": "move",
+            "step_start": 614,
+            "step_end": 685,
+            "reached": true
+          },
+          {
+            "source_index": 6,
+            "kind": "move",
+            "step_start": 685,
+            "step_end": 740,
+            "reached": true
+          },
+          {
+            "source_index": 7,
+            "kind": "hold",
+            "step_start": 740,
+            "step_end": 758,
+            "reached": true
+          },
+          {
+            "source_index": 8,
+            "kind": "move",
+            "step_start": 758,
+            "step_end": 845,
+            "reached": false
+          },
+          {
+            "source_index": 9,
+            "kind": "move",
+            "step_start": 845,
+            "step_end": 930,
+            "reached": true
+          },
+          {
+            "source_index": 10,
+            "kind": "move",
+            "step_start": 930,
+            "step_end": 998,
+            "reached": true
+          },
+          {
+            "source_index": 11,
+            "kind": "hold",
+            "step_start": 998,
+            "step_end": 1016,
+            "reached": true
+          },
+          {
+            "source_index": 12,
+            "kind": "move",
+            "step_start": 1016,
+            "step_end": 1091,
+            "reached": true
+          },
+          {
+            "source_index": 13,
+            "kind": "move",
+            "step_start": 1091,
+            "step_end": 1125,
+            "reached": true
+          },
+          {
+            "source_index": 14,
+            "kind": "move",
+            "step_start": 1125,
+            "step_end": 1205,
+            "reached": true
+          },
+          {
+            "source_index": 15,
+            "kind": "move",
+            "step_start": 1205,
+            "step_end": 1277,
+            "reached": true
+          },
+          {
+            "source_index": 16,
+            "kind": "hold",
+            "step_start": 1277,
+            "step_end": 1295,
+            "reached": true
+          },
+          {
+            "source_index": 17,
+            "kind": "move",
+            "step_start": 1295,
+            "step_end": 1380,
+            "reached": false
+          },
+          {
+            "source_index": 18,
+            "kind": "hold",
+            "step_start": 1380,
+            "step_end": 1400,
+            "reached": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 2,
+      "step_start": 1400,
+      "step_end": 1400,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The garlic and mushroom are on separate cutting boards. The environment confirms success.",
+        "Sub": "Finish the recovered kitchen task.",
+        "Fine": "Keep the final placements and save the continuous episode."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The garlic and mushroom are on separate cutting boards. The environment confirms success.",
+          "Sub": "Finish the recovered kitchen task.",
+          "Fine": "Keep the final placements and save the continuous episode."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "b91bf83ee6bc8b549df8f29066ed6f9b7c6f8526f3f5b6073d9fab6fb7027442",
+    "action_trace_sha256": "705d140ed5fd5bfa8b4b83fac2a651ec562fd9d58ec8656859f0d6fbd221139a",
+    "decision_origin": "GPT proxy decisions written after observing preceding execution feedback; not a trained RynnBrain checkpoint.",
+    "trajectory_use": "Saved successful reference waypoints are read and executed from the perturbed state through bounded, smooth control. Simulator states are not replayed or assigned."
+  },
+  "source_baseline": {
+    "manifest": {
+      "backend": "robocasa365",
+      "task": "Place the garlic and the mushroom on separate cutting boards.",
+      "seed": 37,
+      "brain": "none; deterministic successful-trajectory collection",
+      "output_schema": [],
+      "executor": "analytical OSC controller with simulator-state localization",
+      "executor_version": "v5-minimum-jerk",
+      "continuous_episode": true,
+      "reset_after_failure": false,
+      "control_frequency_hz": 20,
+      "recording_fps": 20,
+      "task_source": "OrganizeVegetables",
+      "camera": "robot0_agentview_left",
+      "action_dim": 12,
+      "initial_model_sha256": "f3531b17541336b64dc0985ff1d59638b455cf3bc7e2e2214dc64f4ed5379669",
+      "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+      "arm_reference": "world",
+      "source_success_baseline": null,
+      "navigation": false
+    },
+    "result": {
+      "success": true,
+      "steps": 1173,
+      "commands": 5,
+      "brain_records": 0,
+      "termination": "baseline_plan"
+    },
+    "events": [
+      {
+        "index": 0,
+        "step_start": 0,
+        "step_end": 352,
+        "brain": null,
+        "command": {
+          "action": "pick",
+          "object": "vegetable1",
+          "offset": [
+            0,
+            0,
+            -0.008
+          ],
+          "yaw_degrees": 90,
+          "lift": 0.2
+        },
+        "feedback": {
+          "action": "pick",
+          "object": "vegetable1",
+          "object_lift_m": 0.1955124370850675,
+          "object_follows_gripper": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 1,
+        "step_start": 352,
+        "step_end": 617,
+        "brain": null,
+        "command": {
+          "action": "place",
+          "object": "vegetable1",
+          "target": "cutting_board1",
+          "offset": [
+            0,
+            0,
+            0.035
+          ]
+        },
+        "feedback": {
+          "action": "place",
+          "released": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 2,
+        "step_start": 617,
+        "step_end": 863,
+        "brain": null,
+        "command": {
+          "action": "pick",
+          "object": "vegetable2",
+          "offset": [
+            0,
+            0,
+            0.005
+          ],
+          "yaw_degrees": 90,
+          "lift": 0.2
+        },
+        "feedback": {
+          "action": "pick",
+          "object": "vegetable2",
+          "object_lift_m": 0.19186409110123892,
+          "object_follows_gripper": true
+        },
+        "official_success": false
+      },
+      {
+        "index": 3,
+        "step_start": 863,
+        "step_end": 1153,
+        "brain": null,
+        "command": {
+          "action": "place",
+          "object": "vegetable2",
+          "target": "cutting_board2",
+          "offset": [
+            0,
+            0,
+            0.035
+          ]
+        },
+        "feedback": {
+          "action": "place",
+          "released": true
+        },
+        "official_success": true
+      },
+      {
+        "index": 4,
+        "step_start": 1153,
+        "step_end": 1173,
+        "brain": null,
+        "command": {
+          "action": "wait",
+          "steps": 20
+        },
+        "feedback": {
+          "action": "wait",
+          "completed": true
+        },
+        "official_success": true
+      }
+    ],
+    "reference_waypoints": [
+      {
+        "step": 0,
+        "kind": "move",
+        "position": [
+          2.2878519697917317,
+          -0.5779618046524407,
+          1.1139701954135461
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 149
+      },
+      {
+        "step": 189,
+        "kind": "move",
+        "position": [
+          2.2878519697917317,
+          -0.5779618046524407,
+          0.9339701954135461
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 44
+      },
+      {
+        "step": 258,
+        "kind": "hold",
+        "position": [
+          2.28782610110595,
+          -0.5780173846272609,
+          0.9361810863656737
+        ],
+        "rotation": [
+          [
+            -0.00042155408945642695,
+            -0.999999861969512,
+            -0.0003136129852437968
+          ],
+          [
+            -0.9999999067242301,
+            0.0004215835592938981,
+            -9.390863333971804e-05
+          ],
+          [
+            9.404083445602349e-05,
+            0.0003135733684228849,
+            -0.9999999464140296
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 18
+      },
+      {
+        "step": 276,
+        "kind": "move",
+        "position": [
+          2.2878519697917317,
+          -0.5779618046524407,
+          1.1339701954135462
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 47
+      },
+      {
+        "step": 352,
+        "kind": "move",
+        "position": [
+          2.2879029486609834,
+          -0.5778232060779654,
+          1.2117271793983946
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 19
+      },
+      {
+        "step": 386,
+        "kind": "move",
+        "position": [
+          2.1328597677869827,
+          -0.4077111940754421,
+          1.0976989286196992
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 60
+      },
+      {
+        "step": 457,
+        "kind": "move",
+        "position": [
+          2.1328597677869827,
+          -0.4077111940754421,
+          0.9576989286196993
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 34
+      },
+      {
+        "step": 512,
+        "kind": "hold",
+        "position": [
+          2.132865888390774,
+          -0.40797474944823486,
+          0.9596946932363166
+        ],
+        "rotation": [
+          [
+            -0.0006831466878118613,
+            -0.9999996828222986,
+            0.0004094702741165899
+          ],
+          [
+            -0.9999995084872726,
+            0.0006834406853645476,
+            0.0007182854884901282
+          ],
+          [
+            -0.0007185651093107665,
+            -0.0004089793785043734,
+            -0.9999996581999676
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 18
+      },
+      {
+        "step": 530,
+        "kind": "move",
+        "position": [
+          2.1328597677869827,
+          -0.4077111940754421,
+          1.1576989286196993
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 47
+      },
+      {
+        "step": 617,
+        "kind": "move",
+        "position": [
+          2.3527874130023734,
+          -0.4733055619398395,
+          1.1285284804294224
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 54
+      },
+      {
+        "step": 702,
+        "kind": "move",
+        "position": [
+          2.3527874130023734,
+          -0.4733055619398395,
+          0.9485284804294225
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 43
+      },
+      {
+        "step": 770,
+        "kind": "hold",
+        "position": [
+          2.3526354807312377,
+          -0.473582446507414,
+          0.9510872169944554
+        ],
+        "rotation": [
+          [
+            -0.0006368526917047466,
+            -0.9999995988209588,
+            0.0006299020306271122
+          ],
+          [
+            -0.9999996087435153,
+            0.0006372391722335959,
+            0.0006135462910028081
+          ],
+          [
+            -0.0006139474431094812,
+            -0.0006295110455669482,
+            -0.9999996133921144
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 18
+      },
+      {
+        "step": 788,
+        "kind": "move",
+        "position": [
+          2.3527874130023734,
+          -0.4733055619398395,
+          1.1485284804294225
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 47
+      },
+      {
+        "step": 863,
+        "kind": "move",
+        "position": [
+          2.3528481433931443,
+          -0.47322455431965554,
+          1.226235054150398
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 19
+      },
+      {
+        "step": 897,
+        "kind": "move",
+        "position": [
+          2.506572979190725,
+          -0.41997065355699764,
+          1.1191736221270219
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 46
+      },
+      {
+        "step": 978,
+        "kind": "move",
+        "position": [
+          2.506572979190725,
+          -0.41997065355699764,
+          0.979173622127022
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": 1,
+        "duration_steps": 32
+      },
+      {
+        "step": 1050,
+        "kind": "hold",
+        "position": [
+          2.508583934047389,
+          -0.4161511284926619,
+          0.9881855128381014
+        ],
+        "rotation": [
+          [
+            -0.0009615658552637246,
+            -0.9999991653185278,
+            -0.0008629909335761981
+          ],
+          [
+            -0.9999991654847207,
+            0.000962309727122212,
+            -0.0008619685894919564
+          ],
+          [
+            0.0008627983345925449,
+            0.0008621613738331137,
+            -0.9999992561281218
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 18
+      },
+      {
+        "step": 1068,
+        "kind": "move",
+        "position": [
+          2.506572979190725,
+          -0.41997065355699764,
+          1.179173622127022
+        ],
+        "rotation": [
+          [
+            -2.220446049250313e-16,
+            -1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        ],
+        "grip": -1,
+        "duration_steps": 45
+      },
+      {
+        "step": 1153,
+        "kind": "hold",
+        "position": [
+          2.5044447731776454,
+          -0.4245862413918522,
+          1.1127391006884033
+        ],
+        "rotation": [
+          [
+            0.0009453066570560017,
+            -0.9999878287830594,
+            -0.004842383820273049
+          ],
+          [
+            -0.9999858872476838,
+            -0.0009199667814455118,
+            -0.00523249143138163
+          ],
+          [
+            0.005227972913335629,
+            0.004847261789892656,
+            -0.9999745858532374
+          ]
+        ],
+        "grip": null,
+        "duration_steps": 20
+      }
+    ]
+  },
+  "motion_evidence": {
+    "recording_fps": 20,
+    "control_hz": 20,
+    "native_frames": 1400,
+    "interpolated_frames": 0,
+    "quintic_reference": true,
+    "eef_speed_p95_m_s": 0.10861689296004434,
+    "eef_acceleration_p95_m_s2": 0.2028274776932857,
+    "measurement_note": "Descriptive kinematic measurements, not a perceptual guarantee of zero jitter."
+  }
+}

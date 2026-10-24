@@ -50,7 +50,11 @@ def render(raw, record_path, output, title, ffmpeg, font_dir):
         d = ImageDraw.Draw(im)
         text(d, 48, 26, 'EMBODIED-CORRECTOR', 20, ACCENT, True)
         text(d, 1090, 26, f'GPT proxy  /  Seed {meta["seed"]}  /  1×', 20, MUTED)
-        text(d, 48, 77, title, 38, WHITE, True)
+        title_size = 38
+        while font(title_size, True).getlength(title) > 1504 and title_size > 26:
+            title_size -= 1
+        assert font(title_size, True).getlength(title) <= 1504, 'Original task title exceeds the available width'
+        text(d, 48, 77, title, title_size, WHITE, True)
         d.line((48, 140, 1552, 140), fill='#344158', width=1)
         text(d, 48, 167, 'BRAIN OUTPUT', 21, ACCENT, True)
         text(d, 752, 167, 'CONTINUOUS SIMULATOR RECORDING', 21, ACCENT, True)

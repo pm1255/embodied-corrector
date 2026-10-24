@@ -1,0 +1,507 @@
+[
+  {
+    "id": "libero-articulation-s7",
+    "backend": "libero_pro",
+    "task": "tasks/libero-articulation.bddl",
+    "seed": 7,
+    "baseline_commands": [
+      {
+        "action": "pull_drawer",
+        "distance": 0.16
+      },
+      {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 270,
+        "lift": 0.2
+      },
+      {
+        "action": "place",
+        "target": "site:wooden_cabinet_1_top_region",
+        "offset": [
+          0,
+          0,
+          0.025
+        ]
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "libero-articulation-s11",
+    "backend": "libero_pro",
+    "task": "tasks/libero-articulation.bddl",
+    "seed": 11,
+    "baseline_commands": [
+      {
+        "action": "pull_drawer",
+        "distance": 0.16
+      },
+      {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 270,
+        "lift": 0.2
+      },
+      {
+        "action": "place",
+        "target": "site:wooden_cabinet_1_top_region",
+        "offset": [
+          0,
+          0,
+          0.025
+        ]
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "libero-relational-s7",
+    "backend": "libero_pro",
+    "task": "tasks/libero-relational.bddl",
+    "seed": 7,
+    "baseline_commands": [
+      {
+        "action": "wait",
+        "steps": 40
+      },
+      {
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "offset": [
+          0.045,
+          0,
+          0.025
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.2
+      },
+      {
+        "action": "place",
+        "object": "akita_black_bowl_2",
+        "target": "plate_1",
+        "offset": [
+          0,
+          0,
+          0.04
+        ]
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "libero-relational-s11",
+    "backend": "libero_pro",
+    "task": "tasks/libero-relational.bddl",
+    "seed": 11,
+    "baseline_commands": [
+      {
+        "action": "wait",
+        "steps": 40
+      },
+      {
+        "action": "pick",
+        "object": "akita_black_bowl_2",
+        "offset": [
+          0.045,
+          0,
+          0.025
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.2
+      },
+      {
+        "action": "place",
+        "object": "akita_black_bowl_2",
+        "target": "plate_1",
+        "offset": [
+          0,
+          0,
+          0.04
+        ]
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "libero-multiobject-s7",
+    "backend": "libero_pro",
+    "task": "tasks/libero-multiobject.bddl",
+    "seed": 7,
+    "baseline_commands": [
+      {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.25
+      },
+      {
+        "action": "place",
+        "object": "cream_cheese_1",
+        "target": "basket_1",
+        "offset": [
+          0,
+          -0.035,
+          0.12
+        ]
+      },
+      {
+        "action": "pick",
+        "object": "butter_1",
+        "offset": [
+          0,
+          0,
+          -0.007
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.25
+      },
+      {
+        "action": "place",
+        "object": "butter_1",
+        "target": "basket_1",
+        "offset": [
+          0,
+          0.035,
+          0.12
+        ]
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "libero-multiobject-s11",
+    "backend": "libero_pro",
+    "task": "tasks/libero-multiobject.bddl",
+    "seed": 11,
+    "baseline_commands": [
+      {
+        "action": "pick",
+        "object": "cream_cheese_1",
+        "offset": [
+          0,
+          0,
+          -0.004
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.25
+      },
+      {
+        "action": "place",
+        "object": "cream_cheese_1",
+        "target": "basket_1",
+        "offset": [
+          0,
+          -0.035,
+          0.12
+        ]
+      },
+      {
+        "action": "pick",
+        "object": "butter_1",
+        "offset": [
+          0,
+          0,
+          -0.007
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.25
+      },
+      {
+        "action": "place",
+        "object": "butter_1",
+        "target": "basket_1",
+        "offset": [
+          0,
+          0.035,
+          0.12
+        ]
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "rc-navigation-s11",
+    "backend": "robocasa365",
+    "task": "NavigateKitchen",
+    "seed": 11,
+    "baseline_commands": [
+      {
+        "action": "navigate"
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "rc-vegetables-s11",
+    "backend": "robocasa365",
+    "task": "OrganizeVegetables",
+    "seed": 11,
+    "baseline_commands": [
+      {
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      {
+        "action": "place",
+        "object": "vegetable1",
+        "target": "cutting_board1",
+        "offset": [
+          0,
+          0,
+          0.035
+        ]
+      },
+      {
+        "action": "base_shift",
+        "delta_world": [
+          -0.15,
+          0,
+          0
+        ]
+      },
+      {
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      {
+        "action": "place",
+        "object": "vegetable2",
+        "target": "cutting_board2",
+        "offset": [
+          0,
+          0,
+          0.035
+        ]
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "rc-navigation-s23",
+    "backend": "robocasa365",
+    "task": "NavigateKitchen",
+    "seed": 23,
+    "baseline_commands": [
+      {
+        "action": "navigate"
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "rc-vegetables-s23",
+    "backend": "robocasa365",
+    "task": "OrganizeVegetables",
+    "seed": 23,
+    "baseline_commands": [
+      {
+        "action": "move",
+        "position": [
+          2.940630657282615,
+          -0.8930359200637435,
+          1.35
+        ],
+        "rotation": [
+          [
+            -0.7034318857964567,
+            -0.275943006925491,
+            0.65501071668619
+          ],
+          [
+            -0.13068977751084168,
+            0.9560628884637152,
+            0.26241938830159167
+          ],
+          [
+            -0.6986442328531772,
+            0.09899096035160626,
+            -0.7085880507528046
+          ]
+        ],
+        "grip": -1
+      },
+      {
+        "action": "move",
+        "position": [
+          2.24056,
+          -0.59095,
+          1.35
+        ],
+        "yaw_degrees": 0,
+        "grip": -1
+      },
+      {
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          -0.01
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.16
+      },
+      {
+        "action": "place",
+        "object": "vegetable1",
+        "target": "cutting_board1",
+        "offset": [
+          0,
+          0,
+          0.035
+        ]
+      },
+      {
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          -0.005
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.16
+      },
+      {
+        "action": "place",
+        "object": "vegetable2",
+        "target": "cutting_board2",
+        "offset": [
+          0,
+          0,
+          0.035
+        ]
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "rc-navigation-s37",
+    "backend": "robocasa365",
+    "task": "NavigateKitchen",
+    "seed": 37,
+    "baseline_commands": [
+      {
+        "action": "navigate"
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  },
+  {
+    "id": "rc-vegetables-s37",
+    "backend": "robocasa365",
+    "task": "OrganizeVegetables",
+    "seed": 37,
+    "baseline_commands": [
+      {
+        "action": "pick",
+        "object": "vegetable1",
+        "offset": [
+          0,
+          0,
+          -0.008
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      {
+        "action": "place",
+        "object": "vegetable1",
+        "target": "cutting_board1",
+        "offset": [
+          0,
+          0,
+          0.035
+        ]
+      },
+      {
+        "action": "pick",
+        "object": "vegetable2",
+        "offset": [
+          0,
+          0,
+          0.005
+        ],
+        "yaw_degrees": 90,
+        "lift": 0.2
+      },
+      {
+        "action": "place",
+        "object": "vegetable2",
+        "target": "cutting_board2",
+        "offset": [
+          0,
+          0,
+          0.035
+        ]
+      },
+      {
+        "action": "wait",
+        "steps": 20
+      }
+    ]
+  }
+]
