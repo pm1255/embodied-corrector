@@ -1,0 +1,88 @@
+{
+  "case": "libero-relational-r2",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "pick the akita black bowl not between the plate and the ramekin and place it on the plate",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/libero-relational.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "7b8a449197850e6bf84ecb9a1cef2432f4fa7a98169f2fd1f4323309314eac53"
+  },
+  "result": {
+    "success": true,
+    "steps": 746,
+    "commands": 5,
+    "brain_records": 4,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 174,
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 174,
+      "step_end": 380,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The previous attempt targeted the bowl between the plate and ramekin and did not lift it; this violates the instruction to select the bowl outside that pair.",
+        "Sub": "Grasp the other black bowl to the right of the ramekin.",
+        "Fine": "Grasp one side of the correct bowl rim, lift, and check whether the bowl follows the gripper."
+      }
+    },
+    {
+      "index": 2,
+      "step_start": 380,
+      "step_end": 513,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The target is correct, but the right bowl remains on the table; the previous grasp was unstable.",
+        "Sub": "Use a radial grasp on the outer rim.",
+        "Fine": "Align normal to the bowl wall with one finger inside and one outside, close, and lift to verify attachment."
+      }
+    },
+    {
+      "index": 3,
+      "step_start": 513,
+      "step_end": 746,
+      "official_success": true,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The target bowl has lifted off the table; the radial grasp formed stable contact.",
+        "Sub": "Place the correct bowl at the center of the plate.",
+        "Fine": "Compensate for the offset between gripper and bowl center, release low above the plate center, and withdraw to verify the relation."
+      }
+    },
+    {
+      "index": 4,
+      "step_start": 746,
+      "step_end": 746,
+      "official_success": true,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The correct target bowl remains in the plate and the other bowl remains in place; the spatial goal is complete.",
+        "Sub": "Finish this episode.",
+        "Fine": "Record final success and leave the scene unchanged."
+      }
+    }
+  ],
+  "record_note": "English presentation of the source execution record. Proxy judgments are historical observations and may differ from the official task outcome. Numeric event boundaries and official outcomes are unchanged."
+}

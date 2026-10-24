@@ -1,0 +1,172 @@
+{
+  "case": "robocasa-clearing",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Clear the non-vegetable object off the cutting board and place the vegetables onto it.",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "ClearCuttingBoard",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "2c69d39ba4d4f456e51bdcc4db0fbd7ce2f8f31bb91332cf032a6a717244eade"
+  },
+  "result": {
+    "success": false,
+    "steps": 2113,
+    "commands": 12,
+    "brain_records": 11,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 192,
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 192,
+      "step_end": 448,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The empty gripper did not place anything; meat remains on the board and the two vegetables have not been moved there.",
+        "Sub": "Remove the meat occupying the board first.",
+        "Fine": "Open the gripper, grasp the meat low, lift it, and move it to nearby free counter space."
+      }
+    },
+    {
+      "index": 2,
+      "step_start": 448,
+      "step_end": 700,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The meat remains on the board and did not follow the lift; the grasp orientation or contact position is unsuitable.",
+        "Sub": "Change gripper orientation and grasp the target again.",
+        "Fine": "Rotate 90 degrees above the target, descend onto the other pair of sides, close, and lift to verify."
+      }
+    },
+    {
+      "index": 3,
+      "step_start": 700,
+      "step_end": 736,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The meat still did not lift after reorientation; repeated grasps have not cleared the board.",
+        "Sub": "Try gently pushing the meat along the board onto the adjacent counter.",
+        "Fine": "Close the gripper at a low position left of the meat, then push laterally to move it beyond the board boundary."
+      }
+    },
+    {
+      "index": 4,
+      "step_start": 736,
+      "step_end": 813,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The gripper is positioned low to the left of the meat, which remains on the board.",
+        "Sub": "Move the meat off the board.",
+        "Fine": "Keep the closed gripper low, push toward free counter space to the right, then lift away to inspect."
+      }
+    },
+    {
+      "index": 5,
+      "step_start": 813,
+      "step_end": 1131,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The meat remains on the board after lateral motion; the gripper passed above it without effective contact.",
+        "Sub": "Lower the contact height and grasp the meat again.",
+        "Fine": "Return to the meat center, descend to a lower side contact, and close without closing empty above the surface."
+      }
+    },
+    {
+      "index": 6,
+      "step_start": 1131,
+      "step_end": 1212,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The lower grasp still produced an empty lift; the approach pose needs to change.",
+        "Sub": "Tilt the gripper and approach the meat from the front.",
+        "Fine": "Open the gripper, tilt the wrist, descend to either side of the meat, and confirm contact position before closing."
+      }
+    },
+    {
+      "index": 7,
+      "step_start": 1212,
+      "step_end": 1237,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The tilted descent reached the meat, which is temporarily occluded; verify attachment through motion after closing.",
+        "Sub": "Grasp the meat and prepare to remove it from the board.",
+        "Fine": "Close in the current pose, retreat forward and lift, then check whether the meat follows."
+      }
+    },
+    {
+      "index": 8,
+      "step_start": 1237,
+      "step_end": 1377,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The gripper has closed and the arm occludes the meat; observe whether it leaves the board with the next motion.",
+        "Sub": "Retreat forward and lift to verify the grasp.",
+        "Fine": "Maintain wrist tilt and closure, leave the rear space, rise, and check whether the board is clear."
+      }
+    },
+    {
+      "index": 9,
+      "step_start": 1377,
+      "step_end": 1795,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The meat has left the board and moved forward with the gripper; the clearing prerequisite is being restored.",
+        "Sub": "Place the meat on free counter space in front.",
+        "Fine": "Keep it outside the board boundary, descend over free counter space, release, and lift away to verify."
+      }
+    },
+    {
+      "index": 10,
+      "step_start": 1795,
+      "step_end": 2113,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The meat has left the board, creating space; both vegetables still need to be moved there.",
+        "Sub": "Grasp the potato near the board first.",
+        "Fine": "Align over the potato, grasp and lift to verify attachment, then place it on one side of the board."
+      }
+    },
+    {
+      "index": 11,
+      "step_start": 2113,
+      "step_end": 2113,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The meat remains at the front edge of the board and the potato was not securely lifted; clearing and vegetable placement are not jointly satisfied.",
+        "Sub": "End this recovery attempt and preserve the failure state.",
+        "Fine": "Save the complete actions and observations and record official task failure; approach pose and transport stability still need improvement."
+      }
+    }
+  ],
+  "record_note": "English presentation of the source execution record. Proxy judgments are historical observations and may differ from the official task outcome. Numeric event boundaries and official outcomes are unchanged."
+}

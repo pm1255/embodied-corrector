@@ -1,0 +1,75 @@
+{
+  "case": "robocasa-gallery-06-s23",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the cup inside the bowl on the dining table and move the bowl to any counter.",
+    "seed": 23,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "BowlAndCup",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "b2db611e2cc81d80537d2419842990f32972cfe7125b66900de5835bdd6795f0",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "script_sha256": "26d52b7f0212d3c37a314589d9ec4c144ef0e7fbd3b3156a4b5943f5b211aa4c"
+  },
+  "result": {
+    "success": false,
+    "steps": 688,
+    "commands": 6,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "official_success": false,
+      "controller_note": "Observe the initial scene; no learned model is used."
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 328,
+      "official_success": false,
+      "controller_note": "Attempt to grasp cup; object position comes from simulator state."
+    },
+    {
+      "index": 2,
+      "step_start": 328,
+      "step_end": 646,
+      "official_success": false,
+      "controller_note": "Previous lift was 0.000 m; change grasp offset and orientation."
+    },
+    {
+      "index": 3,
+      "step_start": 646,
+      "step_end": 658,
+      "official_success": false,
+      "controller_note": "Lift check failed again; release and continue without claiming successful placement."
+    },
+    {
+      "index": 4,
+      "step_start": 658,
+      "step_end": 688,
+      "official_success": false,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated."
+    },
+    {
+      "index": 5,
+      "step_start": 688,
+      "step_end": 688,
+      "official_success": false,
+      "controller_note": "End this bounded episode; retain the official success or failure."
+    }
+  ],
+  "record_note": "English presentation of the source execution record. Proxy judgments are historical observations and may differ from the official task outcome. Numeric event boundaries and official outcomes are unchanged."
+}

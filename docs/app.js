@@ -7,12 +7,12 @@ let episodeRequest=0;
 document.querySelectorAll('[data-record]').forEach(button=>button.addEventListener('click',async()=>{
   const request=++episodeRequest, id=button.dataset.record;
   const card=document.getElementById('case-'+id), player=document.getElementById('video-'+id);
-  document.getElementById('episode-dialog-title').textContent=card.querySelector('h4').textContent+' · 执行记录';
+  document.getElementById('episode-dialog-title').textContent=card.querySelector('h4').textContent+' · Execution record';
   document.getElementById('episode-dialog-description').textContent=card.querySelector('.episode-meta').textContent;
-  document.getElementById('episode-original-record').href='assets/simulations/'+id+'.json';
-  episodeEvents.textContent='正在加载执行记录…';episodeDialog.showModal();
+  document.getElementById('episode-original-record').href='assets/simulations/records-en/'+id+'.json';
+  episodeEvents.textContent='Loading execution record…';episodeDialog.showModal();
   try{
-    const response=await fetch('assets/simulations/'+id+'.json');
+    const response=await fetch('assets/simulations/records-en/'+id+'.json');
     if(!response.ok)throw new Error('record');
     const record=await response.json();if(request!==episodeRequest)return;
     const speed=Number(card.dataset.playbackSpeed),lead=Number(card.dataset.leadSeconds);
@@ -20,7 +20,7 @@ document.querySelectorAll('[data-record]').forEach(button=>button.addEventListen
     for(const event of record.events){
       const article=document.createElement('article');article.className='simulation-record';
       const seek=document.createElement('button');seek.type='button';
-      seek.textContent=`▶ 第 ${event.index+1} 段 · ${event.step_start}–${event.step_end} 步`;
+      seek.textContent=`▶ Segment ${event.index+1} · steps ${event.step_start}–${event.step_end}`;
       const time=event.step_start===0?0:lead+event.step_start/(record.manifest.control_frequency_hz*speed);
       seek.addEventListener('click',()=>{episodeDialog.close();player.scrollIntoView({block:'center'});playVideo(player,time);});
       article.append(seek);
@@ -30,9 +30,9 @@ document.querySelectorAll('[data-record]').forEach(button=>button.addEventListen
         for(const key of ['Judge','Cause','Sub','Fine']){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=event.brain[key];dl.append(dt,dd);}
         article.append(dl);
       }
-      const status=document.createElement('small');status.textContent='本段执行后：'+(event.official_success?'任务完成':'任务尚未完成');article.append(status);episodeEvents.append(article);
+      const status=document.createElement('small');status.textContent='After this segment: '+(event.official_success?'task completed':'task incomplete');article.append(status);episodeEvents.append(article);
     }
-  }catch{if(request===episodeRequest)episodeEvents.textContent='记录暂时无法加载，请查看原始 JSON 记录。';}
+  }catch{if(request===episodeRequest)episodeEvents.textContent='The record could not be loaded. Open the English JSON record instead.';}
 }));
 
 // Reported manuscript values. Percentages are success/accuracy scores;
@@ -83,7 +83,7 @@ function table(headers, rows, note){
 function legend(series){return `<div class="legend">${series.map(s=>`<span><i class="${s.class||''}" aria-hidden="true"></i>${s.name}</span>`).join('')}</div>`;}
 function chart(labels,series,max=100,deltas=[]){
   const description=labels.map((label,i)=>`${label}: ${series.map(s=>`${s.name} ${number(s.values[i])}%`).join(', ')}`).join('; ');
-  return `<div class="chart-meta"><span>Success / accuracy (%)</span><span>Scale: 0–${max}% · higher is better</span></div><div role="img" aria-label="${description}"><div class="bar-chart ${labels.length>4?'many-bars':''}" style="--groups:${labels.length}" aria-hidden="true">${labels.map((_,i)=>`<div class="bar-group">${series.map(s=>`<div class="chart-bar ${s.class||''}" style="--bar-height:${s.values[i]/max*100}%"><span class="bar-value">${number(s.values[i])}</span></div>`).join('')}</div>`).join('')}</div><div class="chart-labels" style="--groups:${labels.length}" aria-hidden="true">${labels.map((l,i)=>`<span>${l}${deltas[i]?`<small>${deltas[i]}</small>`:''}</span>`).join('')}</div></div>`;
+  return `<div class="chart-meta"><span>Success / accuracy (%)</span><span>Scale: 0–${max}% · higher is better</span></div><div class="chart-scroll" role="img" aria-label="${description}"><div class="bar-chart ${labels.length>4?'many-bars':''}" style="--groups:${labels.length}" aria-hidden="true">${labels.map((_,i)=>`<div class="bar-group">${series.map(s=>`<div class="chart-bar ${s.class||''}" style="--bar-height:${s.values[i]/max*100}%"><span class="bar-value">${number(s.values[i])}</span></div>`).join('')}</div>`).join('')}</div><div class="chart-labels" style="--groups:${labels.length}" aria-hidden="true">${labels.map((l,i)=>`<span>${l}${deltas[i]?`<small>${deltas[i]}</small>`:''}</span>`).join('')}</div></div>`;
 }
 function header(kicker,title,text,source,page){return `<div class="result-header"><div><p class="small-label">${kicker}</p><h3>${title}</h3><p>${text}</p></div><span class="source-pill">${source}</span></div>`;}
 function renderResults(){

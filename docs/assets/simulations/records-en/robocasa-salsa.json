@@ -1,0 +1,184 @@
+{
+  "case": "robocasa-salsa",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Place the avocado, onion, tomato, and bell pepper on the cutting board.",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "ColorfulSalsa",
+    "camera": "robot0_agentview_left",
+    "action_dim": 12,
+    "initial_model_sha256": "9de1da086c935d66b67d10db964cd431d43be82ea0a28dea8ff73ed65f77c283"
+  },
+  "result": {
+    "success": false,
+    "steps": 2528,
+    "commands": 13,
+    "brain_records": 12,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 220,
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 220,
+      "step_end": 428,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The gripper closed too high above the counter and no ingredient visibly followed the lift; avocado pickup failed.",
+        "Sub": "Lower the contact height and grasp the avocado again.",
+        "Fine": "Realign from above, close at the side of the object, and lift vertically to verify a secure grasp."
+      }
+    },
+    {
+      "index": 2,
+      "step_start": 428,
+      "step_end": 582,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The avocado remains near the counter edge after another empty lift; the grasp orientation did not secure it.",
+        "Sub": "Change gripper orientation and grasp the target again.",
+        "Fine": "Rotate 90 degrees above the target, descend onto the other pair of sides, close, and lift to verify."
+      }
+    },
+    {
+      "index": 3,
+      "step_start": 582,
+      "step_end": 841,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "After changing orientation, the avocado has left the counter and follows the gripper.",
+        "Sub": "Place the avocado on one side of the board, leaving room for the other ingredients.",
+        "Fine": "Maintain the grasp, align the object center over the board, descend and release, then withdraw to inspect the landing point."
+      }
+    },
+    {
+      "index": 4,
+      "step_start": 841,
+      "step_end": 1159,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The avocado remains on the board after withdrawal; the other three ingredients are still outside it.",
+        "Sub": "Grasp the tomato next instead of stopping after one target.",
+        "Fine": "Align over the rear tomato, close and lift, then place it in free board space after verifying attachment."
+      }
+    },
+    {
+      "index": 5,
+      "step_start": 1159,
+      "step_end": 1416,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The tomato remains on the rear counter; the vertical approach did not pick it up.",
+        "Sub": "Change wrist orientation and approach the tomato again.",
+        "Fine": "Adjust the gripper above the tomato, slightly raise the side contact point, close, and verify after lifting."
+      }
+    },
+    {
+      "index": 6,
+      "step_start": 1416,
+      "step_end": 1462,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The tomato still has not lifted; repeated rear grasps failed, so a different approach angle is needed.",
+        "Sub": "Tilt the gripper and approach from the front of the counter.",
+        "Fine": "Open the gripper, descend with a tilted wrist to either side of the tomato, and verify reachability before closing."
+      }
+    },
+    {
+      "index": 7,
+      "step_start": 1462,
+      "step_end": 1487,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The tilted approach has placed the fingers beside the tomato, closer to the intended contact than before.",
+        "Sub": "Close on the tomato at the current position.",
+        "Fine": "Keep the wrist angle, close slowly, then retreat and lift with the same orientation to check the result."
+      }
+    },
+    {
+      "index": 8,
+      "step_start": 1487,
+      "step_end": 1572,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The gripper has closed, but the arm occludes the object; lifting is still needed to verify attachment.",
+        "Sub": "Retreat from the rear space and lift the tomato.",
+        "Fine": "Maintain the tilt and closure, retreat toward the front and rise, then check whether the tomato follows."
+      }
+    },
+    {
+      "index": 9,
+      "step_start": 1572,
+      "step_end": 1973,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The lift and retreat are complete; partial occlusion means attachment still needs verification after placement.",
+        "Sub": "Move the grasped contents to the other side of the board and inspect the landing point.",
+        "Fine": "Keep the grasp while approaching free board space, release low, withdraw, and check whether the tomato stays on the board."
+      }
+    },
+    {
+      "index": 10,
+      "step_start": 1973,
+      "step_end": 2176,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The tomato landed on the counter to the right of the board; the post-transport landing point still needs correction.",
+        "Sub": "Grasp the tomato again at its new position.",
+        "Fine": "Approach from the more open front area, grasp and lift, then move it to free board space."
+      }
+    },
+    {
+      "index": 11,
+      "step_start": 2176,
+      "step_end": 2528,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "After grasping from the front, the tomato follows the gripper; pickup has recovered.",
+        "Sub": "Place the tomato in free board space.",
+        "Fine": "Align its center with the rear-right free area, descend, release, and withdraw to check whether it is inside the board."
+      }
+    },
+    {
+      "index": 12,
+      "step_start": 2528,
+      "step_end": 2528,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The avocado is on the board, but the tomato remains to its right and the other ingredients are not all in place; the full task is incomplete.",
+        "Sub": "End this continuous attempt and retain partial recovery and the incomplete outcome.",
+        "Fine": "Save the current view and official task outcome; a successful grasp does not establish success on the four-ingredient task."
+      }
+    }
+  ],
+  "record_note": "English presentation of the source execution record. Proxy judgments are historical observations and may differ from the official task outcome. Numeric event boundaries and official outcomes are unchanged."
+}

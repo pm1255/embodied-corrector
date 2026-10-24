@@ -1,0 +1,68 @@
+{
+  "case": "libero-gallery-03-s37",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put the cream cheese on the bowl",
+    "seed": 37,
+    "brain": "none; scripted feedback controller",
+    "output_schema": [],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "gallery-script-v1",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/gallery/libero-gallery-03-s37.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "4b094e7eafbc248a5971b74c94fa1b473ec23ad93c5efd1820b5b2af4a112c6a",
+    "record_origin": "deterministic simulator feedback, not LLM inference",
+    "script_sha256": "450339aae425eef1ad62744f349b31ea9a2e63cf35f32e9c3b89c8495a74789b"
+  },
+  "result": {
+    "success": true,
+    "steps": 491,
+    "commands": 5,
+    "brain_records": 0,
+    "termination": "script_budget",
+    "identity": "scripted demonstration"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 10,
+      "official_success": false,
+      "controller_note": "Observe the initial scene; no learned model is used."
+    },
+    {
+      "index": 1,
+      "step_start": 10,
+      "step_end": 214,
+      "official_success": false,
+      "controller_note": "Attempt to grasp cream_cheese_1; object position comes from simulator state."
+    },
+    {
+      "index": 2,
+      "step_start": 214,
+      "step_end": 461,
+      "official_success": true,
+      "controller_note": "Measured lift passed 0.05 m; attempt placement at akita_black_bowl_1. This does not certify task success."
+    },
+    {
+      "index": 3,
+      "step_start": 461,
+      "step_end": 491,
+      "official_success": true,
+      "controller_note": "Let contacts settle before the official task predicate is evaluated."
+    },
+    {
+      "index": 4,
+      "step_start": 491,
+      "step_end": 491,
+      "official_success": true,
+      "controller_note": "End this bounded episode; retain the official success or failure."
+    }
+  ],
+  "record_note": "English presentation of the source execution record. Proxy judgments are historical observations and may differ from the official task outcome. Numeric event boundaries and official outcomes are unchanged."
+}

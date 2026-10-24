@@ -1,0 +1,122 @@
+/* One reading size throughout; headings establish the hierarchy. */
+body { font-size:16px; line-height:1.5; }
+body * { font-size:inherit !important; }
+body p, .hero-statement, .result-pair, .data-scale strong { letter-spacing:normal; }
+body h1 { font-size:clamp(36px,5vw,64px) !important; line-height:1.1; }
+body h2 { font-size:34px !important; line-height:1.2; }
+body h3 { font-size:24px !important; line-height:1.3; }
+body h4 { font-size:20px !important; line-height:1.3; }
+p, li, dd, figcaption { line-height:1.5 !important; }
+.section { padding-block:32px; }
+.section-heading { margin-bottom:18px; }
+.section-heading>p:last-child { max-width:100%; margin-top:10px; }
+.section-heading .eyebrow { margin-bottom:8px; letter-spacing:1px; }
+.section-lead { margin-top:12px; }
+.abstract-section .section-heading { margin-bottom:12px; }
+.abstract-copy p { margin-bottom:12px; }
+.hero { padding:30px 0 8px; }
+.hero-inner { max-width:1120px; }
+.hero-statement { margin:14px 0 10px; }
+.hero-subtitle { max-width:none; margin-top:8px; }
+.hero-actions { margin:16px 0; }
+.backbone-label { margin-top:10px; }
+.video-section { padding-top:10px; padding-bottom:24px; }
+.video-toolbar { align-items:center; flex-wrap:wrap; gap:12px 20px; }
+.video-chapters { margin-top:12px; gap:8px; }
+.video-chapters button { line-height:1.35; padding:10px; }
+.text-link, .text-button { white-space:normal; }
+.nav-shell { gap:16px; padding-inline:24px; }
+#main-nav { gap:20px; }
+.nav-actions { gap:12px; }
+.wordmark { white-space:nowrap; }
+.capability-grid { gap:24px; }
+.capability-grid h3 { margin:12px 0 8px; }
+.capability-tag { margin-top:10px; line-height:1.5; }
+.insight { padding:16px 20px; flex-wrap:wrap; }
+.method-section, .architecture-panel, .dynamics-panel { display:block; margin-top:28px; }
+.method-copy { max-width:none; }
+.method-copy h3, .architecture-panel h3, .dynamics-panel h3 { margin:8px 0 12px; }
+.method-copy p { max-width:none; }
+.method-section .paper-figure, .architecture-panel .paper-figure, .dynamics-panel .paper-figure { margin-top:18px; }
+.architecture-panel { padding:22px; }
+.manuscript-figure { margin-top:24px; }
+.paper-figure { min-width:0; padding:12px 12px 0; box-shadow:none; }
+.figure-button img { display:block; width:100%; height:auto; }
+.paper-figure figcaption { display:block; padding:12px 4px 14px; line-height:1.5; }
+.paper-figure figcaption span { margin-right:8px; letter-spacing:0; }
+.paper-figure figcaption strong { color:var(--text); }
+.zoom-hint { width:32px; height:32px; display:grid; place-items:center; }
+.paper-case-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.paper-case-grid .paper-figure { margin:0; }
+.nepo-explainer { padding:22px; gap:24px; margin-top:28px; }
+.nepo-equation p { line-height:1.5; }
+.nepo-rules { gap:8px; }
+.nepo-rules span { padding:8px; line-height:1.5; }
+.reasoning-chain p, .example-output { line-height:1.5; }
+.reasoning-chain>div { padding:20px; }
+.data-scale { gap:12px; flex-wrap:wrap; }
+.factor-list { gap:8px; }
+.factor-list span { padding:5px 9px; }
+.benchmark-tables { gap:20px; }
+.benchmark-table th, .benchmark-table td { padding:10px; }
+.table-scroll { overflow-x:auto; }
+.benchmark-table-heading { align-items:baseline; flex-wrap:wrap; gap:8px; }
+.experiment-overview p { min-height:0; }
+.result-pair { line-height:1.5; margin-top:10px; }
+.result-header { flex-wrap:wrap; gap:16px; margin-bottom:20px; }
+.result-header h3 { margin-bottom:10px; }
+.chart-scroll { overflow-x:auto; padding-top:5px; }
+.bar-value { top:-28px; }
+.chart-labels { line-height:1.35; }
+.many-bars .chart-group { gap:8px; }
+.data-table summary { padding-block:12px; }
+.episode-directory { gap:10px 16px; }
+.episode-directory>a { gap:12px; }
+.episode-suite-heading { flex-wrap:wrap; }
+.episode-suite-heading h3 span { margin-left:10px; }
+.episode-title { min-height:74px; padding:12px 14px; align-items:baseline; }
+.episode-title h4 { overflow-wrap:anywhere; }
+.episode-card video { aspect-ratio:5/4; }
+.episode-actions { flex-wrap:wrap; gap:6px 12px; }
+.episode-meta { margin-bottom:8px; }
+.simulation-outcome { white-space:normal; }
+.simulation-scope, .fine-print, .table-caption, .result-caveat, .experiment-protocol { font-size:16px !important; line-height:1.5 !important; }
+.simulation-record dl { grid-template-columns:60px 1fr; }
+.simulation-record small { margin-top:12px; }
+#figure-dialog { padding:20px; }
+#figure-caption { margin-top:14px; line-height:1.5; }
+.citation-card pre { line-height:1.5; }
+.citation-toolbar { flex-wrap:wrap; gap:12px; }
+@media(max-width:1150px) { #main-nav { gap:12px; } .nav-shell { padding-inline:18px; } }
+@media(max-width:1000px) {
+  .benchmark-tables { grid-template-columns:1fr; }
+  .menu-toggle { display:flex; }
+  .nav-paper { display:none; }
+  .site-header #main-nav { display:none; position:absolute; left:0; right:0; top:100%; padding:18px 24px; background:var(--card); border-bottom:1px solid var(--line); box-shadow:var(--shadow); gap:16px 22px; flex-wrap:wrap; }
+  .site-header #main-nav.is-open { display:flex; }
+  .nav-shell { gap:10px; }
+}
+@media(max-width:800px) {
+  .paper-case-grid { grid-template-columns:1fr; }
+  .method-section, .dynamics-panel { margin-top:24px; }
+}
+@media(max-width:700px) {
+  body h2 { font-size:30px !important; }
+  body h3 { font-size:24px !important; }
+  .section { padding-block:24px; }
+  .hero { padding-top:24px; }
+  .video-section { padding-top:8px; }
+  .section-heading { margin-bottom:16px; }
+  .video-chapters { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .architecture-panel, .nepo-explainer { padding:16px; }
+  .paper-figure { padding:7px 7px 0; }
+  .paper-figure figcaption { padding:10px 4px; }
+  .episode-title { min-height:0; }
+  .episode-actions { align-items:baseline; }
+  .episode-directory>a { padding:9px 12px; }
+  .episode-suite-heading { gap:8px; }
+  .episode-suite-heading h3 span { display:inline; }
+  .chart-scroll .bar-chart, .chart-scroll .chart-labels { min-width:620px; }
+  .citation-toolbar { padding:16px; }
+  .citation-card pre { padding:16px; }
+}

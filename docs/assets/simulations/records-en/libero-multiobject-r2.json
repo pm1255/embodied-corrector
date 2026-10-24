@@ -1,0 +1,112 @@
+{
+  "case": "libero-multiobject-r2",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put both the cream cheese box and the butter in the basket",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "tasks/libero-multiobject.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "9d8e710b95d0e55cf5dd760589939639d4178b86b723afe595a0e53f573cef65"
+  },
+  "result": {
+    "success": true,
+    "steps": 1349,
+    "commands": 7,
+    "brain_records": 6,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 131,
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 131,
+      "step_end": 408,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The basket is empty and both targets remain on the table; reaching the basket with an empty gripper does not replace grasping.",
+        "Sub": "Grasp the cream cheese box first.",
+        "Fine": "Align the gripper with the narrow sides, grasp low, lift vertically, and verify that the object follows."
+      }
+    },
+    {
+      "index": 2,
+      "step_start": 408,
+      "step_end": 697,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The cream cheese box is grasped and lifted off the table; the pickup prerequisite is satisfied.",
+        "Sub": "Move the cream cheese into the basket.",
+        "Fine": "Transport at a safe height, align the box center inside the basket opening, descend, release, and check placement."
+      }
+    },
+    {
+      "index": 3,
+      "step_start": 697,
+      "step_end": 942,
+      "official_success": false,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The cream cheese has moved into the basket opening and the gripper has released; the butter remains on the front table, so the task is incomplete.",
+        "Sub": "Grasp the butter box next.",
+        "Fine": "Align with its narrow sides, grasp low, lift, and verify attachment before placement."
+      }
+    },
+    {
+      "index": 4,
+      "step_start": 942,
+      "step_end": 1107,
+      "official_success": false,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The butter remains on the table after an empty lift; the cream cheese grasp orientation cannot be reused directly.",
+        "Sub": "Change orientation and grasp the butter again.",
+        "Fine": "Rotate the wrist back by 90 degrees, grasp low on the other pair of sides, and lift to check attachment."
+      }
+    },
+    {
+      "index": 5,
+      "step_start": 1107,
+      "step_end": 1349,
+      "official_success": true,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The butter is grasped and lifted off the table; pickup of the second target is complete.",
+        "Sub": "Place the butter in the remaining basket space.",
+        "Fine": "Transport high, align the butter center inside the basket, descend and release, then verify that both targets are inside."
+      }
+    },
+    {
+      "index": 6,
+      "step_start": 1349,
+      "step_end": 1349,
+      "official_success": true,
+      "brain": {
+        "Judge": "success",
+        "Cause": "Both targets are in the basket; neither cream cheese nor butter remains on the table. The task is complete.",
+        "Sub": "Finish the two-object placement task.",
+        "Fine": "Record final success and retain the full failure and recovery sequence."
+      }
+    }
+  ],
+  "record_note": "English presentation of the source execution record. Proxy judgments are historical observations and may differ from the official task outcome. Numeric event boundaries and official outcomes are unchanged."
+}
