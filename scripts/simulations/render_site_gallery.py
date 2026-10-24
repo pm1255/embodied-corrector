@@ -21,7 +21,7 @@ for suite, anchor in [('LIBERO-PRO', 'libero-videos'), ('RoboCasa365', 'robocasa
         base = 'assets/simulations/' + identity
         cards.append(f'''          <article class="episode-card" id="case-{identity}" data-playback-speed="{speed}" data-lead-seconds="{item.get('lead_seconds', 0)}">
             <div class="episode-title"><span>{index:02d}</span><h4>{title}</h4></div>
-            <video id="video-{identity}" controls playsinline preload="none" poster="{base}-poster.jpg?v=english-6" aria-label="{suite} · {title} · Seed {seed}" src="{base}.mp4?v=english-6"></video>
+            <video id="video-{identity}" controls playsinline preload="none" data-poster="{base}-poster.jpg?v=english-6" aria-label="{suite} · {title} · Seed {seed}" src="{base}.mp4?v=english-6"></video>
             <div class="episode-copy"><p class="episode-meta">{kind} · Seed {seed} · {speed}×</p><div class="episode-actions"><span class="simulation-outcome{status}">{outcome}</span><button type="button" class="episode-record-button" data-record="{identity}" aria-haspopup="dialog">Execution record ↗</button></div></div>
           </article>''')
     groups.append(f'''      <section class="episode-suite" id="{anchor}" aria-labelledby="{anchor}-title">

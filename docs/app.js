@@ -167,7 +167,8 @@ let figureTrigger=null;
 document.addEventListener('click',event=>{
   const trigger=event.target.closest('[data-zoom]');if(!trigger)return;
   figureTrigger=trigger;
-  const image=document.querySelector('#figure-image');image.src=trigger.dataset.zoom;
+  const source=trigger.querySelector('img')||document.querySelector(`.figure-button[data-zoom="${trigger.dataset.zoom}"] img`);
+  const image=document.querySelector('#figure-image');image.src=source?.currentSrc||trigger.dataset.zoom;
   image.alt=trigger.querySelector('img')?.alt||trigger.dataset.caption;
   document.querySelector('#figure-caption').textContent=trigger.dataset.caption;
   dialog.showModal();
