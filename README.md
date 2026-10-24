@@ -1,34 +1,39 @@
 <div align="center">
-  <img src="docs/assets/branding/logo.svg" alt="Embodied-Corrector" width="640">
 
 # Embodied-Corrector
 
 **Learning from Feedback for Physical Failure Understanding and Correction**
 
-**English** · [中文](README_zh.md)
-
-[![Project Page](https://img.shields.io/badge/Project_Page-5969EC?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pm1255.github.io/embodied-corrector/)
-[![Paper](https://img.shields.io/badge/Paper-PDF-B31B1B?style=for-the-badge)](docs/assets/paper.pdf)
 [![Code](https://img.shields.io/badge/Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pm1255/embodied-corrector)
-[![Video](https://img.shields.io/badge/Video-Introduction-7756D8?style=for-the-badge)](https://pm1255.github.io/embodied-corrector/#video)
+[![Project Page](https://img.shields.io/badge/Project_Page-5969EC?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pm1255.github.io/embodied-corrector/)
+
+**English** · [中文](README_zh.md)
 
 </div>
 
-[Abstract](#abstract) · [Motivation](#motivation) · [Method](#method) · [Experiments](#experiments) · [Citation](#citation)
+## Overview
 
-## Video introduction
+https://github.com/user-attachments/assets/d41e20cd-94c3-4598-b413-608e2d1d3d80
 
-[![Project introduction](docs/assets/video/introduction-poster.jpg)](https://pm1255.github.io/embodied-corrector/#video)
-
-[▶ Watch the introduction](https://pm1255.github.io/embodied-corrector/#video) · [Download MP4](https://pm1255.github.io/embodied-corrector/assets/video/introduction.mp4) · [Bilingual transcript](docs/assets/video/transcript.md)
-
-An overview of motivation, RynnBrain training, NEPO, and recovery, with English narration and Chinese subtitles. Robot-motion excerpts come from continuous simulator recordings; the poster is the video's first frame.
+Research overview with English narration and Chinese subtitles. Robot motion comes from continuous simulator recordings.
 
 ## Continuous simulation cases
 
-[▶ Explore 20 LIBERO-PRO and 30 RoboCasa365 episodes](https://pm1255.github.io/embodied-corrector/#simulations) · [Execution records and provenance](guides/simulation_report_zh.md)
+### LIBERO-PRO · Drawer placement
 
-The gallery contains 6 GPT-proxy interactive demonstrations and 44 explicitly labelled scripted episodes. All use an analytical controller with simulator-state localization. Each independently recorded episode retains its task, seed, commands, feedback, and official success or failure. These are demonstration episodes, not fifty different tasks or trained-model benchmark results. The manuscript performance tables are presented separately in Experiments.
+Open the top drawer, recover from an unsuccessful grasp, and place the cream cheese inside. **Official task result: completed.** Full episode shown at 2× speed, with diagnosis and action annotations.
+
+https://github.com/user-attachments/assets/8c6f4297-f74d-459e-87ec-ab9f6eb27e0e
+
+### RoboCasa365 · Colorful Salsa
+
+Attempt to place four ingredients on the cutting board. **Official task result: incomplete.** Full episode shown at 2× speed; unsuccessful attempts are retained.
+
+https://github.com/user-attachments/assets/ec48e161-533e-44c1-86d1-64503f6fc8d0
+
+These two examples use a GPT proxy and an analytical controller with simulator-state localization. They demonstrate the interaction workflow; they are not trained Embodied-Corrector or RynnBrain evaluation results.
+
+The [project gallery](https://pm1255.github.io/embodied-corrector/#simulations) contains **20 LIBERO-PRO and 30 RoboCasa365 episodes**: 6 GPT-proxy demonstrations and 44 labelled scripted episodes. Each retains its task, seed, actions, feedback, and official outcome. See the [execution records and provenance](guides/simulation_report_zh.md).
 
 ## Abstract
 
@@ -158,7 +163,9 @@ This Qwen planner verifies the interface; it differs from the fixed planner in t
 
 ## DiagBench evaluation
 
-The released EmbodiedDiag-Bench small dataset and its collect → visual judge → aggregate protocol are integrated, including a pinned download, integrity checks, a local RynnBrain-8B server, safe resume and TensorBoard. See the [DiagBench guide](guides/diagbench.md) for the 28-prediction smoke run and full 11,612-prediction evaluation.
+The released EmbodiedDiag-Bench small dataset and its collect → visual judge → aggregate protocol are integrated. **RynnBrain-8B has completed a 28-prediction smoke run**, including independent visual judging and aggregation. The full **11,612-prediction evaluation is supported but has not been run**.
+
+The smoke run used a 512-token budget (6 truncated answers) and a Qwen3-VL-2B-Instruct judge for pipeline verification. Formal comparisons require a larger generation budget and a fixed, comparable judge configuration. Pinned downloads, integrity checks, safe resume and TensorBoard are included. See the [evaluation guide](guides/diagbench.md) and [run record](validation/diagbench-smoke-20261024.json).
 
 ## Monitoring
 
