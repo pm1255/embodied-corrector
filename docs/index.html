@@ -13,7 +13,7 @@
   <title>Embodied-Corrector | Recover, Don’t Just Continue</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=gallery-50-3">
-  <script src="app.js?v=gallery-50-3" defer></script>
+  <script src="app.js?v=readme-video-4" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -25,7 +25,7 @@
       </nav>
       <div class="nav-actions">
         <button class="theme-toggle icon-button" type="button" aria-label="Switch to dark theme" title="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.1 15.1A8.5 8.5 0 0 1 8.9 3.9a8.5 8.5 0 1 0 11.2 11.2Z"/></svg></button>
-        <a class="nav-paper" href="assets/paper.pdf" target="_blank" rel="noopener">Paper <span aria-hidden="true">↗</span></a>
+        <a class="nav-paper" href="https://github.com/pm1255/embodied-corrector" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a>
         <button class="menu-toggle icon-button" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       </div>
     </div>
@@ -40,9 +40,7 @@
         <p class="hero-subtitle">Learning from Feedback for Physical Failure  Understanding and Correction</p>
         <p class="backbone-label">Trained from <strong>RynnBrain-8B</strong> · Evaluation-first SFT + NEPO</p>
         <div class="hero-actions">
-          <a class="button primary" href="assets/paper.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Z"/><path d="M14 3v5h5M8 12h8M8 16h6"/></svg>Read the paper <span aria-hidden="true">↗</span></a>
-          <a class="button secondary" href="#video">▶ Watch the introduction</a><a class="button secondary" href="#simulations">Explore continuous rollouts ↗</a>
-          <a class="button secondary" href="https://github.com/pm1255/embodied-corrector" target="_blank" rel="noopener">Code on GitHub <span aria-hidden="true">↗</span></a>
+          <a class="button primary" href="https://github.com/pm1255/embodied-corrector" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a>
         </div>
 
       </div>
@@ -96,7 +94,7 @@
           <figure class="paper-figure"><button class="figure-button" data-zoom="assets/figures/training.webp" data-caption="Figure 3 · Evaluation-first SFT and Noise-Aware Entropy-Gated Policy Optimization (NEPO)." type="button" aria-label="Enlarge training architecture"><img src="assets/figures/training.webp" width="1815" height="887" loading="lazy" alt="Paper diagram of evaluation-first supervised training, student and verified-evaluation teacher views, entropy gating, and the GRPO branch of NEPO."><span class="zoom-hint" aria-hidden="true">↗</span></button><figcaption><span>FIGURE 3</span> SFT → NEPO → one-pass correction</figcaption></figure>
         </div>
         <div class="nepo-explainer"><div><p class="small-label">INSIDE NEPO</p><h3>Same policy. Same planning tokens. Two evaluation contexts.</h3><p>Training can use a verified evaluation, while deployment must rely on the model’s own assessment. NEPO turns this context difference into a token-level learning signal.</p></div><div class="nepo-equation"><strong>Δ = q − p</strong><p><b>p</b> · probability under the generated evaluation <b>q</b> · probability under the verified evaluation</p><div class="nepo-rules"><span>Keep positive guidance</span><span>Gate uncertain negative guidance</span><span>Combine with GRPO rewards</span></div><small>Verified evaluations are training-only. Deployment generates all four fields.</small></div></div>
-        <div class="architecture-panel"><div><p class="small-label">THE CLOSED LOOP</p><h3>Better feedback.  The same execution backend.</h3><p>The corrective brain reads public execution evidence and returns a structured correction. A fixed planner revises the workflow; the environment verifies the result.</p><a class="text-link" href="assets/paper.pdf#page=18" target="_blank" rel="noopener">Read the Harness details <span aria-hidden="true">↗</span></a></div><button class="figure-button" data-zoom="assets/figures/harness.webp" data-caption="Figure 6 · The corrective Harness. Formal evaluations use only within-episode working memory; cross-episode retrieval and memory updates are disabled." type="button" aria-label="Enlarge closed-loop Harness architecture"><img src="assets/figures/harness.webp" width="1779" height="1007" loading="lazy" alt="Closed-loop Harness connecting task and context, fixed execution interfaces, Embodied-Corrector, and workflow revision."><span class="zoom-hint" aria-hidden="true">↗</span></button></div>
+        <div class="architecture-panel"><div><p class="small-label">THE CLOSED LOOP</p><h3>Better feedback.  The same execution backend.</h3><p>The corrective brain reads public execution evidence and returns a structured correction. A fixed planner revises the workflow; the environment verifies the result.</p><a class="text-link" href="https://github.com/pm1255/embodied-corrector/blob/main/guides/method.md" target="_blank" rel="noopener">Read the Harness details <span aria-hidden="true">↗</span></a></div><button class="figure-button" data-zoom="assets/figures/harness.webp" data-caption="Figure 6 · The corrective Harness. Formal evaluations use only within-episode working memory; cross-episode retrieval and memory updates are disabled." type="button" aria-label="Enlarge closed-loop Harness architecture"><img src="assets/figures/harness.webp" width="1779" height="1007" loading="lazy" alt="Closed-loop Harness connecting task and context, fixed execution interfaces, Embodied-Corrector, and workflow revision."><span class="zoom-hint" aria-hidden="true">↗</span></button></div>
       </div>
     </section>
 
@@ -116,7 +114,7 @@
         <button id="tab-vla" role="tab" aria-selected="false" aria-controls="results-panel" data-result="vla" tabindex="-1" type="button">Frozen VLA</button>
       </div>
       <div id="results-panel" class="results-panel" role="tabpanel" aria-labelledby="tab-diagnosis" tabindex="0"></div>
-      <noscript><p>Interactive charts require JavaScript. All reported results are available in <a href="assets/paper.pdf#page=6">Tables 1–3 and Figure 4 of the paper</a>.</p></noscript>
+      <noscript><p>The benchmark tables above are available without JavaScript. Enable JavaScript to explore the other evaluation settings.</p></noscript>
       <div class="dynamics-panel"><div><p class="small-label">POST-TRAINING DYNAMICS</p><h3>Stronger reward.  Without entropy collapse.</h3><p>Under matched VQA post-training conditions, NEPO achieves the highest answer-level reward while avoiding the low-entropy regime of vanilla OPD.</p></div><button class="figure-button" data-zoom="assets/figures/dynamics.webp" data-caption="Figure 5 · VQA post-training dynamics. Curves are reproduced directly from the manuscript." type="button" aria-label="Enlarge post-training curves"><img src="assets/figures/dynamics.webp" width="1815" height="582" loading="lazy" alt="Original loss, answer reward, and token entropy curves comparing GRPO, GSPO, OPD, and NEPO."><span class="zoom-hint" aria-hidden="true">↗</span></button></div>
     </section>
 

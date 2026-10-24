@@ -127,7 +127,7 @@ function chart(labels,series,max=100,deltas=[]){
   const description=labels.map((label,i)=>`${label}: ${series.map(s=>`${s.name} ${number(s.values[i])}%`).join(', ')}`).join('; ');
   return `<div class="chart-meta"><span>Success / accuracy (%)</span><span>Scale: 0–${max}% · higher is better</span></div><div role="img" aria-label="${description}"><div class="bar-chart ${labels.length>4?'many-bars':''}" style="--groups:${labels.length}" aria-hidden="true">${labels.map((_,i)=>`<div class="bar-group">${series.map(s=>`<div class="chart-bar ${s.class||''}" style="--bar-height:${s.values[i]/max*100}%"><span class="bar-value">${number(s.values[i])}</span></div>`).join('')}</div>`).join('')}</div><div class="chart-labels" style="--groups:${labels.length}" aria-hidden="true">${labels.map((l,i)=>`<span>${l}${deltas[i]?`<small>${deltas[i]}</small>`:''}</span>`).join('')}</div></div>`;
 }
-function header(kicker,title,text,source,page){return `<div class="result-header"><div><p class="small-label">${kicker}</p><h3>${title}</h3><p>${text}</p></div><a class="source-pill" href="assets/paper.pdf#page=${page}" target="_blank" rel="noopener">${source} ↗</a></div>`;}
+function header(kicker,title,text,source,page){return `<div class="result-header"><div><p class="small-label">${kicker}</p><h3>${title}</h3><p>${text}</p></div><span class="source-pill">${source}</span></div>`;}
 function renderResults(){
   let html='';
   if(currentResult==='diagnosis'){

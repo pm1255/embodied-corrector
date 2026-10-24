@@ -56,4 +56,28 @@ python -m tensorboard.main --logdir runs --host 127.0.0.1 --port 6006 --load_fas
 只统计 planner 的动作类型，不能解释为闭环机器人执行成功率。
 发布版恢复了 523 段视频并修正轨迹角色识别，不能直接当作历史论文版本。
 
-完整评测和已有 API 服务的分阶段命令见 [英文详细指南](diagbench.md)。
+## 全量评测
+
+数据与评测入口已就绪。2026-10-24 已用真实 RynnBrain-8B 完成 28 条预测、
+28 条独立判分和汇总；**11,612 条全量预测尚未运行**。
+本次 512-token 预算下有 6 条回答截断，Qwen3-VL-2B-Instruct 裁判仅用于流程验证。
+正式比较应固定裁判型号、权重、提示词与预算，并检查提高预算后是否仍有截断。
+
+以下命令假定 RynnBrain 与视觉裁判的兼容 API 已启动；密钥由 `BENCH_API_KEY`
+环境变量提供。先开启上面的 TensorBoard，再执行各阶段：
+
+```bash
+python -m ec_verl.diagbench.evaluate collect --root "$DIAGBENCH_ROOT" \
+  --output runs/diagbench-full --api http://127.0.0.1:18409/v1/chat/completions \
+  --model rynnbrain --workers 1 --max-tokens 2048
+python -m ec_verl.diagbench.evaluate judge --root "$DIAGBENCH_ROOT" \
+  --output runs/diagbench-full --api http://127.0.0.1:18410/v1/chat/completions \
+  --model vision-judge --workers 1 --judge-max-tokens 512
+python -m ec_verl.diagbench.evaluate aggregate --root "$DIAGBENCH_ROOT" \
+  --output runs/diagbench-full
+```
+
+单卡可先完成推理、释放 RynnBrain，再启动裁判完成判分。全量命令不加 `--smoke`；
+`scripts/diagbench_smoke.sh` 仅用于 28 条快速试跑。中断后保留全部设置并加
+`--resume` 续跑；改变预算或裁判时使用新的输出目录。
+更多协议说明见[英文指南](diagbench.md)。

@@ -1,31 +1,39 @@
 <div align="center">
-  <img src="docs/assets/branding/logo.svg" alt="Embodied-Corrector" width="640">
 
 # Embodied-Corrector
 
 **Learning from Feedback for Physical Failure Understanding and Correction**
 
-[English](README.md) · **中文**
+[![Code](https://img.shields.io/badge/Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pm1255/embodied-corrector)
+[![Project Page](https://img.shields.io/badge/Project_Page-5969EC?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pm1255.github.io/embodied-corrector/)
 
-[项目主页](https://pm1255.github.io/embodied-corrector/) · [论文 PDF](docs/assets/paper.pdf) · [视频介绍](https://pm1255.github.io/embodied-corrector/#video) · [训练说明](guides/training_zh.md)
+[English](README.md) · **中文**
 
 </div>
 
-[摘要](#摘要) · [研究动机](#研究动机) · [方法](#方法) · [实验](#实验) · [引用](#引用)
+## 项目介绍
 
-## 论文视频介绍
+https://github.com/user-attachments/assets/d41e20cd-94c3-4598-b413-608e2d1d3d80
 
-[![Project introduction](docs/assets/video/introduction-poster.jpg)](https://pm1255.github.io/embodied-corrector/#video)
-
-[▶ 观看介绍视频](https://pm1255.github.io/embodied-corrector/#video) · [下载 MP4](https://pm1255.github.io/embodied-corrector/assets/video/introduction.mp4) · [中英讲稿](docs/assets/video/transcript.md)
-
-视频采用英文配音与无底框中文字幕，介绍研究动机、RynnBrain 训练方法、NEPO 和纠错。机械臂运动片段来自连续仿真录像，封面为该视频第一帧。
+英文配音、中文字幕，介绍研究动机与方法。机械臂运动来自连续仿真录像。
 
 ## 连续仿真案例
 
-[▶ 观看 20 个 LIBERO-PRO 与 30 个 RoboCasa365 回合](https://pm1255.github.io/embodied-corrector/#simulations) · [全部记录与来源说明](guides/simulation_report_zh.md)
+### LIBERO-PRO · 抽屉放置
 
-案例库包含 6 个 GPT 代理交互案例与 44 个明确标注的脚本控制回合，均使用仿真状态辅助定位。每个独立回合保留任务、种子、动作、反馈和官方成功或失败结果。50 是回合数，不是不同任务数，也不是训练模型性能。论文性能表单独放在 Experiments 中展示。
+拉开顶层抽屉，在一次抓取失败后调整夹持方向，将奶油奶酪放入抽屉。**官方任务判定：完成。** 完整回合以 2 倍速播放，并展示诊断与动作说明。
+
+https://github.com/user-attachments/assets/8c6f4297-f74d-459e-87ec-ab9f6eb27e0e
+
+### RoboCasa365 · Colorful Salsa
+
+尝试将四种食材放到砧板上。**官方任务判定：未完成。** 完整回合以 2 倍速播放，保留未成功的尝试。
+
+https://github.com/user-attachments/assets/ec48e161-533e-44c1-86d1-64503f6fc8d0
+
+以上两个案例使用 GPT 代理与仿真状态辅助定位的解析控制器，展示交互流程，不代表训练后的 Embodied-Corrector 或 RynnBrain 测评成绩。
+
+[项目案例库](https://pm1255.github.io/embodied-corrector/#simulations) 包含 **20 个 LIBERO-PRO 和 30 个 RoboCasa365 回合**：6 个 GPT 代理演示和 44 个明确标注的脚本控制回合。每个回合保留任务、种子、动作、反馈和官方结果，详见[执行记录与来源说明](guides/simulation_report_zh.md)。
 
 ## 摘要
 
@@ -134,7 +142,9 @@ bash scripts/validate_embodiedbench.sh
 
 ## DiagBench 测评
 
-已接入 ModelScope 发布的 EmbodiedDiag-Bench small 数据与“模型推理 → 视觉裁判 → 指标汇总”流程，提供固定版本下载、完整性校验、RynnBrain-8B 本地服务、安全续跑和 TensorBoard。28 次预测快速试跑及 11,612 次预测全量评测见 [中文说明](guides/diagbench_zh.md)。
+已接入 ModelScope 发布的 EmbodiedDiag-Bench small 数据与“模型推理 → 视觉裁判 → 指标汇总”流程。**真实 RynnBrain-8B 已完成 28 条预测、独立视觉裁判判分和汇总；支持 11,612 条全量预测，但全量尚未运行。**
+
+试跑采用 512-token 预算，其中 6 条回答截断；裁判使用 Qwen3-VL-2B-Instruct 验证流程。正式比较前应提高生成预算、统一裁判配置。代码已提供固定版本下载、完整性校验、安全续跑和 TensorBoard，详见[中文运行指南](guides/diagbench_zh.md)与[试跑记录](validation/diagbench-smoke-20261024.json)。
 
 ## 监控
 
