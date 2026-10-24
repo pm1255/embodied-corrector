@@ -5,8 +5,9 @@ document.querySelectorAll('main .figure-button img[data-fallback]').forEach(imag
   const button = image.closest('.figure-button');
   const originalLabel = button.getAttribute('aria-label');
   const primary = image.getAttribute('src');
+  const networkSource = image.dataset.source || primary;
   const fallback = image.dataset.fallback;
-  const sources = [primary, fallback, primary + '?media_retry=1'];
+  const sources = [primary, fallback, networkSource + '?media_retry=1'];
   const status = document.createElement('span');
   status.className = 'figure-load-status';
   status.setAttribute('role', 'status');
@@ -56,7 +57,7 @@ document.querySelectorAll('main .figure-button img[data-fallback]').forEach(imag
     attempt = 0;
     button.setAttribute('aria-label', originalLabel);
     pending();
-    image.src = primary + '?media_retry=' + Date.now();
+    image.src = networkSource + '?media_retry=' + Date.now();
   }, true);
   if (!ready()) {
     pending();
