@@ -2,11 +2,13 @@
   "scope": "Selected GPT-proxy simulator demonstrations, not trained-model benchmark evaluation",
   "selected_episodes": 12,
   "suite_counts": {
-    "LIBERO-PRO": 9,
-    "RoboCasa365": 3
+    "LIBERO-PRO": 6,
+    "RoboCasa365": 6
   },
   "all_final_success": true,
   "all_media_decoded": true,
+  "navigation_episodes": 3,
+  "all_navigation_physically_verified": true,
   "paper_figures_retained": 6,
   "qualitative_section_removed": true,
   "data_scale_lines_removed": true,
@@ -96,46 +98,46 @@
       "sha256": "47defc17f44b05ed313b4b26040df0cdd0fd56df278de03568135ccd49a1fac7"
     },
     {
-      "id": "curated-libero-cheesebowl-s11",
+      "id": "nav-rc-recovery-stove-s11",
       "final_success": true,
       "prior_failure": true,
       "continuous_steps": true,
-      "steps": 657,
-      "decoded_frames": 358,
-      "unique_motion_frames": 345,
+      "steps": 958,
+      "decoded_frames": 509,
+      "unique_motion_frames": 500,
       "fps": 10,
       "playback_speed": 1,
       "first_frame_cover_exact": true,
       "english_record": true,
-      "sha256": "2570afc8cd3073aeb1c3a75d704ac7fb54a68aa79cb691e0a92d4c9161488e2f"
+      "sha256": "d5da1fa1ab81b4e695d5295f5ea97daa13f3ca306598f559c9b1e39131cb176a"
     },
     {
-      "id": "curated-libero-cheesebowl-s23",
+      "id": "nav-rc-recovery-fridge-s23",
       "final_success": true,
       "prior_failure": true,
       "continuous_steps": true,
-      "steps": 522,
-      "decoded_frames": 291,
-      "unique_motion_frames": 273,
+      "steps": 663,
+      "decoded_frames": 361,
+      "unique_motion_frames": 346,
       "fps": 10,
       "playback_speed": 1,
       "first_frame_cover_exact": true,
       "english_record": true,
-      "sha256": "f4fa6c77b35e4b71aaadfe4e9b855aa1109c5836cb4c5cd1f74c098505e14229"
+      "sha256": "8817b2b1470242c40bb3e67e82245bd4a72fb68354aada70fddf41a73b0d4f7b"
     },
     {
-      "id": "curated-libero-cheesebowl-s37",
+      "id": "nav-rc-recovery-toaster-s37",
       "final_success": true,
       "prior_failure": true,
       "continuous_steps": true,
-      "steps": 536,
-      "decoded_frames": 298,
-      "unique_motion_frames": 280,
+      "steps": 1435,
+      "decoded_frames": 747,
+      "unique_motion_frames": 731,
       "fps": 10,
       "playback_speed": 1,
       "first_frame_cover_exact": true,
       "english_record": true,
-      "sha256": "1dff87b4e26af3825fadef8a12799f301e511940bc1c0bcc90c70585e84d6871"
+      "sha256": "4219cdda3c55b89a356225a1125fdadd87045242e70f2af1485046c9fe022a07"
     },
     {
       "id": "curated-rc-organizevegetables-s11",

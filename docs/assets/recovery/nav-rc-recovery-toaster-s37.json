@@ -1,0 +1,1630 @@
+{
+  "case": "nav-rc-recovery-toaster-s37",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Navigate to the toaster.",
+    "seed": 37,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v4-navigation",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 10,
+    "task_source": "NavigateKitchen",
+    "camera": "base_following_third_person",
+    "action_dim": 12,
+    "initial_model_sha256": "ad750db4c5cd4132845c8901a3e47ff01fddcad8c242c5a49b4bf97665436125",
+    "navigation": true,
+    "target_fixture": "toaster",
+    "target_position": [
+      3.965063735520693,
+      -0.8,
+      0.0
+    ],
+    "target_yaw": 1.5707963267948966,
+    "base_controller": "LegacyMobileBaseJointVelocityController"
+  },
+  "result": {
+    "success": true,
+    "steps": 1435,
+    "commands": 6,
+    "brain_records": 5,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 460,
+      "brain": null,
+      "command": {
+        "brain": null,
+        "action": "navigate",
+        "position": [
+          3.1,
+          -1.1,
+          0
+        ],
+        "yaw": 0.9,
+        "steps": 450,
+        "tolerance": 0.08,
+        "setup_note": "Controlled incorrect waypoint and heading; use ordinary environment actions only."
+      },
+      "feedback": {
+        "action": "navigate",
+        "base_start": [
+          2.1803429375325654,
+          -0.8280840637291396,
+          0.0
+        ],
+        "base_end": [
+          3.144674236893516,
+          -1.166532739040521,
+          0.0
+        ],
+        "path_length_m": 1.2693431903906893,
+        "displacement_m": 1.0219991980169105,
+        "target_distance_m": 0.0801398328314455,
+        "heading_error_rad": -0.32034555541966153,
+        "reached": false,
+        "steps": 460
+      },
+      "official_success": false
+    },
+    {
+      "index": 1,
+      "step_start": 460,
+      "step_end": 1120,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The base stopped at the stove, 0.90 m from the toaster, with an incorrect heading.",
+        "Sub": "Move to the toaster and realign the base.",
+        "Fine": "Continue right along the counter to the toaster approach point, face the counter, and check the final position."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The base stopped at the stove, 0.90 m from the toaster, with an incorrect heading.",
+          "Sub": "Move to the toaster and realign the base.",
+          "Fine": "Continue right along the counter to the toaster approach point, face the counter, and check the final position."
+        },
+        "action": "navigate",
+        "position": [
+          3.965063735520693,
+          -0.8,
+          0.0
+        ],
+        "yaw": 1.5707963267948966,
+        "steps": 650,
+        "tolerance": 0.12
+      },
+      "feedback": {
+        "action": "navigate",
+        "base_start": [
+          3.144674236893516,
+          -1.166532739040521,
+          0.0
+        ],
+        "base_end": [
+          3.7274252100786343,
+          -0.9909010279463173,
+          0.0
+        ],
+        "path_length_m": 0.6383622682007127,
+        "displacement_m": 0.6086420907972765,
+        "target_distance_m": 0.3048200637183134,
+        "heading_error_rad": -0.5600891522191302,
+        "reached": false,
+        "steps": 660
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 1120,
+      "step_end": 1300,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The base remains 0.30 m from the toaster and is misaligned. The arm is still extended over the counter.",
+        "Sub": "Retract the arm before another docking attempt.",
+        "Fine": "Lift and bring the gripper over the open floor beside the base, clearing the counter before navigating again."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The base remains 0.30 m from the toaster and is misaligned. The arm is still extended over the counter.",
+          "Sub": "Retract the arm before another docking attempt.",
+          "Fine": "Lift and bring the gripper over the open floor beside the base, clearing the counter before navigating again."
+        },
+        "action": "move",
+        "position": [
+          3.8,
+          -1.2,
+          1.35
+        ],
+        "grip": -1,
+        "steps": 180
+      },
+      "feedback": {
+        "action": "move",
+        "reached": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 1300,
+      "step_end": 1362,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The arm rose above the counter but missed the requested pose. The base still has 0.24 m of lateral error.",
+        "Sub": "Correct the lateral position with a separate straight move.",
+        "Fine": "Keep the current heading and drive right along the counter until the base is centered in front of the toaster."
+      },
+      "command": {
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The arm rose above the counter but missed the requested pose. The base still has 0.24 m of lateral error.",
+          "Sub": "Correct the lateral position with a separate straight move.",
+          "Fine": "Keep the current heading and drive right along the counter until the base is centered in front of the toaster."
+        },
+        "action": "navigate",
+        "position": [
+          3.965063735520693,
+          -0.991099575103219,
+          0
+        ],
+        "yaw": 2.1335513181372017,
+        "steps": 240,
+        "tolerance": 0.06
+      },
+      "feedback": {
+        "action": "navigate",
+        "base_start": [
+          3.7270176360270715,
+          -0.991099575103219,
+          0.0
+        ],
+        "base_end": [
+          3.906343746717668,
+          -0.9911192219251402,
+          0.0
+        ],
+        "path_length_m": 0.1785196867016024,
+        "displacement_m": 0.17932611176684118,
+        "target_distance_m": 0.05871999208979014,
+        "heading_error_rad": -0.00011460145116526377,
+        "reached": true,
+        "steps": 62
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 1362,
+      "step_end": 1435,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The lateral correction succeeded, but the base still faces away from the required docking heading. The task is not complete.",
+        "Sub": "Align the base with the toaster.",
+        "Fine": "Rotate in place to face the counter, then check both the final distance and the environment success condition."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The lateral correction succeeded, but the base still faces away from the required docking heading. The task is not complete.",
+          "Sub": "Align the base with the toaster.",
+          "Fine": "Rotate in place to face the counter, then check both the final distance and the environment success condition."
+        },
+        "action": "navigate",
+        "position": [
+          3.906343746717668,
+          -0.9911192219251402,
+          0.0
+        ],
+        "yaw": 1.5707963267948966,
+        "steps": 500,
+        "tolerance": 0.25
+      },
+      "feedback": {
+        "action": "navigate",
+        "base_start": [
+          3.906343746717668,
+          -0.9911192219251402,
+          0.0
+        ],
+        "base_end": [
+          3.976064934318115,
+          -0.9595510948909792,
+          0.0
+        ],
+        "path_length_m": 0.09727680435588984,
+        "displacement_m": 0.07653489821553083,
+        "target_distance_m": 0.07653489821553083,
+        "heading_error_rad": -0.07694621373195121,
+        "reached": true,
+        "steps": 73
+      },
+      "official_success": true
+    },
+    {
+      "index": 5,
+      "step_start": 1435,
+      "step_end": 1435,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The robot is 0.160 m from the toaster approach point with a 0.077 rad heading error. The environment confirms success.",
+        "Sub": "Finish the verified toaster navigation recovery.",
+        "Fine": "Stop the base and preserve the failed first correction, arm clearance, lateral move and successful final alignment."
+      },
+      "command": {
+        "brain": {
+          "Judge": "success",
+          "Cause": "The robot is 0.160 m from the toaster approach point with a 0.077 rad heading error. The environment confirms success.",
+          "Sub": "Finish the verified toaster navigation recovery.",
+          "Fine": "Stop the base and preserve the failed first correction, arm clearance, lateral move and successful final alignment."
+        },
+        "action": "finish"
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": {
+    "raw_sha256": "a98e2247adeb7559bf92a0c1f5a51971eeb966aa4682bb665cc8675c3f9291f0",
+    "action_trace_sha256": "27ab6700767be026ae91536120cc22b7e681c35f91816da2ef4c4b98a24bd796",
+    "decision_origin": "Written interactively after observing the preceding action and its feedback; GPT proxy, not a trained RynnBrain checkpoint."
+  },
+  "navigation_evidence": {
+    "task_source": "RoboCasa365 NavigateKitchen",
+    "target_fixture": "toaster",
+    "target_position": [
+      3.965063735520693,
+      -0.8,
+      0.0
+    ],
+    "target_yaw": 1.5707963267948966,
+    "initial_position": [
+      2.1803429375325654,
+      -0.8280840637291396,
+      0.0
+    ],
+    "final_position": [
+      3.976064934318115,
+      -0.9595510948909792,
+      0.0
+    ],
+    "base_path_length_m": 2.1866345050889575,
+    "base_displacement_m": 1.800527997566822,
+    "final_target_distance_m": 0.15992991670069312,
+    "final_heading_error_rad": 0.07694621373195121,
+    "official_position_tolerance_m": 0.2,
+    "official_heading_cosine_threshold": 0.98,
+    "perturbation": "Intentionally incorrect waypoint and heading executed through normal simulator actions.",
+    "post_perturbation_position": [
+      3.144674236893516,
+      -1.166532739040521,
+      0.0
+    ],
+    "post_perturbation_yaw": 1.2203455554196616,
+    "post_perturbation_official_success": false,
+    "camera": "Third-person camera follows the real mobile base; camera motion does not move the robot.",
+    "base_trace": [
+      {
+        "step": 1,
+        "position": [
+          2.1793680019218726,
+          -0.8282743308484912,
+          0.0
+        ],
+        "yaw": 1.594451218364104
+      },
+      {
+        "step": 11,
+        "position": [
+          2.2735231300490333,
+          -0.8427817777460234,
+          0.0
+        ],
+        "yaw": 1.5904190525929098
+      },
+      {
+        "step": 21,
+        "position": [
+          2.325490347953049,
+          -0.9040415459749463,
+          0.0
+        ],
+        "yaw": 1.6011104399741551
+      },
+      {
+        "step": 31,
+        "position": [
+          2.3571510633335717,
+          -0.9393268443862619,
+          0.0
+        ],
+        "yaw": 1.6128662383425212
+      },
+      {
+        "step": 41,
+        "position": [
+          2.4651367030946068,
+          -1.0725740754715363,
+          0.0
+        ],
+        "yaw": 1.6034520884028536
+      },
+      {
+        "step": 51,
+        "position": [
+          2.604728787675401,
+          -1.1965454789460228,
+          0.0
+        ],
+        "yaw": 1.579592556254843
+      },
+      {
+        "step": 61,
+        "position": [
+          2.7150327243223806,
+          -1.19568159727364,
+          0.0
+        ],
+        "yaw": 1.5850312306986987
+      },
+      {
+        "step": 71,
+        "position": [
+          2.7901039017984877,
+          -1.194693880462116,
+          0.0
+        ],
+        "yaw": 1.5857504555821649
+      },
+      {
+        "step": 81,
+        "position": [
+          2.828649796598999,
+          -1.1936444395356838,
+          0.0
+        ],
+        "yaw": 1.5857663926178485
+      },
+      {
+        "step": 91,
+        "position": [
+          2.8480101185455533,
+          -1.191955616246154,
+          0.0
+        ],
+        "yaw": 1.586345341082228
+      },
+      {
+        "step": 101,
+        "position": [
+          2.8760393862363136,
+          -1.1910586086451418,
+          0.0
+        ],
+        "yaw": 1.587590534889982
+      },
+      {
+        "step": 111,
+        "position": [
+          2.8931038023434392,
+          -1.1899207064178239,
+          0.0
+        ],
+        "yaw": 1.5903915004201392
+      },
+      {
+        "step": 121,
+        "position": [
+          2.909738751985222,
+          -1.188412218437308,
+          0.0
+        ],
+        "yaw": 1.5914027957710644
+      },
+      {
+        "step": 131,
+        "position": [
+          2.933806133738265,
+          -1.187098575053287,
+          0.0
+        ],
+        "yaw": 1.5925286847418385
+      },
+      {
+        "step": 141,
+        "position": [
+          2.9509381889181348,
+          -1.1855430763438788,
+          0.0
+        ],
+        "yaw": 1.5930296036595413
+      },
+      {
+        "step": 151,
+        "position": [
+          2.9664183974668585,
+          -1.1839229422928725,
+          0.0
+        ],
+        "yaw": 1.5943863558753535
+      },
+      {
+        "step": 161,
+        "position": [
+          2.9821046527994057,
+          -1.1823665562843781,
+          0.0
+        ],
+        "yaw": 1.5953114670060944
+      },
+      {
+        "step": 171,
+        "position": [
+          3.012330271968917,
+          -1.1770036820264438,
+          0.0
+        ],
+        "yaw": 1.5902300060726184
+      },
+      {
+        "step": 181,
+        "position": [
+          3.0336802404389136,
+          -1.1751033770024386,
+          0.0
+        ],
+        "yaw": 1.5903913224757893
+      },
+      {
+        "step": 191,
+        "position": [
+          3.035064967749218,
+          -1.1735677176330241,
+          0.0
+        ],
+        "yaw": 1.6033876253467134
+      },
+      {
+        "step": 201,
+        "position": [
+          3.0348690137195042,
+          -1.1718783773445185,
+          0.0
+        ],
+        "yaw": 1.6181297432864197
+      },
+      {
+        "step": 211,
+        "position": [
+          3.034689615634188,
+          -1.1703042042673935,
+          0.0
+        ],
+        "yaw": 1.6331235515359808
+      },
+      {
+        "step": 221,
+        "position": [
+          3.034747478949622,
+          -1.168855330377523,
+          0.0
+        ],
+        "yaw": 1.6478469230116009
+      },
+      {
+        "step": 231,
+        "position": [
+          3.034917692437804,
+          -1.1675075075680996,
+          0.0
+        ],
+        "yaw": 1.6625511485480524
+      },
+      {
+        "step": 241,
+        "position": [
+          3.0354374069329886,
+          -1.166303824298406,
+          0.0
+        ],
+        "yaw": 1.6769497433196905
+      },
+      {
+        "step": 251,
+        "position": [
+          3.0359211472373033,
+          -1.1651484868353883,
+          0.0
+        ],
+        "yaw": 1.6913476778892371
+      },
+      {
+        "step": 261,
+        "position": [
+          3.0366053377291546,
+          -1.1641125866406692,
+          0.0
+        ],
+        "yaw": 1.7057105391794791
+      },
+      {
+        "step": 271,
+        "position": [
+          3.0374085032191003,
+          -1.1631432059103666,
+          0.0
+        ],
+        "yaw": 1.719921216188879
+      },
+      {
+        "step": 281,
+        "position": [
+          3.0384247377628264,
+          -1.1622626177107096,
+          0.0
+        ],
+        "yaw": 1.7340569782896484
+      },
+      {
+        "step": 291,
+        "position": [
+          3.039406382591972,
+          -1.161419419546476,
+          0.0
+        ],
+        "yaw": 1.7482063388516116
+      },
+      {
+        "step": 301,
+        "position": [
+          3.040626100216902,
+          -1.1606486258368232,
+          0.0
+        ],
+        "yaw": 1.7623425191035993
+      },
+      {
+        "step": 311,
+        "position": [
+          3.041554359053441,
+          -1.1598591786386026,
+          0.0
+        ],
+        "yaw": 1.77664582077663
+      },
+      {
+        "step": 321,
+        "position": [
+          3.0424393006984114,
+          -1.1591199120495226,
+          0.0
+        ],
+        "yaw": 1.7909809223420827
+      },
+      {
+        "step": 331,
+        "position": [
+          3.0436431960763577,
+          -1.1584765826801882,
+          0.0
+        ],
+        "yaw": 1.8051731832489704
+      },
+      {
+        "step": 341,
+        "position": [
+          3.047315980118468,
+          -1.1572591008443902,
+          0.0
+        ],
+        "yaw": 1.8027169994065333
+      },
+      {
+        "step": 351,
+        "position": [
+          3.08441783120654,
+          -1.1524543900176143,
+          0.0
+        ],
+        "yaw": 1.617797755774501
+      },
+      {
+        "step": 361,
+        "position": [
+          3.1190046919999417,
+          -1.1545533520488884,
+          0.0
+        ],
+        "yaw": 1.448453544131096
+      },
+      {
+        "step": 371,
+        "position": [
+          3.1411305951738133,
+          -1.159454821865094,
+          0.0
+        ],
+        "yaw": 1.3372732852854907
+      },
+      {
+        "step": 381,
+        "position": [
+          3.1501949425053097,
+          -1.1624712434717912,
+          0.0
+        ],
+        "yaw": 1.2841534007287156
+      },
+      {
+        "step": 391,
+        "position": [
+          3.149605226030382,
+          -1.1626204980512378,
+          0.0
+        ],
+        "yaw": 1.2709467485205126
+      },
+      {
+        "step": 401,
+        "position": [
+          3.1501856385636877,
+          -1.163270058908957,
+          0.0
+        ],
+        "yaw": 1.2525081319907216
+      },
+      {
+        "step": 411,
+        "position": [
+          3.1495642028685755,
+          -1.1634507409386696,
+          0.0
+        ],
+        "yaw": 1.241077823144656
+      },
+      {
+        "step": 421,
+        "position": [
+          3.1497037534100514,
+          -1.1636960718248313,
+          0.0
+        ],
+        "yaw": 1.227995950887897
+      },
+      {
+        "step": 431,
+        "position": [
+          3.148846872751255,
+          -1.1671696952518962,
+          0.0
+        ],
+        "yaw": 1.2231095966905756
+      },
+      {
+        "step": 441,
+        "position": [
+          3.145566124496913,
+          -1.1664417270912106,
+          0.0
+        ],
+        "yaw": 1.2264349770188838
+      },
+      {
+        "step": 451,
+        "position": [
+          3.144741495738888,
+          -1.1666132286380153,
+          0.0
+        ],
+        "yaw": 1.2203656266342189
+      },
+      {
+        "step": 461,
+        "position": [
+          3.1482376018610068,
+          -1.166337633742632,
+          0.0
+        ],
+        "yaw": 1.2207690599417966
+      },
+      {
+        "step": 471,
+        "position": [
+          3.2236886675028056,
+          -1.1586238136511147,
+          0.0
+        ],
+        "yaw": 1.2266609669262891
+      },
+      {
+        "step": 481,
+        "position": [
+          3.3164510886919993,
+          -1.1557947925832242,
+          0.0
+        ],
+        "yaw": 1.2284158588694742
+      },
+      {
+        "step": 491,
+        "position": [
+          3.398453354016558,
+          -1.1501072355209556,
+          0.0
+        ],
+        "yaw": 1.230394486256439
+      },
+      {
+        "step": 501,
+        "position": [
+          3.4673911611475647,
+          -1.1284614574644412,
+          0.0
+        ],
+        "yaw": 1.2324021120594084
+      },
+      {
+        "step": 511,
+        "position": [
+          3.5291019460915405,
+          -1.11261684805227,
+          0.0
+        ],
+        "yaw": 1.2368766358680707
+      },
+      {
+        "step": 521,
+        "position": [
+          3.5817091748397103,
+          -1.0940367726022704,
+          0.0
+        ],
+        "yaw": 1.2433512394539767
+      },
+      {
+        "step": 531,
+        "position": [
+          3.6237027287449886,
+          -1.076525906562855,
+          0.0
+        ],
+        "yaw": 1.251736234725767
+      },
+      {
+        "step": 541,
+        "position": [
+          3.6413790259882273,
+          -1.0723206558686411,
+          0.0
+        ],
+        "yaw": 1.2661494773825215
+      },
+      {
+        "step": 551,
+        "position": [
+          3.6463621046097954,
+          -1.0678486979367727,
+          0.0
+        ],
+        "yaw": 1.2815428550773569
+      },
+      {
+        "step": 561,
+        "position": [
+          3.6489793118295566,
+          -1.0634776143185796,
+          0.0
+        ],
+        "yaw": 1.2973777357260379
+      },
+      {
+        "step": 571,
+        "position": [
+          3.651496701043431,
+          -1.0596195187393636,
+          0.0
+        ],
+        "yaw": 1.3132051461802434
+      },
+      {
+        "step": 581,
+        "position": [
+          3.6536881201662386,
+          -1.055997766010531,
+          0.0
+        ],
+        "yaw": 1.3292278918067886
+      },
+      {
+        "step": 591,
+        "position": [
+          3.6554953749129244,
+          -1.0526977371852912,
+          0.0
+        ],
+        "yaw": 1.3453701461663434
+      },
+      {
+        "step": 601,
+        "position": [
+          3.657732603489526,
+          -1.049643447624907,
+          0.0
+        ],
+        "yaw": 1.3613200371100709
+      },
+      {
+        "step": 611,
+        "position": [
+          3.661903062066766,
+          -1.0469589786444693,
+          0.0
+        ],
+        "yaw": 1.376472024807376
+      },
+      {
+        "step": 621,
+        "position": [
+          3.668625163138834,
+          -1.044512822343093,
+          0.0
+        ],
+        "yaw": 1.3906959462490587
+      },
+      {
+        "step": 631,
+        "position": [
+          3.6739799108034332,
+          -1.0421658367788935,
+          0.0
+        ],
+        "yaw": 1.405026335374638
+      },
+      {
+        "step": 641,
+        "position": [
+          3.6772683389898897,
+          -1.039835180285276,
+          0.0
+        ],
+        "yaw": 1.4196694058538408
+      },
+      {
+        "step": 651,
+        "position": [
+          3.6807242974769303,
+          -1.037599978411626,
+          0.0
+        ],
+        "yaw": 1.4342883675856226
+      },
+      {
+        "step": 661,
+        "position": [
+          3.6839881277263506,
+          -1.0354571310758751,
+          0.0
+        ],
+        "yaw": 1.4487890862545951
+      },
+      {
+        "step": 671,
+        "position": [
+          3.6858087839764093,
+          -1.033244175135223,
+          0.0
+        ],
+        "yaw": 1.4640132595195625
+      },
+      {
+        "step": 681,
+        "position": [
+          3.6868919464397307,
+          -1.0310821032831246,
+          0.0
+        ],
+        "yaw": 1.479446245139522
+      },
+      {
+        "step": 691,
+        "position": [
+          3.6876683575760523,
+          -1.0289474224324293,
+          0.0
+        ],
+        "yaw": 1.495161731986221
+      },
+      {
+        "step": 701,
+        "position": [
+          3.689445198219644,
+          -1.027038931527119,
+          0.0
+        ],
+        "yaw": 1.510207883650599
+      },
+      {
+        "step": 711,
+        "position": [
+          3.6921519502423097,
+          -1.02524949658608,
+          0.0
+        ],
+        "yaw": 1.5248455308278162
+      },
+      {
+        "step": 721,
+        "position": [
+          3.6941933756493,
+          -1.0234898886526094,
+          0.0
+        ],
+        "yaw": 1.539758321526699
+      },
+      {
+        "step": 731,
+        "position": [
+          3.6953769297309935,
+          -1.0217864654956927,
+          0.0
+        ],
+        "yaw": 1.5548636821681272
+      },
+      {
+        "step": 741,
+        "position": [
+          3.696586400050398,
+          -1.0201491906137201,
+          0.0
+        ],
+        "yaw": 1.57002243857405
+      },
+      {
+        "step": 751,
+        "position": [
+          3.698133497941851,
+          -1.0186146667399152,
+          0.0
+        ],
+        "yaw": 1.5849688531558137
+      },
+      {
+        "step": 761,
+        "position": [
+          3.69979404921795,
+          -1.0171648739519208,
+          0.0
+        ],
+        "yaw": 1.5999895267530173
+      },
+      {
+        "step": 771,
+        "position": [
+          3.7007055739243473,
+          -1.015685901114036,
+          0.0
+        ],
+        "yaw": 1.6155012363510006
+      },
+      {
+        "step": 781,
+        "position": [
+          3.701368793085667,
+          -1.0142366648665362,
+          0.0
+        ],
+        "yaw": 1.631342240625392
+      },
+      {
+        "step": 791,
+        "position": [
+          3.701794584480202,
+          -1.0128389169597078,
+          0.0
+        ],
+        "yaw": 1.647343947608639
+      },
+      {
+        "step": 801,
+        "position": [
+          3.702152701759826,
+          -1.0114888984181922,
+          0.0
+        ],
+        "yaw": 1.6635102892440847
+      },
+      {
+        "step": 811,
+        "position": [
+          3.7024921887669713,
+          -1.0102229384723451,
+          0.0
+        ],
+        "yaw": 1.6796634031910422
+      },
+      {
+        "step": 821,
+        "position": [
+          3.7029305698447192,
+          -1.009038721604257,
+          0.0
+        ],
+        "yaw": 1.6958106881073782
+      },
+      {
+        "step": 831,
+        "position": [
+          3.7038286689032773,
+          -1.0079897053826934,
+          0.0
+        ],
+        "yaw": 1.7114693215384058
+      },
+      {
+        "step": 841,
+        "position": [
+          3.705175259653689,
+          -1.0070819282726116,
+          0.0
+        ],
+        "yaw": 1.7268289747180683
+      },
+      {
+        "step": 851,
+        "position": [
+          3.7071866080314617,
+          -1.0062532694413115,
+          0.0
+        ],
+        "yaw": 1.7419834192338104
+      },
+      {
+        "step": 861,
+        "position": [
+          3.707268436643246,
+          -1.0052911678491143,
+          0.0
+        ],
+        "yaw": 1.7585234019916058
+      },
+      {
+        "step": 871,
+        "position": [
+          3.707466066099375,
+          -1.0044219677495816,
+          0.0
+        ],
+        "yaw": 1.7749393683255883
+      },
+      {
+        "step": 881,
+        "position": [
+          3.7076700538769103,
+          -1.0036115333205087,
+          0.0
+        ],
+        "yaw": 1.7913503301494862
+      },
+      {
+        "step": 891,
+        "position": [
+          3.709328698447807,
+          -1.0030259361224072,
+          0.0
+        ],
+        "yaw": 1.8067017573639057
+      },
+      {
+        "step": 901,
+        "position": [
+          3.71085452523003,
+          -1.0025063938473648,
+          0.0
+        ],
+        "yaw": 1.8220680865914434
+      },
+      {
+        "step": 911,
+        "position": [
+          3.7123900887348973,
+          -1.002057306581095,
+          0.0
+        ],
+        "yaw": 1.8375587455930023
+      },
+      {
+        "step": 921,
+        "position": [
+          3.71309958453073,
+          -1.0016147692471329,
+          0.0
+        ],
+        "yaw": 1.853684644719201
+      },
+      {
+        "step": 931,
+        "position": [
+          3.71303103844024,
+          -1.0011134024665482,
+          0.0
+        ],
+        "yaw": 1.870492669977842
+      },
+      {
+        "step": 941,
+        "position": [
+          3.7131983990283013,
+          -1.00071573260179,
+          0.0
+        ],
+        "yaw": 1.8870969116009502
+      },
+      {
+        "step": 951,
+        "position": [
+          3.71311230642706,
+          -1.0003290068477662,
+          0.0
+        ],
+        "yaw": 1.9039953139101038
+      },
+      {
+        "step": 961,
+        "position": [
+          3.713024502711463,
+          -0.9999995135350924,
+          0.0
+        ],
+        "yaw": 1.9209348891119853
+      },
+      {
+        "step": 971,
+        "position": [
+          3.7129089720820123,
+          -0.9997152559729515,
+          0.0
+        ],
+        "yaw": 1.9379357573754958
+      },
+      {
+        "step": 981,
+        "position": [
+          3.712864738228069,
+          -0.9994851179672672,
+          0.0
+        ],
+        "yaw": 1.9548814106038481
+      },
+      {
+        "step": 991,
+        "position": [
+          3.712972506522081,
+          -0.9990440486712425,
+          0.0
+        ],
+        "yaw": 1.9714209734742678
+      },
+      {
+        "step": 1001,
+        "position": [
+          3.712865577155237,
+          -0.9985608196571769,
+          0.0
+        ],
+        "yaw": 1.9881905124414339
+      },
+      {
+        "step": 1011,
+        "position": [
+          3.7130133425207767,
+          -0.998174028432585,
+          0.0
+        ],
+        "yaw": 2.004680280834785
+      },
+      {
+        "step": 1021,
+        "position": [
+          3.713727396021576,
+          -0.9980245404270787,
+          0.0
+        ],
+        "yaw": 2.0207727356551697
+      },
+      {
+        "step": 1031,
+        "position": [
+          3.714233212265847,
+          -0.9978402360743944,
+          0.0
+        ],
+        "yaw": 2.0370002890022856
+      },
+      {
+        "step": 1041,
+        "position": [
+          3.7144518130371655,
+          -0.9975924901401695,
+          0.0
+        ],
+        "yaw": 2.0534431943671514
+      },
+      {
+        "step": 1051,
+        "position": [
+          3.714561678553916,
+          -0.9973533645537965,
+          0.0
+        ],
+        "yaw": 2.0700029914449027
+      },
+      {
+        "step": 1061,
+        "position": [
+          3.7146754897653533,
+          -0.9971350356657749,
+          0.0
+        ],
+        "yaw": 2.0864964258525784
+      },
+      {
+        "step": 1071,
+        "position": [
+          3.714976030906577,
+          -0.9970457293874546,
+          0.0
+        ],
+        "yaw": 2.10295311615019
+      },
+      {
+        "step": 1081,
+        "position": [
+          3.7158708403285265,
+          -0.997169602142333,
+          0.0
+        ],
+        "yaw": 2.118939573572801
+      },
+      {
+        "step": 1091,
+        "position": [
+          3.719796307485402,
+          -0.995025438313039,
+          0.0
+        ],
+        "yaw": 2.1234967541640115
+      },
+      {
+        "step": 1101,
+        "position": [
+          3.723467300929846,
+          -0.9926241130611633,
+          0.0
+        ],
+        "yaw": 2.1273377451987034
+      },
+      {
+        "step": 1111,
+        "position": [
+          3.7274343584879435,
+          -0.9908958980044777,
+          0.0
+        ],
+        "yaw": 2.130848244232423
+      },
+      {
+        "step": 1121,
+        "position": [
+          3.727652245234647,
+          -0.9907553925676423,
+          0.0
+        ],
+        "yaw": 2.1299932777784703
+      },
+      {
+        "step": 1131,
+        "position": [
+          3.7275722641488676,
+          -0.9907726608668856,
+          0.0
+        ],
+        "yaw": 2.130609047168885
+      },
+      {
+        "step": 1141,
+        "position": [
+          3.727294107018588,
+          -0.9909508829978777,
+          0.0
+        ],
+        "yaw": 2.132007218547944
+      },
+      {
+        "step": 1151,
+        "position": [
+          3.7270644300158597,
+          -0.9910938126969742,
+          0.0
+        ],
+        "yaw": 2.1332039070964086
+      },
+      {
+        "step": 1161,
+        "position": [
+          3.726975246304413,
+          -0.9911429816996993,
+          0.0
+        ],
+        "yaw": 2.1337795717921635
+      },
+      {
+        "step": 1171,
+        "position": [
+          3.7269807632995198,
+          -0.991136033522198,
+          0.0
+        ],
+        "yaw": 2.1337401067310267
+      },
+      {
+        "step": 1181,
+        "position": [
+          3.726996494658891,
+          -0.9911251103445509,
+          0.0
+        ],
+        "yaw": 2.13366831086056
+      },
+      {
+        "step": 1191,
+        "position": [
+          3.7270028844415704,
+          -0.9911277334202448,
+          0.0
+        ],
+        "yaw": 2.1336750956079147
+      },
+      {
+        "step": 1201,
+        "position": [
+          3.7270002328640253,
+          -0.9911302169146117,
+          0.0
+        ],
+        "yaw": 2.1336967838245915
+      },
+      {
+        "step": 1211,
+        "position": [
+          3.7270007124977784,
+          -0.9911285757238811,
+          0.0
+        ],
+        "yaw": 2.133693998029008
+      },
+      {
+        "step": 1221,
+        "position": [
+          3.7270018849003472,
+          -0.9911265004688589,
+          0.0
+        ],
+        "yaw": 2.133685722845235
+      },
+      {
+        "step": 1231,
+        "position": [
+          3.7270037132866802,
+          -0.9911238620104297,
+          0.0
+        ],
+        "yaw": 2.1336731338765333
+      },
+      {
+        "step": 1241,
+        "position": [
+          3.727005903782179,
+          -0.9911208024270295,
+          0.0
+        ],
+        "yaw": 2.1336577188238075
+      },
+      {
+        "step": 1251,
+        "position": [
+          3.7270080861639574,
+          -0.991117583186303,
+          0.0
+        ],
+        "yaw": 2.1336413099847045
+      },
+      {
+        "step": 1261,
+        "position": [
+          3.727010315932257,
+          -0.9911141124269767,
+          0.0
+        ],
+        "yaw": 2.1336237674903877
+      },
+      {
+        "step": 1271,
+        "position": [
+          3.72701246820694,
+          -0.9911104907928356,
+          0.0
+        ],
+        "yaw": 2.1336056924709776
+      },
+      {
+        "step": 1281,
+        "position": [
+          3.7270145259272365,
+          -0.991106736250658,
+          0.0
+        ],
+        "yaw": 2.1335869558224037
+      },
+      {
+        "step": 1291,
+        "position": [
+          3.727016311713198,
+          -0.9911029519649364,
+          0.0
+        ],
+        "yaw": 2.1335680930047394
+      },
+      {
+        "step": 1301,
+        "position": [
+          3.7282145509075444,
+          -0.9911143172184774,
+          0.0
+        ],
+        "yaw": 2.133670178648918
+      },
+      {
+        "step": 1311,
+        "position": [
+          3.762030133284528,
+          -0.991157908818477,
+          0.0
+        ],
+        "yaw": 2.1339317513569425
+      },
+      {
+        "step": 1321,
+        "position": [
+          3.7970696382410893,
+          -0.991155220628211,
+          0.0
+        ],
+        "yaw": 2.1339222155153132
+      },
+      {
+        "step": 1331,
+        "position": [
+          3.832268232586817,
+          -0.9911601111853054,
+          0.0
+        ],
+        "yaw": 2.133942665997373
+      },
+      {
+        "step": 1341,
+        "position": [
+          3.867392293764069,
+          -0.9911488406486519,
+          0.0
+        ],
+        "yaw": 2.133865875767673
+      },
+      {
+        "step": 1351,
+        "position": [
+          3.9020617545214735,
+          -0.9911218868700673,
+          0.0
+        ],
+        "yaw": 2.133731969390129
+      },
+      {
+        "step": 1361,
+        "position": [
+          3.906343085634445,
+          -0.991119771427545,
+          0.0
+        ],
+        "yaw": 2.133669669253753
+      },
+      {
+        "step": 1371,
+        "position": [
+          3.9296022412507323,
+          -0.9785284045560059,
+          0.0
+        ],
+        "yaw": 2.0059618819007365
+      },
+      {
+        "step": 1381,
+        "position": [
+          3.9475964733354925,
+          -0.9711563802473073,
+          0.0
+        ],
+        "yaw": 1.9134340585398133
+      },
+      {
+        "step": 1391,
+        "position": [
+          3.961288928627464,
+          -0.966791454673042,
+          0.0
+        ],
+        "yaw": 1.844990836029961
+      },
+      {
+        "step": 1401,
+        "position": [
+          3.9745715425090107,
+          -0.9635178939679547,
+          0.0
+        ],
+        "yaw": 1.7798582039321864
+      },
+      {
+        "step": 1411,
+        "position": [
+          3.986967671656708,
+          -0.961133792974011,
+          0.0
+        ],
+        "yaw": 1.7159028138961667
+      },
+      {
+        "step": 1421,
+        "position": [
+          3.9793253076851935,
+          -0.9598931472733909,
+          0.0
+        ],
+        "yaw": 1.6675385112717507
+      },
+      {
+        "step": 1431,
+        "position": [
+          3.976074709785857,
+          -0.9595484575750337,
+          0.0
+        ],
+        "yaw": 1.6477085042990496
+      },
+      {
+        "step": 1435,
+        "position": [
+          3.976064934318115,
+          -0.9595510948909792,
+          0.0
+        ],
+        "yaw": 1.6477425405268478
+      }
+    ]
+  }
+}

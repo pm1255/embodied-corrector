@@ -60,34 +60,37 @@
     "challenge": "Missing prerequisite and multi-object recovery"
   },
   {
-    "id": "curated-libero-cheesebowl-s11",
-    "title": "Regrasp and place the cheese in the bowl",
-    "suite": "LIBERO-PRO",
+    "id": "nav-rc-recovery-stove-s11",
+    "title": "Correct the route and dock at the stove",
+    "suite": "RoboCasa365",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 11,
-    "steps": 657,
-    "challenge": "Missed grasp and precise placement"
+    "steps": 958,
+    "challenge": "Navigation: incorrect waypoint and heading",
+    "navigation": true
   },
   {
-    "id": "curated-libero-cheesebowl-s23",
-    "title": "Correct the grasp after scene rearrangement",
-    "suite": "LIBERO-PRO",
+    "id": "nav-rc-recovery-fridge-s23",
+    "title": "Recover the route to the fridge",
+    "suite": "RoboCasa365",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 23,
-    "steps": 522,
-    "challenge": "Object-position variation and regrasp"
+    "steps": 663,
+    "challenge": "Navigation: premature stop and heading correction",
+    "navigation": true
   },
   {
-    "id": "curated-libero-cheesebowl-s37",
-    "title": "Recover a shifted object into the bowl",
-    "suite": "LIBERO-PRO",
+    "id": "nav-rc-recovery-toaster-s37",
+    "title": "Clear the arm and navigate to the toaster",
+    "suite": "RoboCasa365",
     "kind": "gpt_proxy",
     "success": true,
     "seed": 37,
-    "steps": 536,
-    "challenge": "Object-position variation and regrasp"
+    "steps": 1435,
+    "challenge": "Navigation: wrong waypoint, arm clearance and docking",
+    "navigation": true
   },
   {
     "id": "curated-rc-organizevegetables-s11",

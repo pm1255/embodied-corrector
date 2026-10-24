@@ -41,7 +41,7 @@ https://github.com/user-attachments/assets/c9dcd501-c9fd-4cfe-aa18-fdbef5edb70d
 
 These demonstrations use a **GPT proxy with simulator-state-assisted analytical control**. They illustrate the correction workflow and are separate from trained Embodied-Corrector / RynnBrain evaluation results.
 
-The [project gallery](https://pm1255.github.io/embodied-corrector/#simulations) contains **12 selected successful recovery episodes: 9 LIBERO-PRO and 3 RoboCasa365**, using the same video layout and visible brain output. They cover task and seed variations; they are not 12 distinct tasks or an estimate of benchmark success rate. See [episode provenance and verification](guides/selected_recoveries.md).
+The [project gallery](https://pm1255.github.io/embodied-corrector/#simulations) contains **12 selected successful recovery episodes: 6 LIBERO-PRO and 6 RoboCasa365**, including three mobile-base navigation recoveries, using the same video layout and visible brain output. They cover task and seed variations; they are not 12 distinct tasks or an estimate of benchmark success rate. See [episode provenance and verification](guides/selected_recoveries.md).
 
 ## Abstract
 
