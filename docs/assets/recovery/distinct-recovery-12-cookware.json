@@ -1,0 +1,1502 @@
+{
+  "case": "distinct-recovery-12-cookware-attempt7",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Move the pot and pan from the stove into the sink.",
+    "seed": 9,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "TransportCookware",
+    "camera": "fixed wide camera with simultaneous arm view",
+    "action_dim": 12,
+    "initial_model_sha256": "8409a0ef65dbd236236f5f20094f9fc5a61f481593113e8f1fea9ece5aca5c55",
+    "initialization_only_torso_height": 0,
+    "episode_metadata": {
+      "layout_id": 1,
+      "style_id": 1,
+      "object_cfgs": [
+        {
+          "name": "pot",
+          "obj_groups": "pot",
+          "placement": {
+            "fixture": "stove_main_group",
+            "ensure_object_boundary_in_range": false,
+            "size": [
+              0.2,
+              0.2
+            ]
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "pot",
+              "receptacle",
+              "cookware",
+              "pots_and_pans"
+            ],
+            "groups": [
+              "pot"
+            ],
+            "cat": "pot",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/lightwheel/pot/Pot074/model.xml"
+          },
+          "reset_region": {
+            "offset": [
+              -0.18947859746553017,
+              -0.12939341124301007,
+              0.2894752593294014
+            ],
+            "size": [
+              0.1,
+              0.1
+            ],
+            "name": "front_left"
+          }
+        },
+        {
+          "name": "pan",
+          "obj_groups": "pan",
+          "placement": {
+            "fixture": "stove_main_group",
+            "ensure_object_boundary_in_range": false,
+            "size": [
+              0.2,
+              0.2
+            ]
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "pan",
+              "receptacle",
+              "cookware",
+              "pots_and_pans"
+            ],
+            "groups": [
+              "pan"
+            ],
+            "cat": "pan",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/pan/pan_8/model.xml"
+          },
+          "reset_region": {
+            "offset": [
+              0.1908583836730293,
+              -0.15091972905846288,
+              0.2894752593294014
+            ],
+            "size": [
+              0.1,
+              0.1
+            ],
+            "name": "front_right"
+          }
+        }
+      ],
+      "fixtures": {
+        "wall_room": {
+          "cls": "Wall"
+        },
+        "wall_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_left_room": {
+          "cls": "Wall"
+        },
+        "wall_left_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_right_room": {
+          "cls": "Wall"
+        },
+        "wall_right_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_front_room": {
+          "cls": "Wall"
+        },
+        "wall_front_backing_room": {
+          "cls": "Wall"
+        },
+        "floor_room": {
+          "cls": "Floor"
+        },
+        "floor_backing_room": {
+          "cls": "Floor"
+        },
+        "outlet_room": {
+          "cls": "WallAccessory"
+        },
+        "outlet_2_room": {
+          "cls": "WallAccessory"
+        },
+        "light_switch_room": {
+          "cls": "WallAccessory"
+        },
+        "light_switch_2_room": {
+          "cls": "WallAccessory"
+        },
+        "sink_main_group": {
+          "cls": "Sink"
+        },
+        "counter_main_main_group": {
+          "cls": "Counter"
+        },
+        "stove_main_group": {
+          "cls": "Stove"
+        },
+        "counter_right_main_group": {
+          "cls": "Counter"
+        },
+        "fridge_main_group": {
+          "cls": "FridgeBottomFreezer"
+        },
+        "cab_1_main_group": {
+          "cls": "SingleCabinet"
+        },
+        "cab_2_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "cab_main_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "microwave_main_group": {
+          "cls": "Microwave"
+        },
+        "cab_micro_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "cab_3_main_group": {
+          "cls": "OpenCabinet"
+        },
+        "cab_4_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "stack_1_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_1_main_group_1": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_2": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_3": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_4": {
+          "cls": "Drawer"
+        },
+        "stack_2_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_2_main_group_1": {
+          "cls": "HingeCabinet"
+        },
+        "stack_2_main_group_2": {
+          "cls": "PanelCabinet"
+        },
+        "dishwasher_main_group": {
+          "cls": "Dishwasher"
+        },
+        "stack_3_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_3_main_group_1": {
+          "cls": "SingleCabinet"
+        },
+        "stack_4_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_4_main_group_1": {
+          "cls": "SingleCabinet"
+        },
+        "stack_4_main_group_2": {
+          "cls": "Drawer"
+        },
+        "toaster_main_group": {
+          "cls": "Toaster"
+        },
+        "knife_block_main_group": {
+          "cls": "Accessory"
+        },
+        "paper_towel_main_group": {
+          "cls": "Accessory"
+        },
+        "coffee_machine_main_group": {
+          "cls": "CoffeeMachine"
+        }
+      },
+      "gen_textures": {},
+      "lang": "Move the pot and pan from the stove into the sink.",
+      "fixture_refs": {
+        "stove": "stove_main_group",
+        "sink": "sink_main_group"
+      },
+      "cam_configs": {
+        "robot0_agentview_center": {
+          "pos": [
+            -0.6,
+            0.0,
+            1.15
+          ],
+          "quat": [
+            0.636945903301239,
+            0.3325185477733612,
+            -0.3199238181114197,
+            -0.6175596117973328
+          ],
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_agentview_left": {
+          "pos": [
+            -0.5,
+            0.35,
+            1.05
+          ],
+          "quat": [
+            0.55623853,
+            0.29935253,
+            -0.37678665,
+            -0.6775092
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_agentview_right": {
+          "pos": [
+            -0.5,
+            -0.35,
+            1.05
+          ],
+          "quat": [
+            0.6775091886520386,
+            0.3767866790294647,
+            -0.2993525564670563,
+            -0.55623859167099
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_frontview": {
+          "pos": [
+            -0.5,
+            0,
+            0.95
+          ],
+          "quat": [
+            0.6088936924934387,
+            0.3814677894115448,
+            -0.3673907518386841,
+            -0.5905545353889465
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_eye_in_hand": {
+          "pos": [
+            0.05,
+            0,
+            0
+          ],
+          "quat": [
+            0,
+            0.707107,
+            0.707107,
+            0
+          ],
+          "parent_body": "robot0_right_hand"
+        }
+      },
+      "init_robot_base_pos": [
+        3.025011496444769,
+        -0.8343290132365146,
+        0.0
+      ],
+      "init_robot_base_ori": [
+        0.0,
+        0.0,
+        1.5707963267948966
+      ]
+    },
+    "task_variant": "Original task predicate; disclosed initialization-only torso posture for state-assisted demonstrations",
+    "raw_width": 960,
+    "raw_height": 720,
+    "framebuffer_multisamples": 0,
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": null,
+    "navigation": false,
+    "collection": "distinct-two-perturbations",
+    "task_id": "12-cookware",
+    "recording_mode": "continuous native video",
+    "planned_perturbations": [
+      "lateral handle-grasp offset",
+      "wrong-direction navigation"
+    ],
+    "decision_origin": "GPT-authored, simulator-state-assisted demonstration"
+  },
+  "result": {
+    "success": true,
+    "steps": 2781,
+    "commands": 9,
+    "brain_records": 3,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 450,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Pick up the pan",
+          "action": "Approach the stove and attempt to grasp the pan handle."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "navigate",
+            "position": [
+              3.1,
+              -1.0,
+              0.0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "pick",
+            "object": "pan",
+            "offset": [
+              -0.06,
+              -0.3,
+              0.003
+            ],
+            "yaw_degrees": -25.13,
+            "lift": 0.23
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 30,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                3.1,
+                -1.0,
+                0.0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                3.022966411756676,
+                -0.8376596257625643,
+                0.0
+              ],
+              "base_end": [
+                3.092781878020827,
+                -0.9790414495847086,
+                0.0
+              ],
+              "target_distance_m": 0.022166689432942612,
+              "heading_error_rad": 8.418706916923924e-06,
+              "reached": true,
+              "steps": 62
+            },
+            "step": 92,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "pick",
+              "object": "pan",
+              "offset": [
+                -0.06,
+                -0.3,
+                0.003
+              ],
+              "yaw_degrees": -25.13,
+              "lift": 0.23
+            },
+            "feedback": {
+              "action": "pick",
+              "object": "pan",
+              "object_lift_m": -5.287988824598244e-09,
+              "object_follows_gripper": false
+            },
+            "step": 450,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Approach the stove and attempt to grasp the pan handle."
+    },
+    {
+      "index": 1,
+      "step_start": 450,
+      "step_end": 692,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed in front of the pan handle and lifted empty. The pan remained on the stove.",
+        "Sub": "Align the grasp with the pan handle.",
+        "Fine": "Move the open gripper back to the handle, close around its narrow section, and lift the pan."
+      },
+      "command": {
+        "action": "sequence",
+        "commands": [
+          {
+            "action": "move",
+            "position": [
+              3.2458894761790935,
+              -0.6419695007927815,
+              1.1178480061814144
+            ],
+            "rotation": [
+              [
+                -0.9053465645895182,
+                0.4246735192897682,
+                0.0
+              ],
+              [
+                0.4246735192897682,
+                0.9053465645895182,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.2458894761790935,
+              -0.6419695007927815,
+              0.9378480061814145
+            ],
+            "rotation": [
+              [
+                -0.9053465645895182,
+                0.4246735192897682,
+                0.0
+              ],
+              [
+                0.4246735192897682,
+                0.9053465645895182,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "gripper",
+            "close": 1,
+            "steps": 18
+          },
+          {
+            "action": "move",
+            "position": [
+              3.2458894761790935,
+              -0.6419695007927815,
+              1.1678480061814145
+            ],
+            "rotation": [
+              [
+                -0.9053465645895182,
+                0.4246735192897682,
+                0.0
+              ],
+              [
+                0.4246735192897682,
+                0.9053465645895182,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "verify_held",
+            "object": "pan"
+          }
+        ],
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed in front of the pan handle and lifted empty. The pan remained on the stove.",
+          "Sub": "Align the grasp with the pan handle.",
+          "Fine": "Move the open gripper back to the handle, close around its narrow section, and lift the pan."
+        }
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.2458894761790935,
+                -0.6419695007927815,
+                1.1178480061814144
+              ],
+              "rotation": [
+                [
+                  -0.9053465645895182,
+                  0.4246735192897682,
+                  0.0
+                ],
+                [
+                  0.4246735192897682,
+                  0.9053465645895182,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 516,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.2458894761790935,
+                -0.6419695007927815,
+                0.9378480061814145
+              ],
+              "rotation": [
+                [
+                  -0.9053465645895182,
+                  0.4246735192897682,
+                  0.0
+                ],
+                [
+                  0.4246735192897682,
+                  0.9053465645895182,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 585,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": 1,
+              "steps": 18
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 603,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.2458894761790935,
+                -0.6419695007927815,
+                1.1678480061814145
+              ],
+              "rotation": [
+                [
+                  -0.9053465645895182,
+                  0.4246735192897682,
+                  0.0
+                ],
+                [
+                  0.4246735192897682,
+                  0.9053465645895182,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 692,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "verify_held",
+              "object": "pan"
+            },
+            "feedback": {
+              "held": true,
+              "contacting_finger_pads": [
+                1,
+                2
+              ],
+              "object_position": [
+                3.3065333069777254,
+                -0.5105017326127737,
+                1.1604221101277798
+              ]
+            },
+            "step": 692,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 692,
+      "step_end": 878,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              3.75,
+              -1.3,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "wait",
+            "steps": 30
+          }
+        ],
+        "presentation": {
+          "stage": "Carry the pan",
+          "action": "Carry the pan toward its destination."
+        }
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                3.75,
+                -1.3,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                3.0927453658272204,
+                -0.9790476710217333,
+                0.0
+              ],
+              "base_end": [
+                3.7499333613393158,
+                -1.2951741576488711,
+                0.0
+              ],
+              "target_distance_m": 0.004826302426189989,
+              "heading_error_rad": 5.929060098441852e-07,
+              "reached": true,
+              "steps": 156
+            },
+            "step": 848,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 878,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Carry the pan toward its destination."
+    },
+    {
+      "index": 3,
+      "step_start": 878,
+      "step_end": 1678,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The robot carried the pan to the right, away from the sink on the left. The destination is incorrect.",
+        "Sub": "Navigate to the sink and place the pan inside.",
+        "Fine": "Turn back along the aisle, stop in front of the sink, lower the pan into the basin, and release it."
+      },
+      "command": {
+        "action": "sequence",
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              1.25,
+              -0.95,
+              0.0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "move",
+            "position": [
+              1.4067957212658122,
+              -0.6139671807066547,
+              1.2449024618534859
+            ],
+            "rotation": [
+              [
+                -0.9053465645895182,
+                0.4246735192897682,
+                0.0
+              ],
+              [
+                0.4246735192897682,
+                0.9053465645895182,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              1.457013673479911,
+              -0.3751929299280264,
+              1.1104944587609844
+            ],
+            "rotation": [
+              [
+                -0.9053465645895182,
+                0.4246735192897682,
+                0.0
+              ],
+              [
+                0.4246735192897682,
+                0.9053465645895182,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              1.457013673479911,
+              -0.3751929299280264,
+              0.9704944587609843
+            ],
+            "rotation": [
+              [
+                -0.9053465645895182,
+                0.4246735192897682,
+                0.0
+              ],
+              [
+                0.4246735192897682,
+                0.9053465645895182,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "gripper",
+            "close": -1,
+            "steps": 18
+          },
+          {
+            "action": "move",
+            "position": [
+              1.457013673479911,
+              -0.3751929299280264,
+              1.1704944587609842
+            ],
+            "rotation": [
+              [
+                -0.9053465645895182,
+                0.4246735192897682,
+                0.0
+              ],
+              [
+                0.4246735192897682,
+                0.9053465645895182,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "gripper",
+            "close": null,
+            "steps": 30
+          }
+        ],
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The robot carried the pan to the right, away from the sink on the left. The destination is incorrect.",
+          "Sub": "Navigate to the sink and place the pan inside.",
+          "Fine": "Turn back along the aisle, stop in front of the sink, lower the pan into the basin, and release it."
+        }
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                1.25,
+                -0.95,
+                0.0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                3.7499333479209307,
+                -1.295174157096082,
+                0.0
+              ],
+              "base_end": [
+                1.2538344440477516,
+                -0.9584346564142232,
+                0.0
+              ],
+              "target_distance_m": 0.009265332696743,
+              "heading_error_rad": -1.0092018316587568e-05,
+              "reached": true,
+              "steps": 462
+            },
+            "step": 1340,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                1.4067957212658122,
+                -0.6139671807066547,
+                1.2449024618534859
+              ],
+              "rotation": [
+                [
+                  -0.9053465645895182,
+                  0.4246735192897682,
+                  0.0
+                ],
+                [
+                  0.4246735192897682,
+                  0.9053465645895182,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 1376,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                1.457013673479911,
+                -0.3751929299280264,
+                1.1104944587609844
+              ],
+              "rotation": [
+                [
+                  -0.9053465645895182,
+                  0.4246735192897682,
+                  0.0
+                ],
+                [
+                  0.4246735192897682,
+                  0.9053465645895182,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 1481,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                1.457013673479911,
+                -0.3751929299280264,
+                0.9704944587609843
+              ],
+              "rotation": [
+                [
+                  -0.9053465645895182,
+                  0.4246735192897682,
+                  0.0
+                ],
+                [
+                  0.4246735192897682,
+                  0.9053465645895182,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 1556,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": -1,
+              "steps": 18
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 1574,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                1.457013673479911,
+                -0.3751929299280264,
+                1.1704944587609842
+              ],
+              "rotation": [
+                [
+                  -0.9053465645895182,
+                  0.4246735192897682,
+                  0.0
+                ],
+                [
+                  0.4246735192897682,
+                  0.9053465645895182,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 1648,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": null,
+              "steps": 30
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 1678,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 1678,
+      "step_end": 2245,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              2.7,
+              -1.0,
+              0.0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "pick",
+            "object": "pot",
+            "offset": [
+              -0.045,
+              -0.096,
+              0.185
+            ],
+            "yaw_degrees": 90,
+            "lift": 0.25
+          }
+        ],
+        "presentation": {
+          "stage": "Pick up the pot",
+          "action": "Return to the stove and close the fingers around the pot rim."
+        }
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                2.7,
+                -1.0,
+                0.0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                1.2547471406266468,
+                -0.9610280320485858,
+                0.0
+              ],
+              "base_end": [
+                2.686157301898282,
+                -0.9954518585045271,
+                0.0
+              ],
+              "target_distance_m": 0.014570720016462908,
+              "heading_error_rad": -0.009038177476725417,
+              "reached": true,
+              "steps": 278
+            },
+            "step": 1956,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "pick",
+              "object": "pot",
+              "offset": [
+                -0.045,
+                -0.096,
+                0.185
+              ],
+              "yaw_degrees": 90,
+              "lift": 0.25
+            },
+            "feedback": {
+              "action": "pick",
+              "object": "pot",
+              "object_lift_m": 0.20394137193978112,
+              "object_follows_gripper": true
+            },
+            "step": 2245,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Return to the stove and close the fingers around the pot rim."
+    },
+    {
+      "index": 5,
+      "step_start": 2245,
+      "step_end": 2264,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "commands": [
+          {
+            "action": "contact_move",
+            "position": [
+              2.97,
+              -0.61,
+              1.34
+            ],
+            "kp": 800,
+            "position_limit": 0.8,
+            "grip": 1
+          }
+        ],
+        "presentation": {
+          "stage": "Secure the pot",
+          "action": "Adjust the closed grip and lift clear of the counter."
+        }
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "contact_move",
+              "position": [
+                2.97,
+                -0.61,
+                1.34
+              ],
+              "kp": 800,
+              "position_limit": 0.8,
+              "grip": 1
+            },
+            "feedback": {
+              "reached": true,
+              "position_stiffness": 800.0,
+              "position_action_limit": 0.8,
+              "physical_actuator_limits_unchanged": true
+            },
+            "step": 2264,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Adjust the closed grip and lift clear of the counter."
+    },
+    {
+      "index": 6,
+      "step_start": 2264,
+      "step_end": 2540,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              1.25,
+              -0.95,
+              0
+            ],
+            "yaw": 1.57079632679
+          }
+        ],
+        "presentation": {
+          "stage": "Carry the pot",
+          "action": "Carry the pot along the aisle to the sink."
+        }
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                1.25,
+                -0.95,
+                0
+              ],
+              "yaw": 1.57079632679
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                2.6835507056249486,
+                -0.9944302924818584,
+                0.0
+              ],
+              "base_end": [
+                1.2525824676077857,
+                -0.9554544003661947,
+                0.0
+              ],
+              "target_distance_m": 0.006034867214778411,
+              "heading_error_rad": -7.807368363588196e-06,
+              "reached": true,
+              "steps": 276
+            },
+            "step": 2540,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Carry the pot along the aisle to the sink."
+    },
+    {
+      "index": 7,
+      "step_start": 2540,
+      "step_end": 2781,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "commands": [
+          {
+            "action": "move_held",
+            "object": "pot",
+            "position": [
+              1.38,
+              -0.32,
+              0.98
+            ]
+          },
+          {
+            "action": "gripper",
+            "close": -1,
+            "steps": 40
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.23,
+              0.18
+            ],
+            "grip": -1
+          }
+        ],
+        "presentation": {
+          "stage": "Place the pot",
+          "action": "Lower the pot into the sink, release it, and withdraw the gripper."
+        }
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move_held",
+              "object": "pot",
+              "position": [
+                1.38,
+                -0.32,
+                0.98
+              ]
+            },
+            "feedback": {
+              "reached": false
+            },
+            "step": 2652,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": -1,
+              "steps": 40
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 2692,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.23,
+                0.18
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 2781,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true,
+      "controller_note": "Lower the pot into the sink, release it, and withdraw the gripper."
+    },
+    {
+      "index": 8,
+      "step_start": 2781,
+      "step_end": 2781,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The pot and pan are inside the sink. The original task success check passes.",
+        "Sub": "Task complete.",
+        "Fine": "Keep the gripper clear and finish the episode."
+      },
+      "command": {
+        "action": "finish",
+        "brain": {
+          "Judge": "success",
+          "Cause": "The pot and pan are inside the sink. The original task success check passes.",
+          "Sub": "Task complete.",
+          "Fine": "Keep the gripper clear and finish the episode."
+        }
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": "GPT-authored, simulator-state-assisted demonstration. Not trained Embodied-Corrector or RynnBrain inference and not a benchmark score.",
+  "motion_evidence": {
+    "physical_steps": 2781,
+    "every_action_frame_preserved": true,
+    "control_hz": 20,
+    "recording_fps": 20,
+    "playback_speed": 1,
+    "frame_interpolation": false,
+    "post_failure_state_reset": false,
+    "eef_speed_p95_m_s": 0.21372950684440742,
+    "eef_speed_max_m_s": 1.1309278379038725,
+    "base_path_m": 6.294327560288002,
+    "raw_video_sha256": "7566cc0860342a866638fe2ecffa2e974f94664efa4d66f2e8b9f25e2d9d8ed2",
+    "actions_sha256": "7e891a19aad34c305533f05501b0debd52e092a824299c0dd431c088929b23c8"
+  },
+  "presentation": {
+    "title": "Move the pot and pan from the stove into the sink.",
+    "perturbations": [
+      "lateral handle-grasp offset",
+      "wrong-direction navigation"
+    ],
+    "poster": "Encoded video first frame",
+    "final_hold_seconds": 3
+  }
+}

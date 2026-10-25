@@ -1,0 +1,524 @@
+{
+  "case": "distinct-recovery-04-basket-attempt1",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put both the cream cheese box and the butter in the basket",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/libero-multiobject.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "9d8e710b95d0e55cf5dd760589939639d4178b86b723afe595a0e53f573cef65",
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "distinct-baseline-04-basket-attempt1",
+      "success": true,
+      "reference_waypoints_sha256": "32e29f6c23d2576a25178423daac813c2c1fce57eb875a7ca9cf8a71fab21f79",
+      "commands_sha256": "16a6e6b6581b8ca68845467cd54391a235fc2c64d76dcad433a9d4c56a0626f7",
+      "origin": "Newly collected, state-assisted simulator success; not trained-model inference"
+    },
+    "navigation": false,
+    "collection": "distinct-two-perturbations",
+    "task_id": "04-basket",
+    "planned_perturbations": [
+      "lateral grasp offset",
+      "placement outside basket"
+    ],
+    "decision_origin": "GPT-authored, simulator-state-assisted demonstration"
+  },
+  "result": {
+    "success": true,
+    "steps": 2031,
+    "commands": 6,
+    "brain_records": 3,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 245,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Pick up the cream cheese box.",
+          "stage": "Initial attempt"
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "pick",
+            "object": "cream_cheese_1",
+            "offset": [
+              0.12,
+              0,
+              0
+            ],
+            "yaw_degrees": 0,
+            "lift": 0.18
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 30,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "pick",
+              "object": "cream_cheese_1",
+              "offset": [
+                0.12,
+                0,
+                0
+              ],
+              "yaw_degrees": 0,
+              "lift": 0.18
+            },
+            "feedback": {
+              "action": "pick",
+              "object": "cream_cheese_1",
+              "object_lift_m": 0.0,
+              "object_follows_gripper": false
+            },
+            "step": 245,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Pick up the cream cheese box."
+    },
+    {
+      "index": 1,
+      "step_start": 245,
+      "step_end": 851,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed beside the cream cheese box. The empty gripper rose while the box stayed on the table.",
+        "Sub": "Recenter the grasp and place the cream cheese in the basket.",
+        "Fine": "Open the fingers, align with the box, descend, grasp, lift, and release inside the basket."
+      },
+      "command": {
+        "action": "source_reference",
+        "begin": 0,
+        "end": 9,
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed beside the cream cheese box. The empty gripper rose while the box stayed on the table.",
+          "Sub": "Recenter the grasp and place the cream cheese in the basket.",
+          "Fine": "Open the fingers, align with the box, descend, grasp, lift, and release inside the basket."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-04-basket-attempt1",
+        "source_reference_sha256": "32e29f6c23d2576a25178423daac813c2c1fce57eb875a7ca9cf8a71fab21f79",
+        "references": [
+          {
+            "source_index": 0,
+            "kind": "move",
+            "step_start": 245,
+            "step_end": 317,
+            "reached": true
+          },
+          {
+            "source_index": 1,
+            "kind": "move",
+            "step_start": 317,
+            "step_end": 400,
+            "reached": true
+          },
+          {
+            "source_index": 2,
+            "kind": "hold",
+            "step_start": 400,
+            "step_end": 418,
+            "reached": true
+          },
+          {
+            "source_index": 3,
+            "kind": "move",
+            "step_start": 418,
+            "step_end": 516,
+            "reached": false
+          },
+          {
+            "source_index": 4,
+            "kind": "move",
+            "step_start": 516,
+            "step_end": 549,
+            "reached": true
+          },
+          {
+            "source_index": 5,
+            "kind": "move",
+            "step_start": 549,
+            "step_end": 694,
+            "reached": true
+          },
+          {
+            "source_index": 6,
+            "kind": "move",
+            "step_start": 694,
+            "step_end": 767,
+            "reached": false
+          },
+          {
+            "source_index": 7,
+            "kind": "hold",
+            "step_start": 767,
+            "step_end": 785,
+            "reached": true
+          },
+          {
+            "source_index": 8,
+            "kind": "move",
+            "step_start": 785,
+            "step_end": 851,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 851,
+      "step_end": 1152,
+      "brain": null,
+      "command": {
+        "action": "source_reference",
+        "begin": 9,
+        "end": 13,
+        "presentation": {
+          "action": "Pick up the butter.",
+          "stage": "Next task step"
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-04-basket-attempt1",
+        "source_reference_sha256": "32e29f6c23d2576a25178423daac813c2c1fce57eb875a7ca9cf8a71fab21f79",
+        "references": [
+          {
+            "source_index": 9,
+            "kind": "move",
+            "step_start": 851,
+            "step_end": 975,
+            "reached": true
+          },
+          {
+            "source_index": 10,
+            "kind": "move",
+            "step_start": 975,
+            "step_end": 1043,
+            "reached": true
+          },
+          {
+            "source_index": 11,
+            "kind": "hold",
+            "step_start": 1043,
+            "step_end": 1061,
+            "reached": true
+          },
+          {
+            "source_index": 12,
+            "kind": "move",
+            "step_start": 1061,
+            "step_end": 1152,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Pick up the butter."
+    },
+    {
+      "index": 3,
+      "step_start": 1152,
+      "step_end": 1503,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Place the butter in the basket.",
+          "stage": "Placement attempt"
+        },
+        "commands": [
+          {
+            "action": "place",
+            "object": "butter_1",
+            "target": "basket_1",
+            "offset": [
+              0.2,
+              0,
+              0.04
+            ]
+          },
+          {
+            "action": "wait",
+            "steps": 30
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "place",
+              "object": "butter_1",
+              "target": "basket_1",
+              "offset": [
+                0.2,
+                0,
+                0.04
+              ]
+            },
+            "feedback": {
+              "action": "place",
+              "released": true
+            },
+            "step": 1473,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 1503,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Place the butter in the basket."
+    },
+    {
+      "index": 4,
+      "step_start": 1503,
+      "step_end": 2001,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The butter was released on the table beside the basket. Only the cream cheese is inside.",
+        "Sub": "Move the butter into the basket.",
+        "Fine": "Grasp the butter, lift it above the basket rim, lower it into the open space, and release it."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The butter was released on the table beside the basket. Only the cream cheese is inside.",
+          "Sub": "Move the butter into the basket.",
+          "Fine": "Grasp the butter, lift it above the basket rim, lower it into the open space, and release it."
+        },
+        "commands": [
+          {
+            "action": "pick",
+            "object": "butter_1",
+            "offset": [
+              0,
+              0,
+              -0.007
+            ],
+            "yaw_degrees": 0,
+            "lift": 0.25
+          },
+          {
+            "action": "place",
+            "object": "butter_1",
+            "target": "basket_1",
+            "offset": [
+              0,
+              0.035,
+              0.12
+            ]
+          },
+          {
+            "action": "wait",
+            "steps": 30
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "pick",
+              "object": "butter_1",
+              "offset": [
+                0,
+                0,
+                -0.007
+              ],
+              "yaw_degrees": 0,
+              "lift": 0.25
+            },
+            "feedback": {
+              "action": "pick",
+              "object": "butter_1",
+              "object_lift_m": 0.23920461632358814,
+              "object_follows_gripper": true
+            },
+            "step": 1705,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "place",
+              "object": "butter_1",
+              "target": "basket_1",
+              "offset": [
+                0,
+                0.035,
+                0.12
+              ]
+            },
+            "feedback": {
+              "action": "place",
+              "released": true
+            },
+            "step": 1971,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 2001,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 5,
+      "step_start": 2001,
+      "step_end": 2031,
+      "brain": {
+        "Judge": "success",
+        "Cause": "Both the cream cheese box and the butter are inside the basket. The task predicate is satisfied.",
+        "Sub": "Task complete.",
+        "Fine": "Keep the gripper clear and finish the episode."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "success",
+          "Cause": "Both the cream cheese box and the butter are inside the basket. The task predicate is satisfied.",
+          "Sub": "Task complete.",
+          "Fine": "Keep the gripper clear and finish the episode."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "finish"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 2031,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "finish"
+            },
+            "feedback": {
+              "action": "finish",
+              "finished": true
+            },
+            "step": 2031,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": "GPT-authored, simulator-state-assisted demonstration. Not trained Embodied-Corrector or RynnBrain inference and not a benchmark score.",
+  "motion_evidence": {
+    "physical_steps": 2031,
+    "every_action_frame_preserved": true,
+    "control_hz": 20,
+    "recording_fps": 20,
+    "playback_speed": 1,
+    "frame_interpolation": false,
+    "post_failure_state_reset": false,
+    "eef_speed_p95_m_s": 0.08892328591693072,
+    "eef_speed_max_m_s": 0.1041459890856123,
+    "base_path_m": 0,
+    "raw_video_sha256": "14ab948ce3f5b8b3b7e2c0fc5caa48c74e8cb58b3635bfde0318e352fbc70503",
+    "actions_sha256": "8ae61cdc1b903b2282b593e646740ec350d680d9073b46f7297bb3dd2407f4ae"
+  },
+  "presentation": {
+    "title": "Put both the cream cheese box and the butter in the basket",
+    "perturbations": [
+      "lateral grasp offset",
+      "placement outside basket"
+    ],
+    "poster": "Encoded video first frame",
+    "final_hold_seconds": 3
+  }
+}

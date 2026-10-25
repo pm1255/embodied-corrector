@@ -1,66 +1,32 @@
-# Visible failure followed by diagnosis and recovery
+# Distinct successful recovery demonstrations
 
-The gallery contains **6 LIBERO-PRO and 6 RoboCasa365 episodes**. Every RoboCasa episode combines real mobile-base navigation with two object placements in one uninterrupted simulation. All selected episodes end with a positive official environment task predicate.
+Twelve different tasks: six LIBERO-PRO and six RoboCasa365. These are authored, simulator-state-assisted demonstrations, not RynnBrain inference or benchmark results.
 
-## Scope
+Each continuous episode starts without a premature Judge/Cause label. Observed errors are followed by English diagnosis and corrective actions. The original environment success predicate passes at the end. Failed attempts remain in the collection archive; only completed successful episodes are selected here.
 
-These are **GPT-authored proxy demonstrations using privileged simulator-state-assisted analytical control**, not trained Embodied-Corrector / RynnBrain evaluation. Known RoboCasa instruction prefixes are replayed with preceding-feedback checks; later grasp corrections are authored from the current execution observations. No trained checkpoint is queried. The selected successful episodes cover task, seed, and perturbation variations; they are not 12 distinct tasks or a success-rate estimate.
+Every physical action frame is retained at native 20 fps and 1× speed. There is no frame interpolation, stitching, or state restoration after failure. A three-second hold makes the final result readable. Covers are the first frames of the encoded videos.
 
-RoboCasa uses `OrganizeVegetables` with an explicitly adapted mobile start. At initialization only, the base is moved 0.75 m away from the original prep pose. The native manipulation success predicate is unchanged. This is a navigation-and-manipulation demonstration variant, not the unmodified benchmark protocol or `NavigateKitchen` alone. The original instruction remains the title.
+| Suite | Original task | Observed error types | Final result |
+| --- | --- | --- | --- |
+| LIBERO-PRO | [Put the black bowl in the bottom drawer of the cabinet and close it](../docs/assets/recovery/distinct-recovery-01-drawer.json) | high grasp; partial drawer closure with hand withdrawal | Success |
+| LIBERO-PRO | [Put the yellow and white mug in the microwave and close it](../docs/assets/recovery/distinct-recovery-02-microwave.json) | lateral grasp offset; incomplete door closure | Success |
+| LIBERO-PRO | [Turn on the stove and put the moka pot on it](../docs/assets/recovery/distinct-recovery-03-stove.json) | missed switch contact; placement offset | Success |
+| LIBERO-PRO | [Put both the cream cheese box and the butter in the basket](../docs/assets/recovery/distinct-recovery-04-basket.json) | lateral grasp offset; placement outside basket | Success |
+| LIBERO-PRO | [Put the white mug on the left plate and put the yellow and white mug on the right plate](../docs/assets/recovery/distinct-recovery-05-mugs.json) | high grasp; placement on wrong plate | Success |
+| LIBERO-PRO | [Pick up the book and place it in the back compartment of the caddy](../docs/assets/recovery/distinct-recovery-06-book.json) | lateral grasp offset; placement outside organizer | Success |
+| RoboCasa365 | [Place the fruits in the fridge on the cutting board by the sink to make a fruit bowl. Leave the non-fruit items in the fridge.](../docs/assets/recovery/distinct-recovery-07-fruits.json) | wrong-direction navigation; missed fruit grasp | Success |
+| RoboCasa365 | [Transport the chicken drumstick from the fridge to the microwave and turn on the microwave.](../docs/assets/recovery/distinct-recovery-08-thaw.json) | high grasp; incomplete microwave door closure | Success |
+| RoboCasa365 | [Pick the mug from the cabinet, place it under the coffee machine dispenser, and press the start button.](../docs/assets/recovery/distinct-recovery-09-coffee.json) | wrong-direction navigation; missed start button | Success |
+| RoboCasa365 | [Pick up the cup and bowl from the counter, place them in the dishwasher, and close the dishwasher door.](../docs/assets/recovery/distinct-recovery-10-dishwasher.json) | high grasp; premature door-closing withdrawal | Success |
+| RoboCasa365 | [Pick the tangerine, cucumber from the counter and place them in the cabinet. Then close the cabinet.](../docs/assets/recovery/distinct-recovery-11-cleanup.json) | wrong-direction navigation; high grasp | Success |
+| RoboCasa365 | [Move the pot and pan from the stove into the sink.](../docs/assets/recovery/distinct-recovery-12-cookware.json) | lateral handle-grasp offset; wrong-direction navigation | Success |
 
-## Temporal order
+## Evidence and limits
 
-1. Execute the initial action without Judge/Cause text.
-2. Observe the actual missed contact or increased distance to the prep pose.
-3. Present the recorded Judge, Cause, Sub, and Fine guidance.
-4. Recover through actual simulator actions and verify the complete task.
+The JSON records contain exact commands, decision timing, feedback, available successful-source hashes, frame counts and motion measurements. Additional grasp or door-closing adjustments are retained in the continuous footage. Selection on final success does not estimate a success rate.
 
-All RoboCasa episodes intentionally move toward an incorrect waypoint before their first diagnosis. Three also close above a vegetable after returning to the prep counter. LIBERO retains real missed-handle or raised-grasp recordings from the previous collection, with larger action views and the premature opening diagnosis removed. The recordings are not motion synthesized from still images.
-
-## Recording and control
-
-Native 20 Hz control, every action frame recorded at 20 fps, and 1× playback. Quintic reference paths and bounded action changes provide gradual acceleration and braking. No frames are skipped or interpolated; no simulator state is restored or assigned after initialization. The only added frames are a three-second final result hold. Every poster is extracted from the encoded first frame.
-
-RoboCasa has a fixed whole-robot camera and a simultaneous counter close-up. The navigation controller transforms the held arm pose into the base coordinate frame before switching references; this prevents the arm drifting toward an invalid world-coordinate target.
-
-The successful-reference trajectories were collected in simulation. Their hashes, reference waypoints, executed indices, observed failures, task checks, and motion measurements are preserved in each public JSON. Failed controller and camera probes and command-wait timeouts remain archived. Successful task predicates before an archival timeout are distinguished from a properly completed collection; those timed-out runs are not presented as the selected completed runs.
-
-## Episodes
-
-| Suite | Original task | Seed / variant | First diagnosis | Final task |
-| --- | --- | --- | ---: | --- |
-| LIBERO-PRO | [Open the top layer of the drawer and put the cream cheese inside](../docs/assets/recovery/visible-recovery-libero-articulation-s7.json) | 7 / Missed handle contact | 7.70 s | Success |
-| LIBERO-PRO | [Open the top layer of the drawer and put the cream cheese inside](../docs/assets/recovery/visible-recovery-libero-articulation-s11.json) | 11 / Missed handle contact | 7.65 s | Success |
-| LIBERO-PRO | [Pick the akita black bowl not between the plate and the ramekin and place it on the plate](../docs/assets/recovery/visible-recovery-libero-relational-s7.json) | 7 / Raised grasp contact | 13.50 s | Success |
-| LIBERO-PRO | [Pick the akita black bowl not between the plate and the ramekin and place it on the plate](../docs/assets/recovery/visible-recovery-libero-relational-s11.json) | 11 / Raised grasp contact | 13.60 s | Success |
-| LIBERO-PRO | [Put both the cream cheese box and the butter in the basket](../docs/assets/recovery/visible-recovery-libero-multiobject-s7.json) | 7 / Raised grasp contact | 14.25 s | Success |
-| LIBERO-PRO | [Put both the cream cheese box and the butter in the basket](../docs/assets/recovery/visible-recovery-libero-multiobject-s11.json) | 11 / Raised grasp contact | 14.55 s | Success |
-| RoboCasa365 | [Place the garlic and the mushroom on separate cutting boards.](../docs/assets/recovery/visible-recovery-rc-mobile-s37-away.json) | 37 / Wrong-way navigation | 5.00 s | Success |
-| RoboCasa365 | [Place the garlic and the mushroom on separate cutting boards.](../docs/assets/recovery/visible-recovery-rc-mobile-s37-side.json) | 37 / Wrong-way navigation + high grasp | 5.15 s | Success |
-| RoboCasa365 | [Place the tangerine and the sweet potato on separate cutting boards.](../docs/assets/recovery/visible-recovery-rc-mobile-s23-away.json) | 23 / Wrong-way navigation | 5.00 s | Success |
-| RoboCasa365 | [Place the tangerine and the sweet potato on separate cutting boards.](../docs/assets/recovery/visible-recovery-rc-mobile-s23-side.json) | 23 / Wrong-way navigation + high grasp | 5.15 s | Success |
-| RoboCasa365 | [Place the tangerine and the garlic on separate cutting boards.](../docs/assets/recovery/visible-recovery-rc-mobile-s11-away.json) | 11 / Wrong-way navigation | 5.00 s | Success |
-| RoboCasa365 | [Place the tangerine and the garlic on separate cutting boards.](../docs/assets/recovery/visible-recovery-rc-mobile-s11-side.json) | 11 / Wrong-way navigation + high grasp | 5.15 s | Success |
-
-## Navigation measurements
-
-| Seed / variant | Initial distance | After wrong route | Corrected docking error | Base path |
-| --- | ---: | ---: | ---: | ---: |
-| 37 / away | 0.750 m | 1.120 m | 0.006 m | 1.530 m |
-| 37 / side | 0.750 m | 0.956 m | 0.005 m | 1.380 m |
-| 23 / away | 0.750 m | 1.120 m | 0.006 m | 1.530 m |
-| 23 / side | 0.750 m | 0.956 m | 0.005 m | 1.380 m |
-| 11 / away | 0.750 m | 1.121 m | 0.006 m | 1.654 m |
-| 11 / side | 0.750 m | 0.956 m | 0.005 m | 1.512 m |
+Controllers use quintic paths, bounded action changes and physical contacts. Stiffer bounded Cartesian control is used for the dishwasher door and pot lift; masses, friction, collision geometry, gripper force and physical actuator limits are unchanged. Recorded scenes and torso posture, when reused, are restored only during episode initialization. The cookware episode starts from the original seeded scene and uses commands validated in successful calibration runs; it does not replay a saved source state. Brief startup settling and contact transients remain visible; no motion smoothing or frame removal is applied.
 
 ## Reproduction
 
-Use the pinned simulator setup in [setup.sh](../scripts/simulations/setup.sh). The source manipulation trajectories use `smooth_harness.py` and `smooth_case_specs.json`. The mobile-start configuration is in `visible_case_specs.json`. After collecting the source for the corresponding seed:
-
-```bash
-python mobile_recovery_harness.py --spec visible_case_specs.json --case rc-mobile-s37-side --baseline runs/smooth-baseline-rc-vegetables-s37 --output runs/visible-recovery-rc-mobile-s37-side
-```
-
-The session accepts numbered JSON commands under `commands/`. The exact command objects are in each execution record. Read feedback before diagnosing a failure. End with `finish` only after checking the task predicate. Every run writes TensorBoard data, and the overview reader aggregates waiting, running, failed, verified-success and physics-step counts.
-
-[Project gallery](https://pm1255.github.io/embodied-corrector/?v=visible-failure-12#simulations) · [Execution records](../docs/assets/recovery/execution-records.zip) · [Verification](../validation/visible-failures-20261025.json)
+Use `scripts/simulations/distinct_harness.py` with `distinct_case_specs.json`. Collect and verify a successful source, then use `--baseline` to reuse its initialization, or start from the original seeded scene with a calibrated command sequence as in TransportCookware. Submit numbered JSON commands, inspect feedback, and finish only after the original success predicate passes. `--trajectory-only` is limited to source collection. Commands and failed attempts are retained. TensorBoard logs distinguish waiting, running, completed and failed collection states.

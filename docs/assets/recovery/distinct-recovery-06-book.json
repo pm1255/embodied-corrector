@@ -1,0 +1,523 @@
+{
+  "case": "distinct-recovery-06-book-attempt2",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "pick up the book and place it in the back compartment of the caddy",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/LIBERO-PRO/libero/libero/bddl_files/libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "34e66b6716e80b6b022661bde30825d2266516a4e3360c8e307d328da6c6bb97",
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "distinct-baseline-06-book-attempt2",
+      "success": true,
+      "reference_waypoints_sha256": "1a8b99102e5d465c586e45b4976c24711e49c284bdbf2b7d7e59634840e3656b",
+      "commands_sha256": "83221e425c6063ba5b15f6693c651ca32822e0cbf57c3c183d3aacc8ef286475",
+      "origin": "Newly collected, state-assisted simulator success; not trained-model inference"
+    },
+    "navigation": false,
+    "collection": "distinct-two-perturbations",
+    "task_id": "06-book",
+    "planned_perturbations": [
+      "lateral grasp offset",
+      "placement outside organizer"
+    ],
+    "decision_origin": "GPT-authored, simulator-state-assisted demonstration"
+  },
+  "result": {
+    "success": true,
+    "steps": 1457,
+    "commands": 5,
+    "brain_records": 3,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 295,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Pick up the book.",
+          "stage": "Initial attempt"
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "pick",
+            "object": "black_book_1",
+            "offset": [
+              0.14,
+              0,
+              0.075
+            ],
+            "yaw_degrees": 229.068,
+            "lift": 0.25
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 30,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "pick",
+              "object": "black_book_1",
+              "offset": [
+                0.14,
+                0,
+                0.075
+              ],
+              "yaw_degrees": 229.068,
+              "lift": 0.25
+            },
+            "feedback": {
+              "action": "pick",
+              "object": "black_book_1",
+              "object_lift_m": 0.0,
+              "object_follows_gripper": false
+            },
+            "step": 295,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Pick up the book."
+    },
+    {
+      "index": 1,
+      "step_start": 295,
+      "step_end": 553,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed beside the book and the gripper rose empty. The book remained on the desk.",
+        "Sub": "Align the fingers with the book and grasp it.",
+        "Fine": "Open the fingers, align with the narrow sides of the book, descend to the book, close, and lift it."
+      },
+      "command": {
+        "action": "source_reference",
+        "begin": 5,
+        "end": 9,
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed beside the book and the gripper rose empty. The book remained on the desk.",
+          "Sub": "Align the fingers with the book and grasp it.",
+          "Fine": "Open the fingers, align with the narrow sides of the book, descend to the book, close, and lift it."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-06-book-attempt2",
+        "source_reference_sha256": "1a8b99102e5d465c586e45b4976c24711e49c284bdbf2b7d7e59634840e3656b",
+        "references": [
+          {
+            "source_index": 5,
+            "kind": "move",
+            "step_start": 295,
+            "step_end": 352,
+            "reached": true
+          },
+          {
+            "source_index": 6,
+            "kind": "move",
+            "step_start": 352,
+            "step_end": 434,
+            "reached": false
+          },
+          {
+            "source_index": 7,
+            "kind": "hold",
+            "step_start": 434,
+            "step_end": 452,
+            "reached": true
+          },
+          {
+            "source_index": 8,
+            "kind": "move",
+            "step_start": 452,
+            "step_end": 553,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 553,
+      "step_end": 884,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Place the book in the organizer.",
+          "stage": "Placement attempt"
+        },
+        "commands": [
+          {
+            "action": "move",
+            "position": [
+              -0.2217621460889079,
+              0.13941027405391737,
+              1.255285035900827
+            ],
+            "grip": 1,
+            "yaw_degrees": 229.068
+          },
+          {
+            "action": "place",
+            "object": "black_book_1",
+            "position": [
+              -0.22,
+              -0.12,
+              0.887
+            ]
+          },
+          {
+            "action": "wait",
+            "steps": 30
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                -0.2217621460889079,
+                0.13941027405391737,
+                1.255285035900827
+              ],
+              "grip": 1,
+              "yaw_degrees": 229.068
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 572,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "place",
+              "object": "black_book_1",
+              "position": [
+                -0.22,
+                -0.12,
+                0.887
+              ]
+            },
+            "feedback": {
+              "action": "place",
+              "released": true
+            },
+            "step": 854,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 884,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Place the book in the organizer."
+    },
+    {
+      "index": 3,
+      "step_start": 884,
+      "step_end": 1427,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The book was released on the desk in front of the organizer. The back compartment is still empty.",
+        "Sub": "Move the book into the back compartment.",
+        "Fine": "Regrasp the book, lift it clear of the desk, align its narrow edge with the back slot, lower it into the compartment, and release."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The book was released on the desk in front of the organizer. The back compartment is still empty.",
+          "Sub": "Move the book into the back compartment.",
+          "Fine": "Regrasp the book, lift it clear of the desk, align its narrow edge with the back slot, lower it into the compartment, and release."
+        },
+        "commands": [
+          {
+            "action": "pick",
+            "object": "black_book_1",
+            "offset": [
+              0,
+              0,
+              0.075
+            ],
+            "yaw_degrees": 229.068,
+            "lift": 0.3
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "place",
+            "object": "black_book_1",
+            "target": "site:desk_caddy_1_back_contain_region",
+            "offset": [
+              0.002,
+              0,
+              -0.04
+            ],
+            "yaw_degrees": 180
+          },
+          {
+            "action": "wait",
+            "steps": 30
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "pick",
+              "object": "black_book_1",
+              "offset": [
+                0,
+                0,
+                0.075
+              ],
+              "yaw_degrees": 229.068,
+              "lift": 0.3
+            },
+            "feedback": {
+              "action": "pick",
+              "object": "black_book_1",
+              "object_lift_m": 0.2645300174640476,
+              "object_follows_gripper": true
+            },
+            "step": 1111,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                [
+                  1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  -1,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  -1
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1152,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "place",
+              "object": "black_book_1",
+              "target": "site:desk_caddy_1_back_contain_region",
+              "offset": [
+                0.002,
+                0,
+                -0.04
+              ],
+              "yaw_degrees": 180
+            },
+            "feedback": {
+              "action": "place",
+              "released": true
+            },
+            "step": 1397,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 1427,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 4,
+      "step_start": 1427,
+      "step_end": 1457,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The book is in the back compartment of the organizer. The task predicate is satisfied.",
+        "Sub": "Task complete.",
+        "Fine": "Keep the hand clear of the organizer and finish the episode."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "success",
+          "Cause": "The book is in the back compartment of the organizer. The task predicate is satisfied.",
+          "Sub": "Task complete.",
+          "Fine": "Keep the hand clear of the organizer and finish the episode."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "finish"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 1457,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "finish"
+            },
+            "feedback": {
+              "action": "finish",
+              "finished": true
+            },
+            "step": 1457,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": "GPT-authored, simulator-state-assisted demonstration. Not trained Embodied-Corrector or RynnBrain inference and not a benchmark score.",
+  "motion_evidence": {
+    "physical_steps": 1457,
+    "every_action_frame_preserved": true,
+    "control_hz": 20,
+    "recording_fps": 20,
+    "playback_speed": 1,
+    "frame_interpolation": false,
+    "post_failure_state_reset": false,
+    "eef_speed_p95_m_s": 0.08949014042835277,
+    "eef_speed_max_m_s": 0.09223844832091108,
+    "base_path_m": 0,
+    "raw_video_sha256": "1f618c4892d15c5b886703432ed964126276a17df704eabc481ba2bd1eb884c0",
+    "actions_sha256": "ff33e6ff6a46fe10addfa00d508548c1ae9d98978ff1403c879275e0381989e4"
+  },
+  "presentation": {
+    "title": "Pick up the book and place it in the back compartment of the caddy",
+    "perturbations": [
+      "lateral grasp offset",
+      "placement outside organizer"
+    ],
+    "poster": "Encoded video first frame",
+    "final_hold_seconds": 3
+  }
+}

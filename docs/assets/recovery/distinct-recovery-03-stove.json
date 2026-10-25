@@ -1,0 +1,702 @@
+{
+  "case": "distinct-recovery-03-stove-attempt1",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "turn on the stove and put the moka pot on it",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/LIBERO-PRO/libero/libero/bddl_files/libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "08b9ad2e8ce764b4c8f157eb6f6618a049524917a1b6df82484c3aabe873ce63",
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "distinct-baseline-03-stove-attempt1",
+      "success": true,
+      "reference_waypoints_sha256": "7e3632aefa3455d59520dc24fab972becc61ded033e17869085e86894296c815",
+      "commands_sha256": "af8fe1ad4643d4e6db49375c141970b5d742b90ab46f2e7cd83640e1d5aded3e",
+      "origin": "Newly collected, state-assisted simulator success; not trained-model inference"
+    },
+    "navigation": false,
+    "collection": "distinct-two-perturbations",
+    "task_id": "03-stove",
+    "planned_perturbations": [
+      "missed switch contact",
+      "placement offset"
+    ],
+    "decision_origin": "GPT-authored, simulator-state-assisted demonstration"
+  },
+  "result": {
+    "success": true,
+    "steps": 1798,
+    "commands": 6,
+    "brain_records": 3,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 319,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Turn on the stove.",
+          "stage": "Initial attempt"
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "move",
+            "position": [
+              -0.1964154000775812,
+              0.07607478072208751,
+              1.065
+            ],
+            "grip": -1
+          },
+          {
+            "action": "move",
+            "position": [
+              -0.1964154000775812,
+              0.07607478072208751,
+              0.9450000000000001
+            ],
+            "grip": -1
+          },
+          {
+            "action": "gripper",
+            "close": 1,
+            "steps": 20
+          },
+          {
+            "action": "move",
+            "position": [
+              -0.1964154000775812,
+              0.07607478072208751,
+              0.9450000000000001
+            ],
+            "rotation": [
+              [
+                -0.4084874408841574,
+                -0.912763940260521,
+                0
+              ],
+              [
+                -0.912763940260521,
+                0.4084874408841574,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "gripper",
+            "close": -1,
+            "steps": 15
+          },
+          {
+            "action": "move",
+            "position": [
+              -0.1964154000775812,
+              0.07607478072208751,
+              1.085
+            ],
+            "rotation": [
+              [
+                -0.4084874408841574,
+                -0.912763940260521,
+                0
+              ],
+              [
+                -0.912763940260521,
+                0.4084874408841574,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "wait",
+            "steps": 25
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 30,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                -0.1964154000775812,
+                0.07607478072208751,
+                1.065
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 102,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                -0.1964154000775812,
+                0.07607478072208751,
+                0.9450000000000001
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 149,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": 1,
+              "steps": 20
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 169,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                -0.1964154000775812,
+                0.07607478072208751,
+                0.9450000000000001
+              ],
+              "rotation": [
+                [
+                  -0.4084874408841574,
+                  -0.912763940260521,
+                  0
+                ],
+                [
+                  -0.912763940260521,
+                  0.4084874408841574,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  -1
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 224,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": -1,
+              "steps": 15
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 239,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                -0.1964154000775812,
+                0.07607478072208751,
+                1.085
+              ],
+              "rotation": [
+                [
+                  -0.4084874408841574,
+                  -0.912763940260521,
+                  0
+                ],
+                [
+                  -0.912763940260521,
+                  0.4084874408841574,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  -1
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 294,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 25
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 319,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Turn on the stove."
+    },
+    {
+      "index": 1,
+      "step_start": 319,
+      "step_end": 686,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The gripper turned beside the stove knob without making contact. The burner is still off.",
+        "Sub": "Align with the knob and turn on the stove.",
+        "Fine": "Lower onto the knob, close the fingers, rotate it, release, and lift away."
+      },
+      "command": {
+        "action": "source_reference",
+        "begin": 0,
+        "end": 7,
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The gripper turned beside the stove knob without making contact. The burner is still off.",
+          "Sub": "Align with the knob and turn on the stove.",
+          "Fine": "Lower onto the knob, close the fingers, rotate it, release, and lift away."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-03-stove-attempt1",
+        "source_reference_sha256": "7e3632aefa3455d59520dc24fab972becc61ded033e17869085e86894296c815",
+        "references": [
+          {
+            "source_index": 0,
+            "kind": "hold",
+            "step_start": 319,
+            "step_end": 349,
+            "reached": true
+          },
+          {
+            "source_index": 1,
+            "kind": "move",
+            "step_start": 349,
+            "step_end": 428,
+            "reached": true
+          },
+          {
+            "source_index": 2,
+            "kind": "move",
+            "step_start": 428,
+            "step_end": 504,
+            "reached": false
+          },
+          {
+            "source_index": 3,
+            "kind": "hold",
+            "step_start": 504,
+            "step_end": 529,
+            "reached": true
+          },
+          {
+            "source_index": 4,
+            "kind": "move",
+            "step_start": 529,
+            "step_end": 611,
+            "reached": false
+          },
+          {
+            "source_index": 5,
+            "kind": "hold",
+            "step_start": 611,
+            "step_end": 631,
+            "reached": true
+          },
+          {
+            "source_index": 6,
+            "kind": "move",
+            "step_start": 631,
+            "step_end": 686,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 686,
+      "step_end": 942,
+      "brain": null,
+      "command": {
+        "action": "source_reference",
+        "begin": 7,
+        "end": 11,
+        "presentation": {
+          "action": "Pick up the moka pot.",
+          "stage": "Next task step"
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-03-stove-attempt1",
+        "source_reference_sha256": "7e3632aefa3455d59520dc24fab972becc61ded033e17869085e86894296c815",
+        "references": [
+          {
+            "source_index": 7,
+            "kind": "move",
+            "step_start": 686,
+            "step_end": 781,
+            "reached": true
+          },
+          {
+            "source_index": 8,
+            "kind": "move",
+            "step_start": 781,
+            "step_end": 864,
+            "reached": false
+          },
+          {
+            "source_index": 9,
+            "kind": "hold",
+            "step_start": 864,
+            "step_end": 882,
+            "reached": true
+          },
+          {
+            "source_index": 10,
+            "kind": "move",
+            "step_start": 882,
+            "step_end": 942,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Pick up the moka pot."
+    },
+    {
+      "index": 3,
+      "step_start": 942,
+      "step_end": 1264,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Place the moka pot on the stove.",
+          "stage": "Placement attempt"
+        },
+        "commands": [
+          {
+            "action": "place",
+            "object": "moka_pot_1",
+            "target": "site:flat_stove_1_burner",
+            "offset": [
+              0.16,
+              0,
+              0.03
+            ]
+          },
+          {
+            "action": "wait",
+            "steps": 30
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "place",
+              "object": "moka_pot_1",
+              "target": "site:flat_stove_1_burner",
+              "offset": [
+                0.16,
+                0,
+                0.03
+              ]
+            },
+            "feedback": {
+              "action": "place",
+              "released": true
+            },
+            "step": 1234,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 1264,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Place the moka pot on the stove."
+    },
+    {
+      "index": 4,
+      "step_start": 1264,
+      "step_end": 1768,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The moka pot was released beside the burner, leaving the active heating ring empty.",
+        "Sub": "Reposition the pot onto the active burner.",
+        "Fine": "Grasp the pot, lift it clear of the table, center it over the red heating ring, and release it."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The moka pot was released beside the burner, leaving the active heating ring empty.",
+          "Sub": "Reposition the pot onto the active burner.",
+          "Fine": "Grasp the pot, lift it clear of the table, center it over the red heating ring, and release it."
+        },
+        "commands": [
+          {
+            "action": "pick",
+            "object": "moka_pot_1",
+            "offset": [
+              0,
+              0,
+              0.01
+            ],
+            "yaw_degrees": 0,
+            "lift": 0.22
+          },
+          {
+            "action": "place",
+            "object": "moka_pot_1",
+            "target": "site:flat_stove_1_burner",
+            "offset": [
+              0,
+              0,
+              0.11
+            ]
+          },
+          {
+            "action": "wait",
+            "steps": 30
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "pick",
+              "object": "moka_pot_1",
+              "offset": [
+                0,
+                0,
+                0.01
+              ],
+              "yaw_degrees": 0,
+              "lift": 0.22
+            },
+            "feedback": {
+              "action": "pick",
+              "object": "moka_pot_1",
+              "object_lift_m": 0.14540704897748058,
+              "object_follows_gripper": true
+            },
+            "step": 1456,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "place",
+              "object": "moka_pot_1",
+              "target": "site:flat_stove_1_burner",
+              "offset": [
+                0,
+                0,
+                0.11
+              ]
+            },
+            "feedback": {
+              "action": "place",
+              "released": true
+            },
+            "step": 1738,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 1768,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 5,
+      "step_start": 1768,
+      "step_end": 1798,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The stove is on and the moka pot is centered on the burner. The task predicate is satisfied.",
+        "Sub": "Task complete.",
+        "Fine": "Keep the gripper clear and finish the episode."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "success",
+          "Cause": "The stove is on and the moka pot is centered on the burner. The task predicate is satisfied.",
+          "Sub": "Task complete.",
+          "Fine": "Keep the gripper clear and finish the episode."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "finish"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 1798,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "finish"
+            },
+            "feedback": {
+              "action": "finish",
+              "finished": true
+            },
+            "step": 1798,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": "GPT-authored, simulator-state-assisted demonstration. Not trained Embodied-Corrector or RynnBrain inference and not a benchmark score.",
+  "motion_evidence": {
+    "physical_steps": 1798,
+    "every_action_frame_preserved": true,
+    "control_hz": 20,
+    "recording_fps": 20,
+    "playback_speed": 1,
+    "frame_interpolation": false,
+    "post_failure_state_reset": false,
+    "eef_speed_p95_m_s": 0.08630110855894378,
+    "eef_speed_max_m_s": 0.11221708995315072,
+    "base_path_m": 0,
+    "raw_video_sha256": "884d39488be35424e58c3ae92649427cea347089cdad18358de8c8549863b39a",
+    "actions_sha256": "ededed18ce27c48517b1aece6078250b8917394149401b69c3237136878627e0"
+  },
+  "presentation": {
+    "title": "Turn on the stove and put the moka pot on it",
+    "perturbations": [
+      "missed switch contact",
+      "placement offset"
+    ],
+    "poster": "Encoded video first frame",
+    "final_hold_seconds": 3
+  }
+}

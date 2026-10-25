@@ -164,13 +164,19 @@ class SmoothSession(Session):
             for index in range(first,last):
                 ref=refs[index];begin=self.step
                 if ref['kind']=='move':
-                    reached=self.move(ref['position'],ref.get('grip'),rotation=ref['rotation'])
+                    if 'contact_control' in ref:
+                        reached=self.execute(dict(action='contact_move',position=ref['position'],
+                            grip=ref.get('grip'),rotation=ref['rotation'],**ref['contact_control']))['reached']
+                    else:
+                        reached=self.move(ref['position'],ref.get('grip'),rotation=ref['rotation'])
                 elif ref['kind']=='hold':
                     for _ in range(ref['duration_steps']):
                         self.tick(self.pose_action(ref['position'],ref['rotation'],ref.get('grip')))
                     reached=True
                 elif ref['kind']=='navigate':
                     reached=self.navigate(dict(position=ref['position'],yaw=ref['yaw']))['reached']
+                elif ref['kind']=='torso':
+                    reached=self.lift_torso(ref['height'])['reached']
                 else:raise ValueError('Unsupported source reference '+ref['kind'])
                 feedback.append(dict(source_index=index,kind=ref['kind'],step_start=begin,step_end=self.step,reached=reached))
             return dict(action='source_reference',source_case=Path(self.a.baseline).name,
@@ -182,6 +188,7 @@ class SmoothSession(Session):
             for sub in cmd['commands']:
                 fb=self.execute(sub);feedback.append(dict(command=sub,feedback=fb,step=self.step,official_success=self.success()))
                 if sub['action']=='pick' and not fb.get('object_follows_gripper'):break
+                if sub['action']=='verify_held' and not fb.get('held'):break
             return dict(action='sequence',substeps=feedback,official_success=self.success())
         return super().execute(cmd)
 

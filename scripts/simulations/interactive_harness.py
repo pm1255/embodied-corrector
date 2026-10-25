@@ -34,7 +34,11 @@ class Session:
    from robosuite.controllers import load_composite_controller_config
    cfg=load_composite_controller_config(robot='PandaOmron');cfg['body_parts']['right']['input_ref_frame']=getattr(args,'arm_reference','world')
    self.env=robosuite.make(args.task,robots='PandaOmron',controller_configs=cfg,has_renderer=False,has_offscreen_renderer=True,use_camera_obs=False,use_object_obs=True,camera_names=['robot0_agentview_left'],control_freq=20,horizon=args.horizon,ignore_done=True,seed=args.seed,layout_ids=[args.layout],style_ids=[args.style],obj_instance_split='target',obj_registries=('objaverse','lightwheel'),generative_textures=None)
-   self.obs=self.env.reset();self.task=self.env.get_ep_meta()['lang'];self.camera='robot0_agentview_left';self.arm_frame='world'
+   if getattr(args,'initial_ep_meta',None) is not None:self.env.set_ep_meta(args.initial_ep_meta)
+   self.obs=self.env.reset()
+   if getattr(args,'initial_model_xml',None) is not None:
+    self.env.reset_from_xml_string(self.env.edit_model_xml(args.initial_model_xml));self.env.sim.reset()
+   self.task=self.env.get_ep_meta()['lang'];self.camera='robot0_agentview_left';self.arm_frame='world'
   self.sim=self.env.sim;self.robot=self.env.robots[0]
   sid=self.robot.eef_site_id;self.eef_id=sid['right'] if isinstance(sid,dict) else sid
   self.home=self.eef().copy();self.default_rot=np.array([[-1.,0,0],[0,1,0],[0,0,-1]])

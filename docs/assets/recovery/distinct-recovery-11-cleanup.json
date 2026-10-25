@@ -1,0 +1,2581 @@
+{
+  "case": "distinct-recovery-11-cleanup-attempt3",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Pick the tangerine, cucumber from the counter and place them in the cabinet. Then close the cabinet.",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "FoodCleanup",
+    "camera": "fixed wide camera with simultaneous arm view",
+    "action_dim": 12,
+    "initial_model_sha256": "dff8a6605ef3e6c1d52ab5e4fdd84e1e41b996bc5ce29bc01b1d152663f6aabb",
+    "source_model_verification": "Exact canonical XML match; inferred OBJ MIME hints normalized",
+    "initial_state_origin": "distinct-baseline-11-cleanup-attempt5",
+    "initialization_only_torso_height": 0.0,
+    "episode_metadata": {
+      "layout_id": 1,
+      "style_id": 1,
+      "object_cfgs": [
+        {
+          "name": "food0",
+          "obj_groups": [
+            "fruit",
+            "vegetable",
+            "boxed_food"
+          ],
+          "graspable": true,
+          "placement": {
+            "fixture": "counter_main_main_group",
+            "sample_region_kwargs": {
+              "ref": "cab_main_main_group",
+              "min_size": [
+                0.059532738000000016,
+                0.05912203440000001,
+                0.051041733600000014
+              ]
+            },
+            "size": [
+              0.3,
+              0.3
+            ],
+            "pos": [
+              "ref",
+              -1.0
+            ],
+            "offset": [
+              0.05,
+              0.0
+            ]
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "tangerine",
+              "fruit",
+              "food",
+              "in_container"
+            ],
+            "groups": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/tangerine/tangerine_4/model.xml",
+            "cat": "tangerine",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/tangerine/tangerine_4/model.xml"
+          },
+          "reset_region": {
+            "size": [
+              1.0,
+              0.65
+            ],
+            "offset": [
+              0.75,
+              -3.469446951953614e-17,
+              0.46
+            ],
+            "name": "geom_0"
+          }
+        },
+        {
+          "name": "food1",
+          "obj_groups": [
+            "fruit",
+            "vegetable",
+            "boxed_food"
+          ],
+          "graspable": true,
+          "placement": {
+            "fixture": "counter_main_main_group",
+            "sample_region_kwargs": {
+              "ref": "cab_main_main_group",
+              "min_size": [
+                0.05591169599999999,
+                0.14999999999999997,
+                0.05382100799999999
+              ]
+            },
+            "size": [
+              0.3,
+              0.3
+            ],
+            "pos": [
+              "ref",
+              -1.0
+            ],
+            "offset": [
+              0.05,
+              0.0
+            ]
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "cucumber",
+              "vegetable",
+              "food",
+              "in_container",
+              "food_set1"
+            ],
+            "groups": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/cucumber/cucumber_5/model.xml",
+            "cat": "cucumber",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/cucumber/cucumber_5/model.xml"
+          },
+          "reset_region": {
+            "size": [
+              1.0,
+              0.65
+            ],
+            "offset": [
+              0.75,
+              -3.469446951953614e-17,
+              0.46
+            ],
+            "name": "geom_0"
+          }
+        }
+      ],
+      "fixtures": {
+        "wall_room": {
+          "cls": "Wall"
+        },
+        "wall_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_left_room": {
+          "cls": "Wall"
+        },
+        "wall_left_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_right_room": {
+          "cls": "Wall"
+        },
+        "wall_right_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_front_room": {
+          "cls": "Wall"
+        },
+        "wall_front_backing_room": {
+          "cls": "Wall"
+        },
+        "floor_room": {
+          "cls": "Floor"
+        },
+        "floor_backing_room": {
+          "cls": "Floor"
+        },
+        "outlet_room": {
+          "cls": "WallAccessory"
+        },
+        "outlet_2_room": {
+          "cls": "WallAccessory"
+        },
+        "light_switch_room": {
+          "cls": "WallAccessory"
+        },
+        "light_switch_2_room": {
+          "cls": "WallAccessory"
+        },
+        "sink_main_group": {
+          "cls": "Sink"
+        },
+        "counter_main_main_group": {
+          "cls": "Counter"
+        },
+        "stove_main_group": {
+          "cls": "Stove"
+        },
+        "counter_right_main_group": {
+          "cls": "Counter"
+        },
+        "fridge_main_group": {
+          "cls": "FridgeBottomFreezer"
+        },
+        "cab_1_main_group": {
+          "cls": "SingleCabinet"
+        },
+        "cab_2_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "cab_main_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "microwave_main_group": {
+          "cls": "Microwave"
+        },
+        "cab_micro_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "cab_3_main_group": {
+          "cls": "OpenCabinet"
+        },
+        "cab_4_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "stack_1_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_1_main_group_1": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_2": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_3": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_4": {
+          "cls": "Drawer"
+        },
+        "stack_2_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_2_main_group_1": {
+          "cls": "HingeCabinet"
+        },
+        "stack_2_main_group_2": {
+          "cls": "PanelCabinet"
+        },
+        "dishwasher_main_group": {
+          "cls": "Dishwasher"
+        },
+        "stack_3_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_3_main_group_1": {
+          "cls": "SingleCabinet"
+        },
+        "stack_4_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_4_main_group_1": {
+          "cls": "SingleCabinet"
+        },
+        "stack_4_main_group_2": {
+          "cls": "Drawer"
+        },
+        "toaster_main_group": {
+          "cls": "Toaster"
+        },
+        "knife_block_main_group": {
+          "cls": "Accessory"
+        },
+        "paper_towel_main_group": {
+          "cls": "Accessory"
+        },
+        "coffee_machine_main_group": {
+          "cls": "CoffeeMachine"
+        }
+      },
+      "gen_textures": {},
+      "lang": "Pick the tangerine, cucumber from the counter and place them in the cabinet. Then close the cabinet.",
+      "fixture_refs": {
+        "cab": "cab_main_main_group",
+        "counter": "counter_main_main_group"
+      },
+      "cam_configs": {
+        "robot0_agentview_center": {
+          "pos": [
+            -0.6,
+            0.0,
+            1.15
+          ],
+          "quat": [
+            0.636945903301239,
+            0.3325185477733612,
+            -0.3199238181114197,
+            -0.6175596117973328
+          ],
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_agentview_left": {
+          "pos": [
+            -0.5,
+            0.35,
+            1.05
+          ],
+          "quat": [
+            0.55623853,
+            0.29935253,
+            -0.37678665,
+            -0.6775092
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_agentview_right": {
+          "pos": [
+            -0.5,
+            -0.35,
+            1.05
+          ],
+          "quat": [
+            0.6775091886520386,
+            0.3767866790294647,
+            -0.2993525564670563,
+            -0.55623859167099
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_frontview": {
+          "pos": [
+            -0.5,
+            0,
+            0.95
+          ],
+          "quat": [
+            0.6088936924934387,
+            0.3814677894115448,
+            -0.3673907518386841,
+            -0.5905545353889465
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_eye_in_hand": {
+          "pos": [
+            0.05,
+            0,
+            0
+          ],
+          "quat": [
+            0,
+            0.707107,
+            0.707107,
+            0
+          ],
+          "parent_body": "robot0_right_hand"
+        }
+      },
+      "init_robot_base_pos": [
+        2.3128700810054545,
+        -0.8304427546959684,
+        0.0
+      ],
+      "init_robot_base_ori": [
+        0.0,
+        0.0,
+        1.5707963267948966
+      ]
+    },
+    "task_variant": "Original task predicate; disclosed initialization-only torso posture for state-assisted demonstrations",
+    "raw_width": 960,
+    "raw_height": 720,
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "distinct-baseline-11-cleanup-attempt5",
+      "success": true,
+      "reference_waypoints_sha256": "f2f4737e9012c32c39ece650643b7e926e1786fd56ecb83c4fbf88fac8be0185",
+      "commands_sha256": "d2c23fc9510f1af1c75594c24faf506add0c88721fd3356844c1c682f764b2c5",
+      "origin": "Newly collected, state-assisted simulator success; not trained-model inference"
+    },
+    "navigation": false,
+    "collection": "distinct-two-perturbations",
+    "task_id": "11-cleanup",
+    "recording_mode": "continuous native video",
+    "planned_perturbations": [
+      "high grasp",
+      "partial cabinet closure"
+    ],
+    "decision_origin": "GPT-authored, simulator-state-assisted demonstration"
+  },
+  "result": {
+    "success": true,
+    "steps": 7893,
+    "commands": 13,
+    "brain_records": 3,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 236,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Navigate to the food preparation counter.",
+          "stage": "Navigate to the counter"
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "navigate",
+            "position": [
+              1.6,
+              -1.3,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "wait",
+            "steps": 30
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 30,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                1.6,
+                -1.3,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                2.310576288216149,
+                -0.8329891553134711,
+                0.0
+              ],
+              "base_end": [
+                1.597008148897737,
+                -1.296937995166493,
+                0.0
+              ],
+              "target_distance_m": 0.004281009999817019,
+              "heading_error_rad": -1.9639416217742678e-06,
+              "reached": true,
+              "steps": 176
+            },
+            "step": 206,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 236,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Navigate to the food preparation counter."
+    },
+    {
+      "index": 1,
+      "step_start": 236,
+      "step_end": 413,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The robot moved toward the sink-side counter, away from the tangerine and cucumber below the open cabinet.",
+        "Sub": "Navigate back to the counter with the two food items.",
+        "Fine": "Drive right along the aisle, align with the open cabinet, and stop within reach of the food."
+      },
+      "command": {
+        "action": "navigate",
+        "position": [
+          2.310576,
+          -0.832989,
+          0
+        ],
+        "yaw": 1.5707963267948966,
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The robot moved toward the sink-side counter, away from the tangerine and cucumber below the open cabinet.",
+          "Sub": "Navigate back to the counter with the two food items.",
+          "Fine": "Drive right along the aisle, align with the open cabinet, and stop within reach of the food."
+        }
+      },
+      "feedback": {
+        "action": "navigate",
+        "base_start": [
+          1.5970081432287688,
+          -1.2969379930022444,
+          0.0
+        ],
+        "base_end": [
+          2.313651797387236,
+          -0.8361573792957653,
+          0.0
+        ],
+        "target_distance_m": 0.004415784973157139,
+        "heading_error_rad": 1.5320621171710513e-07,
+        "reached": true,
+        "steps": 177
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 413,
+      "step_end": 815,
+      "brain": null,
+      "command": {
+        "action": "pick",
+        "object": "food0",
+        "offset": [
+          0,
+          0,
+          0.16
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.2,
+        "presentation": {
+          "action": "Pick up the tangerine.",
+          "stage": "Grasp the first food item"
+        }
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "food0",
+        "object_lift_m": 6.9349618270209135e-09,
+        "object_follows_gripper": false
+      },
+      "official_success": false,
+      "controller_note": "Pick up the tangerine."
+    },
+    {
+      "index": 3,
+      "step_start": 815,
+      "step_end": 1048,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed above the tangerine and lifted empty. The fruit remained on the counter.",
+        "Sub": "Lower the grasp to the tangerine and pick it up.",
+        "Fine": "Open the fingers, descend to the fruit, close around it, and lift it clear of the counter."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed above the tangerine and lifted empty. The fruit remained on the counter.",
+          "Sub": "Lower the grasp to the tangerine and pick it up.",
+          "Fine": "Open the fingers, descend to the fruit, close around it, and lift it clear of the counter."
+        },
+        "commands": [
+          {
+            "action": "source_reference",
+            "begin": 1,
+            "end": 5
+          },
+          {
+            "action": "verify_held",
+            "object": "food0"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "source_reference",
+              "begin": 1,
+              "end": 5
+            },
+            "feedback": {
+              "action": "source_reference",
+              "source_case": "distinct-baseline-11-cleanup-attempt5",
+              "source_reference_sha256": "f2f4737e9012c32c39ece650643b7e926e1786fd56ecb83c4fbf88fac8be0185",
+              "references": [
+                {
+                  "source_index": 1,
+                  "kind": "move",
+                  "step_start": 815,
+                  "step_end": 884,
+                  "reached": true
+                },
+                {
+                  "source_index": 2,
+                  "kind": "move",
+                  "step_start": 884,
+                  "step_end": 953,
+                  "reached": true
+                },
+                {
+                  "source_index": 3,
+                  "kind": "hold",
+                  "step_start": 953,
+                  "step_end": 971,
+                  "reached": true
+                },
+                {
+                  "source_index": 4,
+                  "kind": "move",
+                  "step_start": 971,
+                  "step_end": 1048,
+                  "reached": true
+                }
+              ],
+              "official_success": false
+            },
+            "step": 1048,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "verify_held",
+              "object": "food0"
+            },
+            "feedback": {
+              "held": true,
+              "contacting_finger_pads": [
+                1,
+                2
+              ],
+              "object_position": [
+                2.193208684962533,
+                -0.4245256505709267,
+                1.1414294667611988
+              ]
+            },
+            "step": 1048,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 1048,
+      "step_end": 1818,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Place the tangerine in the cabinet",
+          "action": "Lift the tangerine to the open cabinet and place it inside."
+        },
+        "commands": [
+          {
+            "action": "source_reference",
+            "begin": 5,
+            "end": 12
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "source_reference",
+              "begin": 5,
+              "end": 12
+            },
+            "feedback": {
+              "action": "source_reference",
+              "source_case": "distinct-baseline-11-cleanup-attempt5",
+              "source_reference_sha256": "f2f4737e9012c32c39ece650643b7e926e1786fd56ecb83c4fbf88fac8be0185",
+              "references": [
+                {
+                  "source_index": 5,
+                  "kind": "torso",
+                  "step_start": 1048,
+                  "step_end": 1236,
+                  "reached": true
+                },
+                {
+                  "source_index": 6,
+                  "kind": "move",
+                  "step_start": 1236,
+                  "step_end": 1333,
+                  "reached": false
+                },
+                {
+                  "source_index": 7,
+                  "kind": "move",
+                  "step_start": 1333,
+                  "step_end": 1371,
+                  "reached": true
+                },
+                {
+                  "source_index": 8,
+                  "kind": "move",
+                  "step_start": 1371,
+                  "step_end": 1486,
+                  "reached": false
+                },
+                {
+                  "source_index": 9,
+                  "kind": "hold",
+                  "step_start": 1486,
+                  "step_end": 1516,
+                  "reached": true
+                },
+                {
+                  "source_index": 10,
+                  "kind": "move",
+                  "step_start": 1516,
+                  "step_end": 1632,
+                  "reached": false
+                },
+                {
+                  "source_index": 11,
+                  "kind": "torso",
+                  "step_start": 1632,
+                  "step_end": 1818,
+                  "reached": true
+                }
+              ],
+              "official_success": false
+            },
+            "step": 1818,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Lift the tangerine to the open cabinet and place it inside."
+    },
+    {
+      "index": 5,
+      "step_start": 1818,
+      "step_end": 2702,
+      "brain": null,
+      "command": {
+        "action": "source_reference",
+        "begin": 12,
+        "end": 22,
+        "presentation": {
+          "stage": "Place the cucumber in the cabinet",
+          "action": "Pick up the cucumber and place it beside the tangerine."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-11-cleanup-attempt5",
+        "source_reference_sha256": "f2f4737e9012c32c39ece650643b7e926e1786fd56ecb83c4fbf88fac8be0185",
+        "references": [
+          {
+            "source_index": 12,
+            "kind": "move",
+            "step_start": 1818,
+            "step_end": 1906,
+            "reached": true
+          },
+          {
+            "source_index": 13,
+            "kind": "move",
+            "step_start": 1906,
+            "step_end": 1974,
+            "reached": true
+          },
+          {
+            "source_index": 14,
+            "kind": "hold",
+            "step_start": 1974,
+            "step_end": 1992,
+            "reached": true
+          },
+          {
+            "source_index": 15,
+            "kind": "move",
+            "step_start": 1992,
+            "step_end": 2070,
+            "reached": true
+          },
+          {
+            "source_index": 16,
+            "kind": "torso",
+            "step_start": 2070,
+            "step_end": 2257,
+            "reached": true
+          },
+          {
+            "source_index": 17,
+            "kind": "move",
+            "step_start": 2257,
+            "step_end": 2354,
+            "reached": false
+          },
+          {
+            "source_index": 18,
+            "kind": "move",
+            "step_start": 2354,
+            "step_end": 2439,
+            "reached": false
+          },
+          {
+            "source_index": 19,
+            "kind": "move",
+            "step_start": 2439,
+            "step_end": 2556,
+            "reached": false
+          },
+          {
+            "source_index": 20,
+            "kind": "hold",
+            "step_start": 2556,
+            "step_end": 2586,
+            "reached": true
+          },
+          {
+            "source_index": 21,
+            "kind": "move",
+            "step_start": 2586,
+            "step_end": 2702,
+            "reached": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Pick up the cucumber and place it beside the tangerine."
+    },
+    {
+      "index": 6,
+      "step_start": 2702,
+      "step_end": 4019,
+      "brain": null,
+      "command": {
+        "action": "source_reference",
+        "begin": 22,
+        "end": 40,
+        "presentation": {
+          "stage": "Close the left cabinet door",
+          "action": "Navigate to the left door and close it."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-11-cleanup-attempt5",
+        "source_reference_sha256": "f2f4737e9012c32c39ece650643b7e926e1786fd56ecb83c4fbf88fac8be0185",
+        "references": [
+          {
+            "source_index": 22,
+            "kind": "navigate",
+            "step_start": 2702,
+            "step_end": 2793,
+            "reached": true
+          },
+          {
+            "source_index": 23,
+            "kind": "navigate",
+            "step_start": 2793,
+            "step_end": 2954,
+            "reached": true
+          },
+          {
+            "source_index": 24,
+            "kind": "move",
+            "step_start": 2954,
+            "step_end": 3001,
+            "reached": true
+          },
+          {
+            "source_index": 25,
+            "kind": "move",
+            "step_start": 3001,
+            "step_end": 3070,
+            "reached": false
+          },
+          {
+            "source_index": 26,
+            "kind": "hold",
+            "step_start": 3070,
+            "step_end": 3095,
+            "reached": true
+          },
+          {
+            "source_index": 27,
+            "kind": "move",
+            "step_start": 3095,
+            "step_end": 3150,
+            "reached": false
+          },
+          {
+            "source_index": 28,
+            "kind": "move",
+            "step_start": 3150,
+            "step_end": 3205,
+            "reached": false
+          },
+          {
+            "source_index": 29,
+            "kind": "move",
+            "step_start": 3205,
+            "step_end": 3260,
+            "reached": false
+          },
+          {
+            "source_index": 30,
+            "kind": "move",
+            "step_start": 3260,
+            "step_end": 3316,
+            "reached": false
+          },
+          {
+            "source_index": 31,
+            "kind": "move",
+            "step_start": 3316,
+            "step_end": 3376,
+            "reached": false
+          },
+          {
+            "source_index": 32,
+            "kind": "move",
+            "step_start": 3376,
+            "step_end": 3442,
+            "reached": false
+          },
+          {
+            "source_index": 33,
+            "kind": "move",
+            "step_start": 3442,
+            "step_end": 3513,
+            "reached": false
+          },
+          {
+            "source_index": 34,
+            "kind": "move",
+            "step_start": 3513,
+            "step_end": 3597,
+            "reached": false
+          },
+          {
+            "source_index": 35,
+            "kind": "hold",
+            "step_start": 3597,
+            "step_end": 3617,
+            "reached": true
+          },
+          {
+            "source_index": 36,
+            "kind": "move",
+            "step_start": 3617,
+            "step_end": 3714,
+            "reached": true
+          },
+          {
+            "source_index": 37,
+            "kind": "move",
+            "step_start": 3714,
+            "step_end": 3849,
+            "reached": false
+          },
+          {
+            "source_index": 38,
+            "kind": "move",
+            "step_start": 3849,
+            "step_end": 3916,
+            "reached": false
+          },
+          {
+            "source_index": 39,
+            "kind": "move",
+            "step_start": 3916,
+            "step_end": 4019,
+            "reached": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Navigate to the left door and close it."
+    },
+    {
+      "index": 7,
+      "step_start": 4019,
+      "step_end": 4972,
+      "brain": null,
+      "command": {
+        "action": "source_reference",
+        "begin": 40,
+        "end": 58,
+        "presentation": {
+          "stage": "Close the right cabinet door",
+          "action": "Move to the right door and swing it shut."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-11-cleanup-attempt5",
+        "source_reference_sha256": "f2f4737e9012c32c39ece650643b7e926e1786fd56ecb83c4fbf88fac8be0185",
+        "references": [
+          {
+            "source_index": 40,
+            "kind": "navigate",
+            "step_start": 4019,
+            "step_end": 4114,
+            "reached": true
+          },
+          {
+            "source_index": 41,
+            "kind": "navigate",
+            "step_start": 4114,
+            "step_end": 4243,
+            "reached": true
+          },
+          {
+            "source_index": 42,
+            "kind": "move",
+            "step_start": 4243,
+            "step_end": 4346,
+            "reached": false
+          },
+          {
+            "source_index": 43,
+            "kind": "move",
+            "step_start": 4346,
+            "step_end": 4413,
+            "reached": false
+          },
+          {
+            "source_index": 44,
+            "kind": "hold",
+            "step_start": 4413,
+            "step_end": 4438,
+            "reached": true
+          },
+          {
+            "source_index": 45,
+            "kind": "move",
+            "step_start": 4438,
+            "step_end": 4493,
+            "reached": true
+          },
+          {
+            "source_index": 46,
+            "kind": "move",
+            "step_start": 4493,
+            "step_end": 4521,
+            "reached": true
+          },
+          {
+            "source_index": 47,
+            "kind": "move",
+            "step_start": 4521,
+            "step_end": 4553,
+            "reached": true
+          },
+          {
+            "source_index": 48,
+            "kind": "move",
+            "step_start": 4553,
+            "step_end": 4583,
+            "reached": true
+          },
+          {
+            "source_index": 49,
+            "kind": "move",
+            "step_start": 4583,
+            "step_end": 4612,
+            "reached": true
+          },
+          {
+            "source_index": 50,
+            "kind": "move",
+            "step_start": 4612,
+            "step_end": 4643,
+            "reached": true
+          },
+          {
+            "source_index": 51,
+            "kind": "move",
+            "step_start": 4643,
+            "step_end": 4676,
+            "reached": true
+          },
+          {
+            "source_index": 52,
+            "kind": "move",
+            "step_start": 4676,
+            "step_end": 4710,
+            "reached": true
+          },
+          {
+            "source_index": 53,
+            "kind": "hold",
+            "step_start": 4710,
+            "step_end": 4730,
+            "reached": true
+          },
+          {
+            "source_index": 54,
+            "kind": "move",
+            "step_start": 4730,
+            "step_end": 4803,
+            "reached": true
+          },
+          {
+            "source_index": 55,
+            "kind": "move",
+            "step_start": 4803,
+            "step_end": 4833,
+            "reached": true
+          },
+          {
+            "source_index": 56,
+            "kind": "move",
+            "step_start": 4833,
+            "step_end": 4880,
+            "reached": true
+          },
+          {
+            "source_index": 57,
+            "kind": "move",
+            "step_start": 4880,
+            "step_end": 4972,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Move to the right door and swing it shut."
+    },
+    {
+      "index": 8,
+      "step_start": 4972,
+      "step_end": 5278,
+      "brain": null,
+      "command": {
+        "action": "source_reference",
+        "begin": 58,
+        "end": 62,
+        "presentation": {
+          "stage": "Complete cabinet closure",
+          "action": "Reposition and push the left door fully closed."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-11-cleanup-attempt5",
+        "source_reference_sha256": "f2f4737e9012c32c39ece650643b7e926e1786fd56ecb83c4fbf88fac8be0185",
+        "references": [
+          {
+            "source_index": 58,
+            "kind": "navigate",
+            "step_start": 4972,
+            "step_end": 5038,
+            "reached": true
+          },
+          {
+            "source_index": 59,
+            "kind": "move",
+            "step_start": 5038,
+            "step_end": 5090,
+            "reached": true
+          },
+          {
+            "source_index": 60,
+            "kind": "move",
+            "step_start": 5090,
+            "step_end": 5182,
+            "reached": false
+          },
+          {
+            "source_index": 61,
+            "kind": "move",
+            "step_start": 5182,
+            "step_end": 5278,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Reposition and push the left door fully closed."
+    },
+    {
+      "index": 9,
+      "step_start": 5278,
+      "step_end": 6864,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Finish closing the cabinet",
+          "action": "Align with the right handle and close the remaining open door."
+        },
+        "commands": [
+          {
+            "action": "navigate",
+            "delta_world": [
+              0,
+              -0.35,
+              0
+            ]
+          },
+          {
+            "action": "navigate",
+            "position": [
+              2.0,
+              -1.25,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "swing_handle",
+            "joint": "cab_main_main_group_rightdoorhinge",
+            "handle_site": "cab_main_main_group_right_door_handle_default_site",
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "target_angle": 0
+          },
+          {
+            "action": "move_object",
+            "object": "site:cab_main_main_group_right_door_handle_default_site",
+            "offset": [
+              0,
+              -0.08,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              0.12,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.25,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "delta_world": [
+                0,
+                -0.35,
+                0
+              ]
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                2.0075563456703156,
+                -1.0622391812611305,
+                0.0
+              ],
+              "base_end": [
+                2.007555354366834,
+                -1.4347206147883813,
+                0.0
+              ],
+              "target_distance_m": 0.022481433549106162,
+              "heading_error_rad": 5.79695360602983e-07,
+              "reached": true,
+              "steps": 91
+            },
+            "step": 5369,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                2.0,
+                -1.25,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                2.007555354366834,
+                -1.4347206147883813,
+                0.0
+              ],
+              "base_end": [
+                2.0049506033198883,
+                -1.2629058393163481,
+                0.0
+              ],
+              "target_distance_m": 0.013822776916751801,
+              "heading_error_rad": -0.00010603088167804309,
+              "reached": true,
+              "steps": 65
+            },
+            "step": 5434,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "swing_handle",
+              "joint": "cab_main_main_group_rightdoorhinge",
+              "handle_site": "cab_main_main_group_right_door_handle_default_site",
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "target_angle": 0
+            },
+            "feedback": {
+              "joint_before": 1.5700000000000016,
+              "joint_after": 1.2256203703533057,
+              "reached": false
+            },
+            "step": 6660,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_object",
+              "object": "site:cab_main_main_group_right_door_handle_default_site",
+              "offset": [
+                0,
+                -0.08,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 6704,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                0.12,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": false
+            },
+            "step": 6773,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.25,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 6864,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Align with the right handle and close the remaining open door."
+    },
+    {
+      "index": 10,
+      "step_start": 6864,
+      "step_end": 7616,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Close the cabinet",
+          "action": "Move beside the right door and guide it along its hinge arc."
+        },
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              2.35,
+              -1.25,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "move",
+            "position": [
+              2.6989995678312164,
+              -0.9221269302395193,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.6339995678312165,
+              -0.8321269302395193,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.5457300703796046,
+              -0.7727991300664833,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.486941859307975,
+              -0.7390527612538816,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.4340268451543987,
+              -0.6966868262805392,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.38823788056535,
+              -0.6467044104635588,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.350659096885825,
+              -0.5902889322132941,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.322180235512234,
+              -0.528776123596694,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.303475581756814,
+              -0.4636224046166657,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.294988,
+              -0.3963703999999998,
+              1.5792000229205
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.25,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                2.35,
+                -1.25,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                2.018387245445904,
+                -1.2706420208705687,
+                0.0
+              ],
+              "base_end": [
+                2.369571304868097,
+                -1.2656357915993761,
+                0.0
+              ],
+              "target_distance_m": 0.025050228605326495,
+              "heading_error_rad": -0.00045588860098733086,
+              "reached": true,
+              "steps": 88
+            },
+            "step": 6952,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.6989995678312164,
+                -0.9221269302395193,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 7052,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.6339995678312165,
+                -0.8321269302395193,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 7093,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.5457300703796046,
+                -0.7727991300664833,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 7130,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.486941859307975,
+                -0.7390527612538816,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 7165,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.4340268451543987,
+                -0.6966868262805392,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 7222,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.38823788056535,
+                -0.6467044104635588,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 7282,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.350659096885825,
+                -0.5902889322132941,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 7343,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.322180235512234,
+                -0.528776123596694,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 7403,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.303475581756814,
+                -0.4636224046166657,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 7463,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.294988,
+                -0.3963703999999998,
+                1.5792000229205
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 7522,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.25,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 7616,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Move beside the right door and guide it along its hinge arc."
+    },
+    {
+      "index": 11,
+      "step_start": 7616,
+      "step_end": 7853,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Finish cabinet closure",
+          "action": "Press the remaining gap closed and withdraw the gripper."
+        },
+        "commands": [
+          {
+            "action": "move_object",
+            "object": "site:cab_main_main_group_right_door_handle_default_site",
+            "offset": [
+              0,
+              -0.08,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              0.2,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.25,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "wait",
+            "steps": 20
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move_object",
+              "object": "site:cab_main_main_group_right_door_handle_default_site",
+              "offset": [
+                0,
+                -0.08,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 7656,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                0.2,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": false
+            },
+            "step": 7743,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.25,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 7833,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 20
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 7853,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true,
+      "controller_note": "Press the remaining gap closed and withdraw the gripper."
+    },
+    {
+      "index": 12,
+      "step_start": 7853,
+      "step_end": 7893,
+      "brain": {
+        "Judge": "success",
+        "Cause": "Both food items are inside the cabinet and both doors are fully closed.",
+        "Sub": "Complete the cleanup task.",
+        "Fine": "Withdraw the gripper and verify the final cabinet state."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "success",
+          "Cause": "Both food items are inside the cabinet and both doors are fully closed.",
+          "Sub": "Complete the cleanup task.",
+          "Fine": "Withdraw the gripper and verify the final cabinet state."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 40
+          },
+          {
+            "action": "finish"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 40
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 7893,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "finish"
+            },
+            "feedback": {
+              "action": "finish",
+              "finished": true
+            },
+            "step": 7893,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": "GPT-authored, simulator-state-assisted demonstration. Not trained Embodied-Corrector or RynnBrain inference and not a benchmark score.",
+  "motion_evidence": {
+    "physical_steps": 7893,
+    "every_action_frame_preserved": true,
+    "control_hz": 20,
+    "recording_fps": 20,
+    "playback_speed": 1,
+    "frame_interpolation": false,
+    "post_failure_state_reset": false,
+    "eef_speed_p95_m_s": 0.17524849972832374,
+    "eef_speed_max_m_s": 0.8876814319036431,
+    "base_path_m": 4.959100138076393,
+    "raw_video_sha256": "98eca8a36c9b0e3d5628e1f1b7a8b56641d6a42a75859c0441384d4a13d5d0c9",
+    "actions_sha256": "f66b550785d256923f80074a71a9df07446a6a566059d3a125fd8924d4adfe17"
+  },
+  "presentation": {
+    "title": "Pick the tangerine, cucumber from the counter and place them in the cabinet. Then close the cabinet.",
+    "perturbations": [
+      "wrong-direction navigation",
+      "high grasp"
+    ],
+    "poster": "Encoded video first frame",
+    "final_hold_seconds": 3
+  }
+}

@@ -1,0 +1,472 @@
+{
+  "case": "distinct-recovery-01-drawer-attempt1",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put the black bowl in the bottom drawer of the cabinet and close it",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/LIBERO-PRO/libero/libero/bddl_files/libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "54cd15b8e85963bfd853159d5e3419048a5860ba8e39057d9d3955f6e9249e4f",
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "distinct-baseline-01-drawer-attempt1",
+      "success": true,
+      "reference_waypoints_sha256": "6dea693b5e0b20b66c19f4317385924faffe1dddff38721c0515ae8dd7e784c3",
+      "commands_sha256": "c124082771cf710388949a883f3032d8ac6f2c7e2032ee70adecf35245b4abeb",
+      "origin": "Newly collected, state-assisted simulator success; not trained-model inference"
+    },
+    "navigation": false,
+    "collection": "distinct-two-perturbations",
+    "task_id": "01-drawer",
+    "planned_perturbations": [
+      "high grasp",
+      "partial drawer closure with hand withdrawal"
+    ],
+    "decision_origin": "GPT-authored, simulator-state-assisted demonstration"
+  },
+  "result": {
+    "success": true,
+    "steps": 1528,
+    "commands": 7,
+    "brain_records": 4,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 281,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Pick up the black bowl.",
+          "stage": "Initial attempt"
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "pick",
+            "object": "akita_black_bowl_1",
+            "offset": [
+              0.045,
+              0,
+              0.14
+            ],
+            "yaw_degrees": 0,
+            "lift": 0.14
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 30,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "pick",
+              "object": "akita_black_bowl_1",
+              "offset": [
+                0.045,
+                0,
+                0.14
+              ],
+              "yaw_degrees": 0,
+              "lift": 0.14
+            },
+            "feedback": {
+              "action": "pick",
+              "object": "akita_black_bowl_1",
+              "object_lift_m": 0.0,
+              "object_follows_gripper": false
+            },
+            "step": 281,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Pick up the black bowl."
+    },
+    {
+      "index": 1,
+      "step_start": 281,
+      "step_end": 311,
+      "brain": null,
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "presentation": {
+          "action": "Observe the grasp outcome.",
+          "stage": "Observe"
+        }
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": false,
+      "controller_note": "Observe the grasp outcome."
+    },
+    {
+      "index": 2,
+      "step_start": 311,
+      "step_end": 803,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed above the bowl. The empty gripper rose while the bowl stayed on the table.",
+        "Sub": "Lower the grasp and place the bowl in the bottom drawer.",
+        "Fine": "Open the fingers, descend to the bowl rim, close around it, lift, and place it inside the open drawer."
+      },
+      "command": {
+        "action": "source_reference",
+        "begin": 0,
+        "end": 10,
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed above the bowl. The empty gripper rose while the bowl stayed on the table.",
+          "Sub": "Lower the grasp and place the bowl in the bottom drawer.",
+          "Fine": "Open the fingers, descend to the bowl rim, close around it, lift, and place it inside the open drawer."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-01-drawer-attempt1",
+        "source_reference_sha256": "6dea693b5e0b20b66c19f4317385924faffe1dddff38721c0515ae8dd7e784c3",
+        "references": [
+          {
+            "source_index": 0,
+            "kind": "hold",
+            "step_start": 311,
+            "step_end": 341,
+            "reached": true
+          },
+          {
+            "source_index": 1,
+            "kind": "move",
+            "step_start": 341,
+            "step_end": 384,
+            "reached": true
+          },
+          {
+            "source_index": 2,
+            "kind": "move",
+            "step_start": 384,
+            "step_end": 452,
+            "reached": true
+          },
+          {
+            "source_index": 3,
+            "kind": "hold",
+            "step_start": 452,
+            "step_end": 470,
+            "reached": true
+          },
+          {
+            "source_index": 4,
+            "kind": "move",
+            "step_start": 470,
+            "step_end": 545,
+            "reached": true
+          },
+          {
+            "source_index": 5,
+            "kind": "move",
+            "step_start": 545,
+            "step_end": 579,
+            "reached": true
+          },
+          {
+            "source_index": 6,
+            "kind": "move",
+            "step_start": 579,
+            "step_end": 665,
+            "reached": true
+          },
+          {
+            "source_index": 7,
+            "kind": "move",
+            "step_start": 665,
+            "step_end": 739,
+            "reached": false
+          },
+          {
+            "source_index": 8,
+            "kind": "hold",
+            "step_start": 739,
+            "step_end": 757,
+            "reached": true
+          },
+          {
+            "source_index": 9,
+            "kind": "move",
+            "step_start": 757,
+            "step_end": 803,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 803,
+      "step_end": 1119,
+      "brain": null,
+      "command": {
+        "action": "source_reference",
+        "begin": 10,
+        "end": 17,
+        "presentation": {
+          "action": "Close the bottom drawer.",
+          "stage": "Next task step"
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-01-drawer-attempt1",
+        "source_reference_sha256": "6dea693b5e0b20b66c19f4317385924faffe1dddff38721c0515ae8dd7e784c3",
+        "references": [
+          {
+            "source_index": 10,
+            "kind": "move",
+            "step_start": 803,
+            "step_end": 850,
+            "reached": true
+          },
+          {
+            "source_index": 11,
+            "kind": "move",
+            "step_start": 850,
+            "step_end": 925,
+            "reached": false
+          },
+          {
+            "source_index": 12,
+            "kind": "hold",
+            "step_start": 925,
+            "step_end": 945,
+            "reached": true
+          },
+          {
+            "source_index": 13,
+            "kind": "move",
+            "step_start": 945,
+            "step_end": 1023,
+            "reached": false
+          },
+          {
+            "source_index": 14,
+            "kind": "hold",
+            "step_start": 1023,
+            "step_end": 1038,
+            "reached": true
+          },
+          {
+            "source_index": 15,
+            "kind": "move",
+            "step_start": 1038,
+            "step_end": 1089,
+            "reached": true
+          },
+          {
+            "source_index": 16,
+            "kind": "hold",
+            "step_start": 1089,
+            "step_end": 1119,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Close the bottom drawer."
+    },
+    {
+      "index": 4,
+      "step_start": 1119,
+      "step_end": 1498,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The hand withdrew after a partial push. A visible gap remains and the drawer is still open.",
+        "Sub": "Return to the drawer and complete the closure.",
+        "Fine": "Re-contact the front handle, push the drawer fully inward, release it, and withdraw to verify that it stays closed."
+      },
+      "command": {
+        "action": "source_reference",
+        "begin": 17,
+        "end": 24,
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The hand withdrew after a partial push. A visible gap remains and the drawer is still open.",
+          "Sub": "Return to the drawer and complete the closure.",
+          "Fine": "Re-contact the front handle, push the drawer fully inward, release it, and withdraw to verify that it stays closed."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-01-drawer-attempt1",
+        "source_reference_sha256": "6dea693b5e0b20b66c19f4317385924faffe1dddff38721c0515ae8dd7e784c3",
+        "references": [
+          {
+            "source_index": 17,
+            "kind": "move",
+            "step_start": 1119,
+            "step_end": 1216,
+            "reached": false
+          },
+          {
+            "source_index": 18,
+            "kind": "move",
+            "step_start": 1216,
+            "step_end": 1291,
+            "reached": false
+          },
+          {
+            "source_index": 19,
+            "kind": "hold",
+            "step_start": 1291,
+            "step_end": 1311,
+            "reached": true
+          },
+          {
+            "source_index": 20,
+            "kind": "move",
+            "step_start": 1311,
+            "step_end": 1370,
+            "reached": false
+          },
+          {
+            "source_index": 21,
+            "kind": "hold",
+            "step_start": 1370,
+            "step_end": 1385,
+            "reached": true
+          },
+          {
+            "source_index": 22,
+            "kind": "move",
+            "step_start": 1385,
+            "step_end": 1468,
+            "reached": false
+          },
+          {
+            "source_index": 23,
+            "kind": "hold",
+            "step_start": 1468,
+            "step_end": 1498,
+            "reached": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 5,
+      "step_start": 1498,
+      "step_end": 1528,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The bowl is inside the bottom drawer, and the drawer remains fully closed after the hand withdraws.",
+        "Sub": "Task complete.",
+        "Fine": "Both the placement and closure requirements are verified."
+      },
+      "command": {
+        "action": "wait",
+        "steps": 30,
+        "brain": {
+          "Judge": "success",
+          "Cause": "The bowl is inside the bottom drawer, and the drawer remains fully closed after the hand withdraws.",
+          "Sub": "Task complete.",
+          "Fine": "Both the placement and closure requirements are verified."
+        }
+      },
+      "feedback": {
+        "action": "wait",
+        "completed": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 6,
+      "step_start": 1528,
+      "step_end": 1528,
+      "brain": {
+        "Judge": "success",
+        "Cause": "Both task requirements remain satisfied.",
+        "Sub": "Task complete.",
+        "Fine": "The bowl is inside and the drawer is closed."
+      },
+      "command": {
+        "action": "finish",
+        "brain": {
+          "Judge": "success",
+          "Cause": "Both task requirements remain satisfied.",
+          "Sub": "Task complete.",
+          "Fine": "The bowl is inside and the drawer is closed."
+        }
+      },
+      "feedback": {
+        "action": "finish",
+        "finished": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": "GPT-authored, simulator-state-assisted demonstration. Not trained Embodied-Corrector or RynnBrain inference and not a benchmark score.",
+  "motion_evidence": {
+    "physical_steps": 1528,
+    "every_action_frame_preserved": true,
+    "control_hz": 20,
+    "recording_fps": 20,
+    "playback_speed": 1,
+    "frame_interpolation": false,
+    "post_failure_state_reset": false,
+    "eef_speed_p95_m_s": 0.08308200821822592,
+    "eef_speed_max_m_s": 0.10922333749810739,
+    "base_path_m": 0,
+    "raw_video_sha256": "434e0f9374590145077e932b431b8710793d9bcf506838327d01f8cae65ae42c",
+    "actions_sha256": "30cb88e4272b5ca60c79a6a90fec2f7094c2d014422504501477d081d54d34ae"
+  },
+  "presentation": {
+    "title": "Put the black bowl in the bottom drawer of the cabinet and close it",
+    "perturbations": [
+      "high grasp",
+      "partial drawer closure with hand withdrawal"
+    ],
+    "poster": "Encoded video first frame",
+    "final_hold_seconds": 3
+  }
+}

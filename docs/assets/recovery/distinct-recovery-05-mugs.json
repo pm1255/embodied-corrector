@@ -1,0 +1,500 @@
+{
+  "case": "distinct-recovery-05-mugs-attempt1",
+  "manifest": {
+    "backend": "libero_pro",
+    "task": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/LIBERO-PRO/libero/libero/bddl_files/libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.bddl",
+    "camera": "agentview",
+    "action_dim": 7,
+    "initial_model_sha256": "34f75bbdc14bf3c065bb142a8bb478c6d10134e67e03a0159f938a979fb1ab95",
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "distinct-baseline-05-mugs-attempt1",
+      "success": true,
+      "reference_waypoints_sha256": "e0d640106420bc0efa0ee06b96d6704b5c33e2f856fb3195f26dcfb4cd16a7af",
+      "commands_sha256": "991588430d80faf86c488239dfe44ed4338de3a53637f5debd973cd8ffbc28c2",
+      "origin": "Newly collected, state-assisted simulator success; not trained-model inference"
+    },
+    "navigation": false,
+    "collection": "distinct-two-perturbations",
+    "task_id": "05-mugs",
+    "planned_perturbations": [
+      "high grasp",
+      "placement on wrong plate"
+    ],
+    "decision_origin": "GPT-authored, simulator-state-assisted demonstration"
+  },
+  "result": {
+    "success": true,
+    "steps": 2030,
+    "commands": 7,
+    "brain_records": 4,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 249,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Pick up the white mug.",
+          "stage": "Initial attempt"
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "pick",
+            "object": "porcelain_mug_1",
+            "offset": [
+              0.035,
+              0,
+              0.16
+            ],
+            "yaw_degrees": 0,
+            "lift": 0.16
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 30,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "pick",
+              "object": "porcelain_mug_1",
+              "offset": [
+                0.035,
+                0,
+                0.16
+              ],
+              "yaw_degrees": 0,
+              "lift": 0.16
+            },
+            "feedback": {
+              "action": "pick",
+              "object": "porcelain_mug_1",
+              "object_lift_m": 0.0,
+              "object_follows_gripper": false
+            },
+            "step": 249,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Pick up the white mug."
+    },
+    {
+      "index": 1,
+      "step_start": 249,
+      "step_end": 484,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed above the white mug. The mug stayed on the table when the gripper lifted.",
+        "Sub": "Lower the grasp to the white mug rim.",
+        "Fine": "Open the fingers, descend to the rim, close securely, and lift the mug."
+      },
+      "command": {
+        "action": "source_reference",
+        "begin": 0,
+        "end": 5,
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed above the white mug. The mug stayed on the table when the gripper lifted.",
+          "Sub": "Lower the grasp to the white mug rim.",
+          "Fine": "Open the fingers, descend to the rim, close securely, and lift the mug."
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-05-mugs-attempt1",
+        "source_reference_sha256": "e0d640106420bc0efa0ee06b96d6704b5c33e2f856fb3195f26dcfb4cd16a7af",
+        "references": [
+          {
+            "source_index": 0,
+            "kind": "hold",
+            "step_start": 249,
+            "step_end": 279,
+            "reached": true
+          },
+          {
+            "source_index": 1,
+            "kind": "move",
+            "step_start": 279,
+            "step_end": 320,
+            "reached": true
+          },
+          {
+            "source_index": 2,
+            "kind": "move",
+            "step_start": 320,
+            "step_end": 403,
+            "reached": false
+          },
+          {
+            "source_index": 3,
+            "kind": "hold",
+            "step_start": 403,
+            "step_end": 421,
+            "reached": true
+          },
+          {
+            "source_index": 4,
+            "kind": "move",
+            "step_start": 421,
+            "step_end": 484,
+            "reached": true
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 484,
+      "step_end": 840,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "action": "Place the white mug on a plate.",
+          "stage": "Placement attempt"
+        },
+        "commands": [
+          {
+            "action": "place",
+            "object": "porcelain_mug_1",
+            "target": "plate_2",
+            "offset": [
+              0,
+              0,
+              0.045
+            ]
+          },
+          {
+            "action": "wait",
+            "steps": 30
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "place",
+              "object": "porcelain_mug_1",
+              "target": "plate_2",
+              "offset": [
+                0,
+                0,
+                0.045
+              ]
+            },
+            "feedback": {
+              "action": "place",
+              "released": true
+            },
+            "step": 810,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 840,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Place the white mug on a plate."
+    },
+    {
+      "index": 3,
+      "step_start": 840,
+      "step_end": 1044,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The white mug was placed on the right plate. The task requires the white mug on the left plate.",
+        "Sub": "Move the white mug to the left plate.",
+        "Fine": "Grasp the white mug by its rim, lift it clear of the right plate, and carry it toward the left plate."
+      },
+      "command": {
+        "action": "pick",
+        "object": "porcelain_mug_1",
+        "offset": [
+          0.035,
+          0,
+          0.04
+        ],
+        "yaw_degrees": 0,
+        "lift": 0.2,
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The white mug was placed on the right plate. The task requires the white mug on the left plate.",
+          "Sub": "Move the white mug to the left plate.",
+          "Fine": "Grasp the white mug by its rim, lift it clear of the right plate, and carry it toward the left plate."
+        }
+      },
+      "feedback": {
+        "action": "pick",
+        "object": "porcelain_mug_1",
+        "object_lift_m": 0.1578347298729858,
+        "object_follows_gripper": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 4,
+      "step_start": 1044,
+      "step_end": 1404,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The white mug was on the wrong plate. It is now held for correction.",
+        "Sub": "Place the white mug on the left plate.",
+        "Fine": "Carry the white mug over the left plate, lower it, release it, and lift the empty hand."
+      },
+      "command": {
+        "action": "place",
+        "object": "porcelain_mug_1",
+        "target": "plate_1",
+        "offset": [
+          0,
+          0,
+          0.045
+        ],
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The white mug was on the wrong plate. It is now held for correction.",
+          "Sub": "Place the white mug on the left plate.",
+          "Fine": "Carry the white mug over the left plate, lower it, release it, and lift the empty hand."
+        }
+      },
+      "feedback": {
+        "action": "place",
+        "released": true
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 1404,
+      "step_end": 2000,
+      "brain": null,
+      "command": {
+        "action": "source_reference",
+        "begin": 10,
+        "end": 20,
+        "presentation": {
+          "action": "Place the yellow and white mug on the right plate.",
+          "stage": "Final task step"
+        }
+      },
+      "feedback": {
+        "action": "source_reference",
+        "source_case": "distinct-baseline-05-mugs-attempt1",
+        "source_reference_sha256": "e0d640106420bc0efa0ee06b96d6704b5c33e2f856fb3195f26dcfb4cd16a7af",
+        "references": [
+          {
+            "source_index": 10,
+            "kind": "move",
+            "step_start": 1404,
+            "step_end": 1543,
+            "reached": false
+          },
+          {
+            "source_index": 11,
+            "kind": "move",
+            "step_start": 1543,
+            "step_end": 1626,
+            "reached": false
+          },
+          {
+            "source_index": 12,
+            "kind": "hold",
+            "step_start": 1626,
+            "step_end": 1644,
+            "reached": true
+          },
+          {
+            "source_index": 13,
+            "kind": "move",
+            "step_start": 1644,
+            "step_end": 1711,
+            "reached": true
+          },
+          {
+            "source_index": 14,
+            "kind": "move",
+            "step_start": 1711,
+            "step_end": 1745,
+            "reached": true
+          },
+          {
+            "source_index": 15,
+            "kind": "move",
+            "step_start": 1745,
+            "step_end": 1822,
+            "reached": true
+          },
+          {
+            "source_index": 16,
+            "kind": "move",
+            "step_start": 1822,
+            "step_end": 1876,
+            "reached": true
+          },
+          {
+            "source_index": 17,
+            "kind": "hold",
+            "step_start": 1876,
+            "step_end": 1894,
+            "reached": true
+          },
+          {
+            "source_index": 18,
+            "kind": "move",
+            "step_start": 1894,
+            "step_end": 1970,
+            "reached": true
+          },
+          {
+            "source_index": 19,
+            "kind": "hold",
+            "step_start": 1970,
+            "step_end": 2000,
+            "reached": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true,
+      "controller_note": "Place the yellow and white mug on the right plate."
+    },
+    {
+      "index": 6,
+      "step_start": 2000,
+      "step_end": 2030,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The white mug is on the left plate and the yellow and white mug is on the right plate. The task predicate is satisfied.",
+        "Sub": "Task complete.",
+        "Fine": "Keep the hand clear of both mugs and finish the episode."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "success",
+          "Cause": "The white mug is on the left plate and the yellow and white mug is on the right plate. The task predicate is satisfied.",
+          "Sub": "Task complete.",
+          "Fine": "Keep the hand clear of both mugs and finish the episode."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "finish"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 2030,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "finish"
+            },
+            "feedback": {
+              "action": "finish",
+              "finished": true
+            },
+            "step": 2030,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": "GPT-authored, simulator-state-assisted demonstration. Not trained Embodied-Corrector or RynnBrain inference and not a benchmark score.",
+  "motion_evidence": {
+    "physical_steps": 2030,
+    "every_action_frame_preserved": true,
+    "control_hz": 20,
+    "recording_fps": 20,
+    "playback_speed": 1,
+    "frame_interpolation": false,
+    "post_failure_state_reset": false,
+    "eef_speed_p95_m_s": 0.07664986818655341,
+    "eef_speed_max_m_s": 0.10076689284840622,
+    "base_path_m": 0,
+    "raw_video_sha256": "5b2a37fdf6e43db6b02a564c29c834a307972107bbee61741e3d1919531f8f74",
+    "actions_sha256": "f00def73042320022782fa7db4839eb22b50b19e7421c7b0d17b88fa015cdfc9"
+  },
+  "presentation": {
+    "title": "Put the white mug on the left plate and put the yellow and white mug on the right plate",
+    "perturbations": [
+      "high grasp",
+      "placement on wrong plate"
+    ],
+    "poster": "Encoded video first frame",
+    "final_hold_seconds": 3
+  }
+}

@@ -56,7 +56,8 @@ def render(raw, record_path, output, title, ffmpeg, font_dir):
         assert font(title_size, True).getlength(title) <= 1824, 'Original task title exceeds the available width'
         text(d, 48, 77, title, title_size, WHITE, True)
         d.line((48, 140, 1872, 140), fill='#344158', width=1)
-        text(d, 32, 157, 'BRAIN OUTPUT' if event.get('brain') else 'INITIAL ATTEMPT', 21, ACCENT, True)
+        presentation = event.get('command', {}).get('presentation', {})
+        text(d, 32, 157, 'BRAIN OUTPUT' if event.get('brain') else presentation.get('stage', 'Initial attempt').upper(), 21, ACCENT, True)
         text(d, 680, 157, 'CONTINUOUS SIMULATOR RECORDING', 21, ACCENT, True)
         brain = event.get('brain')
         if brain:
@@ -65,7 +66,7 @@ def render(raw, record_path, output, title, ffmpeg, font_dir):
             if final:
                 brain['Judge'] = 'Success — task completed'
         else:
-            brain = {'Action': 'Navigate to the prep counter.' if meta.get('navigation_and_manipulation') else 'Approach and grasp the target.', 'Stage': 'Attempt → Observe → Correct', 'Timing': 'Diagnosis follows the observed action outcome.'}
+            brain = {'Action': presentation.get('action', 'Navigate to the prep counter.' if meta.get('navigation_and_manipulation') else 'Approach and grasp the target.'), 'Stage': 'Attempt → Observe → Correct', 'Timing': 'Diagnosis follows the observed action outcome.'}
         size = 29
         while sum(len(lines(brain[k], size, 580)) * size * 1.22 + 44 for k in brain) > 802:
             size -= 1

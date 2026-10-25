@@ -1,0 +1,1815 @@
+{
+  "case": "distinct-recovery-09-coffee-attempt2",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Pick the mug from the cabinet, place it under the coffee machine dispenser, and press the start button.",
+    "seed": 7,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "PrepareCoffee",
+    "camera": "fixed wide camera with simultaneous arm view",
+    "action_dim": 12,
+    "initial_model_sha256": "0b16ca80aaaa31122f01bfd77a7c93f26b857fbb1aa8a1bb3d1b461c8b16b8f2",
+    "source_model_verification": "Exact canonical XML match; OBJ MIME hints and default mesh reference quaternions normalized",
+    "initial_state_origin": "distinct-baseline-09-coffee-attempt6",
+    "initialization_only_torso_height": 0.12,
+    "episode_metadata": {
+      "layout_id": 1,
+      "style_id": 1,
+      "object_cfgs": [
+        {
+          "name": "obj",
+          "obj_groups": "mug",
+          "placement": {
+            "fixture": "cab_1_main_group",
+            "size": [
+              0.3,
+              0.2
+            ],
+            "pos": [
+              0,
+              -1.0
+            ]
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "mug",
+              "receptacle",
+              "stackable"
+            ],
+            "groups": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/mug/mug_5/model.xml",
+            "cat": "mug",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/mug/mug_5/model.xml"
+          },
+          "reset_region": {
+            "offset": [
+              0.0,
+              0.0,
+              -0.43
+            ],
+            "size": [
+              0.44,
+              0.34
+            ],
+            "height": 0.2666666666666667,
+            "name": "level0"
+          }
+        },
+        {
+          "name": "distr_cab",
+          "obj_groups": "all",
+          "placement": {
+            "fixture": "cab_1_main_group",
+            "size": [
+              1.0,
+              0.2
+            ],
+            "pos": [
+              0.0,
+              1.0
+            ],
+            "offset": [
+              0.0,
+              0.0
+            ]
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "coffee_cup",
+              "drink"
+            ],
+            "groups": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/coffee_cup/coffee_cup_7/model.xml",
+            "cat": "coffee_cup",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/coffee_cup/coffee_cup_7/model.xml"
+          },
+          "reset_region": {
+            "offset": [
+              0.0,
+              0.0,
+              -0.43
+            ],
+            "size": [
+              0.44,
+              0.34
+            ],
+            "height": 0.2666666666666667,
+            "name": "level0"
+          }
+        }
+      ],
+      "fixtures": {
+        "wall_room": {
+          "cls": "Wall"
+        },
+        "wall_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_left_room": {
+          "cls": "Wall"
+        },
+        "wall_left_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_right_room": {
+          "cls": "Wall"
+        },
+        "wall_right_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_front_room": {
+          "cls": "Wall"
+        },
+        "wall_front_backing_room": {
+          "cls": "Wall"
+        },
+        "floor_room": {
+          "cls": "Floor"
+        },
+        "floor_backing_room": {
+          "cls": "Floor"
+        },
+        "outlet_room": {
+          "cls": "WallAccessory"
+        },
+        "outlet_2_room": {
+          "cls": "WallAccessory"
+        },
+        "light_switch_room": {
+          "cls": "WallAccessory"
+        },
+        "light_switch_2_room": {
+          "cls": "WallAccessory"
+        },
+        "sink_main_group": {
+          "cls": "Sink"
+        },
+        "counter_main_main_group": {
+          "cls": "Counter"
+        },
+        "stove_main_group": {
+          "cls": "Stove"
+        },
+        "counter_right_main_group": {
+          "cls": "Counter"
+        },
+        "fridge_main_group": {
+          "cls": "FridgeBottomFreezer"
+        },
+        "cab_1_main_group": {
+          "cls": "SingleCabinet"
+        },
+        "cab_2_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "cab_main_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "microwave_main_group": {
+          "cls": "Microwave"
+        },
+        "cab_micro_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "cab_3_main_group": {
+          "cls": "OpenCabinet"
+        },
+        "cab_4_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "stack_1_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_1_main_group_1": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_2": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_3": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_4": {
+          "cls": "Drawer"
+        },
+        "stack_2_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_2_main_group_1": {
+          "cls": "HingeCabinet"
+        },
+        "stack_2_main_group_2": {
+          "cls": "PanelCabinet"
+        },
+        "dishwasher_main_group": {
+          "cls": "Dishwasher"
+        },
+        "stack_3_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_3_main_group_1": {
+          "cls": "SingleCabinet"
+        },
+        "stack_4_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_4_main_group_1": {
+          "cls": "SingleCabinet"
+        },
+        "stack_4_main_group_2": {
+          "cls": "Drawer"
+        },
+        "toaster_main_group": {
+          "cls": "Toaster"
+        },
+        "knife_block_main_group": {
+          "cls": "Accessory"
+        },
+        "paper_towel_main_group": {
+          "cls": "Accessory"
+        },
+        "coffee_machine_main_group": {
+          "cls": "CoffeeMachine"
+        }
+      },
+      "gen_textures": {},
+      "lang": "Pick the mug from the cabinet, place it under the coffee machine dispenser, and press the start button.",
+      "fixture_refs": {
+        "coffee_machine": "coffee_machine_main_group",
+        "cab": "cab_1_main_group"
+      },
+      "cam_configs": {
+        "robot0_agentview_center": {
+          "pos": [
+            -0.6,
+            0.0,
+            1.15
+          ],
+          "quat": [
+            0.636945903301239,
+            0.3325185477733612,
+            -0.3199238181114197,
+            -0.6175596117973328
+          ],
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_agentview_left": {
+          "pos": [
+            -0.5,
+            0.35,
+            1.05
+          ],
+          "quat": [
+            0.55623853,
+            0.29935253,
+            -0.37678665,
+            -0.6775092
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_agentview_right": {
+          "pos": [
+            -0.5,
+            -0.35,
+            1.05
+          ],
+          "quat": [
+            0.6775091886520386,
+            0.3767866790294647,
+            -0.2993525564670563,
+            -0.55623859167099
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_frontview": {
+          "pos": [
+            -0.5,
+            0,
+            0.95
+          ],
+          "quat": [
+            0.6088936924934387,
+            0.3814677894115448,
+            -0.3673907518386841,
+            -0.5905545353889465
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_eye_in_hand": {
+          "pos": [
+            0.05,
+            0,
+            0
+          ],
+          "quat": [
+            0,
+            0.707107,
+            0.707107,
+            0
+          ],
+          "parent_body": "robot0_right_hand"
+        }
+      },
+      "init_robot_base_pos": [
+        0.5628700810054545,
+        -0.8304427546959684,
+        0.0
+      ],
+      "init_robot_base_ori": [
+        0.0,
+        0.0,
+        1.5707963267948966
+      ]
+    },
+    "task_variant": "Original task predicate; disclosed initialization-only torso posture for state-assisted demonstrations",
+    "raw_width": 960,
+    "raw_height": 720,
+    "framebuffer_multisamples": 0,
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "distinct-baseline-09-coffee-attempt6",
+      "success": true,
+      "reference_waypoints_sha256": "c43f8fe4df9c798269f66d7205826d765aa2ec18238d708c17ae1d5882aaf15d",
+      "commands_sha256": "901eef8892e9d3181cef0127c12e2dffaa5fb875f0a561020c88bc8be2dfeb5e",
+      "origin": "Newly collected, state-assisted simulator success; not trained-model inference"
+    },
+    "navigation": false,
+    "collection": "distinct-two-perturbations",
+    "task_id": "09-coffee",
+    "recording_mode": "continuous native video",
+    "planned_perturbations": [
+      "lateral grasp offset",
+      "missed start button"
+    ],
+    "decision_origin": "GPT-authored, simulator-state-assisted demonstration"
+  },
+  "result": {
+    "success": true,
+    "steps": 2220,
+    "commands": 7,
+    "brain_records": 3,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 548,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Collect the mug",
+          "action": "Grasp the mug and withdraw it from the cabinet."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "move_object",
+            "object": "obj",
+            "offset": [
+              0,
+              -0.32,
+              -0.015
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "move_object",
+            "object": "obj",
+            "offset": [
+              0,
+              0,
+              -0.015
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "gripper",
+            "close": 1,
+            "steps": 30
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              0,
+              0.025
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.35,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "verify_held",
+            "object": "obj"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 30,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_object",
+              "object": "obj",
+              "offset": [
+                0,
+                -0.32,
+                -0.015
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": false
+            },
+            "step": 259,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_object",
+              "object": "obj",
+              "offset": [
+                0,
+                0,
+                -0.015
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 375,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": 1,
+              "steps": 30
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 405,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                0,
+                0.025
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 425,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.35,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": false
+            },
+            "step": 548,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "verify_held",
+              "object": "obj"
+            },
+            "feedback": {
+              "held": true,
+              "contacting_finger_pads": [
+                1,
+                2
+              ],
+              "object_position": [
+                0.5668985312745588,
+                -0.564989296753516,
+                1.4750132477857334
+              ]
+            },
+            "step": 548,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Grasp the mug and withdraw it from the cabinet."
+    },
+    {
+      "index": 1,
+      "step_start": 548,
+      "step_end": 663,
+      "brain": null,
+      "command": {
+        "action": "navigate",
+        "delta_world": [
+          0.45,
+          -0.2,
+          0
+        ],
+        "presentation": {
+          "stage": "Carry the mug",
+          "action": "Move toward the coffee preparation station."
+        }
+      },
+      "feedback": {
+        "action": "navigate",
+        "base_start": [
+          0.5601131872991872,
+          -0.8331538992402598,
+          0.0
+        ],
+        "base_end": [
+          1.0267887647157043,
+          -1.034023276572929,
+          0.0
+        ],
+        "target_distance_m": 0.016698224430184545,
+        "heading_error_rad": 3.3421434362246316e-06,
+        "reached": true,
+        "steps": 115
+      },
+      "official_success": false,
+      "controller_note": "Move toward the coffee preparation station."
+    },
+    {
+      "index": 2,
+      "step_start": 663,
+      "step_end": 1086,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The robot carried the mug away from the coffee machine toward the sink area.",
+        "Sub": "Return to the coffee machine.",
+        "Fine": "Keep the mug secure, navigate left to the dispensing station and lower the torso for placement."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The robot carried the mug away from the coffee machine toward the sink area.",
+          "Sub": "Return to the coffee machine.",
+          "Fine": "Keep the mug secure, navigate left to the dispensing station and lower the torso for placement."
+        },
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              0.2,
+              -1.0,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "torso",
+            "height": 0
+          },
+          {
+            "action": "verify_held",
+            "object": "obj"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                0.2,
+                -1.0,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                1.0267887647157043,
+                -1.034023276572929,
+                0.0
+              ],
+              "base_end": [
+                0.284943237221987,
+                -1.0132141334567317,
+                0.0
+              ],
+              "target_distance_m": 0.08596491652274824,
+              "heading_error_rad": 0.006790682569748352,
+              "reached": true,
+              "steps": 322
+            },
+            "step": 985,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "torso",
+              "height": 0
+            },
+            "feedback": {
+              "height": 0.002580108770503701,
+              "reached": true
+            },
+            "step": 1086,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "verify_held",
+              "object": "obj"
+            },
+            "feedback": {
+              "held": true,
+              "contacting_finger_pads": [
+                1,
+                2
+              ],
+              "object_position": [
+                0.36893538914115803,
+                -0.7799822815295471,
+                1.4029964876930308
+              ]
+            },
+            "step": 1086,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 3,
+      "step_start": 1086,
+      "step_end": 1431,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Position the mug",
+          "action": "Lower the mug over the tray lip and place it upright under the dispenser."
+        },
+        "commands": [
+          {
+            "action": "move_held",
+            "object": "obj",
+            "position": [
+              0.562,
+              -0.65,
+              1.12
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "action": "move_held",
+            "object": "obj",
+            "position": [
+              0.562,
+              -0.65,
+              1.055
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "action": "move_held",
+            "object": "obj",
+            "position": [
+              0.562,
+              -0.405,
+              1.025
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "action": "gripper",
+            "close": -1,
+            "steps": 35
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.23,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move_held",
+              "object": "obj",
+              "position": [
+                0.562,
+                -0.65,
+                1.12
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ]
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1192,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_held",
+              "object": "obj",
+              "position": [
+                0.562,
+                -0.65,
+                1.055
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ]
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1220,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_held",
+              "object": "obj",
+              "position": [
+                0.562,
+                -0.405,
+                1.025
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ]
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1310,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": -1,
+              "steps": 35
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 1345,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.23,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1431,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Lower the mug over the tray lip and place it upright under the dispenser."
+    },
+    {
+      "index": 4,
+      "step_start": 1431,
+      "step_end": 1881,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Start the coffee machine",
+          "action": "Reach toward the control panel and attempt to press Start."
+        },
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              0.55,
+              -0.86,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "move",
+            "position": [
+              0.46,
+              -0.53,
+              1.32
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5,
+                0.866
+              ],
+              [
+                0,
+                0.866,
+                -0.5
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              0.461,
+              -0.4,
+              1.26
+            ],
+            "rotation": [
+              [
+                -0.8660254037844387,
+                0,
+                0.49999999999999994
+              ],
+              [
+                0.49999999999999994,
+                0,
+                0.8660254037844387
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              0.461,
+              -0.325,
+              1.26
+            ],
+            "rotation": [
+              [
+                -0.8660254037844387,
+                0,
+                0.49999999999999994
+              ],
+              [
+                0.49999999999999994,
+                0,
+                0.8660254037844387
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.25,
+              0.08
+            ],
+            "rotation": [
+              [
+                -0.8660254037844387,
+                0,
+                0.49999999999999994
+              ],
+              [
+                0.49999999999999994,
+                0,
+                0.8660254037844387
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                0.55,
+                -0.86,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                0.2895787023260301,
+                -1.0126734463362455,
+                0.0
+              ],
+              "base_end": [
+                0.5648733617516477,
+                -0.8533369520221745,
+                0.0
+              ],
+              "target_distance_m": 0.016297640876831825,
+              "heading_error_rad": -0.00013093460080626507,
+              "reached": true,
+              "steps": 83
+            },
+            "step": 1514,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                0.46,
+                -0.53,
+                1.32
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5,
+                  0.866
+                ],
+                [
+                  0,
+                  0.866,
+                  -0.5
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 1664,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                0.461,
+                -0.4,
+                1.26
+              ],
+              "rotation": [
+                [
+                  -0.8660254037844387,
+                  0,
+                  0.49999999999999994
+                ],
+                [
+                  0.49999999999999994,
+                  0,
+                  0.8660254037844387
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 1731,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                0.461,
+                -0.325,
+                1.26
+              ],
+              "rotation": [
+                [
+                  -0.8660254037844387,
+                  0,
+                  0.49999999999999994
+                ],
+                [
+                  0.49999999999999994,
+                  0,
+                  0.8660254037844387
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 1789,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.25,
+                0.08
+              ],
+              "rotation": [
+                [
+                  -0.8660254037844387,
+                  0,
+                  0.49999999999999994
+                ],
+                [
+                  0.49999999999999994,
+                  0,
+                  0.8660254037844387
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1881,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Reach toward the control panel and attempt to press Start."
+    },
+    {
+      "index": 5,
+      "step_start": 1881,
+      "step_end": 2190,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The gripper contacted above the Start button. The coffee machine is still off.",
+        "Sub": "Press the actual Start button.",
+        "Fine": "Lower the hand, angle one fingertip toward the button, make contact and withdraw after activation."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The gripper contacted above the Start button. The coffee machine is still off.",
+          "Sub": "Press the actual Start button.",
+          "Fine": "Lower the hand, angle one fingertip toward the button, make contact and withdraw after activation."
+        },
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              0.55,
+              -0.86,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "move",
+            "position": [
+              0.46,
+              -0.53,
+              1.2
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5,
+                0.866
+              ],
+              [
+                0,
+                0.866,
+                -0.5
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              0.461,
+              -0.4,
+              1.146
+            ],
+            "rotation": [
+              [
+                -0.8660254037844387,
+                0,
+                0.49999999999999994
+              ],
+              [
+                0.49999999999999994,
+                0,
+                0.8660254037844387
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              0.461,
+              -0.325,
+              1.146
+            ],
+            "rotation": [
+              [
+                -0.8660254037844387,
+                0,
+                0.49999999999999994
+              ],
+              [
+                0.49999999999999994,
+                0,
+                0.8660254037844387
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.25,
+              0.08
+            ],
+            "rotation": [
+              [
+                -0.8660254037844387,
+                0,
+                0.49999999999999994
+              ],
+              [
+                0.49999999999999994,
+                0,
+                0.8660254037844387
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                0.55,
+                -0.86,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                0.5636820215623384,
+                -0.8543048700773312,
+                0.0
+              ],
+              "base_end": [
+                0.5618814697668169,
+                -0.8550717171684882,
+                0.0
+              ],
+              "target_distance_m": 0.012863020465161204,
+              "heading_error_rad": 0.00018957378105466383,
+              "reached": true,
+              "steps": 51
+            },
+            "step": 1932,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                0.46,
+                -0.53,
+                1.2
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5,
+                  0.866
+                ],
+                [
+                  0,
+                  0.866,
+                  -0.5
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 1985,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                0.461,
+                -0.4,
+                1.146
+              ],
+              "rotation": [
+                [
+                  -0.8660254037844387,
+                  0,
+                  0.49999999999999994
+                ],
+                [
+                  0.49999999999999994,
+                  0,
+                  0.8660254037844387
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 2037,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                0.461,
+                -0.325,
+                1.146
+              ],
+              "rotation": [
+                [
+                  -0.8660254037844387,
+                  0,
+                  0.49999999999999994
+                ],
+                [
+                  0.49999999999999994,
+                  0,
+                  0.8660254037844387
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 2095,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.25,
+                0.08
+              ],
+              "rotation": [
+                [
+                  -0.8660254037844387,
+                  0,
+                  0.49999999999999994
+                ],
+                [
+                  0.49999999999999994,
+                  0,
+                  0.8660254037844387
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 2190,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    },
+    {
+      "index": 6,
+      "step_start": 2190,
+      "step_end": 2220,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The mug is upright under the dispenser and the coffee machine has started.",
+        "Sub": "Finish preparing the coffee.",
+        "Fine": "Keep the gripper clear and verify the activated machine and mug placement."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "success",
+          "Cause": "The mug is upright under the dispenser and the coffee machine has started.",
+          "Sub": "Finish preparing the coffee.",
+          "Fine": "Keep the gripper clear and verify the activated machine and mug placement."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "finish"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 2220,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "finish"
+            },
+            "feedback": {
+              "action": "finish",
+              "finished": true
+            },
+            "step": 2220,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": "GPT-authored, simulator-state-assisted demonstration. Not trained Embodied-Corrector or RynnBrain inference and not a benchmark score.",
+  "motion_evidence": {
+    "physical_steps": 2220,
+    "every_action_frame_preserved": true,
+    "control_hz": 20,
+    "recording_fps": 20,
+    "playback_speed": 1,
+    "frame_interpolation": false,
+    "post_failure_state_reset": false,
+    "eef_speed_p95_m_s": 0.15914987719018978,
+    "eef_speed_max_m_s": 0.9833088539579492,
+    "base_path_m": 1.591345300086772,
+    "raw_video_sha256": "ce471b2b1be1e15e3ce39d5571c9c09bca8821148cb7166f0ff7ebf358205d2b",
+    "actions_sha256": "87a8d41131de204c509089208bbe52f05e8dfa73f06029a4dcc587c72e6d9af3"
+  },
+  "presentation": {
+    "title": "Pick the mug from the cabinet, place it under the coffee machine dispenser, and press the start button.",
+    "perturbations": [
+      "wrong-direction navigation",
+      "missed start button"
+    ],
+    "poster": "Encoded video first frame",
+    "final_hold_seconds": 3
+  }
+}

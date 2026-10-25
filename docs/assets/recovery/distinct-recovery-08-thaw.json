@@ -1,0 +1,3337 @@
+{
+  "case": "distinct-recovery-08-thaw-attempt1",
+  "manifest": {
+    "backend": "robocasa365",
+    "task": "Transport the chicken drumstick from the fridge to the microwave and turn on the microwave.",
+    "seed": 13,
+    "brain": "GPT proxy (Codex session), not trained RynnBrain",
+    "output_schema": [
+      "Judge",
+      "Cause",
+      "Sub",
+      "Fine"
+    ],
+    "executor": "analytical OSC controller with simulator-state localization",
+    "executor_version": "v5-minimum-jerk",
+    "continuous_episode": true,
+    "reset_after_failure": false,
+    "control_frequency_hz": 20,
+    "recording_fps": 20,
+    "task_source": "MicrowaveThawingFridge",
+    "camera": "fixed wide camera with simultaneous arm view",
+    "action_dim": 12,
+    "initial_model_sha256": "7ae8145062d2ab2bea980cf42425df3d943e5e7b590a2d566d49d6815d929ec3",
+    "source_model_verification": "Exact canonical XML match; inferred OBJ MIME hints normalized",
+    "initial_state_origin": "distinct-baseline-08-thaw-attempt6",
+    "initialization_only_torso_height": 0.12,
+    "episode_metadata": {
+      "layout_id": 1,
+      "style_id": 1,
+      "object_cfgs": [
+        {
+          "name": "meat_container",
+          "obj_groups": "plate",
+          "placement": {
+            "fixture": "fridge_main_group",
+            "size": [
+              0.3,
+              0.275
+            ],
+            "pos": [
+              0,
+              -1.0
+            ],
+            "try_to_place_in": "plate"
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "plate",
+              "receptacle",
+              "container",
+              "container_set2"
+            ],
+            "groups": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/plate/plate_8/model.xml",
+            "cat": "plate",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/plate/plate_8/model.xml"
+          },
+          "reset_region": {
+            "offset": [
+              -0.012931077750084452,
+              -0.04411236332686859,
+              0.49889728832190305
+            ],
+            "size": [
+              0.6339572030552696,
+              0.45862527440377643
+            ],
+            "name": "fridge_shelf1"
+          }
+        },
+        {
+          "name": "meat",
+          "obj_groups": "meat",
+          "graspable": true,
+          "placement": {
+            "size": [
+              0.01,
+              0.01
+            ],
+            "ensure_object_boundary_in_range": false,
+            "sample_args": {
+              "reference": "meat_container",
+              "on_top": true
+            }
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "chicken_drumstick",
+              "meat",
+              "food",
+              "in_container",
+              "oven_ready"
+            ],
+            "groups": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/lightwheel/chicken_drumstick/ChickenDrumstick010/model.xml",
+            "cat": "chicken_drumstick",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/lightwheel/chicken_drumstick/ChickenDrumstick010/model.xml"
+          }
+        },
+        {
+          "name": "vegetable",
+          "obj_groups": "vegetable",
+          "graspable": true,
+          "placement": {
+            "fixture": "fridge_main_group",
+            "size": [
+              0.3,
+              0.25
+            ],
+            "pos": [
+              0,
+              -1.0
+            ]
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "cucumber",
+              "vegetable",
+              "food",
+              "in_container",
+              "food_set1"
+            ],
+            "groups": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/cucumber/cucumber_4/model.xml",
+            "cat": "cucumber",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/cucumber/cucumber_4/model.xml"
+          },
+          "reset_region": {
+            "offset": [
+              -0.012901757557804622,
+              -0.04411236332686859,
+              0.20733839687653566
+            ],
+            "size": [
+              0.6340515375869524,
+              0.45862527440377643
+            ],
+            "name": "fridge_shelf0"
+          }
+        },
+        {
+          "name": "container",
+          "obj_groups": "plate",
+          "placement": {
+            "fixture": "microwave_main_group",
+            "size": [
+              0.05,
+              0.05
+            ],
+            "ensure_object_boundary_in_range": false
+          },
+          "type": "object",
+          "info": {
+            "groups_containing_sampled_obj": [
+              "all",
+              "plate",
+              "receptacle",
+              "container",
+              "container_set2"
+            ],
+            "groups": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/plate/plate_5/model.xml",
+            "cat": "plate",
+            "split": "target",
+            "mjcf_path": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/robocasa/robocasa/models/assets/objects/objaverse/plate/plate_5/model.xml"
+          },
+          "reset_region": {
+            "offset": [
+              -0.07389843059946302,
+              0.022110379136659572,
+              -0.16485389089899077
+            ],
+            "size": [
+              0.38859364249891487,
+              0.3229772217419914
+            ],
+            "height": 0.3429458339481352,
+            "name": "tray"
+          }
+        }
+      ],
+      "fixtures": {
+        "wall_room": {
+          "cls": "Wall"
+        },
+        "wall_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_left_room": {
+          "cls": "Wall"
+        },
+        "wall_left_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_right_room": {
+          "cls": "Wall"
+        },
+        "wall_right_backing_room": {
+          "cls": "Wall"
+        },
+        "wall_front_room": {
+          "cls": "Wall"
+        },
+        "wall_front_backing_room": {
+          "cls": "Wall"
+        },
+        "floor_room": {
+          "cls": "Floor"
+        },
+        "floor_backing_room": {
+          "cls": "Floor"
+        },
+        "outlet_room": {
+          "cls": "WallAccessory"
+        },
+        "outlet_2_room": {
+          "cls": "WallAccessory"
+        },
+        "light_switch_room": {
+          "cls": "WallAccessory"
+        },
+        "light_switch_2_room": {
+          "cls": "WallAccessory"
+        },
+        "sink_main_group": {
+          "cls": "Sink"
+        },
+        "counter_main_main_group": {
+          "cls": "Counter"
+        },
+        "stove_main_group": {
+          "cls": "Stove"
+        },
+        "counter_right_main_group": {
+          "cls": "Counter"
+        },
+        "fridge_main_group": {
+          "cls": "FridgeBottomFreezer"
+        },
+        "cab_1_main_group": {
+          "cls": "SingleCabinet"
+        },
+        "cab_2_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "cab_main_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "microwave_main_group": {
+          "cls": "Microwave"
+        },
+        "cab_micro_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "cab_3_main_group": {
+          "cls": "OpenCabinet"
+        },
+        "cab_4_main_group": {
+          "cls": "HingeCabinet"
+        },
+        "stack_1_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_1_main_group_1": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_2": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_3": {
+          "cls": "Drawer"
+        },
+        "stack_1_main_group_4": {
+          "cls": "Drawer"
+        },
+        "stack_2_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_2_main_group_1": {
+          "cls": "HingeCabinet"
+        },
+        "stack_2_main_group_2": {
+          "cls": "PanelCabinet"
+        },
+        "dishwasher_main_group": {
+          "cls": "Dishwasher"
+        },
+        "stack_3_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_3_main_group_1": {
+          "cls": "SingleCabinet"
+        },
+        "stack_4_main_group_base": {
+          "cls": "Box"
+        },
+        "stack_4_main_group_1": {
+          "cls": "SingleCabinet"
+        },
+        "stack_4_main_group_2": {
+          "cls": "Drawer"
+        },
+        "toaster_main_group": {
+          "cls": "Toaster"
+        },
+        "knife_block_main_group": {
+          "cls": "Accessory"
+        },
+        "paper_towel_main_group": {
+          "cls": "Accessory"
+        },
+        "coffee_machine_main_group": {
+          "cls": "CoffeeMachine"
+        }
+      },
+      "gen_textures": {},
+      "lang": "Transport the chicken drumstick from the fridge to the microwave and turn on the microwave.",
+      "fixture_refs": {
+        "microwave": "microwave_main_group",
+        "fridge": "fridge_main_group"
+      },
+      "cam_configs": {
+        "robot0_agentview_center": {
+          "pos": [
+            -0.6,
+            0.0,
+            1.15
+          ],
+          "quat": [
+            0.636945903301239,
+            0.3325185477733612,
+            -0.3199238181114197,
+            -0.6175596117973328
+          ],
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_agentview_left": {
+          "pos": [
+            -0.5,
+            0.35,
+            1.05
+          ],
+          "quat": [
+            0.55623853,
+            0.29935253,
+            -0.37678665,
+            -0.6775092
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_agentview_right": {
+          "pos": [
+            -0.5,
+            -0.35,
+            1.05
+          ],
+          "quat": [
+            0.6775091886520386,
+            0.3767866790294647,
+            -0.2993525564670563,
+            -0.55623859167099
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_frontview": {
+          "pos": [
+            -0.5,
+            0,
+            0.95
+          ],
+          "quat": [
+            0.6088936924934387,
+            0.3814677894115448,
+            -0.3673907518386841,
+            -0.5905545353889465
+          ],
+          "camera_attribs": {
+            "fovy": "60"
+          },
+          "parent_body": "mobilebase0_support"
+        },
+        "robot0_eye_in_hand": {
+          "pos": [
+            0.05,
+            0,
+            0
+          ],
+          "quat": [
+            0,
+            0.707107,
+            0.707107,
+            0
+          ],
+          "parent_body": "robot0_right_hand"
+        }
+      },
+      "init_robot_base_pos": [
+        4.504129667252348,
+        -1.0727332727954089,
+        0.0
+      ],
+      "init_robot_base_ori": [
+        0.0,
+        0.0,
+        1.5707963267948966
+      ]
+    },
+    "task_variant": "Original task predicate; disclosed initialization-only torso posture for state-assisted demonstrations",
+    "raw_width": 960,
+    "raw_height": 720,
+    "framebuffer_multisamples": 0,
+    "motion_profile": "Quintic reference paths, bounded action slew, damped feedback; native 20 fps.",
+    "arm_reference": "world",
+    "source_success_baseline": {
+      "case": "distinct-baseline-08-thaw-attempt6",
+      "success": true,
+      "reference_waypoints_sha256": "b32baa66ccb5b67f2d5fc5b41a0a89a6aeb6b70a6140b887d4d3dd51073404f0",
+      "commands_sha256": "499d8a9c7e4ed632dabd7314f161f05ef27bbd1591176c205099d47287963f5e",
+      "origin": "Newly collected, state-assisted simulator success; not trained-model inference"
+    },
+    "navigation": false,
+    "collection": "distinct-two-perturbations",
+    "task_id": "08-thaw",
+    "recording_mode": "continuous native video",
+    "planned_perturbations": [
+      "wrong destination",
+      "incomplete door closure"
+    ],
+    "decision_origin": "GPT-authored, simulator-state-assisted demonstration"
+  },
+  "result": {
+    "success": true,
+    "steps": 3988,
+    "commands": 8,
+    "brain_records": 3,
+    "termination": "finish_command"
+  },
+  "events": [
+    {
+      "index": 0,
+      "step_start": 0,
+      "step_end": 428,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Pick up the chicken drumstick",
+          "action": "Approach the food on the fridge shelf and attempt to grasp it."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "navigate",
+            "position": [
+              4.25,
+              -1.15,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "move_object",
+            "object": "meat",
+            "offset": [
+              0,
+              -0.26,
+              0.05
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5000000000000001,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5000000000000001
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "move_object",
+            "object": "meat",
+            "offset": [
+              0,
+              -0.08,
+              0.13
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5000000000000001,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5000000000000001
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "gripper",
+            "close": 1,
+            "steps": 25
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.2,
+              0.04
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5000000000000001,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5000000000000001
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "wait",
+            "steps": 20
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 30,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                4.25,
+                -1.15,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                4.470238583024895,
+                -1.0815414683449163,
+                0.0
+              ],
+              "base_end": [
+                4.251192496557534,
+                -1.1472539978449372,
+                0.0
+              ],
+              "target_distance_m": 0.002993756148275969,
+              "heading_error_rad": 4.1624033539022776e-05,
+              "reached": true,
+              "steps": 71
+            },
+            "step": 101,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_object",
+              "object": "meat",
+              "offset": [
+                0,
+                -0.26,
+                0.05
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5000000000000001,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5000000000000001
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": false
+            },
+            "step": 241,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_object",
+              "object": "meat",
+              "offset": [
+                0,
+                -0.08,
+                0.13
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5000000000000001,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5000000000000001
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 309,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": 1,
+              "steps": 25
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 334,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.2,
+                0.04
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5000000000000001,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5000000000000001
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 408,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 20
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 428,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Approach the food on the fridge shelf and attempt to grasp it."
+    },
+    {
+      "index": 1,
+      "step_start": 428,
+      "step_end": 737,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The fingers closed above the chicken drumstick and withdrew empty. The food is still on the shelf.",
+        "Sub": "Lower the grasp to the narrow end of the drumstick.",
+        "Fine": "Open the fingers, align with the food, close securely and withdraw it from the fridge."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The fingers closed above the chicken drumstick and withdrew empty. The food is still on the shelf.",
+          "Sub": "Lower the grasp to the narrow end of the drumstick.",
+          "Fine": "Open the fingers, align with the food, close securely and withdraw it from the fridge."
+        },
+        "commands": [
+          {
+            "action": "move_object",
+            "object": "meat",
+            "offset": [
+              0,
+              -0.26,
+              0.05
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5000000000000001,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5000000000000001
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "move_object",
+            "object": "meat",
+            "offset": [
+              0,
+              -0.025,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5000000000000001,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5000000000000001
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "gripper",
+            "close": 1,
+            "steps": 30
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              0,
+              0.03
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5000000000000001,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5000000000000001
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.35,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5000000000000001,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5000000000000001
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "verify_held",
+            "object": "meat"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move_object",
+              "object": "meat",
+              "offset": [
+                0,
+                -0.26,
+                0.05
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5000000000000001,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5000000000000001
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 478,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_object",
+              "object": "meat",
+              "offset": [
+                0,
+                -0.025,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5000000000000001,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5000000000000001
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 564,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": 1,
+              "steps": 30
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 594,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                0,
+                0.03
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5000000000000001,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5000000000000001
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 614,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.35,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5000000000000001,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5000000000000001
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 737,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "verify_held",
+              "object": "meat"
+            },
+            "feedback": {
+              "held": true,
+              "contacting_finger_pads": [
+                1,
+                2
+              ],
+              "object_position": [
+                4.571014484945059,
+                -0.8889466809299666,
+                1.42231588609732
+              ]
+            },
+            "step": 737,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 2,
+      "step_start": 737,
+      "step_end": 1380,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Load the microwave",
+          "action": "Carry the drumstick to the microwave and place it on the plate inside."
+        },
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              3.13,
+              -0.95,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "verify_held",
+            "object": "meat"
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              0,
+              0.12
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "verify_held",
+            "object": "meat"
+          },
+          {
+            "action": "move_held",
+            "object": "meat",
+            "position": [
+              3.05,
+              -0.45,
+              1.52
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5
+              ]
+            ]
+          },
+          {
+            "action": "verify_held",
+            "object": "meat"
+          },
+          {
+            "action": "move_held",
+            "object": "meat",
+            "position": [
+              3.05,
+              -0.24,
+              1.49
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5
+              ]
+            ]
+          },
+          {
+            "action": "verify_held",
+            "object": "meat"
+          },
+          {
+            "action": "gripper",
+            "close": -1,
+            "steps": 30
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.3,
+              0.02
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0.5,
+                0.8660254037844386
+              ],
+              [
+                0,
+                0.8660254037844386,
+                -0.5
+              ]
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                3.13,
+                -0.95,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                4.251192617941273,
+                -1.1472570101047843,
+                0.0
+              ],
+              "base_end": [
+                3.130573712638459,
+                -0.9661984578627709,
+                0.0
+              ],
+              "target_distance_m": 0.016208614478834833,
+              "heading_error_rad": -5.245719909563462e-07,
+              "reached": true,
+              "steps": 226
+            },
+            "step": 963,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "verify_held",
+              "object": "meat"
+            },
+            "feedback": {
+              "held": true,
+              "contacting_finger_pads": [
+                1,
+                2
+              ],
+              "object_position": [
+                3.4512641829231545,
+                -0.7053528835066722,
+                1.4201409299966532
+              ]
+            },
+            "step": 963,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                0,
+                0.12
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1013,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "verify_held",
+              "object": "meat"
+            },
+            "feedback": {
+              "held": true,
+              "contacting_finger_pads": [
+                1,
+                2
+              ],
+              "object_position": [
+                3.4518326519298874,
+                -0.7051554571022187,
+                1.5378014759658856
+              ]
+            },
+            "step": 1013,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_held",
+              "object": "meat",
+              "position": [
+                3.05,
+                -0.45,
+                1.52
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5
+                ]
+              ]
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1164,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "verify_held",
+              "object": "meat"
+            },
+            "feedback": {
+              "held": true,
+              "contacting_finger_pads": [
+                1,
+                2
+              ],
+              "object_position": [
+                3.0517745008500348,
+                -0.44905003774053853,
+                1.5182533843512787
+              ]
+            },
+            "step": 1164,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_held",
+              "object": "meat",
+              "position": [
+                3.05,
+                -0.24,
+                1.49
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5
+                ]
+              ]
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1241,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "verify_held",
+              "object": "meat"
+            },
+            "feedback": {
+              "held": true,
+              "contacting_finger_pads": [
+                1,
+                2
+              ],
+              "object_position": [
+                3.0500027396001896,
+                -0.2421391311140157,
+                1.4897682267422927
+              ]
+            },
+            "step": 1241,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": -1,
+              "steps": 30
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 1271,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.3,
+                0.02
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0.5,
+                  0.8660254037844386
+                ],
+                [
+                  0,
+                  0.8660254037844386,
+                  -0.5
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 1380,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Carry the drumstick to the microwave and place it on the plate inside."
+    },
+    {
+      "index": 3,
+      "step_start": 1380,
+      "step_end": 2284,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Close the microwave",
+          "action": "Move the door toward its closed position and withdraw the gripper."
+        },
+        "commands": [
+          {
+            "action": "navigate",
+            "position": [
+              2.45,
+              -1.27,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "move",
+            "position": [
+              2.740865930498924,
+              -1.154021184249488,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.740865930498924,
+              -0.9940211842494882,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "gripper",
+            "close": 1,
+            "steps": 25
+          },
+          {
+            "action": "move",
+            "position": [
+              2.8506036515607445,
+              -0.9906900751022613,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              2.9576509862787645,
+              -0.9663111530227111,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.058009257211443,
+              -0.9217950753945582,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.1479296521617486,
+              -0.858804708797961,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "gripper",
+            "close": -1,
+            "steps": 20
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.25,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          },
+          {
+            "action": "wait",
+            "steps": 20
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                2.45,
+                -1.27,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                3.130578059671366,
+                -0.9661983219469517,
+                0.0
+              ],
+              "base_end": [
+                2.5218056274315526,
+                -1.2635215897215182,
+                0.0
+              ],
+              "target_distance_m": 0.07209728102068239,
+              "heading_error_rad": 0.015015038746096776,
+              "reached": true,
+              "steps": 308
+            },
+            "step": 1688,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.740865930498924,
+                -1.154021184249488,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 1804,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.740865930498924,
+                -0.9940211842494882,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 1882,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": 1,
+              "steps": 25
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 1907,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.8506036515607445,
+                -0.9906900751022613,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 1972,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                2.9576509862787645,
+                -0.9663111530227111,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 2037,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.058009257211443,
+                -0.9217950753945582,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 2103,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.1479296521617486,
+                -0.858804708797961,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 2170,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "gripper",
+              "close": -1,
+              "steps": 20
+            },
+            "feedback": {
+              "action": "gripper",
+              "completed": true
+            },
+            "step": 2190,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.25,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 2264,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 20
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 2284,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Move the door toward its closed position and withdraw the gripper."
+    },
+    {
+      "index": 4,
+      "step_start": 2284,
+      "step_end": 3407,
+      "brain": {
+        "Judge": "failure",
+        "Cause": "The hand withdrew before the microwave door closed. A wide gap is still visible.",
+        "Sub": "Close the microwave door fully.",
+        "Fine": "Reposition beside the handle, guide the door through the remaining hinge arc and withdraw only after it is shut."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "failure",
+          "Cause": "The hand withdrew before the microwave door closed. A wide gap is still visible.",
+          "Sub": "Close the microwave door fully.",
+          "Fine": "Reposition beside the handle, guide the door through the remaining hinge arc and withdraw only after it is shut."
+        },
+        "commands": [
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.15,
+              0
+            ],
+            "grip": -1
+          },
+          {
+            "action": "navigate",
+            "position": [
+              3.05,
+              -1.1,
+              0
+            ],
+            "yaw": 1.5707963267948966
+          },
+          {
+            "action": "torso",
+            "height": 0.25
+          },
+          {
+            "action": "move",
+            "position": [
+              3.1021531594847644,
+              -1.0341089850235157,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.1021531594847644,
+              -0.8541089850235156,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.151242763444665,
+              -0.8159471389483831,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.1958673895997993,
+              -0.7726486579898488,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.2354923774647055,
+              -0.7247323137062118,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.269642968658786,
+              -0.6727722056049308,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.29790999512306,
+              -0.6173908826912442,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.3199547814804093,
+              -0.5592518845294178,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.3355132028027104,
+              -0.49905179118430926,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.3443988491675976,
+              -0.4375118772951903,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.25,
+              0
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.15,
+                0
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": false
+            },
+            "step": 2380,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "navigate",
+              "position": [
+                3.05,
+                -1.1,
+                0
+              ],
+              "yaw": 1.5707963267948966
+            },
+            "feedback": {
+              "action": "navigate",
+              "base_start": [
+                2.525994276073236,
+                -1.2650188080378866,
+                0.0
+              ],
+              "base_end": [
+                3.0653470837153485,
+                -1.1042256387879055,
+                0.0
+              ],
+              "target_distance_m": 0.01591819718849375,
+              "heading_error_rad": -5.3395203155393034e-05,
+              "reached": true,
+              "steps": 125
+            },
+            "step": 2505,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "torso",
+              "height": 0.25
+            },
+            "feedback": {
+              "height": 0.24752657892125174,
+              "reached": true
+            },
+            "step": 2601,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.1021531594847644,
+                -1.0341089850235157,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 2777,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.1021531594847644,
+                -0.8541089850235156,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 2876,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.151242763444665,
+                -0.8159471389483831,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 2931,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.1958673895997993,
+                -0.7726486579898488,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 2986,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.2354923774647055,
+                -0.7247323137062118,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 3041,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.269642968658786,
+                -0.6727722056049308,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 3096,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.29790999512306,
+                -0.6173908826912442,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 3152,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.3199547814804093,
+                -0.5592518845294178,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 3209,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.3355132028027104,
+                -0.49905179118430926,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 3266,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.3443988491675976,
+                -0.4375118772951903,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 3324,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.25,
+                0
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 3407,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false
+    },
+    {
+      "index": 5,
+      "step_start": 3407,
+      "step_end": 3696,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Complete door closure",
+          "action": "Re-establish contact with the handle and push the remaining door gap closed."
+        },
+        "commands": [
+          {
+            "action": "move",
+            "position": [
+              3.2962557399659467,
+              -0.7810878022692853,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.2962557399659467,
+              -0.6460878022692853,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "contact_move",
+            "position": [
+              3.2962557399659467,
+              -0.4010878022692853,
+              1.6136246089
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1,
+            "kp": 500,
+            "position_limit": 0.5
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.25,
+              0.02
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.2962557399659467,
+                -0.7810878022692853,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 3446,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.2962557399659467,
+                -0.6460878022692853,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 3499,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "contact_move",
+              "position": [
+                3.2962557399659467,
+                -0.4010878022692853,
+                1.6136246089
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1,
+              "kp": 500,
+              "position_limit": 0.5
+            },
+            "feedback": {
+              "reached": false,
+              "position_stiffness": 500.0,
+              "position_action_limit": 0.5,
+              "physical_actuator_limits_unchanged": true
+            },
+            "step": 3597,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.25,
+                0.02
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 3696,
+            "official_success": false
+          }
+        ],
+        "official_success": false
+      },
+      "official_success": false,
+      "controller_note": "Re-establish contact with the handle and push the remaining door gap closed."
+    },
+    {
+      "index": 6,
+      "step_start": 3696,
+      "step_end": 3958,
+      "brain": null,
+      "command": {
+        "action": "sequence",
+        "presentation": {
+          "stage": "Start thawing",
+          "action": "Press the microwave Start button and withdraw the gripper."
+        },
+        "commands": [
+          {
+            "action": "move",
+            "position": [
+              3.414,
+              -0.6,
+              1.464
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "move",
+            "position": [
+              3.414,
+              -0.43,
+              1.464
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": 1
+          },
+          {
+            "action": "wait",
+            "steps": 20
+          },
+          {
+            "action": "move_relative",
+            "delta": [
+              0,
+              -0.25,
+              0.08
+            ],
+            "rotation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "grip": -1
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.414,
+                -0.6,
+                1.464
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": true
+            },
+            "step": 3766,
+            "official_success": false
+          },
+          {
+            "command": {
+              "action": "move",
+              "position": [
+                3.414,
+                -0.43,
+                1.464
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": 1
+            },
+            "feedback": {
+              "action": "move",
+              "reached": false
+            },
+            "step": 3846,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "wait",
+              "steps": 20
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 3866,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "move_relative",
+              "delta": [
+                0,
+                -0.25,
+                0.08
+              ],
+              "rotation": [
+                [
+                  -1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "grip": -1
+            },
+            "feedback": {
+              "reached": true
+            },
+            "step": 3958,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true,
+      "controller_note": "Press the microwave Start button and withdraw the gripper."
+    },
+    {
+      "index": 7,
+      "step_start": 3958,
+      "step_end": 3988,
+      "brain": {
+        "Judge": "success",
+        "Cause": "The chicken drumstick is inside the microwave, the door is fully closed and the microwave is running.",
+        "Sub": "Complete the thawing task.",
+        "Fine": "Verify the final food placement and the activated microwave."
+      },
+      "command": {
+        "action": "sequence",
+        "brain": {
+          "Judge": "success",
+          "Cause": "The chicken drumstick is inside the microwave, the door is fully closed and the microwave is running.",
+          "Sub": "Complete the thawing task.",
+          "Fine": "Verify the final food placement and the activated microwave."
+        },
+        "commands": [
+          {
+            "action": "wait",
+            "steps": 30
+          },
+          {
+            "action": "finish"
+          }
+        ]
+      },
+      "feedback": {
+        "action": "sequence",
+        "substeps": [
+          {
+            "command": {
+              "action": "wait",
+              "steps": 30
+            },
+            "feedback": {
+              "action": "wait",
+              "completed": true
+            },
+            "step": 3988,
+            "official_success": true
+          },
+          {
+            "command": {
+              "action": "finish"
+            },
+            "feedback": {
+              "action": "finish",
+              "finished": true
+            },
+            "step": 3988,
+            "official_success": true
+          }
+        ],
+        "official_success": true
+      },
+      "official_success": true
+    }
+  ],
+  "provenance": "GPT-authored, simulator-state-assisted demonstration. Not trained Embodied-Corrector or RynnBrain inference and not a benchmark score.",
+  "motion_evidence": {
+    "physical_steps": 3988,
+    "every_action_frame_preserved": true,
+    "control_hz": 20,
+    "recording_fps": 20,
+    "playback_speed": 1,
+    "frame_interpolation": false,
+    "post_failure_state_reset": false,
+    "eef_speed_p95_m_s": 0.15458819558775017,
+    "eef_speed_max_m_s": 0.4139443363914627,
+    "base_path_m": 2.9127738571783293,
+    "raw_video_sha256": "460b4f4b679db74ccd0c1953573ac1b830809f1e85ddbf53409fe35c839a6551",
+    "actions_sha256": "a8a318be84d5b72bf856d910003e56fb97170aa1b5ba0e847903ebb6c6c2f9d5"
+  },
+  "presentation": {
+    "title": "Transport the chicken drumstick from the fridge to the microwave and turn on the microwave.",
+    "perturbations": [
+      "high grasp",
+      "incomplete microwave door closure"
+    ],
+    "poster": "Encoded video first frame",
+    "final_hold_seconds": 3
+  }
+}

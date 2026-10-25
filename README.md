@@ -13,7 +13,7 @@
 
 ## Overview
 
-The [latest introduction and 12 recovery videos](https://pm1255.github.io/embodied-corrector/?v=visible-failure-12#video) are on the project page. Native attachments below are from the previous recording revision.
+Watch the [research introduction](https://pm1255.github.io/embodied-corrector/#video) and the [12 distinct recovery tasks](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#simulations) on the project page. The native introduction preview below is from an earlier recording revision.
 
 https://github.com/user-attachments/assets/a89f5368-ed4c-44c3-905a-4011c73f6d9b
 
@@ -21,9 +21,33 @@ Research overview with English narration and subtitles. Robot motion comes from 
 
 ## Selected successful recoveries
 
-[Watch the updated 12-episode gallery](https://pm1255.github.io/embodied-corrector/?v=visible-failure-12#simulations): all six RoboCasa videos now combine wrong-way navigation and manipulation.
+[Watch all 12 current videos](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#simulations): **six different LIBERO-PRO tasks and six different RoboCasa365 tasks**. Every RoboCasa task combines navigation and manipulation.
 
-The updated project gallery shows the initial action without a premature Judge/Cause label, followed by an observed failure, the **Judge → Cause → Sub → Fine** output, corrective actions, and a verified successful ending. Titles use the original task instructions; all video text is English. Videos retain every action frame at **native 20 fps and 1× speed**, with a three-second final result hold. Each recovery rejoins a newly collected, verified successful reference trajectory after a controlled perturbation.
+Each continuous recording shows two deliberate action errors, followed by English **Judge → Cause → Sub → Fine** explanations, corrections, and a successful final environment check. The opening has no premature Judge/Cause label. Every action frame is retained at **native 20 fps and 1× speed**, with a three-second final hold and a first-frame cover.
+
+These are **GPT-authored, simulator-state-assisted demonstrations**, separate from trained Embodied-Corrector / RynnBrain inference and benchmark scores. Brief startup settling and physical contact transients remain in the recordings. See [provenance and verification](guides/selected_recoveries.md).
+
+| Suite | Original task and current video | Deliberate errors |
+| --- | --- | --- |
+| LIBERO-PRO | [Put the black bowl in the bottom drawer of the cabinet and close it](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-01-drawer) | high grasp; partial drawer closure with hand withdrawal |
+| LIBERO-PRO | [Put the yellow and white mug in the microwave and close it](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-02-microwave) | lateral grasp offset; incomplete door closure |
+| LIBERO-PRO | [Turn on the stove and put the moka pot on it](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-03-stove) | missed switch contact; placement offset |
+| LIBERO-PRO | [Put both the cream cheese box and the butter in the basket](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-04-basket) | lateral grasp offset; placement outside basket |
+| LIBERO-PRO | [Put the white mug on the left plate and put the yellow and white mug on the right plate](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-05-mugs) | high grasp; placement on wrong plate |
+| LIBERO-PRO | [Pick up the book and place it in the back compartment of the caddy](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-06-book) | lateral grasp offset; placement outside organizer |
+| RoboCasa365 | [Place the fruits in the fridge on the cutting board by the sink to make a fruit bowl. Leave the non-fruit items in the fridge.](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-07-fruits) | wrong-direction navigation; missed fruit grasp |
+| RoboCasa365 | [Transport the chicken drumstick from the fridge to the microwave and turn on the microwave.](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-08-thaw) | high grasp; incomplete microwave door closure |
+| RoboCasa365 | [Pick the mug from the cabinet, place it under the coffee machine dispenser, and press the start button.](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-09-coffee) | wrong-direction navigation; missed start button |
+| RoboCasa365 | [Pick up the cup and bowl from the counter, place them in the dishwasher, and close the dishwasher door.](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-10-dishwasher) | high grasp; premature door-closing withdrawal |
+| RoboCasa365 | [Pick the tangerine, cucumber from the counter and place them in the cabinet. Then close the cabinet.](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-11-cleanup) | wrong-direction navigation; high grasp |
+| RoboCasa365 | [Move the pot and pan from the stove into the sink.](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-12-cookware) | lateral handle-grasp offset; wrong-direction navigation |
+
+**Final cookware video:** [Play the MP4](https://pm1255.github.io/embodied-corrector/assets/recovery/distinct-recovery-12-cookware.mp4) · [Execution record](docs/assets/recovery/distinct-recovery-12-cookware.json).
+
+<details>
+<summary>Earlier native GitHub video previews</summary>
+
+The native attachments below are older successful demonstrations. The table above links to the current twelve distinct recordings.
 
 ### Open the top layer of the drawer and put the cream cheese inside
 
@@ -43,9 +67,7 @@ https://github.com/user-attachments/assets/02a661f5-b2cf-48b2-9925-1acb15dbcd65
 
 https://github.com/user-attachments/assets/e5711720-0fca-4182-a5aa-a25259f95a6c
 
-These demonstrations use a **GPT proxy with simulator-state-assisted analytical control**. They illustrate the correction workflow and are separate from trained Embodied-Corrector / RynnBrain evaluation results.
-
-The [project gallery](https://pm1255.github.io/embodied-corrector/?v=visible-failure-12#simulations) contains **12 selected successful recovery episodes: 6 LIBERO-PRO and 6 RoboCasa365**, with navigation and manipulation combined in all six RoboCasa episodes, using the same video layout and visible brain output. They cover task and seed variations; they are not 12 distinct tasks or an estimate of benchmark success rate. See [episode provenance and verification](guides/selected_recoveries.md).
+</details>
 
 ## Abstract
 

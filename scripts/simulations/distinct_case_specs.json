@@ -1,0 +1,151 @@
+[
+  {
+    "id": "01-drawer",
+    "backend": "libero_pro",
+    "task": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/LIBERO-PRO/libero/libero/bddl_files/libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.bddl",
+    "source_task": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it",
+    "seed": 7,
+    "perturbations": [
+      "high grasp",
+      "partial drawer closure with hand withdrawal"
+    ]
+  },
+  {
+    "id": "02-microwave",
+    "backend": "libero_pro",
+    "task": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/LIBERO-PRO/libero/libero/bddl_files/libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.bddl",
+    "source_task": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+    "seed": 7,
+    "perturbations": [
+      "lateral grasp offset",
+      "incomplete door closure"
+    ]
+  },
+  {
+    "id": "03-stove",
+    "backend": "libero_pro",
+    "task": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/LIBERO-PRO/libero/libero/bddl_files/libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.bddl",
+    "source_task": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+    "seed": 7,
+    "perturbations": [
+      "missed switch contact",
+      "placement offset"
+    ]
+  },
+  {
+    "id": "04-basket",
+    "backend": "libero_pro",
+    "task": "/user/panmiao/workspace/embodied-corrector-simulations/tasks/libero-multiobject.bddl",
+    "source_task": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket",
+    "seed": 7,
+    "perturbations": [
+      "lateral grasp offset",
+      "placement outside basket"
+    ]
+  },
+  {
+    "id": "05-mugs",
+    "backend": "libero_pro",
+    "task": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/LIBERO-PRO/libero/libero/bddl_files/libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.bddl",
+    "source_task": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate",
+    "seed": 7,
+    "perturbations": [
+      "high grasp",
+      "placement on wrong plate"
+    ]
+  },
+  {
+    "id": "06-book",
+    "backend": "libero_pro",
+    "task": "/user/panmiao/workspace/embodied-corrector-simulations/vendor/LIBERO-PRO/libero/libero/bddl_files/libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy.bddl",
+    "source_task": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy",
+    "seed": 7,
+    "perturbations": [
+      "lateral grasp offset",
+      "placement outside organizer"
+    ]
+  },
+  {
+    "id": "07-fruits",
+    "backend": "robocasa365",
+    "task": "ArrangeCuttingFruits",
+    "source_task": "ArrangeCuttingFruits",
+    "seed": 7,
+    "layout": 1,
+    "style": 1,
+    "perturbations": [
+      "wrong-direction navigation",
+      "missed fruit grasp"
+    ],
+    "initial_torso": 0.0
+  },
+  {
+    "id": "08-thaw",
+    "backend": "robocasa365",
+    "task": "MicrowaveThawingFridge",
+    "source_task": "MicrowaveThawingFridge",
+    "seed": 13,
+    "layout": 1,
+    "style": 1,
+    "perturbations": [
+      "high grasp",
+      "incomplete microwave door closure"
+    ],
+    "initial_torso": 0.12
+  },
+  {
+    "id": "09-coffee",
+    "backend": "robocasa365",
+    "task": "PrepareCoffee",
+    "source_task": "PrepareCoffee",
+    "seed": 7,
+    "layout": 1,
+    "style": 1,
+    "perturbations": [
+      "wrong-direction navigation",
+      "missed start button"
+    ],
+    "initial_torso": 0.12
+  },
+  {
+    "id": "10-dishwasher",
+    "backend": "robocasa365",
+    "task": "LoadDishwasher",
+    "source_task": "LoadDishwasher",
+    "seed": 7,
+    "layout": 1,
+    "style": 1,
+    "perturbations": [
+      "high grasp",
+      "premature door-closing withdrawal"
+    ]
+  },
+  {
+    "id": "11-cleanup",
+    "backend": "robocasa365",
+    "task": "FoodCleanup",
+    "source_task": "FoodCleanup",
+    "seed": 7,
+    "layout": 1,
+    "style": 1,
+    "perturbations": [
+      "wrong-direction navigation",
+      "high grasp"
+    ],
+    "initial_torso": 0.0
+  },
+  {
+    "id": "12-cookware",
+    "backend": "robocasa365",
+    "task": "TransportCookware",
+    "source_task": "TransportCookware",
+    "seed": 9,
+    "layout": 1,
+    "style": 1,
+    "perturbations": [
+      "lateral handle-grasp offset",
+      "wrong-direction navigation"
+    ],
+    "initial_torso": 0
+  }
+]
