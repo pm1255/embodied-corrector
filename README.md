@@ -116,21 +116,6 @@ The code-backend comparison fixes the GPT-5.5 planner, analytic robot functions,
 
 <p align="center"><img src="docs/assets/figures/dynamics.webp" alt="NEPO post-training loss, answer reward and token entropy" width="960"></p>
 
-## Citation
-
-If you find this work useful for your research, please cite Embodied-Corrector. The formal paper BibTeX will be added when its citation metadata is released. For now, the following entry cites the project page.
-
-```bibtex
-@misc{embodiedcorrector2026,
-  title        = {Embodied-Corrector},
-  year         = {2026},
-  howpublished = {Project page},
-  url          = {https://pm1255.github.io/embodied-corrector/}
-}
-```
-
-[Download the project citation](docs/citation.bib)
-
 ## Installation
 
 Linux, Python 3.12 and a CUDA GPU are recommended. Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then:
@@ -226,8 +211,17 @@ Open `http://localhost:6006`. Logs include stage waiting/running/completed/faile
 └── vendor/verl/      # Pinned upstream verl source and license
 ```
 
-## Acknowledgements and rights
+## Citation
 
-The paper model is based on [RynnBrain](https://github.com/alibaba-damo-academy/RynnBrain). The implementation uses [verl](https://github.com/verl-project/verl), [Transformers](https://github.com/huggingface/transformers), [PEFT](https://github.com/huggingface/peft), [Qwen](https://github.com/QwenLM/Qwen3-VL), [EmbodiedBench](https://github.com/EmbodiedBench/EmbodiedBench) and [AI2-THOR](https://github.com/allenai/ai2thor). Repository presentation takes inspiration from [VLA-Corrector](https://github.com/ZJU-OmniAI/vla-corrector).
+If you find this work useful for your research, please cite Embodied-Corrector. The formal paper BibTeX will be added when its citation metadata is released. For now, the following entry cites the project page.
 
-Third-party code retains its original license. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The manuscript and its figures retain their respective rights.
+```bibtex
+@misc{embodiedcorrector2026,
+  title        = {Embodied-Corrector},
+  year         = {2026},
+  howpublished = {Project page},
+  url          = {https://pm1255.github.io/embodied-corrector/}
+}
+```
+
+[Download the project citation](docs/citation.bib)
