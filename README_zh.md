@@ -94,21 +94,6 @@ The [project gallery](https://pm1255.github.io/embodied-corrector/?v=visible-fai
 
 <p align="center"><img src="docs/assets/figures/dynamics.webp" alt="NEPO 的训练损失、答案奖励和 token 熵" width="960"></p>
 
-## 引用
-
-如果这项工作对你的研究有帮助，欢迎引用 Embodied-Corrector。正式论文的 BibTeX 将在引用信息公开后补充；目前可使用以下条目引用项目主页。
-
-```bibtex
-@misc{embodiedcorrector2026,
-  title        = {Embodied-Corrector},
-  year         = {2026},
-  howpublished = {Project page},
-  url          = {https://pm1255.github.io/embodied-corrector/}
-}
-```
-
-[下载项目引用条目](docs/citation.bib)
-
 ## 安装和训练
 
 论文模型的训练路线为 **RynnBrain-8B → 评估优先 SFT → NEPO → Embodied-Corrector**。下列 Qwen3-VL 命令是便于运行的代码流程示例；论文模型及主页中的论文结果均基于 RynnBrain。
@@ -167,4 +152,17 @@ source scripts/env.sh
 
 打开 `http://localhost:6006`，可查看 SFT/NEPO loss、奖励、熵、概率差信号、梯度、检查点和评估进度。正式运行与 smoke 验证分开记录。
 
-第三方源码与论文材料保留原有权利，见 [第三方说明](THIRD_PARTY_NOTICES.md)。
+## 引用
+
+如果这项工作对你的研究有帮助，欢迎引用 Embodied-Corrector。正式论文的 BibTeX 将在引用信息公开后补充；目前可使用以下条目引用项目主页。
+
+```bibtex
+@misc{embodiedcorrector2026,
+  title        = {Embodied-Corrector},
+  year         = {2026},
+  howpublished = {Project page},
+  url          = {https://pm1255.github.io/embodied-corrector/}
+}
+```
+
+[下载项目引用条目](docs/citation.bib)
