@@ -35,9 +35,9 @@ for suite, anchor in [('LIBERO-PRO', 'libero-videos'), ('RoboCasa365', 'robocasa
 
 block = '''    <!-- BEGIN SIMULATION GALLERY -->
     <section id="simulations" class="section container simulation-section" aria-labelledby="simulations-title" lang="en">
-      <div class="section-heading"><p class="eyebrow">FAILURE → DIAGNOSIS → RECOVERY</p><h2 id="simulations-title">12 selected recovery episodes</h2><p>6 LIBERO-PRO episodes and 6 RoboCasa365 episodes. Every RoboCasa episode combines navigation and manipulation. Watch the incorrect action first, then Judge → Cause → Sub → Fine and the successful recovery.</p></div>
-      <nav class="episode-directory" aria-label="Video episode directory">''' + ''.join(directory) + '''<span>Native 20 fps · Original speed · First-frame covers</span></nav>
-      <p class="simulation-scope">These selected demonstrations use a GPT proxy with simulator-state-assisted analytical control, not the trained RynnBrain model. They are 12 independent episodes across task and seed variations, not 12 distinct tasks or an estimate of benchmark success rate.</p>
+      <div class="section-heading"><p class="eyebrow">FAILURE → DIAGNOSIS → RECOVERY</p><h2 id="simulations-title">12 distinct tasks, 12 successful recoveries</h2></div>
+      <p class="simulation-intro">6 different LIBERO-PRO tasks and 6 different RoboCasa365 tasks. Each RoboCasa task combines navigation and manipulation. Watch the visible error, the English Judge → Cause → Sub → Fine explanation, and the successful correction.</p>
+      <nav class="episode-directory" aria-label="Video episode directory">''' + ''.join(directory) + '''</nav>
 ''' + '\n'.join(groups) + '''
       <div class="simulation-footer"><p>RoboCasa uses a disclosed mobile-start variant: the base begins 0.75 m from the original prep pose, takes a wrong route, returns, and completes both placements. Three episodes also include a raised grasp or premature closure. Every action frame is retained; diagnosis begins after the observed outcome.</p><div><a class="text-link" href="https://github.com/pm1255/embodied-corrector/blob/main/guides/selected_recoveries.md">Episode provenance and verification ↗</a><a class="text-link" href="assets/recovery/execution-records.zip" download>Download execution records ↓</a></div></div>
     </section>

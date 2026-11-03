@@ -148,6 +148,7 @@ body{font-size:16px;line-height:1.55}
 .episode-directory>a{display:flex;align-items:center;gap:16px;border:1px solid var(--line);border-radius:9px;background:var(--card);padding:10px 16px;font-size:16px;font-weight:600}
 .episode-directory strong{color:var(--accent)}
 .episode-directory>span{color:var(--muted);font-size:14px}
+.simulation-intro{display:block;width:100%;max-width:none;margin:0 0 18px;font-size:15px;line-height:1.65;color:var(--muted)}
 .simulation-scope{margin:14px 0 22px;max-width:none;padding-left:14px}
 .episode-suite{scroll-margin-top:96px;margin-top:24px}
 .episode-suite+.episode-suite{margin-top:32px}
