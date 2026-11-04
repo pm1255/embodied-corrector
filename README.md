@@ -2,6 +2,8 @@
 
 # Embodied-Corrector
 
+**Recover, don’t just continue.**
+
 **Learning from Feedback for Physical Failure Understanding and Correction**
 
 [![Code](https://img.shields.io/badge/Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pm1255/embodied-corrector)
@@ -13,9 +15,7 @@
 
 ## Overview
 
-Watch the [research introduction](https://pm1255.github.io/embodied-corrector/#video) and the [12 distinct recovery tasks](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#simulations) on the project page. The native introduction preview below is from an earlier recording revision.
-
-https://github.com/user-attachments/assets/a89f5368-ed4c-44c3-905a-4011c73f6d9b
+Watch the [research introduction](https://pm1255.github.io/embodied-corrector/#video) and the [12 distinct recovery tasks](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#simulations) on the project page.
 
 Research overview with English narration and subtitles. Robot motion comes from continuous simulator recordings.
 
@@ -43,31 +43,6 @@ These are **GPT-authored, simulator-state-assisted demonstrations**, separate fr
 | RoboCasa365 | [Move the pot and pan from the stove into the sink.](https://pm1255.github.io/embodied-corrector/?v=distinct-tasks-12#case-distinct-recovery-12-cookware) | lateral handle-grasp offset; wrong-direction navigation |
 
 **Final cookware video:** [Play the MP4](https://pm1255.github.io/embodied-corrector/assets/recovery/distinct-recovery-12-cookware.mp4) · [Execution record](docs/assets/recovery/distinct-recovery-12-cookware.json).
-
-<details>
-<summary>Earlier native GitHub video previews</summary>
-
-The native attachments below are older successful demonstrations. The table above links to the current twelve distinct recordings.
-
-### Open the top layer of the drawer and put the cream cheese inside
-
-**LIBERO-PRO.** Restore handle contact, open the top drawer, and place the cream cheese inside. **Final environment result: success.**
-
-https://github.com/user-attachments/assets/943e6c8b-d766-4894-96d0-f1cc69fdd9ec
-
-### Put both the cream cheese box and the butter in the basket
-
-**LIBERO-PRO.** Correct the grasp height and put both required objects in the basket. **Final environment result: success.**
-
-https://github.com/user-attachments/assets/02a661f5-b2cf-48b2-9925-1acb15dbcd65
-
-### Place the garlic and the mushroom on separate cutting boards.
-
-**RoboCasa365, previous recording.** Correct a missed grasp and place the two vegetables on separate cutting boards. **Final environment result: success.**
-
-https://github.com/user-attachments/assets/e5711720-0fca-4182-a5aa-a25259f95a6c
-
-</details>
 
 ## Abstract
 
