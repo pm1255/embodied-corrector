@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 source "$(dirname "$0")/env.sh"
-: "${EC_MODEL:?Set EC_MODEL to a local Qwen VL checkpoint}"
-EC_RUN="${EC_RUN:-$EC_ROOT/runs/qwen-vl-smoke}"
+: "${EC_MODEL:?Set EC_MODEL to a local RynnBrain-8B checkpoint}"
+EC_RUN="${EC_RUN:-$EC_ROOT/runs/rynnbrain}"
 mkdir -p "$EC_RUN"
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1

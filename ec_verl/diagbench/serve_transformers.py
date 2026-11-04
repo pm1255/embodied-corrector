@@ -22,12 +22,12 @@ def main():
     args = parser.parse_args()
     import torch
     from PIL import Image
-    from transformers import AutoProcessor, Qwen3VLForConditionalGeneration
+    from transformers import AutoProcessor, AutoModelForImageTextToText
     torch.set_num_threads(2)
     torch.manual_seed(0)
     print('Loading processor and model', flush=True)
     processor = AutoProcessor.from_pretrained(args.model_path, local_files_only=True)
-    model = Qwen3VLForConditionalGeneration.from_pretrained(
+    model = AutoModelForImageTextToText.from_pretrained(
         args.model_path, dtype=torch.bfloat16, device_map=args.device,
         attn_implementation='sdpa', local_files_only=True).eval()
     print('Model loaded', flush=True)

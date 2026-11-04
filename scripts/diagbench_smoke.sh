@@ -4,7 +4,7 @@ set -euo pipefail
 source "$(dirname "$0")/env.sh"
 : "${DIAGBENCH_ROOT:?Set DIAGBENCH_ROOT to the extracted release}"
 : "${RYNN_MODEL:?Set RYNN_MODEL to the local RynnBrain-8B checkpoint}"
-: "${JUDGE_MODEL:?Set JUDGE_MODEL to an independent local Qwen3-VL vision judge}"
+: "${JUDGE_MODEL:?Set JUDGE_MODEL to an independent local vision judge}"
 EC_RUN="${EC_RUN:-$EC_ROOT/runs/diagbench-rynnbrain-smoke}"
 EC_PORT="${EC_PORT:-18419}"
 EC_MAX_TOKENS="${EC_MAX_TOKENS:-512}"

@@ -1,6 +1,6 @@
 # Project website
 
-Static, author-free project page built from the supplied manuscript. Paper-reported results are independent from the small Qwen software validation documented in `../guides/validation.md`.
+Static, author-free project page built from the supplied manuscript. Paper-reported results are documented separately from the RynnBrain code execution guide in `../guides/validation.md`.
 
 Enable GitHub Pages from branch `main`, folder `/docs`. The site uses relative asset paths and includes `.nojekyll`; no build process or external service credentials are needed.
 

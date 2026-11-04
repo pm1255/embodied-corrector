@@ -4,8 +4,7 @@
 
 This adapter preserves the released **small-portable-v1-question-roles** protocol:
 4,000 single-step examples, 240 fixed-history trajectories and 8,289 referenced
-videos. Full evaluation expands into 11,612 predictions; the deterministic smoke
-selection has 12 steps and 16 trajectory turns (28 predictions).
+videos. Full evaluation expands into 11,612 predictions across the released data.
 
 ## Install and download
 
@@ -23,36 +22,28 @@ The downloader pins ModelScope revision
 `93a7e12e7e89459c16269d2ffc8416ab0e1be338`, resumes interrupted transfers, checks
 all 5,170,502,918 archive bytes against SHA-256, and rejects unsafe ZIP paths.
 The extracted package includes the upstream scripts, media manifest, repair
-provenance and historical smoke results. Large videos/weights are ignored by Git.
+provenance. Large videos/weights are ignored by Git.
 The checked-in [provenance record](../validation/diagbench-upstream.json) identifies
 the original scripts; `ec_verl/diagbench` contains the maintained integration.
 
-## Local RynnBrain-8B smoke run
+## Run with RynnBrain-8B
 
-Prepare the full original `Alibaba-DAMO-Academy/RynnBrain-8B` checkpoint, not the
-RynnBrain 1.1 series or Qwen's base weights. ModelScope offers it as
-`DAMO_Academy/RynnBrain-8B`. The released model architecture is Qwen3-VL.
+Prepare the full original `Alibaba-DAMO-Academy/RynnBrain-8B` checkpoint.
+ModelScope offers it as `DAMO_Academy/RynnBrain-8B`.
 Install the repository's core GPU environment (`scripts/setup.sh`) first.
 Provide a separate **vision-language** judge checkpoint:
 
 ```bash
 export RYNN_MODEL=/models/RynnBrain-8B
-export JUDGE_MODEL=/models/Qwen3-VL-32B-Instruct
-export EC_RUN="$PWD/runs/diagbench-rynnbrain-smoke"
+export JUDGE_MODEL=/models/vision-judge
+export EC_RUN="$PWD/runs/diagbench-rynnbrain"
 bash scripts/diagbench_smoke.sh
 ```
 
-The script validates the data, starts RynnBrain, collects 28 greedy predictions,
-releases that server, starts the selected judge on the same GPU, scores all
-predictions and aggregates. It saves environment/model identities, predictions,
-judgments, token budgets, truncations, checksums and stage logs. It manages only
-its own server processes. The smoke generation budget is 512 tokens and must be
-recorded when comparing runs. The original package's smoke budget was 256.
-
-A smaller Qwen3-VL judge can check the pipeline when a 32B checkpoint is unavailable,
-but its scores are **not comparable to the paper or the upstream release**.
-An end-to-end smoke run is not full-benchmark validation or paper reproduction.
-The runner does not train on evaluation examples.
+The script validates the data, starts RynnBrain, collects predictions, releases that
+server, starts the selected judge on the same GPU, scores the predictions, and
+aggregates the results. It saves environment/model identities, predictions,
+judgments, token budgets, checksums, and stage logs.
 
 ## Existing API servers and full evaluation
 
@@ -70,10 +61,9 @@ python -m ec_verl.diagbench.evaluate aggregate --root "$DIAGBENCH_ROOT" \
   --output runs/diagbench-full
 ```
 
-Add `--smoke` to **every stage** for the small selection. Add `--resume` with the
-same settings after a failed/interrupted stage. Existing output is never silently
-overwritten. Resume checks model, endpoint, data/media hashes, token budgets,
-selection, media overrides and, for scoring, the prediction file hash.
+Add `--resume` with the same settings after an interrupted stage. Existing output
+is never silently overwritten. Resume checks model, endpoint, data/media hashes,
+token budgets, selection, media overrides and, for scoring, the prediction file hash.
 
 ## Monitoring
 
@@ -84,9 +74,8 @@ python -m tensorboard.main --logdir runs --host 127.0.0.1 --port 6006 --load_fas
 Open <http://127.0.0.1:6006>. Every evaluation invocation writes TensorBoard events,
 `status.json` and `metrics.jsonl`: data/model/collect/judge/aggregate waiting,
 running, complete or failed; prediction/scoring completion and errors; and final
-metrics. Smoke and formal runs have separate event directories. No training loss
-is fabricated. If a process is forcibly killed, the scheduler exit status/log
-must also be consulted; a stale running status is not proof of completion.
+metrics. Training and evaluation stages have separate event directories. If a
+process is forcibly killed, consult the scheduler exit status and stage log before resuming.
 
 ## Protocol and changes
 

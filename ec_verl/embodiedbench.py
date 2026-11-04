@@ -1,4 +1,4 @@
-"""Execute the real EB-ALFRED Gym environment through a local Qwen service.
+"""Execute the real EB-ALFRED Gym environment through a local RynnBrain service.
 
 This adapter does not claim simulator success from a model answer. Only the
 environment's task_success predicate is scored; no scripted/mock fallback exists.

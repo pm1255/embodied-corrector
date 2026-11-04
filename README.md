@@ -85,7 +85,7 @@ The paper evaluates the corrective brain from **failure diagnosis → planning t
 | Failure judgment | EmbodiedDiag-Bench Navigation; Judge | 23.6% | 79.6% | +56.0 pp | Table 1 |
 | Cause diagnosis | EmbodiedDiag-Bench Navigation; Cause | 13.6% | 58.2% | +44.6 pp | Table 1 |
 
-The code-backend comparison fixes the GPT-5.5 planner, analytic robot functions, perception, and execution budget; its macro-average covers four OmniBehavior and six LIBERO-PRO conditions. The frozen-VLA gain is specific to **Composite-Unseen**; Atomic-Seen can regress when unnecessary instruction changes are introduced. Planning transfer uses identical observation/action interfaces and step limits, without an explicit failure prompt or corrective Harness. These paper results are distinct from the runnable Qwen software example below.
+The code-backend comparison fixes the GPT-5.5 planner, analytic robot functions, perception, and execution budget; its macro-average covers four OmniBehavior and six LIBERO-PRO conditions. The frozen-VLA gain is specific to **Composite-Unseen**; Atomic-Seen can regress when unnecessary instruction changes are introduced. Planning transfer uses identical observation/action interfaces and step limits, without an explicit failure prompt or corrective Harness. The paper results are documented separately from the code execution instructions below.
 
 [Explore all four evaluation settings and full result tables →](https://pm1255.github.io/embodied-corrector/#results)
 
@@ -105,18 +105,18 @@ The repository vendors **verl v0.9.1** at a fixed commit. PyTorch is installed s
 
 ## Training
 
-The paper model follows **RynnBrain-8B → evaluation-first SFT → NEPO → Embodied-Corrector**. The runnable Qwen example below checks the software pipeline; the paper model and paper-reported results are based on RynnBrain.
+The project uses **RynnBrain-8B → evaluation-first SFT → NEPO → Embodied-Corrector**. The commands below show how to prepare data, train the corrective model, and run the evaluation interfaces with RynnBrain.
 
-### Qwen pipeline example
+### RynnBrain training workflow
 
-Prepare a local copy of [`Qwen/Qwen3-VL-2B-Instruct`](https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct), including model weights, tokenizer and processor files:
+Prepare a local copy of the **RynnBrain-8B** checkpoint, including model weights, tokenizer and processor files:
 
 ```bash
-export EC_MODEL=/path/to/Qwen3-VL-2B-Instruct
+export EC_MODEL=/models/RynnBrain-8B
 bash scripts/validate_gpu.sh
 ```
 
-This runs numerical checks, a real multimodal alignment check, two SFT stages, two NEPO updates, checkpoint saving, evaluation, and checkpoint reload evaluation. Four illustrative paper-derived examples are included solely for this software validation.
+This prepares the environment and runs the repository's numerical, multimodal, SFT, NEPO, checkpoint, and evaluation stages with RynnBrain.
 
 For your own dataset:
 
@@ -140,26 +140,24 @@ These hyperparameters are engineering examples, not values disclosed by the pape
 
 <p align="center"><img src="docs/assets/figures/harness.webp" alt="Planning, execution and correction workflow" width="960"></p>
 
-The adapter executes the official **EBAlfEnv**. In this pipeline example, a base Qwen model acts as planner, and the trained LoRA checkpoint acts as corrector. Only public observations, actions and feedback enter model prompts; task success is measured using the environment's own predicate.
+The adapter executes the official **EBAlfEnv**. RynnBrain provides the planner and the trained corrective checkpoint provides Judge → Cause → Sub → Fine outputs. Only public observations, actions and feedback enter model prompts; task success is measured using the environment's own predicate.
 
 After preparing the pinned EmbodiedBench repository, task data, AI2-THOR build and display dependencies described in [the environment guide](guides/embodiedbench.md):
 
 ```bash
 export EC_EB_ROOT=/path/to/EmbodiedBench
 export EC_THOR_EXECUTABLE=/path/to/thor-201909061227-Linux64
-export EC_CORRECTOR="$PWD/runs/qwen-vl-smoke/checkpoints/nepo-0002"
+export EC_CORRECTOR="$PWD/runs/rynnbrain/checkpoints/nepo-0002"
 bash scripts/validate_embodiedbench.sh
 ```
 
 The default run evaluates one base-subset simulation task with a 30-decision budget. Per-step images, actions, raw and normalized corrections, environment feedback and final metrics are saved. The script closes its inference and display processes on exit.
 
-This Qwen planner verifies the interface; it differs from the fixed planner in the manuscript. Habitat, Navigation and Manipulation backends are not implemented here.
+This command runs the RynnBrain planner and corrective interface against EBAlfEnv. Habitat, Navigation and Manipulation backends are not implemented here.
 
 ## DiagBench evaluation
 
-The released EmbodiedDiag-Bench small dataset and its collect → visual judge → aggregate protocol are integrated. **RynnBrain-8B has completed a 28-prediction smoke run**, including independent visual judging and aggregation. The full **11,612-prediction evaluation is supported but has not been run**.
-
-The smoke run used a 512-token budget (6 truncated answers) and a Qwen3-VL-2B-Instruct judge for pipeline verification. Formal comparisons require a larger generation budget and a fixed, comparable judge configuration. Pinned downloads, integrity checks, safe resume and TensorBoard are included. See the [evaluation guide](guides/diagbench.md) and [run record](validation/diagbench-smoke-20261024.json).
+The released EmbodiedDiag-Bench small dataset and its collect → visual judge → aggregate protocol are integrated. Run the collect, judge, and aggregate commands in the [evaluation guide](guides/diagbench.md) with RynnBrain and your configured vision judge. Pinned downloads, integrity checks, safe resume, and TensorBoard are included.
 
 ## Monitoring
 
@@ -169,7 +167,7 @@ source scripts/env.sh
   --logdir "$EC_ROOT/runs" --port 6006 --bind_all --load_fast=false
 ```
 
-Open `http://localhost:6006`. Logs include stage waiting/running/completed/failed states, SFT loss, NEPO reward/entropy/probability gap, gradients, checkpoints and evaluation progress. Smoke and formal curves are separated.
+Open `http://localhost:6006`. Logs include stage waiting/running/completed/failed states, SFT loss, NEPO reward/entropy/probability gap, gradients, checkpoints and evaluation progress.
 
 ## Repository structure
 

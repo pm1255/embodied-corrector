@@ -7,4 +7,4 @@ uv pip install --python "$EC_ROOT/.venv/bin/python" torch==2.8.0 torchvision==0.
 uv pip install --python "$EC_ROOT/.venv/bin/python" -r "$EC_ROOT/requirements-core.txt"
 uv pip install --python "$EC_ROOT/.venv/bin/python" --no-deps -e "$EC_ROOT[test]"
 uv pip install --python "$EC_ROOT/.venv/bin/python" --no-deps -e "$EC_ROOT/vendor/verl"
-printf '%s\n' 'Environment installed. Run scripts/smoke.sh with EC_MODEL set to a Qwen model.'
+printf '%s\n' 'Environment installed. Set EC_MODEL to a RynnBrain-8B checkpoint, then run scripts/validate_gpu.sh.'

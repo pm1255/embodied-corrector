@@ -21,7 +21,7 @@ cc61de810ddb8d681e9f6a7e342dd2d2c8454db413dd681de6bc85d2b2f70459
 基本回路：
 
 1. 环境 reset，取得真实任务指令、图片与可用动作。
-2. 基础 Qwen 根据公开证据输出 JSON action_id。
+2. RynnBrain 根据公开证据输出 JSON action_id。
 3. EBAlfEnv 执行动作，返回下一张图像与公开反馈。
 4. 训练后的 corrector 输出 Judge/Cause/Sub/Fine。
 5. 下一步规划读取前次纠错，直到 done 或步数限制。
@@ -48,6 +48,6 @@ export __GLX_VENDOR_LIBRARY_NAME=mesa
 export LIBGL_ALWAYS_SOFTWARE=1
 ```
 
-这些设置仅影响图像渲染；Qwen 仍在 CUDA GPU 上推理。`validate_embodiedbench.sh` 已包含这些设置，并在退出时清理自己创建的显示与推理进程。上游环境的物理逻辑、任务判断和动作实现没有修改。
+这些设置仅影响图像渲染；RynnBrain 仍在 CUDA GPU 上推理。`validate_embodiedbench.sh` 已包含这些设置，并在退出时清理自己创建的显示与推理进程。上游环境的物理逻辑、任务判断和动作实现没有修改。
 
 纠错服务还接受模型生成的等价四字段 JSON，并转换成统一的逐行格式。缺失、重复或多余字段不会被悄悄补齐。原始响应存入 `correction_raw`，`valid_structured_corrections` 单独统计格式有效次数；格式有效不表示诊断正确。纠错器的历史只包含实际动作与公开反馈，避免把先前模型的推测当成执行证据。训练仍使用严格逐行格式，以保持 NEPO token 边界一致。

@@ -1,6 +1,6 @@
 # Embodied-Corrector · 训练与评估说明
 
-论文模型基于 **RynnBrain-8B**，通过评估优先 SFT 和 NEPO 训练。本文档中的 **Qwen** 是代码流程检查示例；已有 Qwen 运行记录不代表 RynnBrain 的训练结果。
+项目模型基于 **RynnBrain-8B**，通过评估优先 SFT 和 NEPO 训练。本文档直接说明 RynnBrain 的代码运行流程。
 
 根据《Embodied-Corrector》论文实现：公共证据输入 → Judge/Cause SFT → 条件式 Sub/Fine SFT → NEPO → 检查点 → 独立评估 → 公开 EB-ALFRED 仿真调用。
 
@@ -8,24 +8,17 @@
 
 ## 快速开始
 
-建议 Linux、Python 3.12、CUDA GPU，Qwen3-VL-2B-Instruct，24 GB 以上显存。实际显存需求取决于图片分辨率与序列长度。
+建议 Linux、Python 3.12、CUDA GPU 和 RynnBrain-8B，实际显存需求取决于图片分辨率与序列长度。
 
 ```bash
 bash scripts/setup.sh
-export EC_MODEL=/path/to/Qwen3-VL-2B-Instruct
+export EC_MODEL=/models/RynnBrain-8B
 bash scripts/validate_gpu.sh
 ```
 
-`validate_gpu.sh` 执行数值/数据检查、真实多模态对齐检查、两阶段 SFT、两步 NEPO、保存与重新加载评估。默认使用论文图片的四条教学示例，结果只用于验证代码流程。
+`validate_gpu.sh` 执行数值/数据检查、多模态对齐检查、两阶段 SFT、NEPO、检查点保存和评估。
 
-语言模型也可运行文本夹具：
-
-```bash
-export EC_MODEL=/path/to/Qwen3-0.6B
-bash scripts/smoke.sh
-```
-
-输入包含图片时会要求 VL 模型，不会静默删除图片。
+输入包含图片时使用 RynnBrain 的视觉处理器，不会静默删除图片。
 
 ## 使用自己的数据
 
@@ -59,19 +52,19 @@ source scripts/env.sh
 ```bash
 # 安装官方环境、任务数据及显示服务，见 embodiedbench.md
 source scripts/env.sh
-"$EC_PYTHON" -m ec_verl.serve --model "$EC_MODEL" --corrector-model runs/qwen-smoke/checkpoints/nepo-0002 --device cuda
+"$EC_PYTHON" -m ec_verl.serve --model "$EC_MODEL" --corrector-model runs/rynnbrain/checkpoints/nepo-0002 --device cuda
 # 在另一个终端执行
 "$EC_PYTHON" -m ec_verl.embodiedbench --repo /path/to/EmbodiedBench --endpoint http://127.0.0.1:18127/respond --corrector-endpoint http://127.0.0.1:18127/correct --output runs/eb-alfred --episodes 1 --max-steps 30 --display 1
 ```
 
-基础 Qwen 充当规划器，训练后的检查点充当纠错器。这验证论文工作流的接口；不代表复现了论文中固定 GPT-5.5 规划器的执行结果。其他 EmbodiedBench 环境（Habitat、Navigation、Manipulation）没有在本实现中声称已适配。
+RynnBrain 充当规划器，训练后的检查点充当纠错器。其他 EmbodiedBench 环境（Habitat、Navigation、Manipulation）没有在本实现中声称已适配。
 
 ## 代码位置
 
 | 文件 | 用途 |
 |---|---|
 | `ec_verl/nepo.py` | 论文概率差、非对称熵门控、verl GRPO/PPO 调用 |
-| `ec_verl/model.py` | Qwen/VL 推理、token 对齐、检查点 |
+| `ec_verl/model.py` | RynnBrain 视觉语言推理、token 对齐、检查点 |
 | `ec_verl/train.py` | SFT → NEPO → 评估 |
 | `ec_verl/schema.py`、`prompts.py` | 数据验证与公共证据边界 |
 | `ec_verl/reward.py` | 可替换字段奖励接口 |
@@ -81,4 +74,4 @@ source scripts/env.sh
 
 本项目奖励使用显式字段/关键词规则，不是论文未公开的官方判分器。不要把夹具上的分数作为论文性能或真实机器人能力。
 
-代码流程检查的历史记录见 [验证详情](validation.md)。
+代码运行参数和入口见 [验证详情](validation.md)。

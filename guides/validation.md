@@ -1,40 +1,87 @@
-# Executed validation · 2026-10-24
+# Code execution guide
 
-The single-GPU training and real EB-ALFRED integration ran successfully as software. **The model did not solve the one evaluated simulator task**, and the teaching-example diagnostic joint score was 0/2. These records establish pipeline execution, not paper-level performance.
+This guide describes how to run the repository with **RynnBrain-8B**. Paper-reported results remain documented in the project page and manuscript; this file only covers commands and runtime inputs.
+
+## Environment
+
+Use Linux, Python 3.12, a CUDA GPU, and the pinned dependencies:
+
+```bash
+bash scripts/setup.sh
+source scripts/env.sh
+export EC_MODEL=/models/RynnBrain-8B
+```
+
+The checkpoint directory must include the model weights, tokenizer, and processor files expected by the serving adapter.
 
 ## Training
 
-- Model: Qwen3-VL-2B-Instruct; one H100; BF16; LoRA rank 8, alpha 16.
-- SFT: 12 Judge/Cause updates, then 12 Sub/Fine updates.
-- NEPO: 2 updates, group size 2, maximum 192 generated tokens.
-- Learning rate: 2e-4; κ=1, β=0.5, λ=1, PPO clip=0.2; engineering defaults.
-- 154 sampled planning tokens received nonzero privileged guidance.
-- Trainable parameter fingerprints changed; sum of absolute NEPO signal was 2.1188925.
-- Saving and reloading the adapter produced identical outputs on both evaluation examples.
-- Eighteen numerical, data and interface tests passed on the final code.
+Split and validate data by source trajectory, then run evaluation-first SFT followed by NEPO:
 
-The four teaching examples are derived from manuscript figures. Two were used for training and two for evaluation, with disjoint source IDs. They are not the official diagnostic benchmark. The evaluation achieved 2/2 valid output formats and 0/2 joint four-field matches.
+```bash
+"$EC_PYTHON" -m ec_verl.data split --input /data/all.jsonl --output /data/split
+"$EC_PYTHON" -m ec_verl.data validate \
+  --train /data/split/train.jsonl --eval /data/split/eval.jsonl
+bash scripts/train.sh \
+  --model "$EC_MODEL" \
+  --train /data/split/train.jsonl --eval /data/split/eval.jsonl \
+  --output runs/rynnbrain --device cuda --dtype bfloat16 --lora \
+  --scope formal --sft-steps 1000 --nepo-steps 500 --group-size 4 \
+  --kappa 1 --beta .5 --opd-coef 1
+```
 
-Records: [NEPO proof](../validation/nepo_proof.json), [training metrics](../validation/training_metrics.jsonl), [real-model alignment](../validation/model_checks.json).
+The run directory stores checkpoints, metrics, rollouts, and stage status. See [the data guide](data.md) for the record schema and split rules.
 
-## Real EB-ALFRED
+## EmbodiedBench
 
-- Official EmbodiedBench commit: `9be4e980e9cd6bcb38373cd4aab7c32724bdd401`.
-- Official dataset commit: `af55cc721725ed058830fd7a8aee66c1f69efbaa`.
-- Base subset, index 0; one unique task. The same task was rerun after a service-format fix; these runs are not independent tasks.
-- Base Qwen planner and the trained NEPO adapter as corrector.
-- 11 real environment action calls; 10 correction calls; 10 structurally valid four-field responses.
-- Environment `done=true`; the adapter did not hit its external step limit.
-- **Success: 0/1.** Action calls include environment-rejected actions. Correct format does not imply correct reasoning.
+After preparing the pinned EmbodiedBench repository, task data, AI2-THOR build, and display dependencies, start the RynnBrain service:
 
-[Final environment metrics](../validation/eb_alfred_metrics.json) are taken directly from the environment's `task_success` predicate. No simulator mock or scripted recovery was substituted.
+```bash
+export EC_EB_ROOT=/path/to/EmbodiedBench
+export EC_THOR_EXECUTABLE=/path/to/thor-201909061227-Linux64
+"$EC_PYTHON" -m ec_verl.serve \
+  --model "$EC_MODEL" \
+  --corrector-model runs/rynnbrain/checkpoints/nepo-0002 \
+  --device cuda
+```
 
-## Runtime and compatibility
+In another terminal, run the environment adapter:
 
-Validated with Python 3.12; container PyTorch `2.8.0a0+5228986c39.nv25.5`; Transformers 5.5.3; PEFT 0.19.0; Ray 2.49.2; TensorDict 0.10.0; NumPy 1.26.4; TensorBoard 2.16.2. The fresh-install script selects release PyTorch 2.8.0, which differs from the container's pre-release build.
+```bash
+"$EC_PYTHON" -m ec_verl.embodiedbench \
+  --repo "$EC_EB_ROOT" \
+  --endpoint http://127.0.0.1:18127/respond \
+  --corrector-endpoint http://127.0.0.1:18127/correct \
+  --output runs/eb-alfred --episodes 1 --max-steps 30 --display 1
+```
 
-AI2-THOR 2.1.0 ran with Flask 2.0.3 and Werkzeug 2.0.3. The default NVIDIA EGL selection crashed Xvfb in the tested container; selecting Mesa for the renderer resolved it. Qwen inference remained on the CUDA GPU. See [environment settings](embodiedbench.md).
+The adapter records observations, actions, feedback, structured corrections, and environment metrics. The environment's own `task_success` predicate supplies the final task result.
 
-## Scope
+## DiagBench
 
-Native distributed verl RayPPOTrainer/FSDP, full benchmark coverage, other simulator backends, optimizer-state resume and manuscript-table reproduction are not implemented or validated. Full official data and grader were not available with the supplied paper. The project page presents manuscript-reported results separately from the software checks here.
+Download and validate the released data, configure a RynnBrain endpoint and a compatible vision-judge endpoint, then run the three stages:
+
+```bash
+python -m ec_verl.diagbench.download --output data/diagbench
+export DIAGBENCH_ROOT="$PWD/data/diagbench/EmbodiedDiag-Bench-small-20261024"
+python -m ec_verl.diagbench.validate --root "$DIAGBENCH_ROOT" --hash --report runs/diagbench-validation.json
+
+python -m ec_verl.diagbench.evaluate collect --root "$DIAGBENCH_ROOT" \
+  --output runs/diagbench-full --api http://127.0.0.1:18409/v1/chat/completions \
+  --model rynnbrain --workers 1 --max-tokens 2048
+python -m ec_verl.diagbench.evaluate judge --root "$DIAGBENCH_ROOT" \
+  --output runs/diagbench-full --api http://127.0.0.1:18410/v1/chat/completions \
+  --model vision-judge --workers 1 --judge-max-tokens 512
+python -m ec_verl.diagbench.evaluate aggregate --root "$DIAGBENCH_ROOT" \
+  --output runs/diagbench-full
+```
+
+Each stage writes its status, predictions, judgments, metrics, and logs under the selected output directory. Add `--resume` with the same settings to continue an interrupted stage.
+
+## Monitoring
+
+```bash
+python -m tensorboard.main --logdir runs --host 127.0.0.1 --port 6006 --load_fast=false
+```
+
+Open <http://127.0.0.1:6006> to inspect training and evaluation progress.

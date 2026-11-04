@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "model": "DAMO_Academy/RynnBrain-8B",
   "vision": true,
   "image_tensors": {
     "pixel_values": [

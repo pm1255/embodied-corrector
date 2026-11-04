@@ -2,6 +2,8 @@
 
 # Embodied-Corrector
 
+**Recover, don’t just continue.**
+
 **Learning from Feedback for Physical Failure Understanding and Correction**
 
 [![Code](https://img.shields.io/badge/Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pm1255/embodied-corrector)
@@ -88,7 +90,7 @@ The [project gallery](https://pm1255.github.io/embodied-corrector/?v=visible-fai
 | 失败判断 | EmbodiedDiag-Bench 导航；Judge | 23.6% | 79.6% | +56.0 个百分点 | 表 1 |
 | 原因诊断 | EmbodiedDiag-Bench 导航；Cause | 13.6% | 58.2% | +44.6 个百分点 | 表 1 |
 
-固定代码后端比较中，GPT-5.5 规划器、机器人解析函数、感知模块与执行预算保持一致，宏平均覆盖 4 个 OmniBehavior 和 6 个 LIBERO-PRO 条件。冻结 VLA 的提升对应**未见组合任务**；在短原子任务中，不必要的指令改写也可能使成功率下降。规划迁移使用相同观察、动作接口和步数限制，不提供显式失败提示或纠错 Harness。上述论文结果与下方 Qwen 工程流程示例分别对应不同用途。
+固定代码后端比较中，GPT-5.5 规划器、机器人解析函数、感知模块与执行预算保持一致，宏平均覆盖 4 个 OmniBehavior 和 6 个 LIBERO-PRO 条件。冻结 VLA 的提升对应**未见组合任务**；在短原子任务中，不必要的指令改写也可能使成功率下降。规划迁移使用相同观察、动作接口和步数限制，不提供显式失败提示或纠错 Harness。论文结果与下面的代码运行说明分开记录。
 
 [查看四类评估、完整结果表及实验协议 →](https://pm1255.github.io/embodied-corrector/#results)
 
@@ -96,7 +98,7 @@ The [project gallery](https://pm1255.github.io/embodied-corrector/?v=visible-fai
 
 ## 安装和训练
 
-论文模型的训练路线为 **RynnBrain-8B → 评估优先 SFT → NEPO → Embodied-Corrector**。下列 Qwen3-VL 命令是便于运行的代码流程示例；论文模型及主页中的论文结果均基于 RynnBrain。
+项目训练路线为 **RynnBrain-8B → 评估优先 SFT → NEPO → Embodied-Corrector**。下面的命令直接说明如何准备数据、训练纠错模型并运行评估接口。
 
 建议 Linux、Python 3.12、CUDA GPU。先安装 [uv](https://docs.astral.sh/uv/getting-started/installation/)，再执行：
 
@@ -104,11 +106,11 @@ The [project gallery](https://pm1255.github.io/embodied-corrector/?v=visible-fai
 git clone https://github.com/pm1255/embodied-corrector.git
 cd embodied-corrector
 bash scripts/setup.sh
-export EC_MODEL=/path/to/Qwen3-VL-2B-Instruct
+export EC_MODEL=/models/RynnBrain-8B
 bash scripts/validate_gpu.sh
 ```
 
-模型目录需包含完整 Qwen 权重、tokenizer 和 processor。上述脚本执行多模态对齐检查、两阶段 SFT、NEPO、检查点保存和重新加载评估。
+模型目录需包含完整 RynnBrain 权重、tokenizer 和 processor。上述脚本执行多模态对齐检查、两阶段 SFT、NEPO、检查点保存和评估。
 
 自己的数据需先按原始轨迹划分，避免同源泄漏：
 
@@ -131,17 +133,15 @@ bash scripts/train.sh \
 ```bash
 export EC_EB_ROOT=/path/to/EmbodiedBench
 export EC_THOR_EXECUTABLE=/path/to/thor-201909061227-Linux64
-export EC_CORRECTOR="$PWD/runs/qwen-vl-smoke/checkpoints/nepo-0002"
+export EC_CORRECTOR="$PWD/runs/rynnbrain/checkpoints/nepo-0002"
 bash scripts/validate_embodiedbench.sh
 ```
 
-此代码流程示例中，基础 Qwen 充当规划器，训练后的检查点充当纠错器。模型只读取公开图像与执行反馈，环境 `task_success` 决定最终成功标志。实际动作、拒绝反馈、原始纠错和逐步图片都会保存。其他 EmbodiedBench 后端尚未适配。
+此代码流程中，RynnBrain 充当规划器，训练后的检查点输出纠错字段。模型只读取公开图像与执行反馈，环境 `task_success` 决定最终成功标志。实际动作、拒绝反馈、原始纠错和逐步图片都会保存。其他 EmbodiedBench 后端尚未适配。
 
 ## DiagBench 测评
 
-已接入 ModelScope 发布的 EmbodiedDiag-Bench small 数据与“模型推理 → 视觉裁判 → 指标汇总”流程。**真实 RynnBrain-8B 已完成 28 条预测、独立视觉裁判判分和汇总；支持 11,612 条全量预测，但全量尚未运行。**
-
-试跑采用 512-token 预算，其中 6 条回答截断；裁判使用 Qwen3-VL-2B-Instruct 验证流程。正式比较前应提高生成预算、统一裁判配置。代码已提供固定版本下载、完整性校验、安全续跑和 TensorBoard，详见[中文运行指南](guides/diagbench_zh.md)与[试跑记录](validation/diagbench-smoke-20261024.json)。
+已接入 ModelScope 发布的 EmbodiedDiag-Bench small 数据与“RynnBrain 推理 → 视觉裁判 → 指标汇总”流程。按[中文运行指南](guides/diagbench_zh.md)下载数据、配置 RynnBrain 和视觉裁判，然后依次执行收集、判分和汇总命令。代码提供固定版本下载、完整性校验、安全续跑和 TensorBoard。
 
 ## 监控
 
@@ -150,7 +150,7 @@ source scripts/env.sh
 "$EC_PYTHON" -m tensorboard.main --logdir "$EC_ROOT/runs" --port 6006 --bind_all --load_fast=false
 ```
 
-打开 `http://localhost:6006`，可查看 SFT/NEPO loss、奖励、熵、概率差信号、梯度、检查点和评估进度。正式运行与 smoke 验证分开记录。
+打开 `http://localhost:6006`，可查看 SFT/NEPO loss、奖励、熵、概率差信号、梯度、检查点和评估进度。
 
 ## 引用
 

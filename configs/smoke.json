@@ -1,5 +1,5 @@
 {
-  "model_example": "Qwen/Qwen3-VL-2B-Instruct",
+  "model_example": "DAMO_Academy/RynnBrain-8B",
   "device": "cuda",
   "dtype": "bfloat16",
   "lora": true,

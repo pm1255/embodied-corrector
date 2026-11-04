@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 source "$(dirname "$0")/env.sh"
-: "${EC_MODEL:?Set EC_MODEL to the planner Qwen VL checkpoint}"
+: "${EC_MODEL:?Set EC_MODEL to the planner RynnBrain-8B checkpoint}"
 : "${EC_EB_ROOT:?Set EC_EB_ROOT to the pinned official repository}"
 : "${EC_THOR_EXECUTABLE:?Set EC_THOR_EXECUTABLE to the official Unity executable}"
 : "${EC_CORRECTOR:?Set EC_CORRECTOR to the trained corrector checkpoint}"
@@ -13,7 +13,7 @@ if [ ! -f /usr/share/fonts/truetype/ubuntu/UbuntuMono-B.ttf ] && [ -n "${EC_EB_F
   cp "$EC_EB_FONT" /usr/share/fonts/truetype/ubuntu/UbuntuMono-B.ttf
 fi
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
-# Keep software rendering independent of the CUDA device used for Qwen.
+# Keep software rendering independent of the CUDA device used for RynnBrain.
 export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
 export __GLX_VENDOR_LIBRARY_NAME=mesa LIBGL_ALWAYS_SOFTWARE=1
 # Each validation owns its display and inference process; both are closed on exit.
@@ -28,6 +28,6 @@ for _ in range(120):
  try:
   r=requests.get('http://127.0.0.1:18127/health',timeout=2);r.raise_for_status();print(r.json());break
  except requests.RequestException:time.sleep(1)
-else:raise RuntimeError('Qwen inference server was not ready after 120 seconds')
+else:raise RuntimeError('RynnBrain inference server was not ready after 120 seconds')
 PY
 "$EC_PYTHON" -m ec_verl.embodiedbench --repo "$EC_EB_ROOT" --thor-executable "$EC_THOR_EXECUTABLE" --endpoint http://127.0.0.1:18127/respond --corrector-endpoint http://127.0.0.1:18127/correct --output "$EC_EB_RUN" --episodes 1 --max-steps "${EC_EB_STEPS:-30}" --display "$EC_DISPLAY"
