@@ -154,15 +154,18 @@ source scripts/env.sh
 
 ## 引用
 
-如果这项工作对你的研究有帮助，欢迎引用 Embodied-Corrector。正式论文的 BibTeX 将在引用信息公开后补充；目前可使用以下条目引用项目主页。
+如果使用这项工作，请引用这篇 arXiv 论文。
 
 ```bibtex
-@misc{embodiedcorrector2026,
-  title        = {Embodied-Corrector},
-  year         = {2026},
-  howpublished = {Project page},
-  url          = {https://pm1255.github.io/embodied-corrector/}
+@misc{pan2026recover,
+  title         = {Recover, Don't Just Continue: Learning from Feedback for Physical Failure Understanding and Correction},
+  author        = {Pan, Miao and Yao, Kaixiang and Zhou, Xiaohe and Wang, Xu and Li, Qinfeng and Zhang, Wenqi and Zhang, Xuhong},
+  year          = {2026},
+  eprint        = {2611.15651},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2611.15651}
 }
 ```
 
-[下载项目引用条目](docs/citation.bib)
+[下载论文引用条目](docs/citation.bib)
