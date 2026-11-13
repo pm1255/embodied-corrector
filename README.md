@@ -186,15 +186,18 @@ Open `http://localhost:6006`. Logs include stage waiting/running/completed/faile
 
 ## Citation
 
-If you find this work useful for your research, please cite Embodied-Corrector. The formal paper BibTeX will be added when its citation metadata is released. For now, the following entry cites the project page.
+If you use this work, please cite the arXiv paper.
 
 ```bibtex
-@misc{embodiedcorrector2026,
-  title        = {Embodied-Corrector},
-  year         = {2026},
-  howpublished = {Project page},
-  url          = {https://pm1255.github.io/embodied-corrector/}
+@misc{pan2026recover,
+  title         = {Recover, Don't Just Continue: Learning from Feedback for Physical Failure Understanding and Correction},
+  author        = {Pan, Miao and Yao, Kaixiang and Zhou, Xiaohe and Wang, Xu and Li, Qinfeng and Zhang, Wenqi and Zhang, Xuhong},
+  year          = {2026},
+  eprint        = {2611.15651},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2611.15651}
 }
 ```
 
-[Download the project citation](docs/citation.bib)
+[Download the paper citation](docs/citation.bib)
